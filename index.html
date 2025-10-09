@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Rápido - Tamandaré Tintas</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --link-color: #0056b3;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+            --subtitle-color: #6c757d;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: auto; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .header-text h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .header-text p {
+            color: #555;
+            font-size: 1.1em;
+            margin: 0;
+        }
+        .header-logo img {
+            max-height: 50px;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card h2 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        .card h2 .fa-solid, .card h2 .fa-brands { margin-right: 12px; }
+        
+        .collapsible-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .collapsible-header:hover { background-color: #f8f9fa; }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 30px;
+        }
+        .collapsible-card.active .collapsible-content {
+            max-height: 2000px; /* Aumentado para comportar todas as lojas */
+            padding-bottom: 25px;
+        }
+        .toggle-icon { transition: transform 0.4s ease-out; }
+        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
+
+        .card.static-card .card-content { padding: 25px 30px; }
+        .link-list {
+            list-style: none; padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .link-list li a {
+            display: flex; align-items: flex-start; padding: 12px;
+            border-radius: 8px; text-decoration: none;
+            background-color: #f8f9fa; transition: background-color 0.3s, color 0.3s;
+            height: 100%; box-sizing: border-box;
+        }
+        .link-list li a:hover { background-color: #e9ecef; }
+        .link-icon {
+            margin-right: 12px; width: 20px; text-align: center;
+            color: #007bff; margin-top: 3px;
+        }
+        .link-text-wrapper { display: flex; flex-direction: column; }
+        .link-title { color: var(--link-color); font-weight: 500; }
+        .link-subtitle { font-size: 0.8em; color: var(--subtitle-color); font-weight: 400; }
+        
+        .data-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #eef2f5;
+        }
+        .data-text { flex-grow: 1; margin-right: 15px; word-break: break-all; white-space: pre-wrap; }
+        .copy-btn {
+            padding: 8px 15px; border: none; background-color: #007bff; color: white; cursor: pointer;
+            border-radius: 6px; font-weight: 500; transition: background-color 0.3s; white-space: nowrap;
+        }
+        .copy-btn:hover { background-color: #0056b3; }
+        .copy-btn.copied { background-color: #28a745; }
+        
+        .store-section { margin-bottom: 25px; }
+        .store-section h3 { color: #333; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        
+        .calendar-container {
+            position: relative; padding-bottom: 75%; height: 0;
+            overflow: hidden; border-radius: 8px;
+        }
+        .calendar-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header { flex-direction: column-reverse; text-align: center; }
+            .header-logo { margin-bottom: 15px; }
+            .collapsible-header, .card.static-card .card-content { padding: 20px; }
+            .data-item { flex-direction: column; align-items: flex-start; }
+            .copy-btn { margin-top: 10px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-text">
+                <h1>Painel Rápido</h1>
+                <p>Links, contatos e informações essenciais para a equipe.</p>
+            </div>
+            <div class="header-logo">
+                <img src="./logo-tamandare.png" alt="Logo Tamandaré Tintas">
+            </div>
+        </header>
+
+        <div class="card static-card">
+            <div class="card-content">
+                <h2><i class="fa-solid fa-link"></i>Links Essenciais</h2>
+                <ul class="link-list">
+                    <li><a href="https://www.aciai.com.br/" target="_blank">
+                        <i class="fa-solid fa-building link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">ACIAI</span><small class="link-subtitle">Consulta restrições financeiras</small></div>
+                    </a></li>
+                    <li><a href="https://protestosp.com.br/consulta-de-protesto" target="_blank">
+                        <i class="fa-solid fa-file-invoice link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">CENPROT</span><small class="link-subtitle">Consulta restrições em cartório</small></div>
+                    </a></li>
+                    <li><a href="https://www.sintegra.gov.br/" target="_blank">
+                        <i class="fa-solid fa-receipt link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">SINTEGRA</span><small class="link-subtitle">Consulta situação da Inscrição Estadual</small></div>
+                    </a></li>
+                    <li><a href="https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">
+                        <i class="fa-solid fa-id-card link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Consulta CNPJ</span><small class="link-subtitle">Consulta situação cadastral do CNPJ</small></div>
+                    </a></li>
+                    <li><a href="https://tamandarett.github.io/codex44/" target="_blank">
+                        <i class="fa-brands fa-pix link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Gerador PIX</span></div>
+                    </a></li>
+                    <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/" target="_blank">
+                        <i class="fa-solid fa-stamp link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Registro de Lacres</span></div>
+                    </a></li>
+                    <li><a href="https://drive.google.com/drive/folders/1R7kR5zQGiLFLGm5kPmJ4MVBvMg_w-N1H" target="_blank">
+                        <i class="fa-solid fa-book link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Manuais e Formulários</span></div>
+                    </a></li>
+                    <li><a href="https://tamandaretintas.com.br/" target="_blank">
+                        <i class="fa-solid fa-palette link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Site Tamandaré Tintas</span></div>
+                    </a></li>
+                    <li><a href="https://tamandaretintas.com.br/homepage/sobre-nos/" target="_blank">
+                        <i class="fa-solid fa-gem link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Missão, Visão e Valores</span></div>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="data-item"><span class="data-text"><b>Almyr:</b> <span id="c-almyr">almyr@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-almyr', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Carla:</b> <span id="c-carla">carla@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-carla', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Daniel:</b> <span id="c-daniel">daniel@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-daniel', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Filipe:</b> <span id="c-filipe">filipe@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-filipe', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Junior:</b> <span id="c-junior">junior@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-junior', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Robson:</b> <span id="c-robson">robson@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-robson', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Departamento pessoal:</b> <span id="c-dp">anaclaudia@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-dp', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Lançamento de notas:</b> <span id="c-notas">admloja3@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-notas', this)">Copiar Email</button></div>
+                <div class="data-item"><span class="data-text"><b>Suporte:</b> <span id="c-suporte">suporte@tamandaretintas.com.br</span></span><button class="copy-btn" onclick="copyToClipboard('c-suporte', this)">Copiar Email</button></div>
+            </div>
+        </div>
+
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-shop"></i>Nossas Lojas</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="store-section"><h3>Indaiatuba - Morada do Sol</h3><div class="data-item"><span class="data-text" id="loja-morada">Endereço: Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.<br>Fone: (19) 3935-9141 / (19) 3935-9144<br>E-mail: loja2@tamandaretintas.com.br<br>WhatsApp: (19) 99328-6800</span><button class="copy-btn" onclick="copyToClipboard('loja-morada', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Indaiatuba - Visconde</h3><div class="data-item"><span class="data-text" id="loja-visconde">Endereço: Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.<br>Fone: (19) 3894-6112 / (19) 3885-4818<br>E-mail: loja3@tamandaretintas.com.br<br>WhatsApp: 19 99329-4193</span><button class="copy-btn" onclick="copyToClipboard('loja-visconde', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Indaiatuba - Paula Leite</h3><div class="data-item"><span class="data-text" id="loja-paula">Endereço: Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.<br>Fone: (19) 3825-1100 / (19) 3834-1180<br>E-mail: loja1@tamandaretintas.com.br<br>WhatsApp: (19) 99711-7509</span><button class="copy-btn" onclick="copyToClipboard('loja-paula', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Indaiatuba - Maria José</h3><div class="data-item"><span class="data-text" id="loja-maria">Endereço: Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.<br>Fone: (19) 3312-1933<br>E-mail: loja13@tamandaretintas.com.br<br>WhatsApp: (19) 99699 4383</span><button class="copy-btn" onclick="copyToClipboard('loja-maria', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Indaiatuba - Conceição</h3><div class="data-item"><span class="data-text" id="loja-conceicao">Endereço: Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.<br>Fone: (19) 3392-6690<br>E-mail: loja10@tamandaretintas.com.br<br>WhatsApp: (19) 99329-0533</span><button class="copy-btn" onclick="copyToClipboard('loja-conceicao', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Elias Fausto</h3><div class="data-item"><span class="data-text" id="loja-elias">Endereço: R. XV de Novembro, 181 – Centro, Elias Fausto/SP.<br>Fone: (19) 3821-2508<br>E-mail: loja5@tamandaretintas.com.br<br>WhatsApp: (19) 99329-7193</span><button class="copy-btn" onclick="copyToClipboard('loja-elias', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Salto</h3><div class="data-item"><span class="data-text" id="loja-salto">Endereço: R. Nove de Julho, 1426 - Vila Nova, Salto/SP.<br>Fone: (11) 4029-1401<br>E-mail: loja8@tamandaretintas.com.br<br>WhatsApp: 11 94289-3594</span><button class="copy-btn" onclick="copyToClipboard('loja-salto', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Itu</h3><div class="data-item"><span class="data-text" id="loja-itu">Endereço: R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.<br>Fone: (11) 2222-3912<br>E-mail: loja11@tamandaretintas.com.br<br>WhatsApp: 11 98830-4274</span><button class="copy-btn" onclick="copyToClipboard('loja-itu', this)">Copiar Dados</button></div></div>
+                <div class="store-section"><h3>Vinhedo</h3><div class="data-item"><span class="data-text" id="loja-vinhedo">Endereço: Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.<br>Fone: (19) 3030-3483<br>E-mail: lojavinhedo@tamandaretintas.com.br<br>WhatsApp: 19 98610-8999</span><button class="copy-btn" onclick="copyToClipboard('loja-vinhedo', this)">Copiar Dados</button></div></div>
+            </div>
+        </div>
+        
+        <div class="card static-card">
+             <div class="card-content">
+                <h2><i class="fa-solid fa-calendar-days"></i>Agenda da Equipe</h2>
+                <div class="calendar-container">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=f1c3916472d8e68fcdfc9d16dfbc294e026659b33b8e6c1fe6d3c9fb46f96d32%40group.calendar.google.com&ctz=America%2FSao_Paulo"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(elementId, buttonElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = buttonElement.innerText;
+                buttonElement.innerText = 'Copiado!';
+                buttonElement.classList.add('copied');
+                setTimeout(() => {
+                    buttonElement.innerText = originalText;
+                    buttonElement.classList.remove('copied');
+                }, 2000);
+            }).catch(err => { console.error('Erro ao copiar texto: ', err); });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
