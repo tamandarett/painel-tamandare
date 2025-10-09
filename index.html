@@ -80,7 +80,7 @@
             padding: 0 30px;
         }
         .collapsible-card.active .collapsible-content {
-            max-height: 2000px; /* Aumentado para comportar todas as lojas */
+            max-height: 2000px; 
             padding-bottom: 25px;
         }
         .toggle-icon { transition: transform 0.4s ease-out; }
@@ -120,9 +120,13 @@
         .copy-btn:hover { background-color: #0056b3; }
         .copy-btn.copied { background-color: #28a745; }
         
-        .store-section { margin-bottom: 25px; }
-        .store-section h3 { color: #333; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        
+        /* [ALTERADO] Nova classe para o título da loja dentro da caixa */
+        .store-title-in-box {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #333;
+        }
+
         .calendar-container {
             position: relative; padding-bottom: 75%; height: 0;
             overflow: hidden; border-radius: 8px;
@@ -220,15 +224,15 @@
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
-                <div class="store-section"><h3>Indaiatuba - Morada do Sol</h3><div class="data-item"><span class="data-text" id="loja-morada"><b>Indaiatuba - Morada do Sol</b><br>Endereço: Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.<br>Fone: (19) 3935-9141 / (19) 3935-9144<br>E-mail: loja2@tamandaretintas.com.br<br>WhatsApp: (19) 99328-6800</span><button class="copy-btn" onclick="copyToClipboard('loja-morada', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Indaiatuba - Visconde</h3><div class="data-item"><span class="data-text" id="loja-visconde"><b>Indaiatuba - Visconde</b><br>Endereço: Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.<br>Fone: (19) 3894-6112 / (19) 3885-4818<br>E-mail: loja3@tamandaretintas.com.br<br>WhatsApp: 19 99329-4193</span><button class="copy-btn" onclick="copyToClipboard('loja-visconde', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Indaiatuba - Paula Leite</h3><div class="data-item"><span class="data-text" id="loja-paula"><b>Indaiatuba - Paula Leite</b><br>Endereço: Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.<br>Fone: (19) 3825-1100 / (19) 3834-1180<br>E-mail: loja1@tamandaretintas.com.br<br>WhatsApp: (19) 99711-7509</span><button class="copy-btn" onclick="copyToClipboard('loja-paula', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Indaiatuba - Maria José</h3><div class="data-item"><span class="data-text" id="loja-maria"><b>Indaiatuba - Maria José</b><br>Endereço: Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.<br>Fone: (19) 3312-1933<br>E-mail: loja13@tamandaretintas.com.br<br>WhatsApp: (19) 99699 4383</span><button class="copy-btn" onclick="copyToClipboard('loja-maria', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Indaiatuba - Conceição</h3><div class="data-item"><span class="data-text" id="loja-conceicao"><b>Indaiatuba - Conceição</b><br>Endereço: Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.<br>Fone: (19) 3392-6690<br>E-mail: loja10@tamandaretintas.com.br<br>WhatsApp: (19) 99329-0533</span><button class="copy-btn" onclick="copyToClipboard('loja-conceicao', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Elias Fausto</h3><div class="data-item"><span class="data-text" id="loja-elias"><b>Elias Fausto</b><br>Endereço: R. XV de Novembro, 181 – Centro, Elias Fausto/SP.<br>Fone: (19) 3821-2508<br>E-mail: loja5@tamandaretintas.com.br<br>WhatsApp: (19) 99329-7193</span><button class="copy-btn" onclick="copyToClipboard('loja-elias', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Salto</h3><div class="data-item"><span class="data-text" id="loja-salto"><b>Salto</b><br>Endereço: R. Nove de Julho, 1426 - Vila Nova, Salto/SP.<br>Fone: (11) 4029-1401<br>E-mail: loja8@tamandaretintas.com.br<br>WhatsApp: 11 94289-3594</span><button class="copy-btn" onclick="copyToClipboard('loja-salto', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Itu</h3><div class="data-item"><span class="data-text" id="loja-itu"><b>Itu</b><br>Endereço: R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.<br>Fone: (11) 2222-3912<br>E-mail: loja11@tamandaretintas.com.br<br>WhatsApp: 11 98830-4274</span><button class="copy-btn" onclick="copyToClipboard('loja-itu', this)">Copiar Dados</button></div></div>
-                <div class="store-section"><h3>Vinhedo</h3><div class="data-item"><span class="data-text" id="loja-vinhedo"><b>Vinhedo</b><br>Endereço: Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.<br>Fone: (19) 3030-3483<br>E-mail: lojavinhedo@tamandaretintas.com.br<br>WhatsApp: 19 98610-8999</span><button class="copy-btn" onclick="copyToClipboard('loja-vinhedo', this)">Copiar Dados</button></div></div>
+                <div class="data-item"><span class="data-text" id="loja-morada"><b class="store-title-in-box">Indaiatuba - Morada do Sol</b><br>Endereço: Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.<br>Fone: (19) 3935-9141 / (19) 3935-9144<br>E-mail: loja2@tamandaretintas.com.br<br>WhatsApp: (19) 99328-6800</span><button class="copy-btn" onclick="copyToClipboard('loja-morada', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-visconde"><b class="store-title-in-box">Indaiatuba - Visconde</b><br>Endereço: Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.<br>Fone: (19) 3894-6112 / (19) 3885-4818<br>E-mail: loja3@tamandaretintas.com.br<br>WhatsApp: 19 99329-4193</span><button class="copy-btn" onclick="copyToClipboard('loja-visconde', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-paula"><b class="store-title-in-box">Indaiatuba - Paula Leite</b><br>Endereço: Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.<br>Fone: (19) 3825-1100 / (19) 3834-1180<br>E-mail: loja1@tamandaretintas.com.br<br>WhatsApp: (19) 99711-7509</span><button class="copy-btn" onclick="copyToClipboard('loja-paula', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-maria"><b class="store-title-in-box">Indaiatuba - Maria José</b><br>Endereço: Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.<br>Fone: (19) 3312-1933<br>E-mail: loja13@tamandaretintas.com.br<br>WhatsApp: (19) 99699 4383</span><button class="copy-btn" onclick="copyToClipboard('loja-maria', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-conceicao"><b class="store-title-in-box">Indaiatuba - Conceição</b><br>Endereço: Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.<br>Fone: (19) 3392-6690<br>E-mail: loja10@tamandaretintas.com.br<br>WhatsApp: (19) 99329-0533</span><button class="copy-btn" onclick="copyToClipboard('loja-conceicao', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-elias"><b class="store-title-in-box">Elias Fausto</b><br>Endereço: R. XV de Novembro, 181 – Centro, Elias Fausto/SP.<br>Fone: (19) 3821-2508<br>E-mail: loja5@tamandaretintas.com.br<br>WhatsApp: (19) 99329-7193</span><button class="copy-btn" onclick="copyToClipboard('loja-elias', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-salto"><b class="store-title-in-box">Salto</b><br>Endereço: R. Nove de Julho, 1426 - Vila Nova, Salto/SP.<br>Fone: (11) 4029-1401<br>E-mail: loja8@tamandaretintas.com.br<br>WhatsApp: 11 94289-3594</span><button class="copy-btn" onclick="copyToClipboard('loja-salto', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-itu"><b class="store-title-in-box">Itu</b><br>Endereço: R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.<br>Fone: (11) 2222-3912<br>E-mail: loja11@tamandaretintas.com.br<br>WhatsApp: 11 98830-4274</span><button class="copy-btn" onclick="copyToClipboard('loja-itu', this)">Copiar Dados</button></div>
+                <div class="data-item"><span class="data-text" id="loja-vinhedo"><b class="store-title-in-box">Vinhedo</b><br>Endereço: Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.<br>Fone: (19) 3030-3483<br>E-mail: lojavinhedo@tamandaretintas.com.br<br>WhatsApp: 19 98610-8999</span><button class="copy-btn" onclick="copyToClipboard('loja-vinhedo', this)">Copiar Dados</button></div>
             </div>
         </div>
         
