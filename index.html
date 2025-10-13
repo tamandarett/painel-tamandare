@@ -66,6 +66,7 @@
         }
         .card h2 .fa-solid, .card h2 .fa-brands { margin-right: 12px; }
         
+        /* Ocultando o menu expansível antigo, mas mantendo o estilo base do cabeçalho */
         .collapsible-header {
             padding: 25px 30px;
             cursor: pointer;
@@ -142,6 +143,12 @@
             .data-item { flex-direction: column; align-items: flex-start; }
             .copy-btn { margin-top: 10px; width: 100%; }
         }
+
+        /* Estilo para a caixa de seleção de contatos */
+        .contact-details-item { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px; border-radius: 8px; border: 1px solid #eef2f5; 
+        }
     </style>
 </head>
 <body>
@@ -205,96 +212,29 @@
             </div>
         </div>
 
-        <div class="card collapsible-card">
-            <div class="collapsible-header">
+        <div class="card static-card">
+            <div class="card-content">
                 <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-            </div>
-            <div class="collapsible-content">
                 
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Alexandre:</b> 
-                        <span id="c-alexandre">suporte@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-alexandre', this)">Copiar Email</button>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="contato-select" style="font-weight: 500; color: var(--text-color);">Selecione o Contato:</label>
+                    <select id="contato-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                        <option value="" disabled selected>-- Selecione um nome/setor --</option>
+                        <option value="Alexandre">Alexandre (Suporte)</option>
+                        <option value="Ana Claudia">Ana Claudia (RH)</option>
+                        <option value="Carla">Carla (Fiscal/Financeiro)</option>
+                        <option value="Daniel">Daniel (Contas a Pagar)</option>
+                        <option value="Eduardo">Eduardo (Marketing)</option>
+                        <option value="Filipe">Filipe (Comercial)</option>
+                        <option value="Junior">Junior (Caixa)</option>
+                        <option value="Lançamento de Notas">Lançamento de Notas</option>
+                    </select>
                 </div>
 
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Ana Claudia:</b> 
-                        <span id="c-anaclaudia">anaclaudia@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Departamento Pessoal (RH): Dúvidas sobre folha de pagamento, benefícios e regras trabalhistas.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-anaclaudia', this)">Copiar Email</button>
-                </div>
-                
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Carla:</b> 
-                        <span id="c-carla">carla@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Setor Financeiro / Fiscal: Assuntos relacionados a bancos, contabilidade e impostos.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-carla', this)">Copiar Email</button>
-                </div>
-                
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Daniel:</b> 
-                        <span id="c-daniel">daniel@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Contas a Pagar, assistência técnica de produtos, e devolução de mercadorias para fornecedores.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-daniel', this)">Copiar Email</button>
-                </div>
-
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Eduardo:</b> 
-                        <span id="c-eduardo">marketing@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Marketing: Promoções, campanhas publicitárias e materiais de divulgação.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-eduardo', this)">Copiar Email</button>
-                </div>
-                
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Filipe:</b> 
-                        <span id="c-filipe">filipe@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Questões, negociações ou propostas comerciais e assuntos gerais.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-filipe', this)">Copiar Email</button>
-                </div>
-                
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Junior:</b> 
-                        <span id="c-junior">junior@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Operações relacionadas caixa, Contas a receber, problemas financeiros urgentes relacionados ao cliente.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-junior', this)">Copiar Email</button>
-                </div>
-
-                <div class="data-item">
-                    <span class="data-text">
-                        <b>Lançamento de Notas:</b> 
-                        <span id="c-notas">admloja3@tamandaretintas.com.br</span>
-                        <br>
-                        <small class="link-subtitle">Lançamentos / Estoque: Dúvidas sobre estoque lançado, notas lançadas e pagamentos a fornecedores.</small>
-                    </span>
-                    <button class="copy-btn" onclick="copyToClipboard('c-notas', this)">Copiar Email</button>
-                </div>
-                
+                <div id="contato-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px;">
+                    </div>
             </div>
         </div>
-
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-shop"></i>Nossas Lojas</h2>
