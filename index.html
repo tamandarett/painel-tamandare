@@ -66,7 +66,7 @@
         }
         .card h2 .fa-solid, .card h2 .fa-brands { margin-right: 12px; }
         
-        /* Ocultando o menu expansível antigo, mas mantendo o estilo base do cabeçalho */
+        /* Estilos do menu expansível */
         .collapsible-header {
             padding: 25px 30px;
             cursor: pointer;
@@ -269,6 +269,42 @@
     </div>
 
     <script>
+        // Estrutura de dados com todos os contatos
+        const TEAM_CONTACTS = {
+            "Alexandre": { 
+                email: "suporte@tamandaretintas.com.br", 
+                desc: "Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede." 
+            },
+            "Ana Claudia": { 
+                email: "anaclaudia@tamandaretintas.com.br", 
+                desc: "Departamento Pessoal (RH): Dúvidas sobre folha de pagamento, benefícios e regras trabalhistas." 
+            },
+            "Carla": { 
+                email: "carla@tamandaretintas.com.br", 
+                desc: "Setor Financeiro / Fiscal: Assuntos relacionados a bancos, contabilidade e impostos." 
+            },
+            "Daniel": { 
+                email: "daniel@tamandaretintas.com.br", 
+                desc: "Contas a Pagar, assistência técnica de produtos, e devolução de mercadorias para fornecedores." 
+            },
+            "Eduardo": { 
+                email: "marketing@tamandaretintas.com.br", 
+                desc: "Marketing: Promoções, campanhas publicitárias e materiais de divulgação." 
+            },
+            "Filipe": { 
+                email: "filipe@tamandaretintas.com.br", 
+                desc: "Questões, negociações ou propostas comerciais e assuntos gerais." 
+            },
+            "Junior": { 
+                email: "junior@tamandaretintas.com.br", 
+                desc: "Operações relacionadas caixa, Contas a receber, problemas financeiros urgentes relacionados ao cliente." 
+            },
+            "Lançamento de Notas": { 
+                email: "admloja3@tamandaretintas.com.br", 
+                desc: "Lançamentos / Estoque: Dúvidas sobre estoque lançado, notas lançadas e pagamentos a fornecedores." 
+            },
+        };
+
         function copyToClipboard(elementId, buttonElement) {
             const textToCopy = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
@@ -282,13 +318,61 @@
             }).catch(err => { console.error('Erro ao copiar texto: ', err); });
         }
 
+        // Função principal para exibir o contato selecionado
+        function updateContactDetails() {
+            const select = document.getElementById('contato-select');
+            const displayDiv = document.getElementById('contato-details-display');
+            const selectedName = select.value;
+            
+            if (!selectedName || selectedName === '') {
+                displayDiv.style.display = 'none';
+                return;
+            }
+
+            const contact = TEAM_CONTACTS[selectedName];
+            // Cria um ID único para o e-mail, removendo espaços e caracteres especiais
+            const emailId = `selected-email-${selectedName.replace(/[^a-zA-Z0-9]/g, '-')}`;
+
+            if (contact) {
+                // Conteúdo completo a ser injetado
+                displayDiv.innerHTML = `
+                    <p style="margin-bottom: 5px;"><b>${selectedName}:</b></p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <p id="${emailId}" style="margin: 0; font-weight: 500; color: var(--link-color); word-break: break-all; font-size: 0.95em;">
+                            ${contact.email}
+                        </p>
+                        <button class="copy-btn" 
+                                onclick="copyToClipboard('${emailId}', this)" 
+                                style="margin-left: 10px;">
+                            Copiar Email
+                        </button>
+                    </div>
+
+                    <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 10px; margin-bottom: 0;">
+                        ${contact.desc}
+                    </p>
+                `;
+                displayDiv.style.display = 'flex';
+            } else {
+                displayDiv.style.display = 'none';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Inicializa a funcionalidade de expansão (colapsável)
             const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
             collapsibleHeaders.forEach(header => {
                 header.addEventListener('click', function() {
                     this.parentElement.classList.toggle('active');
                 });
             });
+
+            // NOVO: Inicializa o listener do Menu Suspenso
+            const selectElement = document.getElementById('contato-select');
+            if (selectElement) {
+                selectElement.addEventListener('change', updateContactDetails);
+            }
         });
     </script>
 
