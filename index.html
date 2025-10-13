@@ -215,7 +215,7 @@
 
         <div class="card collapsible-card">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-address-book"></i>E-mails da Equipe</h2>
+                <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
@@ -271,36 +271,45 @@
     <script>
         // Estrutura de dados com todos os contatos
         const TEAM_CONTACTS = {
+            // ATUALIZADO: Incluindo os telefones do Alexandre e Ana Claudia
             "Alexandre": { 
                 email: "suporte@tamandaretintas.com.br", 
+                phone: "(19) 99328-5132",
                 desc: "Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede." 
             },
             "Ana Claudia": { 
                 email: "anaclaudia@tamandaretintas.com.br", 
+                phone: "(19) 97131-7520",
                 desc: "Departamento Pessoal (RH): Dúvidas sobre folha de pagamento, benefícios e regras trabalhistas." 
             },
             "Carla": { 
                 email: "carla@tamandaretintas.com.br", 
+                phone: null, // Sem telefone
                 desc: "Setor Financeiro / Fiscal: Assuntos relacionados a bancos, contabilidade e impostos." 
             },
             "Daniel": { 
                 email: "daniel@tamandaretintas.com.br", 
+                phone: null, // Sem telefone
                 desc: "Contas a Pagar, assistência técnica de produtos, e devolução de mercadorias para fornecedores." 
             },
             "Eduardo": { 
                 email: "marketing@tamandaretintas.com.br", 
+                phone: null, // Sem telefone
                 desc: "Marketing: Promoções, campanhas publicitárias e materiais de divulgação." 
             },
             "Filipe": { 
                 email: "filipe@tamandaretintas.com.br", 
+                phone: null, // Sem telefone
                 desc: "Questões, negociações ou propostas comerciais e assuntos gerais." 
             },
             "Junior": { 
                 email: "junior@tamandaretintas.com.br", 
+                phone: null, // Sem telefone
                 desc: "Operações relacionadas caixa, Contas a receber, problemas financeiros urgentes relacionados ao cliente." 
             },
             "Lançamento de Notas": { 
                 email: "admloja3@tamandaretintas.com.br", 
+                phone: null, // Sem telefone
                 desc: "Lançamentos / Estoque: Dúvidas sobre estoque lançado, notas lançadas e pagamentos a fornecedores." 
             },
         };
@@ -333,6 +342,15 @@
             // Cria um ID único para o e-mail, removendo espaços e caracteres especiais
             const emailId = `selected-email-${selectedName.replace(/[^a-zA-Z0-9]/g, '-')}`;
 
+            // Cria o HTML do telefone se ele existir
+            const phoneHTML = contact.phone ? `
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 5px;">
+                    <p style="margin: 0; font-weight: 500; color: var(--text-color); font-size: 0.95em;">
+                        Telefone: <a href="tel:${contact.phone.replace(/[^0-9]/g, '')}" style="color: var(--primary-color); text-decoration: none; font-weight: 700;">${contact.phone}</a>
+                    </p>
+                </div>
+            ` : '';
+
             if (contact) {
                 // Conteúdo completo a ser injetado
                 displayDiv.innerHTML = `
@@ -349,7 +367,9 @@
                         </button>
                     </div>
 
-                    <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 10px; margin-bottom: 0;">
+                    ${phoneHTML}
+
+                    <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 10px; margin-bottom: 0; width: 100%;">
                         ${contact.desc}
                     </p>
                 `;
