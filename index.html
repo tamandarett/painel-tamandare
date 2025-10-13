@@ -246,15 +246,26 @@
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
-                <div class="data-item"><span class="data-text" id="loja-morada"><b class="store-title-in-box">Indaiatuba - Morada do Sol</b><br>Endereço: Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.<br>Fone: (19) 3935-9141 / (19) 3935-9144<br>E-mail: loja2@tamandaretintas.com.br<br>WhatsApp: (19) 99328-6800</span><button class="copy-btn" onclick="copyToClipboard('loja-morada', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-visconde"><b class="store-title-in-box">Indaiatuba - Visconde</b><br>Endereço: Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.<br>Fone: (19) 3894-6112 / (19) 3885-4818<br>E-mail: loja3@tamandaretintas.com.br<br>WhatsApp: 19 99329-4193</span><button class="copy-btn" onclick="copyToClipboard('loja-visconde', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-paula"><b class="store-title-in-box">Indaiatuba - Paula Leite</b><br>Endereço: Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.<br>Fone: (19) 3825-1100 / (19) 3834-1180<br>E-mail: loja1@tamandaretintas.com.br<br>WhatsApp: (19) 99711-7509</span><button class="copy-btn" onclick="copyToClipboard('loja-paula', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-maria"><b class="store-title-in-box">Indaiatuba - Maria José</b><br>Endereço: Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.<br>Fone: (19) 3312-1933<br>E-mail: loja13@tamandaretintas.com.br<br>WhatsApp: (19) 99699 4383</span><button class="copy-btn" onclick="copyToClipboard('loja-maria', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-conceicao"><b class="store-title-in-box">Indaiatuba - Conceição</b><br>Endereço: Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.<br>Fone: (19) 3392-6690<br>E-mail: loja10@tamandaretintas.com.br<br>WhatsApp: (19) 99329-0533</span><button class="copy-btn" onclick="copyToClipboard('loja-conceicao', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-elias"><b class="store-title-in-box">Elias Fausto</b><br>Endereço: R. XV de Novembro, 181 – Centro, Elias Fausto/SP.<br>Fone: (19) 3821-2508<br>E-mail: loja5@tamandaretintas.com.br<br>WhatsApp: (19) 99329-7193</span><button class="copy-btn" onclick="copyToClipboard('loja-elias', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-salto"><b class="store-title-in-box">Salto</b><br>Endereço: R. Nove de Julho, 1426 - Vila Nova, Salto/SP.<br>Fone: (11) 4029-1401<br>E-mail: loja8@tamandaretintas.com.br<br>WhatsApp: 11 94289-3594</span><button class="copy-btn" onclick="copyToClipboard('loja-salto', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-itu"><b class="store-title-in-box">Itu</b><br>Endereço: R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.<br>Fone: (11) 2222-3912<br>E-mail: loja11@tamandaretintas.com.br<br>WhatsApp: 11 98830-4274</span><button class="copy-btn" onclick="copyToClipboard('loja-itu', this)">Copiar Dados</button></div>
-                <div class="data-item"><span class="data-text" id="loja-vinhedo"><b class="store-title-in-box">Vinhedo</b><br>Endereço: Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.<br>Fone: (19) 3030-3483<br>E-mail: lojavinhedo@tamandaretintas.com.br<br>WhatsApp: 19 98610-8999</span><button class="copy-btn" onclick="copyToClipboard('loja-vinhedo', this)">Copiar Dados</button></div>
+                <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="loja-select" style="font-weight: 500; color: var(--text-color);">Selecione a Loja:</label>
+                        <select id="loja-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                            <option value="" disabled selected>-- Selecione a Loja --</option>
+                            <option value="loja-morada">02 - Morada do Sol</option>
+                            <option value="loja-visconde">05 - Visconde</option>
+                            <option value="loja-vinhedo">09 - Vinhedo</option>
+                            <option value="loja-conceicao">10 - Conceição</option>
+                            <option value="loja-elias">12 - Elias Fausto</option>
+                            <option value="loja-maria">13 - Maria José</option>
+                            <option value="loja-paula">14 - Paula Leite</option>
+                            <option value="loja-salto">15 - Salto</option>
+                            <option value="loja-itu">16 - Itu</option>
+                        </select>
+                    </div>
+
+                    <div id="loja-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+                        </div>
+                </div>
             </div>
         </div>
         
@@ -269,9 +280,10 @@
     </div>
 
     <script>
-        // Estrutura de dados com todos os contatos
+        // =========================================================================
+        // DADOS DOS CONTATOS
+        // =========================================================================
         const TEAM_CONTACTS = {
-            // ATUALIZADO: Incluindo os telefones do Alexandre e Ana Claudia
             "Alexandre": { 
                 email: "suporte@tamandaretintas.com.br", 
                 phone: "(19) 99328-5132",
@@ -284,38 +296,120 @@
             },
             "Carla": { 
                 email: "carla@tamandaretintas.com.br", 
-                phone: null, // Sem telefone
+                phone: null, 
                 desc: "Setor Financeiro / Fiscal: Assuntos relacionados a bancos, contabilidade e impostos." 
             },
             "Daniel": { 
                 email: "daniel@tamandaretintas.com.br", 
-                phone: null, // Sem telefone
+                phone: null, 
                 desc: "Contas a Pagar, assistência técnica de produtos, e devolução de mercadorias para fornecedores." 
             },
             "Eduardo": { 
                 email: "marketing@tamandaretintas.com.br", 
-                phone: null, // Sem telefone
+                phone: null, 
                 desc: "Marketing: Promoções, campanhas publicitárias e materiais de divulgação." 
             },
             "Filipe": { 
                 email: "filipe@tamandaretintas.com.br", 
-                phone: null, // Sem telefone
+                phone: null, 
                 desc: "Questões, negociações ou propostas comerciais e assuntos gerais." 
             },
             "Junior": { 
                 email: "junior@tamandaretintas.com.br", 
-                phone: null, // Sem telefone
+                phone: null, 
                 desc: "Operações relacionadas caixa, Contas a receber, problemas financeiros urgentes relacionados ao cliente." 
             },
             "Lançamento de Notas": { 
                 email: "admloja3@tamandaretintas.com.br", 
-                phone: null, // Sem telefone
+                phone: null, 
                 desc: "Lançamentos / Estoque: Dúvidas sobre estoque lançado, notas lançadas e pagamentos a fornecedores." 
             },
         };
 
+        // =========================================================================
+        // DADOS DAS LOJAS
+        // =========================================================================
+        const STORE_DETAILS = {
+            "loja-morada": {
+                title: "Indaiatuba - Morada do Sol",
+                address: "Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.",
+                phones: ["(19) 3935-9141", "(19) 3935-9144"],
+                email: "loja2@tamandaretintas.com.br",
+                whatsapp: "(19) 99328-6800"
+            },
+            "loja-visconde": {
+                title: "Indaiatuba - Visconde",
+                address: "Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.",
+                phones: ["(19) 3894-6112", "(19) 3885-4818"],
+                email: "loja3@tamandaretintas.com.br",
+                whatsapp: "19 99329-4193"
+            },
+            "loja-vinhedo": {
+                title: "Vinhedo",
+                address: "Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.",
+                phones: ["(19) 3030-3483"],
+                email: "lojavinhedo@tamandaretintas.com.br",
+                whatsapp: "19 98610-8999"
+            },
+            "loja-conceicao": {
+                title: "Indaiatuba - Conceição",
+                address: "Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.",
+                phones: ["(19) 3392-6690"],
+                email: "loja10@tamandaretintas.com.br",
+                whatsapp: "(19) 99329-0533"
+            },
+            "loja-elias": {
+                title: "Elias Fausto",
+                address: "R. XV de Novembro, 181 – Centro, Elias Fausto/SP.",
+                phones: ["(19) 3821-2508"],
+                email: "loja5@tamandaretintas.com.br",
+                whatsapp: "(19) 99329-7193"
+            },
+            "loja-maria": {
+                title: "Indaiatuba - Maria José",
+                address: "Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.",
+                phones: ["(19) 3312-1933"],
+                email: "loja13@tamandaretintas.com.br",
+                whatsapp: "(19) 99699 4383"
+            },
+            "loja-paula": {
+                title: "Indaiatuba - Paula Leite",
+                address: "Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.",
+                phones: ["(19) 3825-1100", "(19) 3834-1180"],
+                email: "loja1@tamandaretintas.com.br",
+                whatsapp: "(19) 99711-7509"
+            },
+            "loja-salto": {
+                title: "Salto",
+                address: "R. Nove de Julho, 1426 - Vila Nova, Salto/SP.",
+                phones: ["(11) 4029-1401"],
+                email: "loja8@tamandaretintas.com.br",
+                whatsapp: "11 94289-3594"
+            },
+            "loja-itu": {
+                title: "Itu",
+                address: "R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.",
+                phones: ["(11) 2222-3912"],
+                email: "loja11@tamandaretintas.com.br",
+                whatsapp: "11 98830-4274"
+            }
+        };
+
+
+        // Função de cópia (MANTIDA)
         function copyToClipboard(elementId, buttonElement) {
-            const textToCopy = document.getElementById(elementId).innerText;
+            // Se o elemento for uma loja, copia o texto formatado (inner text)
+            const isStore = elementId.startsWith('loja-data-');
+            let textToCopy = '';
+
+            if (isStore) {
+                // Para loja, pega o texto formatado (que está escondido)
+                textToCopy = document.getElementById(elementId).innerText;
+            } else {
+                // Para e-mail (contatos), copia o innerText normal
+                textToCopy = document.getElementById(elementId).innerText;
+            }
+
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalText = buttonElement.innerText;
                 buttonElement.innerText = 'Copiado!';
@@ -327,7 +421,8 @@
             }).catch(err => { console.error('Erro ao copiar texto: ', err); });
         }
 
-        // Função principal para exibir o contato selecionado
+
+        // Função para atualizar os detalhes de Contato (MANTIDA)
         function updateContactDetails() {
             const select = document.getElementById('contato-select');
             const displayDiv = document.getElementById('contato-details-display');
@@ -339,10 +434,8 @@
             }
 
             const contact = TEAM_CONTACTS[selectedName];
-            // Cria um ID único para o e-mail, removendo espaços e caracteres especiais
             const emailId = `selected-email-${selectedName.replace(/[^a-zA-Z0-9]/g, '-')}`;
-
-            // Cria o HTML do telefone se ele existir
+            
             const phoneHTML = contact.phone ? `
                 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 5px;">
                     <p style="margin: 0; font-weight: 500; color: var(--text-color); font-size: 0.95em;">
@@ -352,7 +445,6 @@
             ` : '';
 
             if (contact) {
-                // Conteúdo completo a ser injetado
                 displayDiv.innerHTML = `
                     <p style="margin-bottom: 5px;"><b>${selectedName}:</b></p>
                     
@@ -379,6 +471,57 @@
             }
         }
 
+        // NOVO: Função para atualizar os detalhes da Loja
+        function updateLojaDetails() {
+            const select = document.getElementById('loja-select');
+            const displayDiv = document.getElementById('loja-details-display');
+            const selectedStoreId = select.value;
+            
+            if (!selectedStoreId || selectedStoreId === '') {
+                displayDiv.style.display = 'none';
+                return;
+            }
+
+            const store = STORE_DETAILS[selectedStoreId];
+            const dataId = `loja-data-${selectedStoreId}`;
+
+            // 1. Formatação do CONTEÚDO PURO para COPIAR (usando \n para quebras de linha)
+            const contentToCopy = `
+${store.title}
+Endereço: ${store.address}
+Fone: ${store.phones.join(' / ')}
+E-mail: ${store.email}
+WhatsApp: ${store.whatsapp}
+            `.trim();
+
+
+            // 2. Formatação do CONTEÚDO VISÍVEL (usando <br> para quebras de linha no HTML)
+            if (store) {
+                displayDiv.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                        
+                        <span id="${dataId}" style="display:none; white-space: pre-wrap;">${contentToCopy}</span>
+
+                        <div class="data-text" style="padding-right: 15px; flex-grow: 1;">
+                            <b class="store-title-in-box">${store.title}</b><br>
+                            Endereço: ${store.address}<br>
+                            Fone: ${store.phones.join(' / ')}<br>
+                            E-mail: ${store.email}<br>
+                            WhatsApp: ${store.whatsapp}
+                        </div>
+
+                        <button class="copy-btn" onclick="copyToClipboard('${dataId}', this)">
+                            Copiar Dados
+                        </button>
+                    </div>
+                `;
+                displayDiv.style.display = 'flex';
+            } else {
+                displayDiv.style.display = 'none';
+            }
+        }
+
+
         document.addEventListener('DOMContentLoaded', function() {
             // Inicializa a funcionalidade de expansão (colapsável)
             const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
@@ -388,10 +531,16 @@
                 });
             });
 
-            // NOVO: Inicializa o listener do Menu Suspenso
-            const selectElement = document.getElementById('contato-select');
-            if (selectElement) {
-                selectElement.addEventListener('change', updateContactDetails);
+            // Inicializa o listener do Menu Suspenso de Contatos
+            const selectContactElement = document.getElementById('contato-select');
+            if (selectContactElement) {
+                selectContactElement.addEventListener('change', updateContactDetails);
+            }
+            
+            // Inicializa o listener do Menu Suspenso de Lojas
+            const selectLojaElement = document.getElementById('loja-select');
+            if (selectLojaElement) {
+                selectLojaElement.addEventListener('change', updateLojaDetails);
             }
         });
     </script>
