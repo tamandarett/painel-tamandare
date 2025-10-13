@@ -111,9 +111,17 @@
         .link-title { color: var(--link-color); font-weight: 500; }
         .link-subtitle { font-size: 0.8em; color: var(--subtitle-color); font-weight: 400; }
         
-        .data-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #eef2f5;
+        /* Estilos do novo sistema de Contatos */
+        .contact-details-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 15px; /* Aumentado o padding para melhor visual */
+            border-radius: 8px; 
+            border: 1px solid #eef2f5;
+            /* Estilo para a área de detalhes (que será injetada) */
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1); 
+            margin-top: 15px;
         }
         .data-text { flex-grow: 1; margin-right: 15px; word-break: break-all; white-space: pre-wrap; }
         .copy-btn {
@@ -142,12 +150,6 @@
             .collapsible-header, .card.static-card .card-content { padding: 20px; }
             .data-item { flex-direction: column; align-items: flex-start; }
             .copy-btn { margin-top: 10px; width: 100%; }
-        }
-
-        /* Estilo para a caixa de seleção de contatos */
-        .contact-details-item { 
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px; border-radius: 8px; border: 1px solid #eef2f5; 
         }
     </style>
 </head>
@@ -212,27 +214,31 @@
             </div>
         </div>
 
-        <div class="card static-card">
-            <div class="card-content">
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
                 <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
-                
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label for="contato-select" style="font-weight: 500; color: var(--text-color);">Selecione o Contato:</label>
-                    <select id="contato-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
-                        <option value="" disabled selected>-- Selecione um nome/setor --</option>
-                        <option value="Alexandre">Alexandre (Suporte)</option>
-                        <option value="Ana Claudia">Ana Claudia (RH)</option>
-                        <option value="Carla">Carla (Fiscal/Financeiro)</option>
-                        <option value="Daniel">Daniel (Contas a Pagar)</option>
-                        <option value="Eduardo">Eduardo (Marketing)</option>
-                        <option value="Filipe">Filipe (Comercial)</option>
-                        <option value="Junior">Junior (Caixa)</option>
-                        <option value="Lançamento de Notas">Lançamento de Notas</option>
-                    </select>
-                </div>
-
-                <div id="contato-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px;">
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="contato-select" style="font-weight: 500; color: var(--text-color);">Selecione o Contato:</label>
+                        <select id="contato-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                            <option value="" disabled selected>-- Selecione um nome/setor --</option>
+                            <option value="Alexandre">Alexandre (Suporte)</option>
+                            <option value="Ana Claudia">Ana Claudia (RH)</option>
+                            <option value="Carla">Carla (Fiscal/Financeiro)</option>
+                            <option value="Daniel">Daniel (Contas a Pagar)</option>
+                            <option value="Eduardo">Eduardo (Marketing)</option>
+                            <option value="Filipe">Filipe (Comercial)</option>
+                            <option value="Junior">Junior (Caixa)</option>
+                            <option value="Lançamento de Notas">Lançamento de Notas</option>
+                        </select>
                     </div>
+
+                    <div id="contato-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px;">
+                        </div>
+                </div>
             </div>
         </div>
         <div class="card collapsible-card">
