@@ -110,7 +110,7 @@
             // Conversão de links de view do Drive para preview/embed
             const driveId = extractDriveId(url);
             if (driveId) {
-                // Link de preview para vídeos e PDFs
+                // Link de preview para vídeos e PDFs 
                 return `https://drive.google.com/file/d/${driveId}/preview`; 
             }
             // Se for um link de Forms, assume que o usuário já colocou o link de embed
@@ -302,12 +302,3 @@
             alert(`Código HTML para "${title}" gerado com sucesso! Copie o código da caixa de texto.`);
         }
     </script>
-</body>
-</html>
-`;
-            outputTextarea.value = finalHtml.trim();
-            alert(`Código HTML para "${title}" gerado com sucesso! Copie o código da caixa de texto.`);
-        }
-    </script>
-</body>
-</html>
