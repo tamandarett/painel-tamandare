@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fábrica de HTML para Treinamentos</title>
+    <meta name="robots" content="noindex">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 30px;
+        }
+        .container { max-width: 900px; margin: auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        h1 { color: #1e3a5f; font-weight: 700; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #333; }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            font-family: inherit;
+        }
+        .warning { color: #dc3545; font-size: 0.9em; margin-top: 5px; }
+        .button-generate {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .button-generate:hover { background-color: #0056b3; }
+        .output-area { margin-top: 30px; }
+        .output-area textarea {
+            height: 400px;
+            background-color: #f8f9fa;
+            border: 1px dashed #ced4da;
+            resize: vertical;
+        }
+        .help-tip { font-size: 0.9em; color: #6c757d; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Fábrica de HTML para Treinamentos</h1>
+
+        <form id="generator-form">
+            <div class="input-group">
+                <label for="course-title">1. Título do Curso (Ex: "Cadastro de Clientes")</label>
+                <input type="text" id="course-title" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="course-desc">2. Descrição Curta do Curso</label>
+                <textarea id="course-desc" rows="3" required></textarea>
+                <p class="help-tip">Esta descrição será exibida no Painel Rápido ao selecionar o treinamento.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="video-link">3. Link do Vídeo (Google Drive 'view' link)</label>
+                <input type="url" id="video-link" placeholder="Ex: https://drive.google.com/file/d/ID/view?usp=sharing">
+                <p class="warning">Deixe em branco se não houver vídeo. Garanta que o acesso do arquivo no Drive seja "Qualquer pessoa com o link".</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="pdf-link">4. Link do PDF (Google Drive 'view' link)</label>
+                <input type="url" id="pdf-link" placeholder="Ex: https://drive.google.com/file/d/ID/view?usp=sharing">
+                <p class="warning">Deixe em branco se não houver material de apoio.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="forms-link">5. Link do Formulário de Teste (Google Forms 'embedded' link)</label>
+                <input type="url" id="forms-link" placeholder="Ex: https://docs.google.com/forms/d/e/.../viewform?embedded=true">
+                <p class="warning">Deixe em branco se não houver teste.</p>
+            </div>
+            
+            <button type="submit" class="button-generate">Gerar Código HTML</button>
+        </form>
+
+        <div class="output-area">
+            <h3>Código HTML Gerado (Copie este código para o seu novo arquivo de curso)</h3>
+            <textarea id="output-html" readonly></textarea>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generator-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateHtml();
+        });
+
+        function extractDriveId(url) {
+            // Tenta extrair o ID de diferentes formatos de link do Drive
+            const match = url.match(/d\/([a-zA-Z0-9_-]+)/);
+            return match ? match[1] : null;
+        }
+        
+        function convertToEmbed(url) {
+            // Conversão de links de view do Drive para preview/embed
+            const driveId = extractDriveId(url);
+            if (driveId) {
+                // Link de preview para vídeos e PDFs
+                return `https://drive.google.com/file/d/${driveId}/preview`; 
+            }
+            // Se for um link de Forms, assume que o usuário já colocou o link de embed
+            if (url.includes('docs.google.com/forms/')) {
+                return url;
+            }
+            return null;
+        }
+
+        function generateHtml() {
+            const title = document.getElementById('course-title').value.trim();
+            const videoUrl = document.getElementById('video-link').value.trim();
+            const pdfUrl = document.getElementById('pdf-link').value.trim();
+            const formsUrl = document.getElementById('forms-link').value.trim();
+            const outputTextarea = document.getElementById('output-html');
+            
+            // Variável para rastrear o número da seção (1., 2., 3., etc.)
+            let sectionIndex = 1;
+            let sectionsHtml = '';
+            
+            // --- 1. SEÇÃO DE VÍDEO ---
+            if (videoUrl) {
+                const embedUrl = convertToEmbed(videoUrl);
+                if (embedUrl) {
+                    sectionsHtml += `
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-video"></i> ${sectionIndex}. Assista à Aula (Vídeo)</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="video-responsive">
+                        <iframe src="${embedUrl}" 
+                                frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>\n`;
+                    sectionIndex++;
+                }
+            }
+            
+            // --- 2. SEÇÃO DE PDF ---
+            if (pdfUrl) {
+                const embedUrl = convertToEmbed(pdfUrl);
+                if (embedUrl) {
+                    sectionsHtml += `
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-book-open"></i> ${sectionIndex}. Leia o Material de Apoio (PDF)</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="pdf-viewer-container">
+                        <iframe src="${embedUrl}" 
+                                frameborder="0">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>\n`;
+                    sectionIndex++;
+                }
+            }
+            
+            // --- 3. SEÇÃO DE TESTE / FORMS ---
+            if (formsUrl) {
+                // Assumimos que o Forms link já está no formato ?embedded=true
+                const embedUrl = formsUrl;
+                
+                sectionsHtml += `
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-list-check"></i> ${sectionIndex}. Complete o Teste Rápido</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="form-responsive">
+                        <iframe src="${embedUrl}" 
+                                frameborder="0" marginheight="0" marginwidth="0">
+                            Carregando…
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>\n`;
+                sectionIndex++;
+            }
+
+            // --- MONTAGEM DO HTML FINAL ---
+            const finalHtml = `
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento: ${title}</title>
+    
+    <meta name="robots" content="noindex">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* ESTILOS DE TREINAMENTO - Copie os estilos do seu arquivo style.css principal */
+        :root {
+            --primary-color: #1e3a5f;
+            --link-color: #0056b3;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: auto; }
+        .card { background-color: var(--card-background); border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; }
+        .collapsible-header { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.2s; }
+        .collapsible-header:hover { background-color: #f8f9fa; }
+        .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 30px; }
+        .collapsible-card.active .collapsible-content { max-height: 2000px; padding-bottom: 25px; }
+        .toggle-icon { transition: transform 0.4s ease-out; }
+        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
+        .collapsible-header h2 { color: var(--primary-color); font-size: 1.5em; margin: 0; display: flex; align-items: center; }
+        .collapsible-header h2 i { margin-right: 12px; }
+
+        /* Estilos de Responsividade para IFRAMES */
+        .video-responsive, .pdf-viewer-container, .form-responsive {
+            position: relative;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
+        .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
+        .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
+        
+        .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 20px;">Treinamento: ${title}</h1>
+
+        ${sectionsHtml}
+
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+            
+            // Opcional: Ativa a primeira seção por padrão
+            const firstCard = document.querySelector('.collapsible-card');
+            if (firstCard) {
+                firstCard.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
+`;
+            outputTextarea.value = finalHtml.trim();
+            alert(`Código HTML para "${title}" gerado com sucesso! Copie o código da caixa de texto.`);
+        }
+    </script>
+</body>
+</html>
+`;
+            outputTextarea.value = finalHtml.trim();
+            alert(`Código HTML para "${title}" gerado com sucesso! Copie o código da caixa de texto.`);
+        }
+    </script>
+</body>
+</html>
