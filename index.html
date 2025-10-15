@@ -111,7 +111,7 @@
         .link-title { color: var(--link-color); font-weight: 500; }
         .link-subtitle { font-size: 0.8em; color: var(--subtitle-color); font-weight: 400; }
         
-        /* Estilos do novo sistema de Contatos */
+        /* Estilos do novo sistema de Contatos/Detalhes */
         .contact-details-item { 
             display: flex; 
             justify-content: space-between; 
@@ -123,11 +123,14 @@
             margin-top: 15px;
         }
         .data-text { flex-grow: 1; margin-right: 15px; word-break: break-all; white-space: pre-wrap; }
-        .copy-btn {
+        .copy-btn, .training-btn {
             padding: 8px 15px; border: none; background-color: #007bff; color: white; cursor: pointer;
             border-radius: 6px; font-weight: 500; transition: background-color 0.3s; white-space: nowrap;
+            text-decoration: none; /* Para o botão Ir ao Treinamento */
+            display: inline-block;
+            text-align: center;
         }
-        .copy-btn:hover { background-color: #0056b3; }
+        .copy-btn:hover, .training-btn:hover { background-color: #0056b3; }
         .copy-btn.copied { background-color: #28a745; }
         
         .store-title-in-box {
@@ -148,7 +151,7 @@
             .header-logo { margin-bottom: 15px; }
             .collapsible-header, .card.static-card .card-content { padding: 20px; }
             .data-item { flex-direction: column; align-items: flex-start; }
-            .copy-btn { margin-top: 10px; width: 100%; }
+            .copy-btn, .training-btn { margin-top: 10px; width: 100%; }
         }
     </style>
 </head>
@@ -213,6 +216,26 @@
             </div>
         </div>
 
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-graduation-cap"></i>Treinamento da Equipe</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="treinamento-select" style="font-weight: 500; color: var(--text-color);">Selecione o Treinamento:</label>
+                        <select id="treinamento-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                            <option value="" disabled selected>-- Selecione um Treinamento --</option>
+                            <option value="Cadastro de Clientes">Cadastro de Clientes</option>
+                        </select>
+                    </div>
+
+                    <div id="treinamento-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+                        </div>
+                </div>
+            </div>
+        </div>
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
@@ -327,6 +350,16 @@
         };
 
         // =========================================================================
+        // DADOS DOS TREINAMENTOS (NOVO)
+        // =========================================================================
+        const TRAINING_DETAILS = {
+            "Cadastro de Clientes": {
+                description: "Neste treinamento, você vai aprender como cadastrar clientes corretamente, seguindo padrões de segurança e completude, aplicar bloqueios quando necessário e consultar informações para garantir cadastros confiáveis.",
+                link: "https://tamandarett.github.io/painel-tamandare/cadastrodeclientes.html"
+            }
+        };
+
+        // =========================================================================
         // DADOS DAS LOJAS
         // =========================================================================
         const STORE_DETAILS = {
@@ -395,21 +428,8 @@
             }
         };
 
-
-        // Função de cópia (MANTIDA)
         function copyToClipboard(elementId, buttonElement) {
-            // Se o elemento for uma loja, copia o texto formatado (inner text)
-            const isStore = elementId.startsWith('loja-data-');
-            let textToCopy = '';
-
-            if (isStore) {
-                // Para loja, pega o texto formatado (que está escondido)
-                textToCopy = document.getElementById(elementId).innerText;
-            } else {
-                // Para e-mail (contatos), copia o innerText normal
-                textToCopy = document.getElementById(elementId).innerText;
-            }
-
+            const textToCopy = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalText = buttonElement.innerText;
                 buttonElement.innerText = 'Copiado!';
@@ -420,7 +440,6 @@
                 }, 2000);
             }).catch(err => { console.error('Erro ao copiar texto: ', err); });
         }
-
 
         // Função para atualizar os detalhes de Contato (MANTIDA)
         function updateContactDetails() {
@@ -471,7 +490,39 @@
             }
         }
 
-        // NOVO: Função para atualizar os detalhes da Loja
+        // NOVO: Função para atualizar os detalhes do Treinamento
+        function updateTreinamentoDetails() {
+            const select = document.getElementById('treinamento-select');
+            const displayDiv = document.getElementById('treinamento-details-display');
+            const selectedTraining = select.value;
+            
+            if (!selectedTraining || selectedTraining === '') {
+                displayDiv.style.display = 'none';
+                return;
+            }
+
+            const training = TRAINING_DETAILS[selectedTraining];
+
+            if (training) {
+                displayDiv.innerHTML = `
+                    <p style="margin-bottom: 5px;"><b>${selectedTraining}:</b></p>
+                    
+                    <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 5px; margin-bottom: 15px; width: 100%;">
+                        ${training.description}
+                    </p>
+
+                    <a href="${training.link}" target="_blank" class="training-btn" style="width: 100%;">
+                        Ir ao Treinamento
+                    </a>
+                `;
+                displayDiv.style.display = 'flex';
+            } else {
+                displayDiv.style.display = 'none';
+            }
+        }
+
+
+        // Função para atualizar os detalhes da Loja (MANTIDA)
         function updateLojaDetails() {
             const select = document.getElementById('loja-select');
             const displayDiv = document.getElementById('loja-details-display');
@@ -535,6 +586,12 @@ WhatsApp: ${store.whatsapp}
             const selectContactElement = document.getElementById('contato-select');
             if (selectContactElement) {
                 selectContactElement.addEventListener('change', updateContactDetails);
+            }
+            
+            // NOVO: Inicializa o listener do Menu Suspenso de Treinamento
+            const selectTreinamentoElement = document.getElementById('treinamento-select');
+            if (selectTreinamentoElement) {
+                selectTreinamentoElement.addEventListener('change', updateTreinamentoDetails);
             }
             
             // Inicializa o listener do Menu Suspenso de Lojas
