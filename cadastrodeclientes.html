@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
+        /* Insira aqui todo o bloco <style> do seu index.html
+           (para garantir que as variáveis e as classes .card, .collapsible-card, etc. funcionem) */
+        
         :root {
             --primary-color: #1e3a5f;
             --link-color: #0056b3;
@@ -44,38 +47,40 @@
             margin-bottom: 5px;
         }
 
-        /* Estilos de Responsividade para IFRAMES */
-        .header-course {
-            color: var(--primary-color);
-            margin: 25px 0 15px 0;
-            font-size: 1.5em;
-            font-weight: 500;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
+        /* Classes essenciais para a expansão */
+        .collapsible-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
         }
-        
-        .video-responsive {
+        .collapsible-header:hover { background-color: #f8f9fa; }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 30px;
+        }
+        .collapsible-card.active .collapsible-content {
+            max-height: 2000px; 
+            padding-bottom: 25px;
+        }
+        .toggle-icon { transition: transform 0.4s ease-out; }
+        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
+
+        /* Estilos de Responsividade para IFRAMES (Essenciais para o conteúdo do curso) */
+        .video-responsive, .pdf-viewer-container, .form-responsive {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             margin-bottom: 20px;
             border-radius: 8px;
         }
-        .pdf-viewer-container {
-            position: relative;
-            padding-bottom: 150%; /* Alto o suficiente para exibir a página A4 vertical */
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .form-responsive {
-            position: relative;
-            /* Altura suficiente para o Forms de Teste */
-            padding-bottom: 1500px; 
-            height: 0;
-            overflow: hidden;
-        }
+        .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
+        .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
+        .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
         
         .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
             position: absolute;
@@ -91,36 +96,74 @@
 <body>
 
     <div class="container">
-        <h1 style="text-align: center; margin-top: 20px;">Treinamento da Equipe</h1>
+        <h1 style="text-align: center; margin-top: 20px;">Treinamento: Cadastro de Clientes</h1>
 
-        <div class="card static-card">
-            <div class="card-content">
-                
-                <h2 class="header-course"><i class="fa-solid fa-video"></i> 1. Assista à Aula (Vídeo)</h2>
-                <div class="video-responsive">
-                    <iframe src="https://drive.google.com/file/d/1P4klo6mDn8FtO9uT0AwYR8hvfTqf_LzV/preview" 
-                            frameborder="0" allowfullscreen>
-                    </iframe>
+        <div class="card collapsible-card active">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-video"></i> 1. Assista à Aula (Vídeo)</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="video-responsive">
+                        <iframe src="https://drive.google.com/file/d/1P4klo6mDn8FtO9uT0AwYR8hvfTqf_LzV/preview" 
+                                frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
-
-                <h2 class="header-course"><i class="fa-solid fa-book-open"></i> 2. Leia o Material de Apoio (PDF)</h2>
-                <div class="pdf-viewer-container">
-                    <iframe src="https://drive.google.com/file/d/1iZS12KNBodqJ3mq39mcChWdvcDCFlAd8/preview" 
-                            frameborder="0">
-                    </iframe>
-                </div>
-
-                <h2 class="header-course"><i class="fa-solid fa-list-check"></i> 3. Complete o Teste Rápido (Google Forms)</h2>
-                <div class="form-responsive">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScKedXZLOTcjBUsQRJd5QD4xN1lRthcGFPuOJs7BkUXhIUcSA/viewform?embedded=true" 
-                            frameborder="0" marginheight="0" marginwidth="0">
-                        Carregando…
-                    </iframe>
-                </div>
-                
             </div>
         </div>
+        
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-book-open"></i> 2. Leia o Material de Apoio (PDF)</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="pdf-viewer-container">
+                        <iframe src="https://drive.google.com/file/d/1iZS12KNBodqJ3mq39mcChWdvcDCFlAd8/preview" 
+                                frameborder="0">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-list-check"></i> 3. Complete o Teste Rápido (Google Forms)</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="form-responsive">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScKedXZLOTcjBUsQRJd5QD4xN1lRthcGFPuOJs7BkUXhIUcSA/viewform?embedded=true" 
+                                frameborder="0" marginheight="0" marginwidth="0">
+                            Carregando…
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     
-    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+            
+            // Ativa o primeiro card por padrão para que o vídeo seja visível ao carregar
+            const firstCard = document.querySelector('.collapsible-card');
+            if (firstCard) {
+                firstCard.classList.add('active');
+            }
+        });
+    </script>
+</body>
 </html>
