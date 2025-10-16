@@ -62,27 +62,27 @@
             </div>
             
             <div class="input-group">
-                <label for="course-desc">2. Descrição Curta do Curso</label>
-                <textarea id="course-desc" rows="3" required></textarea>
-                <p class="help-tip">Esta descrição será exibida no Painel Rápido ao selecionar o treinamento.</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="video-link">3. Link do Vídeo (Google Drive 'view' link)</label>
+                <label for="video-link">2. Link do Vídeo (Google Drive 'view' link)</label>
                 <input type="url" id="video-link" placeholder="Ex: https://drive.google.com/file/d/ID/view?usp=sharing">
                 <p class="warning">Deixe em branco se não houver vídeo. Garanta que o acesso do arquivo no Drive seja "Qualquer pessoa com o link".</p>
             </div>
             
             <div class="input-group">
-                <label for="pdf-link">4. Link do PDF (Google Drive 'view' link)</label>
+                <label for="pdf-link">3. Link do PDF (Google Drive 'view' link)</label>
                 <input type="url" id="pdf-link" placeholder="Ex: https://drive.google.com/file/d/ID/view?usp=sharing">
                 <p class="warning">Deixe em branco se não houver material de apoio.</p>
             </div>
             
             <div class="input-group">
-                <label for="forms-link">5. Link do Formulário de Teste (Google Forms 'embedded' link)</label>
+                <label for="forms-link">4. Link do Formulário de Teste (Google Forms 'embedded' link)</label>
                 <input type="url" id="forms-link" placeholder="Ex: https://docs.google.com/forms/d/e/.../viewform?embedded=true">
                 <p class="warning">Deixe em branco se não houver teste.</p>
+            </div>
+
+            <div class="input-group">
+                <label for="course-desc">5. Descrição Curta do Curso (Para o Painel Rápido)</label>
+                <textarea id="course-desc" rows="3" required></textarea>
+                <p class="help-tip">Esta descrição será usada no seu Painel Rápido para guiar o usuário.</p>
             </div>
             
             <button type="submit" class="button-generate">Gerar Código HTML</button>
@@ -100,38 +100,40 @@
             generateHtml();
         });
 
+        // Tenta extrair o ID de links do Drive
         function extractDriveId(url) {
-            // Tenta extrair o ID de diferentes formatos de link do Drive
             const match = url.match(/d\/([a-zA-Z0-9_-]+)/);
             return match ? match[1] : null;
         }
         
+        // Converte link de visualização (view) do Drive para link de incorporação (preview)
         function convertToEmbed(url) {
-            // Conversão de links de view do Drive para preview/embed
             const driveId = extractDriveId(url);
             if (driveId) {
-                // Link de preview para vídeos e PDFs 
                 return `https://drive.google.com/file/d/${driveId}/preview`; 
             }
-            // Se for um link de Forms, assume que o usuário já colocou o link de embed
+            // Se for Forms, retorna o URL original (assumindo que já está embed)
             if (url.includes('docs.google.com/forms/')) {
                 return url;
             }
             return null;
         }
 
+        // Função principal que constrói o HTML
         function generateHtml() {
             const title = document.getElementById('course-title').value.trim();
             const videoUrl = document.getElementById('video-link').value.trim();
             const pdfUrl = document.getElementById('pdf-link').value.trim();
             const formsUrl = document.getElementById('forms-link').value.trim();
+            const courseDesc = document.getElementById('course-desc').value.trim(); // Não usado no HTML do curso, mas bom ter
             const outputTextarea = document.getElementById('output-html');
             
-            // Variável para rastrear o número da seção (1., 2., 3., etc.)
             let sectionIndex = 1;
             let sectionsHtml = '';
             
-            // --- 1. SEÇÃO DE VÍDEO ---
+            // --- Geração das Seções Condicionais ---
+            
+            // 1. VÍDEO
             if (videoUrl) {
                 const embedUrl = convertToEmbed(videoUrl);
                 if (embedUrl) {
@@ -155,7 +157,7 @@
                 }
             }
             
-            // --- 2. SEÇÃO DE PDF ---
+            // 2. PDF
             if (pdfUrl) {
                 const embedUrl = convertToEmbed(pdfUrl);
                 if (embedUrl) {
@@ -179,10 +181,9 @@
                 }
             }
             
-            // --- 3. SEÇÃO DE TESTE / FORMS ---
+            // 3. FORMS
             if (formsUrl) {
-                // Assumimos que o Forms link já está no formato ?embedded=true
-                const embedUrl = formsUrl;
+                const embedUrl = formsUrl; // Assumido que Forms já é link de embed
                 
                 sectionsHtml += `
         <div class="card collapsible-card">
@@ -202,6 +203,13 @@
             </div>
         </div>\n`;
                 sectionIndex++;
+            }
+            
+            // Se nenhuma seção foi gerada, alerta e para
+            if (sectionsHtml === '') {
+                outputTextarea.value = '';
+                alert('Erro: Nenhuma URL de conteúdo válida foi fornecida. Por favor, preencha pelo menos um campo de link.');
+                return;
             }
 
             // --- MONTAGEM DO HTML FINAL ---
@@ -302,3 +310,5 @@
             alert(`Código HTML para "${title}" gerado com sucesso! Copie o código da caixa de texto.`);
         }
     </script>
+</body>
+</html>
