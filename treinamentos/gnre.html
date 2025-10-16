@@ -70,7 +70,7 @@
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
 
         /* Estilos de Responsividade para IFRAMES */
-        .video-responsive, .pdf-viewer-container, .form-responsive {
+        .video-responsive, .pdf-viewer-container {
             position: relative;
             height: 0;
             overflow: hidden;
@@ -79,9 +79,8 @@
         }
         .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
         .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
-        .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
         
-        .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
+        .video-responsive iframe, .pdf-viewer-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -128,24 +127,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="card collapsible-card">
-            <div class="collapsible-header">
-                <h2><i class="fa-solid fa-list-check"></i> 3. Complete o Teste Rápido</h2>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-            </div>
-            <div class="collapsible-content">
-                <div class="card-content" style="padding-top: 0;">
-                    <div class="form-responsive">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScKedXZLOTcjBUsQRJd5QD4xN1lRthcGFPuOJs7BkUXhIUcSA/viewform?embedded=true" 
-                                frameborder="0" marginheight="0" marginwidth="0">
-                            Carregando…
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
     </div>
     
     <script>
