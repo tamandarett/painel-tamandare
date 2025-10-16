@@ -126,7 +126,7 @@
         .copy-btn, .training-btn {
             padding: 8px 15px; border: none; background-color: #007bff; color: white; cursor: pointer;
             border-radius: 6px; font-weight: 500; transition: background-color 0.3s; white-space: nowrap;
-            text-decoration: none; /* Para o botão Ir ao Treinamento */
+            text-decoration: none; 
             display: inline-block;
             text-align: center;
         }
@@ -428,8 +428,17 @@
             }
         };
 
+
         function copyToClipboard(elementId, buttonElement) {
-            const textToCopy = document.getElementById(elementId).innerText;
+            const isStore = elementId.startsWith('loja-data-');
+            let textToCopy = '';
+
+            if (isStore) {
+                textToCopy = document.getElementById(elementId).innerText;
+            } else {
+                textToCopy = document.getElementById(elementId).innerText;
+            }
+
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalText = buttonElement.innerText;
                 buttonElement.innerText = 'Copiado!';
@@ -440,6 +449,7 @@
                 }, 2000);
             }).catch(err => { console.error('Erro ao copiar texto: ', err); });
         }
+
 
         // Função para atualizar os detalhes de Contato (MANTIDA)
         function updateContactDetails() {
@@ -588,7 +598,7 @@ WhatsApp: ${store.whatsapp}
                 selectContactElement.addEventListener('change', updateContactDetails);
             }
             
-            // NOVO: Inicializa o listener do Menu Suspenso de Treinamento
+            // Inicializa o listener do Menu Suspenso de Treinamento
             const selectTreinamentoElement = document.getElementById('treinamento-select');
             if (selectTreinamentoElement) {
                 selectTreinamentoElement.addEventListener('change', updateTreinamentoDetails);
