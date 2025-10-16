@@ -1,143 +1,50 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fábrica de HTML para Treinamentos</title>
-    <meta name="robots" content="noindex">
+// Substitua a função convertToEmbed por esta versão melhorada:
+function convertToEmbed(url) {
+    if (!url) return null;
     
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f7f9;
-            color: #333;
-            margin: 0;
-            padding: 30px;
+    // Google Drive (Vídeo e PDF)
+    const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if (driveMatch) {
+        return `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
+    }
+    
+    // Google Forms (já deve ser link de incorporação)
+    if (url.includes('docs.google.com/forms/')) {
+        // Garante que é o link de embed
+        if (url.includes('viewform?embedded=true')) {
+            return url;
+        } else if (url.includes('viewform')) {
+            return url.replace('viewform', 'viewform?embedded=true');
         }
-        .container { max-width: 900px; margin: auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        h1 { color: #1e3a5f; font-weight: 700; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #333; }
-        .input-group input, .input-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1em;
-            font-family: inherit;
-        }
-        .warning { color: #dc3545; font-size: 0.9em; margin-top: 5px; }
-        .button-generate {
-            padding: 12px 25px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        .button-generate:hover { background-color: #0056b3; }
-        .output-area { margin-top: 30px; }
-        .output-area textarea {
-            height: 400px;
-            background-color: #f8f9fa;
-            border: 1px dashed #ced4da;
-            resize: vertical;
-        }
-        .help-tip { font-size: 0.9em; color: #6c757d; margin-top: 5px; }
-    </style>
-</head>
-<body>
+        return url;
+    }
+    
+    return null;
+}
 
-    <div class="container">
-        <h1>Fábrica de HTML para Treinamentos</h1>
-
-        <form id="generator-form">
-            <div class="input-group">
-                <label for="course-title">1. Título do Curso (Ex: "Cadastro de Clientes")</label>
-                <input type="text" id="course-title" required>
-            </div>
-            
-            <div class="input-group">
-                <label for="video-link">2. Link do Vídeo (Google Drive 'view' link)</label>
-                <input type="url" id="video-link" placeholder="Ex: https://drive.google.com/file/d/ID/view?usp=sharing">
-                <p class="warning">Deixe em branco se não houver vídeo. Garanta que o acesso do arquivo no Drive seja "Qualquer pessoa com o link".</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="pdf-link">3. Link do PDF (Google Drive 'view' link)</label>
-                <input type="url" id="pdf-link" placeholder="Ex: https://drive.google.com/file/d/ID/view?usp=sharing">
-                <p class="warning">Deixe em branco se não houver material de apoio.</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="forms-link">4. Link do Formulário de Teste (Google Forms 'embedded' link)</label>
-                <input type="url" id="forms-link" placeholder="Ex: https://docs.google.com/forms/d/e/.../viewform?embedded=true">
-                <p class="warning">Deixe em branco se não houver teste.</p>
-            </div>
-
-            <div class="input-group">
-                <label for="course-desc">5. Descrição Curta do Curso (Para o Painel Rápido)</label>
-                <textarea id="course-desc" rows="3" required></textarea>
-                <p class="help-tip">Esta descrição será usada no seu Painel Rápido para guiar o usuário.</p>
-            </div>
-            
-            <button type="submit" class="button-generate">Gerar Código HTML</button>
-        </form>
-
-        <div class="output-area">
-            <h3>Código HTML Gerado (Copie este código para o seu novo arquivo de curso)</h3>
-            <textarea id="output-html" readonly></textarea>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('generator-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            generateHtml();
-        });
-
-        // Tenta extrair o ID de links do Drive
-        function extractDriveId(url) {
-            const match = url.match(/d\/([a-zA-Z0-9_-]+)/);
-            return match ? match[1] : null;
-        }
-        
-        // Converte link de visualização (view) do Drive para link de incorporação (preview)
-        function convertToEmbed(url) {
-            const driveId = extractDriveId(url);
-            if (driveId) {
-                return `https://drive.google.com/file/d/${driveId}/preview`; 
-            }
-            // Se for Forms, retorna o URL original (assumindo que já está embed)
-            if (url.includes('docs.google.com/forms/')) {
-                return url;
-            }
-            return null;
-        }
-
-        // Função principal que constrói o HTML
-        function generateHtml() {
-            const title = document.getElementById('course-title').value.trim();
-            const videoUrl = document.getElementById('video-link').value.trim();
-            const pdfUrl = document.getElementById('pdf-link').value.trim();
-            const formsUrl = document.getElementById('forms-link').value.trim();
-            const courseDesc = document.getElementById('course-desc').value.trim(); // Não usado no HTML do curso, mas bom ter
-            const outputTextarea = document.getElementById('output-html');
-            
-            let sectionIndex = 1;
-            let sectionsHtml = '';
-            
-            // --- Geração das Seções Condicionais ---
-            
-            // 1. VÍDEO
-            if (videoUrl) {
-                const embedUrl = convertToEmbed(videoUrl);
-                if (embedUrl) {
-                    sectionsHtml += `
+// Na função generateHtml, substitua a parte das seções condicionais:
+function generateHtml() {
+    const title = document.getElementById('course-title').value.trim();
+    const videoUrl = document.getElementById('video-link').value.trim();
+    const pdfUrl = document.getElementById('pdf-link').value.trim();
+    const formsUrl = document.getElementById('forms-link').value.trim();
+    const courseDesc = document.getElementById('course-desc').value.trim();
+    const outputTextarea = document.getElementById('output-html');
+    
+    // Validação básica
+    if (!title) {
+        alert('Por favor, insira um título para o curso.');
+        return;
+    }
+    
+    let sectionIndex = 1;
+    let sectionsHtml = '';
+    
+    // 1. VÍDEO
+    if (videoUrl) {
+        const embedUrl = convertToEmbed(videoUrl);
+        if (embedUrl) {
+            sectionsHtml += `
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-video"></i> ${sectionIndex}. Assista à Aula (Vídeo)</h2>
@@ -147,21 +54,24 @@
                 <div class="card-content" style="padding-top: 0;">
                     <div class="video-responsive">
                         <iframe src="${embedUrl}" 
-                                frameborder="0" allowfullscreen>
+                                frameborder="0" allowfullscreen
+                                title="Vídeo da aula: ${title}">
                         </iframe>
                     </div>
                 </div>
             </div>
         </div>\n`;
-                    sectionIndex++;
-                }
-            }
-            
-            // 2. PDF
-            if (pdfUrl) {
-                const embedUrl = convertToEmbed(pdfUrl);
-                if (embedUrl) {
-                    sectionsHtml += `
+            sectionIndex++;
+        } else {
+            alert('Link de vídeo inválido. Use um link do Google Drive.');
+        }
+    }
+    
+    // 2. PDF
+    if (pdfUrl) {
+        const embedUrl = convertToEmbed(pdfUrl);
+        if (embedUrl) {
+            sectionsHtml += `
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-book-open"></i> ${sectionIndex}. Leia o Material de Apoio (PDF)</h2>
@@ -171,21 +81,24 @@
                 <div class="card-content" style="padding-top: 0;">
                     <div class="pdf-viewer-container">
                         <iframe src="${embedUrl}" 
-                                frameborder="0">
+                                frameborder="0"
+                                title="Material de apoio: ${title}">
                         </iframe>
                     </div>
                 </div>
             </div>
         </div>\n`;
-                    sectionIndex++;
-                }
-            }
-            
-            // 3. FORMS
-            if (formsUrl) {
-                const embedUrl = formsUrl; // Assumido que Forms já é link de embed
-                
-                sectionsHtml += `
+            sectionIndex++;
+        } else {
+            alert('Link de PDF inválido. Use um link do Google Drive.');
+        }
+    }
+    
+    // 3. FORMS
+    if (formsUrl) {
+        const embedUrl = convertToEmbed(formsUrl);
+        if (embedUrl) {
+            sectionsHtml += `
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-list-check"></i> ${sectionIndex}. Complete o Teste Rápido</h2>
@@ -195,25 +108,29 @@
                 <div class="card-content" style="padding-top: 0;">
                     <div class="form-responsive">
                         <iframe src="${embedUrl}" 
-                                frameborder="0" marginheight="0" marginwidth="0">
+                                frameborder="0" marginheight="0" marginwidth="0"
+                                title="Teste do curso: ${title}">
                             Carregando…
                         </iframe>
                     </div>
                 </div>
             </div>
         </div>\n`;
-                sectionIndex++;
-            }
-            
-            // Se nenhuma seção foi gerada, alerta e para
-            if (sectionsHtml === '') {
-                outputTextarea.value = '';
-                alert('Erro: Nenhuma URL de conteúdo válida foi fornecida. Por favor, preencha pelo menos um campo de link.');
-                return;
-            }
+            sectionIndex++;
+        } else {
+            alert('Link de formulário inválido. Use um link do Google Forms.');
+        }
+    }
+    
+    // Verifica se alguma seção foi gerada
+    if (sectionsHtml === '') {
+        outputTextarea.value = '';
+        alert('Erro: Nenhuma URL de conteúdo válida foi fornecida. Por favor, preencha pelo menos um campo de link.');
+        return;
+    }
 
-            // --- MONTAGEM DO HTML FINAL ---
-            const finalHtml = `
+    // No CSS final, ajuste as alturas:
+    const finalHtml = `
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -229,7 +146,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
-        /* ESTILOS DE TREINAMENTO - Copie os estilos do seu arquivo style.css principal */
+        /* ESTILOS DE TREINAMENTO */
         :root {
             --primary-color: #1e3a5f;
             --link-color: #0056b3;
@@ -255,7 +172,7 @@
         .collapsible-header h2 { color: var(--primary-color); font-size: 1.5em; margin: 0; display: flex; align-items: center; }
         .collapsible-header h2 i { margin-right: 12px; }
 
-        /* Estilos de Responsividade para IFRAMES */
+        /* Estilos de Responsividade para IFRAMES - CORRIGIDOS */
         .video-responsive, .pdf-viewer-container, .form-responsive {
             position: relative;
             height: 0;
@@ -263,11 +180,21 @@
             margin-bottom: 20px;
             border-radius: 8px;
         }
-        .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
-        .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
-        .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
+        .video-responsive { 
+            padding-bottom: 56.25%; /* 16:9 para vídeos */
+        }
+        .pdf-viewer-container { 
+            padding-bottom: 130%; /* Altura mais adequada para PDFs */
+            height: 600px; /* Altura fixa como fallback */
+        }
+        .form-responsive { 
+            padding-bottom: 800px; /* Altura mais razoável para Forms */
+            height: 600px; /* Altura fixa como fallback */
+        }
         
-        .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
+        .video-responsive iframe, 
+        .pdf-viewer-container iframe, 
+        .form-responsive iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -276,12 +203,22 @@
             border: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+        
+        /* Fallback para quando o padding-bottom não funciona */
+        @media (min-width: 768px) {
+            .pdf-viewer-container,
+            .form-responsive {
+                height: 600px;
+                padding-bottom: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 style="text-align: center; margin-top: 20px;">Treinamento: ${title}</h1>
+        <h1 style="text-align: center; margin-top: 20px; margin-bottom: 10px;">Treinamento: ${title}</h1>
+        ${courseDesc ? `<p style="text-align: center; color: #666; margin-bottom: 30px; font-style: italic;">${courseDesc}</p>` : ''}
 
         ${sectionsHtml}
 
@@ -296,7 +233,7 @@
                 });
             });
             
-            // Opcional: Ativa a primeira seção por padrão
+            // Ativa a primeira seção por padrão
             const firstCard = document.querySelector('.collapsible-card');
             if (firstCard) {
                 firstCard.classList.add('active');
@@ -306,9 +243,7 @@
 </body>
 </html>
 `;
-            outputTextarea.value = finalHtml.trim();
-            alert(`Código HTML para "${title}" gerado com sucesso! Copie o código da caixa de texto.`);
-        }
-    </script>
-</body>
-</html>
+    outputTextarea.value = finalHtml.trim();
+    outputTextarea.select();
+    alert(`Código HTML para "${title}" gerado com sucesso! Copie o código da caixa de texto.`);
+}
