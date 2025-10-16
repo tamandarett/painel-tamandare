@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Páginas de Treinamento</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <style>
         :root {
             --primary-color: #1e3a5f;
@@ -19,7 +17,6 @@
             --text-color: #333;
             --success-color: #28a745;
         }
-        
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--background-color);
@@ -27,178 +24,35 @@
             margin: 0;
             padding: 20px;
         }
-        
-        .container {
-            max-width: 1000px;
-            margin: auto;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .header h1 {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            color: #666;
-            font-size: 1.1em;
-        }
-        
-        .card {
-            background-color: var(--card-background);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--text-color);
-        }
-        
-        .form-group label i {
-            margin-right: 8px;
-            color: var(--link-color);
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1em;
-            font-family: 'Roboto', sans-serif;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        .form-group small {
-            display: block;
-            margin-top: 5px;
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            background-color: var(--link-color);
-            color: white;
-            cursor: pointer;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 1em;
-            transition: background-color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .btn:hover {
-            background-color: #004494;
-        }
-        
-        .btn-success {
-            background-color: var(--success-color);
-        }
-        
-        .btn-success:hover {
-            background-color: #218838;
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        #output-html {
-            width: 100%;
-            min-height: 400px;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            background-color: #f8f9fa;
-            box-sizing: border-box;
-        }
-        
-        .alert {
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: none;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-        }
-        
-        .alert-error {
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-        }
-        
-        .section-title {
-            font-size: 1.3em;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
+        .container { max-width: 1000px; margin: auto; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { color: var(--primary-color); font-weight: 700; margin-bottom: 10px; }
+        .header p { color: #666; font-size: 1.1em; }
+        .card { background-color: var(--card-background); border-radius: 12px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 8px; color: var(--text-color); }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1em; box-sizing: border-box; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); }
+        .form-group small { display: block; margin-top: 5px; color: #666; font-size: 0.9em; }
+        .btn { padding: 12px 30px; border: none; background-color: var(--link-color); color: white; cursor: pointer; border-radius: 6px; font-weight: 500; font-size: 1em; transition: background-color 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn:hover { background-color: #004494; }
+        .btn-success { background-color: var(--success-color); }
+        .btn-success:hover { background-color: #218838; }
+        .btn-group { display: flex; gap: 15px; margin-top: 20px; }
+        #output-html { width: 100%; min-height: 400px; padding: 15px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9em; background-color: #f8f9fa; box-sizing: border-box; }
+        .alert { padding: 15px; border-radius: 6px; margin-bottom: 20px; display: none; }
+        .alert-success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .alert-error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .section-title { font-size: 1.3em; color: var(--primary-color); margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
+            body { padding: 10px; }
+            .card { padding: 20px; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="header">
             <h1><i class="fa-solid fa-code"></i> Gerador de Páginas de Treinamento</h1>
@@ -206,421 +60,165 @@
         </div>
 
         <div class="card">
-            <div class="section-title">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Informações do Treinamento
-            </div>
-
+            <div class="section-title"><i class="fa-solid fa-pen-to-square"></i> Informações do Treinamento</div>
             <div class="form-group">
-                <label for="course-title">
-                    <i class="fa-solid fa-heading"></i>
-                    Título do Treinamento *
-                </label>
-                <input 
-                    type="text" 
-                    id="course-title" 
-                    placeholder="Ex: Cadastro de Clientes"
-                    required
-                >
+                <label for="course-title"><i class="fa-solid fa-heading"></i> Título do Treinamento *</label>
+                <input type="text" id="course-title" placeholder="Ex: Cadastro de Clientes">
             </div>
-
             <div class="form-group">
-                <label for="course-desc">
-                    <i class="fa-solid fa-align-left"></i>
-                    Descrição do Curso (opcional)
-                </label>
-                <textarea 
-                    id="course-desc" 
-                    placeholder="Ex: Neste treinamento, você aprenderá as melhores práticas para cadastrar clientes..."
-                ></textarea>
+                <label for="course-desc"><i class="fa-solid fa-align-left"></i> Descrição do Curso (opcional)</label>
+                <textarea id="course-desc" placeholder="Ex: Neste treinamento, você aprenderá..."></textarea>
             </div>
         </div>
 
         <div class="card">
-            <div class="section-title">
-                <i class="fa-solid fa-link"></i>
-                Links do Conteúdo
-            </div>
-
+            <div class="section-title"><i class="fa-solid fa-link"></i> Links do Conteúdo</div>
             <div class="form-group">
-                <label for="video-link">
-                    <i class="fa-solid fa-video"></i>
-                    Link do Vídeo (Google Drive)
-                </label>
-                <input 
-                    type="url" 
-                    id="video-link" 
-                    placeholder="https://drive.google.com/file/d/SEU_ID_AQUI/view"
-                >
+                <label for="video-link"><i class="fa-solid fa-video"></i> Link do Vídeo (Google Drive)</label>
+                <input type="url" id="video-link" placeholder="https://drive.google.com/file/d/SEU_ID_AQUI/view">
                 <small>Cole o link de compartilhamento do vídeo do Google Drive</small>
             </div>
-
             <div class="form-group">
-                <label for="pdf-link">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    Link do PDF (Google Drive)
-                </label>
-                <input 
-                    type="url" 
-                    id="pdf-link" 
-                    placeholder="https://drive.google.com/file/d/SEU_ID_AQUI/view"
-                >
+                <label for="pdf-link"><i class="fa-solid fa-file-pdf"></i> Link do PDF (Google Drive)</label>
+                <input type="url" id="pdf-link" placeholder="https://drive.google.com/file/d/SEU_ID_AQUI/view">
                 <small>Cole o link de compartilhamento do PDF do Google Drive</small>
             </div>
-
             <div class="form-group">
-                <label for="forms-link">
-                    <i class="fa-solid fa-list-check"></i>
-                    Link do Formulário (Google Forms)
-                </label>
-                <input 
-                    type="url" 
-                    id="forms-link" 
-                    placeholder="https://docs.google.com/forms/d/e/SEU_ID/viewform"
-                >
+                <label for="forms-link"><i class="fa-solid fa-list-check"></i> Link do Formulário (Google Forms)</label>
+                <input type="url" id="forms-link" placeholder="https://docs.google.com/forms/d/e/SEU_ID/viewform">
                 <small>Cole o link do Google Forms para o teste/questionário</small>
             </div>
-
             <div class="btn-group">
-                <button class="btn" onclick="generateHtml()">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    Gerar Código HTML
-                </button>
+                <button id="btn-generate" class="btn"><i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Código HTML</button>
             </div>
         </div>
 
         <div class="card">
-            <div class="section-title">
-                <i class="fa-solid fa-code"></i>
-                Código HTML Gerado
-            </div>
-
+            <div class="section-title"><i class="fa-solid fa-code"></i> Código HTML Gerado</div>
             <div id="alert-container"></div>
-
-            <textarea id="output-html" placeholder="O código HTML aparecerá aqui após clicar em 'Gerar Código HTML'"></textarea>
-
+            <textarea id="output-html" placeholder="O código HTML aparecerá aqui"></textarea>
             <div class="btn-group">
-                <button class="btn btn-success" onclick="copyToClipboard()" id="copy-btn">
-                    <i class="fa-solid fa-copy"></i>
-                    Copiar Código
-                </button>
-                <button class="btn" onclick="downloadHtml()">
-                    <i class="fa-solid fa-download"></i>
-                    Baixar HTML
-                </button>
+                <button id="btn-copy" class="btn btn-success"><i class="fa-solid fa-copy"></i> Copiar Código</button>
+                <button id="btn-download" class="btn"><i class="fa-solid fa-download"></i> Baixar HTML</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Converte link Drive/Forms
         function convertToEmbed(url) {
             if (!url) return null;
-            
-            // Google Drive (Vídeo e PDF)
-            const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
-            if (driveMatch) {
-                return `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
-            }
-            
-            // Google Forms
+            const driveMatch = url.match(/drive\\.google\\.com\\/file\\/d\\/([a-zA-Z0-9_-]+)/);
+            if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
             if (url.includes('docs.google.com/forms/')) {
-                // Remove parâmetros desnecessários e adiciona embedded=true
-                let embedUrl = url.split('?')[0];
-                if (!embedUrl.includes('viewform')) {
-                    embedUrl += '/viewform';
-                }
-                return embedUrl + '?embedded=true';
+                let base = url.split('?')[0];
+                if (!base.includes('viewform')) base += '/viewform';
+                return base + '?embedded=true';
             }
-            
             return null;
         }
 
-        function showAlert(message, type) {
-            const alertContainer = document.getElementById('alert-container');
-            alertContainer.innerHTML = `
-                <div class="alert alert-${type}">
-                    ${message}
-                </div>
-            `;
-            const alertElement = alertContainer.querySelector('.alert');
-            alertElement.style.display = 'block';
-            
-            setTimeout(() => {
-                alertElement.style.display = 'none';
-            }, 5000);
+        // Exibe alertas
+        function showAlert(msg, type) {
+            const c = document.getElementById('alert-container');
+            c.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+            const el = c.firstElementChild;
+            el.style.display = 'block';
+            setTimeout(() => el.style.display = 'none', 4000);
         }
 
+        // Gera HTML
         function generateHtml() {
-            const title = document.getElementById('course-title').value.trim();
-            const videoUrl = document.getElementById('video-link').value.trim();
-            const pdfUrl = document.getElementById('pdf-link').value.trim();
-            const formsUrl = document.getElementById('forms-link').value.trim();
-            const courseDesc = document.getElementById('course-desc').value.trim();
-            const outputTextarea = document.getElementById('output-html');
-            
-            // Validação básica
-            if (!title) {
-                showAlert('Por favor, insira um título para o curso.', 'error');
-                return;
-            }
-            
-            if (!videoUrl && !pdfUrl && !formsUrl) {
-                showAlert('Por favor, insira pelo menos um link (vídeo, PDF ou formulário).', 'error');
-                return;
-            }
-            
-            let sectionIndex = 1;
-            let sectionsHtml = '';
-            
-            // 1. VÍDEO
-            if (videoUrl) {
-                const embedUrl = convertToEmbed(videoUrl);
-                if (embedUrl) {
-                    sectionsHtml += `
+            const t = document.getElementById('course-title').value.trim();
+            const v = document.getElementById('video-link').value.trim();
+            const p = document.getElementById('pdf-link').value.trim();
+            const f = document.getElementById('forms-link').value.trim();
+            const d = document.getElementById('course-desc').value.trim();
+            if (!t) return showAlert('Insira um título.', 'error');
+            if (!v && !p && !f) return showAlert('Insira pelo menos um link.', 'error');
+            let idx=1, sec='';
+            [[v,'fa-video','Assista à Aula (Vídeo)'],[p,'fa-book-open','Leia o Material de Apoio (PDF)'],[f,'fa-list-check','Complete o Teste Rápido']].forEach(([url,icon,label])=>{
+                if (!url) return;
+                const e = convertToEmbed(url);
+                if (!e) return showAlert(`Link inválido: ${label}`, 'error');
+                sec += `
         <div class="card collapsible-card">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-video"></i> ${sectionIndex}. Assista à Aula (Vídeo)</h2>
+                <h2><i class="fa-solid ${icon}"></i> ${idx++}. ${label}</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
-                <div class="card-content" style="padding-top: 0;">
-                    <div class="video-responsive">
-                        <iframe src="${embedUrl}" 
-                                frameborder="0" allowfullscreen
-                                title="Vídeo da aula: ${title}">
-                        </iframe>
+                <div class="card-content" style="padding-top:0;">
+                    <div class="${ icon==='fa-video'? 'video-responsive': icon==='fa-book-open'? 'pdf-viewer-container':'form-responsive'}">
+                        <iframe src="${e}" frameborder="0" title="${label}: ${t}"></iframe>
                     </div>
                 </div>
             </div>
-        </div>\n`;
-                    sectionIndex++;
-                } else {
-                    showAlert('Link de vídeo inválido. Use um link do Google Drive.', 'error');
-                    return;
-                }
-            }
-            
-            // 2. PDF
-            if (pdfUrl) {
-                const embedUrl = convertToEmbed(pdfUrl);
-                if (embedUrl) {
-                    sectionsHtml += `
-        <div class="card collapsible-card">
-            <div class="collapsible-header">
-                <h2><i class="fa-solid fa-book-open"></i> ${sectionIndex}. Leia o Material de Apoio (PDF)</h2>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-            </div>
-            <div class="collapsible-content">
-                <div class="card-content" style="padding-top: 0;">
-                    <div class="pdf-viewer-container">
-                        <iframe src="${embedUrl}" 
-                                frameborder="0"
-                                title="Material de apoio: ${title}">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>\n`;
-                    sectionIndex++;
-                } else {
-                    showAlert('Link de PDF inválido. Use um link do Google Drive.', 'error');
-                    return;
-                }
-            }
-            
-            // 3. FORMS
-            if (formsUrl) {
-                const embedUrl = convertToEmbed(formsUrl);
-                if (embedUrl) {
-                    sectionsHtml += `
-        <div class="card collapsible-card">
-            <div class="collapsible-header">
-                <h2><i class="fa-solid fa-list-check"></i> ${sectionIndex}. Complete o Teste Rápido</h2>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-            </div>
-            <div class="collapsible-content">
-                <div class="card-content" style="padding-top: 0;">
-                    <div class="form-responsive">
-                        <iframe src="${embedUrl}" 
-                                frameborder="0" marginheight="0" marginwidth="0"
-                                title="Teste do curso: ${title}">
-                            Carregando…
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>\n`;
-                    sectionIndex++;
-                } else {
-                    showAlert('Link de formulário inválido. Use um link do Google Forms.', 'error');
-                    return;
-                }
-            }
-            
-            const finalHtml = `<!DOCTYPE html>
+        </div>`;
+            });
+            const html = `<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treinamento: ${title}</title>
-    
-    <meta name="robots" content="noindex">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Treinamento: ${t}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <style>
-        :root {
-            --primary-color: #1e3a5f;
-            --link-color: #0056b3;
-            --background-color: #f4f7f9;
-            --card-background: #ffffff;
-            --text-color: #333;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-        }
-        .container { max-width: 900px; margin: auto; }
-        .card { background-color: var(--card-background); border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; }
-        .collapsible-header { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.2s; }
-        .collapsible-header:hover { background-color: #f8f9fa; }
-        .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 30px; }
-        .collapsible-card.active .collapsible-content { max-height: 3000px; padding-bottom: 25px; }
-        .toggle-icon { transition: transform 0.4s ease-out; }
-        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-        .collapsible-header h2 { color: var(--primary-color); font-size: 1.5em; margin: 0; display: flex; align-items: center; }
-        .collapsible-header h2 i { margin-right: 12px; }
-        .card-content { padding-top: 20px; }
-
-        .video-responsive, .pdf-viewer-container, .form-responsive {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        
-        .video-responsive { 
-            padding-bottom: 56.25%;
-            height: 0;
-        }
-        
-        .pdf-viewer-container { 
-            height: 600px;
-        }
-        
-        .form-responsive { 
-            height: 800px;
-        }
-        
-        .video-responsive iframe { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .pdf-viewer-container iframe,
-        .form-responsive iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            .collapsible-header { padding: 20px; }
-            .pdf-viewer-container { height: 500px; }
-            .form-responsive { height: 700px; }
-        }
+        :root{--primary-color:#1e3a5f;--background:#f4f7f9;--card:#fff;--text:#333}
+        body{font-family:sans-serif;background:var(--background);color:var(--text);margin:0;padding:20px}
+        .container{max-width:900px;margin:auto}
+        .card{background:var(--card);border-radius:8px;margin-bottom:20px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+        .collapsible-header{padding:20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee}
+        .collapsible-header h2{margin:0;font-size:1.2em;color:var(--primary-color);display:flex;align-items:center;gap:8px}
+        .collapsible-content{max-height:0;overflow:hidden;transition:max-height .3s ease}
+        .active .collapsible-content{max-height:2000px;padding:15px}
+        .toggle-icon{transition:transform .3s}
+        .active .toggle-icon{transform:rotate(180deg)}
+        .video-responsive{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+        .pdf-viewer-container,.form-responsive{position:relative;height:600px;overflow:hidden}
+        iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1 style="text-align: center; margin-top: 20px; margin-bottom: 10px;">Treinamento: ${title}</h1>
-        ${courseDesc ? `<p style="text-align: center; color: #666; margin-bottom: 30px; font-style: italic;">${courseDesc}</p>` : ''}
-
-${sectionsHtml}
+        <h1>Treinamento: ${t}</h1>
+        ${d?`<p>${d}</p>`:''}
+        ${sec}
     </div>
-    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-            collapsibleHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    this.parentElement.classList.toggle('active');
-                });
-            });
-            
-            // Ativa a primeira seção por padrão
-            const firstCard = document.querySelector('.collapsible-card');
-            if (firstCard) {
-                firstCard.classList.add('active');
-            }
+        document.querySelectorAll('.collapsible-header').forEach(h=>{
+            h.addEventListener('click',()=>h.parentElement.classList.toggle('active'));
         });
+        document.querySelector('.collapsible-card')?.classList.add('active');
     </script>
 </body>
 </html>`;
-            
-            outputTextarea.value = finalHtml;
-            showAlert(`Código HTML para "${title}" gerado com sucesso!`, 'success');
+            document.getElementById('output-html').value = html;
+            showAlert(`Código gerado para "${t}"!`, 'success');
         }
 
-        function copyToClipboard() {
-            const outputTextarea = document.getElementById('output-html');
-            
-            if (!outputTextarea.value) {
-                showAlert('Nenhum código para copiar. Gere o HTML primeiro.', 'error');
-                return;
-            }
-            
-            outputTextarea.select();
-            document.execCommand('copy');
-            
-            const copyBtn = document.getElementById('copy-btn');
-            const originalText = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
-            
-            setTimeout(() => {
-                copyBtn.innerHTML = originalText;
-            }, 2000);
-            
-            showAlert('Código copiado para a área de transferência!', 'success');
+        // Copiar e baixar
+        function copyCode() {
+            const o = document.getElementById('output-html');
+            if (!o.value) return showAlert('Gere primeiro.', 'error');
+            o.select(); document.execCommand('copy');
+            showAlert('Copiado!', 'success');
         }
-
-        function downloadHtml() {
-            const outputTextarea = document.getElementById('output-html');
-            const title = document.getElementById('course-title').value.trim();
-            
-            if (!outputTextarea.value) {
-                showAlert('Nenhum código para baixar. Gere o HTML primeiro.', 'error');
-                return;
-            }
-            
-            const blob = new Blob([outputTextarea.value], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
+        function downloadCode() {
+            const o = document.getElementById('output-html');
+            if (!o.value) return showAlert('Gere primeiro.', 'error');
+            const blob = new Blob([o.value], {type:'text/html'});
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `treinamento-${title.toLowerCase().replace(/\s+/g, '-')}.html`;
-            document.body.appendChild(a);
+            a.href = URL.createObjectURL(blob);
+            a.download = 'treinamento.html';
             a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showAlert('Arquivo HTML baixado com sucesso!', 'success');
+            URL.revokeObjectURL(a.href);
+            showAlert('Arquivo baixado!', 'success');
         }
-    </script>
 
+        // Liga os botões
+        document.getElementById('btn-generate').onclick = generateHtml;
+        document.getElementById('btn-copy').onclick     = copyCode;
+        document.getElementById('btn-download').onclick = downloadCode;
+    </script>
 </body>
 </html>
