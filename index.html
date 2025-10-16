@@ -228,6 +228,7 @@
                         <select id="treinamento-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
                             <option value="" disabled selected>-- Selecione um Treinamento --</option>
                             <option value="Cadastro de Clientes">Cadastro de Clientes</option>
+                            <option value="Registro de Lacres">Registro de Lacres</option>
                         </select>
                     </div>
 
@@ -355,7 +356,12 @@
         const TRAINING_DETAILS = {
             "Cadastro de Clientes": {
                 description: "Neste treinamento, você vai aprender como cadastrar clientes corretamente, seguindo padrões de segurança e completude, aplicar bloqueios quando necessário e consultar informações para garantir cadastros confiáveis.",
-                link: "https://tamandarett.github.io/painel-tamandare/cadastrodeclientes.html"
+                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/cadastrodeclientes.html"
+            },
+            // NOVO TREINAMENTO
+            "Registro de Lacres": {
+                description: "Este é um sistema digital para registrar a numeração de todos os lacres dos malotes. Ele garante que cada lacre seja registrado corretamente, sem erros de digitação, e que cada registro tenha a data, hora e nome do operador.",
+                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/registrodelacres.html"
             }
         };
 
@@ -500,7 +506,7 @@
             }
         }
 
-        // NOVO: Função para atualizar os detalhes do Treinamento
+        // Função para atualizar os detalhes do Treinamento (NOVO)
         function updateTreinamentoDetails() {
             const select = document.getElementById('treinamento-select');
             const displayDiv = document.getElementById('treinamento-details-display');
