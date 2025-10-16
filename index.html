@@ -145,6 +145,44 @@
         }
         .calendar-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         
+        /* Estilos para o campo de busca */
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--subtitle-color);
+            pointer-events: none;
+        }
+        
+        .no-results-message {
+            padding: 15px;
+            text-align: center;
+            color: var(--subtitle-color);
+            font-style: italic;
+            display: none;
+        }
+        
         @media (max-width: 768px) {
             body { padding: 10px; }
             .header { flex-direction: column-reverse; text-align: center; }
@@ -223,6 +261,18 @@
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <!-- Campo de Busca -->
+                    <div class="search-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="treinamento-search" 
+                            class="search-input" 
+                            placeholder="Buscar treinamento..."
+                            autocomplete="off"
+                        >
+                        <i class="fa-solid fa-search search-icon"></i>
+                    </div>
+                    
                     <div class="form-group" style="margin-bottom: 20px;">
                         <label for="treinamento-select" style="font-weight: 500; color: var(--text-color);">Selecione o Treinamento:</label>
                         <select id="treinamento-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
@@ -232,12 +282,18 @@
                             <option value="GNRE">GNRE</option>
                         </select>
                     </div>
+                    
+                    <!-- Mensagem quando não há resultados -->
+                    <div id="no-results-treinamento" class="no-results-message">
+                        Nenhum treinamento encontrado com esse termo.
+                    </div>
 
                     <div id="treinamento-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
@@ -261,10 +317,11 @@
                     </div>
 
                     <div id="contato-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-shop"></i>Nossas Lojas</h2>
@@ -289,7 +346,7 @@
                     </div>
 
                     <div id="loja-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -352,7 +409,7 @@
         };
 
         // =========================================================================
-        // DADOS DOS TREINAMENTOS (NOVO)
+        // DADOS DOS TREINAMENTOS
         // =========================================================================
         const TRAINING_DETAILS = {
             "Cadastro de Clientes": {
@@ -461,7 +518,7 @@
         }
 
 
-        // Função para atualizar os detalhes de Contato (MANTIDA)
+        // Função para atualizar os detalhes de Contato
         function updateContactDetails() {
             const select = document.getElementById('contato-select');
             const displayDiv = document.getElementById('contato-details-display');
@@ -510,7 +567,7 @@
             }
         }
 
-        // Função para atualizar os detalhes do Treinamento (NOVO)
+        // Função para atualizar os detalhes do Treinamento
         function updateTreinamentoDetails() {
             const select = document.getElementById('treinamento-select');
             const displayDiv = document.getElementById('treinamento-details-display');
@@ -541,8 +598,53 @@
             }
         }
 
+        // =========================================================================
+        // FUNÇÃO DE BUSCA DE TREINAMENTOS (NOVA)
+        // =========================================================================
+        function filterTreinamentos() {
+            const searchInput = document.getElementById('treinamento-search');
+            const select = document.getElementById('treinamento-select');
+            const noResultsMsg = document.getElementById('no-results-treinamento');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            // Pega todas as opções exceto a primeira (placeholder)
+            const options = Array.from(select.options).slice(1);
+            let hasVisibleOptions = false;
+            
+            options.forEach(option => {
+                const optionText = option.text.toLowerCase();
+                const trainingKey = option.value;
+                const trainingDesc = TRAINING_DETAILS[trainingKey]?.description.toLowerCase() || '';
+                
+                // Verifica se o termo está no nome OU na descrição
+                const matches = optionText.includes(searchTerm) || trainingDesc.includes(searchTerm);
+                
+                if (matches || searchTerm === '') {
+                    option.style.display = '';
+                    hasVisibleOptions = true;
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+            
+            // Mostra mensagem se não houver resultados
+            if (!hasVisibleOptions && searchTerm !== '') {
+                noResultsMsg.style.display = 'block';
+                select.style.display = 'none';
+            } else {
+                noResultsMsg.style.display = 'none';
+                select.style.display = 'block';
+            }
+            
+            // Limpa a seleção se o item selecionado ficou oculto
+            if (select.value && select.options[select.selectedIndex].style.display === 'none') {
+                select.value = '';
+                updateTreinamentoDetails();
+            }
+        }
 
-        // Função para atualizar os detalhes da Loja (MANTIDA)
+
+        // Função para atualizar os detalhes da Loja
         function updateLojaDetails() {
             const select = document.getElementById('loja-select');
             const displayDiv = document.getElementById('loja-details-display');
@@ -556,7 +658,6 @@
             const store = STORE_DETAILS[selectedStoreId];
             const dataId = `loja-data-${selectedStoreId}`;
 
-            // 1. Formatação do CONTEÚDO PURO para COPIAR (usando \n para quebras de linha)
             const contentToCopy = `
 ${store.title}
 Endereço: ${store.address}
@@ -565,8 +666,6 @@ E-mail: ${store.email}
 WhatsApp: ${store.whatsapp}
             `.trim();
 
-
-            // 2. Formatação do CONTEÚDO VISÍVEL (usando <br> para quebras de linha no HTML)
             if (store) {
                 displayDiv.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
@@ -612,6 +711,12 @@ WhatsApp: ${store.whatsapp}
             const selectTreinamentoElement = document.getElementById('treinamento-select');
             if (selectTreinamentoElement) {
                 selectTreinamentoElement.addEventListener('change', updateTreinamentoDetails);
+            }
+            
+            // Inicializa o listener do campo de busca de Treinamentos
+            const searchTreinamentoInput = document.getElementById('treinamento-search');
+            if (searchTreinamentoInput) {
+                searchTreinamentoInput.addEventListener('input', filterTreinamentos);
             }
             
             // Inicializa o listener do Menu Suspenso de Lojas
