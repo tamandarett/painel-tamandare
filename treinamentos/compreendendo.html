@@ -6,52 +6,67 @@
     <title>Compreendendo Nossa Missão, Visão e Valores | Tamandaré Tintas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        /* Definindo as variáveis de cor para manter a consistência */
+        :root {
+            --primary-color: #1e3a5f;
+            --background-body: #1e3a5f; /* Cor que simula o "quadro azul" */
+            --background-content: #f4f7f9; /* Fundo que estará no corpo do texto */
+            --card-background: #ffffff;
+            --text-color: #333;
+        }
+
         body {
             font-family: 'Roboto', Arial, sans-serif;
-            background: #f4f7f9;
-            color: #333;
+            background-color: var(--background-body); /* Fundo "azul" no body */
+            color: var(--text-color);
             margin: 0;
             padding: 0;
+            display: flex; /* Para centralizar o conteúdo principal */
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Garante que o body ocupe a tela toda */
         }
         .logo-container {
-            max-width: 900px; /* Alinha com a largura do .container */
-            margin: 0 auto;
-            text-align: center; /* Centraliza a imagem */
-            padding-top: 40px; /* Espaçamento superior no body */
+            width: 100%; /* Ocupa a largura total para centralizar o logo */
+            text-align: center;
+            padding: 30px 0 20px 0; /* Espaço em cima e embaixo do logo */
         }
         .logo-tamandare {
-            max-width: 140px; /* Logo um pouco maior */
+            max-width: 154px; /* 140px + 10% = 154px */
             display: block;
-            margin: 0 auto;
-            /* Usamos -50px para "puxar" o logo para cima, sobrepondo a margem do container */
-            margin-bottom: -50px; 
-            z-index: 10; /* Garante que o logo fique por cima da sombra */
+            margin: 0 auto; /* Centraliza horizontalmente */
             position: relative;
+            z-index: 10; 
         }
         .container {
             max-width: 900px;
-            margin: 0px auto 40px auto; /* Mantive a margem inferior */
-            background: #fff;
+            width: calc(100% - 40px); /* Ajuste para padding em mobile */
+            margin: 0px auto 40px auto; /* Mantém margem inferior */
+            background-color: var(--card-background); /* Fundo branco do conteúdo */
             border-radius: 12px;
             box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-            /* O padding superior garante o espaço do logo que foi "puxado" para cima */
-            padding: 70px 30px 40px 30px;
+            padding: 40px 30px; /* Padding do conteúdo dentro do container */
             position: relative;
+            z-index: 5; /* Garante que o container fique abaixo do logo se houver sobreposição */
         }
         
-        /* Ajuste do texto, já que o logo saiu do header */
+        /* Ajuste do título para a nova estrutura */
         .page-title {
-            color: #1e3a5f;
+            color: var(--primary-color);
             margin-top: 0;
             margin-bottom: 20px;
-            font-size: 2em;
-            text-align: center; /* Centraliza o título */
+            font-size: 2.2em; /* Um pouco maior para se destacar */
+            text-align: center;
         }
 
         h2 {
-            color: #1e3a5f;
+            color: var(--primary-color);
             margin-top: 35px;
             margin-bottom: 12px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
         .missao, .visao {
             font-size: 1.12em;
@@ -64,6 +79,7 @@
         }
         ul, ol {
             margin-left: 22px;
+            padding-left: 0; /* Para evitar duplo padding */
         }
         .valores-list li {
             margin-bottom: 18px;
@@ -71,14 +87,20 @@
         }
         .destacado {
             font-weight: 700;
-            color: #1e3a5f;
+            color: var(--primary-color);
             margin-right: 8px;
         }
         @media (max-width: 700px) {
-            .logo-container { padding-top: 20px; }
-            .logo-tamandare { max-width: 90px; margin-bottom: -35px; }
-            .container { padding: 50px 15px 30px 15px; }
-            .page-title { font-size: 1.5em; }
+            .logo-container { padding: 20px 0 10px 0; }
+            .logo-tamandare { max-width: 110px; } /* Ajuste para mobile */
+            .container { 
+                padding: 30px 15px; 
+                width: calc(100% - 30px); /* Ajuste de largura para mobile */
+            }
+            .page-title { font-size: 1.6em; }
+            h2 { font-size: 1.3em; }
+            .missao, .visao { font-size: 1em; }
+            .valores-list li { font-size: 0.95em; }
         }
     </style>
 </head>
