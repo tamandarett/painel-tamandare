@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compreendendo Nossa Missão, Visão e Valores | Tamandaré Tintas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+            padding: 40px 30px 40px 30px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .header-text h1 {
+            color: #1e3a5f;
+            margin: 0;
+            font-size: 2em;
+        }
+        .logo-tamandare {
+            max-width: 120px;
+            display: block;
+            margin-left: auto;
+        }
+        h2 {
+            color: #1e3a5f;
+            margin-top: 35px;
+            margin-bottom: 12px;
+        }
+        .missao, .visao {
+            font-size: 1.12em;
+            font-weight: 500;
+            color: #0056b3;
+            background: #f1f7ff;
+            border-radius: 12px;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            margin-left: 22px;
+        }
+        .valores-list li {
+            margin-bottom: 18px;
+            font-size: 1.05em;
+        }
+        .destacado {
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-right: 8px;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 10px 5px 30px 5px;
+            }
+            .header-text h1 { font-size: 1.3em; }
+            .logo-tamandare { max-width: 70px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-text">
+                <h1>Compreendendo Nossa Missão, Visão e Valores</h1>
+            </div>
+            <img src="logo-tamandare.png" alt="Logo Tamandaré Tintas" class="logo-tamandare">
+        </div>
+        <p>Bem-vindo à Tamandaré Tintas!<br>
+        Estamos felizes em tê-lo como parte de nossa equipe. Para garantir que você entenda a essência do nosso trabalho, gostaríamos de compartilhar com você a nossa missão, visão e valores. Esses princípios norteiam todas as nossas ações e são fundamentais para o sucesso e crescimento da nossa empresa no mercado de tintas.</p>
+        
+        <h2>Missão</h2>
+        <div class="missao">
+            "Servir o que há de melhor no mercado de tintas para que os clientes e profissionais tenham uma jornada de pintura agradável, ágil e com ótimo custo-benefício."
+        </div>
+        <p>Nossa missão é clara: queremos oferecer aos nossos clientes e profissionais do setor uma experiência excepcional. O mercado de tintas é dinâmico e competitivo, e nosso compromisso é garantir que cada produto que entregamos esteja entre os melhores. Queremos que a jornada de pintura, seja de um cliente final ou de um profissional, seja marcada pela qualidade, rapidez e economia. Nossa dedicação a esse objetivo é o que nos diferencia e nos mantém à frente no mercado.</p>
+
+        <h2>Visão</h2>
+        <div class="visao">
+            "Ser a primeira opção em tintas na região onde atuamos, oferecendo ao cliente uma relação duradoura e compromisso com a sustentabilidade."
+        </div>
+        <p>Nossa visão aponta para o futuro que almejamos. Queremos ser reconhecidos como a escolha número um quando se trata de tintas em nossa região. Para alcançar essa meta, sabemos que não basta apenas oferecer produtos de qualidade; é necessário criar e manter uma relação de confiança com nossos clientes. Além disso, o compromisso com a sustentabilidade é vital. Queremos crescer de maneira responsável, cuidando do meio ambiente e contribuindo para um futuro mais verde e sustentável.</p>
+
+        <h2>Valores</h2>
+        <ol class="valores-list">
+            <li><span class="destacado">Respeito:</span> Priorizamos o respeito em todas as nossas relações, seja com clientes, colaboradores ou fornecedores. Acreditamos que o respeito mútuo é a base de qualquer relação duradoura e de sucesso.</li>
+            <li><span class="destacado">Superação de Expectativas:</span> Buscamos sempre exceder as expectativas no atendimento. Nosso objetivo é que cada interação com nossos clientes seja positiva e surpreendente.</li>
+            <li><span class="destacado">Conhecimento Técnico:</span> Valorizamos o conhecimento técnico como uma ferramenta essencial para oferecer as melhores soluções e produtos aos nossos clientes. Investimos continuamente em treinamento e desenvolvimento para garantir que nossa equipe esteja sempre atualizada.</li>
+            <li><span class="destacado">Conduta Ética:</span> Agimos com integridade em todas as situações. A ética é um pilar inegociável da nossa cultura corporativa, e esperamos que todos os colaboradores ajam com honestidade e transparência.</li>
+            <li><span class="destacado">Proatividade:</span> Incentivamos a proatividade em todas as áreas da empresa. Antecipar-se às necessidades e desafios é fundamental para mantermos nossa posição de liderança no mercado.</li>
+            <li><span class="destacado">Compromisso com Resultados Positivos:</span> Temos um compromisso firme com a obtenção de resultados positivos, tanto para nossos clientes quanto para a empresa como um todo. Sabemos que o sucesso só é alcançado com trabalho duro e dedicação.</li>
+        </ol>
+
+        <p>Esses princípios são a base de tudo o que fazemos. Como novo membro da equipe, esperamos que você se sinta inspirado por nossa missão, visão e valores, e que esteja motivado para contribuir para o nosso crescimento contínuo. Juntos, podemos alcançar grandes conquistas e consolidar nossa posição como líderes no mercado de tintas.</p>
+    </div>
+</body>
+</html>
