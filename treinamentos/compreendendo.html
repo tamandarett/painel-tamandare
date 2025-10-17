@@ -13,30 +13,41 @@
             margin: 0;
             padding: 0;
         }
+        .logo-container {
+            max-width: 900px; /* Alinha com a largura do .container */
+            margin: 0 auto;
+            text-align: center; /* Centraliza a imagem */
+            padding-top: 40px; /* Espaçamento superior no body */
+        }
+        .logo-tamandare {
+            max-width: 140px; /* Logo um pouco maior */
+            display: block;
+            margin: 0 auto;
+            /* Usamos -50px para "puxar" o logo para cima, sobrepondo a margem do container */
+            margin-bottom: -50px; 
+            z-index: 10; /* Garante que o logo fique por cima da sombra */
+            position: relative;
+        }
         .container {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 0px auto 40px auto; /* Mantive a margem inferior */
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-            padding: 40px 30px 40px 30px;
+            /* O padding superior garante o espaço do logo que foi "puxado" para cima */
+            padding: 70px 30px 40px 30px;
             position: relative;
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .header-text h1 {
+        
+        /* Ajuste do texto, já que o logo saiu do header */
+        .page-title {
             color: #1e3a5f;
-            margin: 0;
+            margin-top: 0;
+            margin-bottom: 20px;
             font-size: 2em;
+            text-align: center; /* Centraliza o título */
         }
-        .logo-tamandare {
-            max-width: 120px;
-            display: block;
-            margin-left: auto;
-        }
+
         h2 {
             color: #1e3a5f;
             margin-top: 35px;
@@ -64,22 +75,21 @@
             margin-right: 8px;
         }
         @media (max-width: 700px) {
-            .container {
-                padding: 10px 5px 30px 5px;
-            }
-            .header-text h1 { font-size: 1.3em; }
-            .logo-tamandare { max-width: 70px; }
+            .logo-container { padding-top: 20px; }
+            .logo-tamandare { max-width: 90px; margin-bottom: -35px; }
+            .container { padding: 50px 15px 30px 15px; }
+            .page-title { font-size: 1.5em; }
         }
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="../logo-tamandare.png" alt="Logo Tamandaré Tintas" class="logo-tamandare">
+    </div>
+    
     <div class="container">
-        <div class="header">
-            <div class="header-text">
-                <h1>Compreendendo Nossa Missão, Visão e Valores</h1>
-            </div>
-            <img src="../logo-tamandare.png" alt="Logo Tamandaré Tintas" class="logo-tamandare">
-        </div>
+        <h1 class="page-title">Compreendendo Nossa Missão, Visão e Valores</h1>
+
         <p>Bem-vindo à Tamandaré Tintas!<br>
         Estamos felizes em tê-lo como parte de nossa equipe. Para garantir que você entenda a essência do nosso trabalho, gostaríamos de compartilhar com você a nossa missão, visão e valores. Esses princípios norteiam todas as nossas ações e são fundamentais para o sucesso e crescimento da nossa empresa no mercado de tintas.</p>
         
