@@ -27,7 +27,6 @@
             padding: 20px;
         }
         .container { max-width: 900px; margin: auto; }
-
         .header {
             display: flex;
             justify-content: space-between;
@@ -47,7 +46,6 @@
         .header-logo img {
             max-height: 50px;
         }
-
         .card {
             background-color: var(--card-background);
             border-radius: 12px;
@@ -272,7 +270,6 @@
                 </div>
             </div>
         </div>
-
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
@@ -299,7 +296,6 @@
                 </div>
             </div>
         </div>
-
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-shop"></i>Nossas Lojas</h2>
@@ -327,7 +323,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="card static-card">
             <div class="card-content">
                 <h2><i class="fa-solid fa-calendar-days"></i>Agenda da Equipe</h2>
@@ -466,9 +461,185 @@ const STORE_DETAILS = {
     }
 };
 
-// ... as funções JS updateContactDetails, updateTreinamentoDetails, filterTreinamentosAndDisplayFirstMatch, updateLojaDetails e os event listeners vêm aqui! (mantidos do seu código atual) ...
-// Por motivo de espaço, caso queira o JS inteiro expandido é só pedir.
+function copyToClipboard(elementId, buttonElement) {
+    const isStore = elementId.startsWith('loja-data-');
+    let textToCopy = '';
+    if (isStore) {
+        textToCopy = document.getElementById(elementId).innerText;
+    } else {
+        textToCopy = document.getElementById(elementId).innerText;
+    }
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = buttonElement.innerText;
+        buttonElement.innerText = 'Copiado!';
+        buttonElement.classList.add('copied');
+        setTimeout(() => {
+            buttonElement.innerText = originalText;
+            buttonElement.classList.remove('copied');
+        }, 2000);
+    }).catch(err => { console.error('Erro ao copiar texto: ', err); });
+}
 
+function updateContactDetails() {
+    const select = document.getElementById('contato-select');
+    const displayDiv = document.getElementById('contato-details-display');
+    const selectedName = select.value;
+    if (!selectedName || selectedName === '') {
+        displayDiv.style.display = 'none';
+        return;
+    }
+    const contact = TEAM_CONTACTS[selectedName];
+    const emailId = `selected-email-${selectedName.replace(/[^a-zA-Z0-9]/g, '-')}`;
+    const phoneHTML = contact.phone ? `
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 5px;">
+            <p style="margin: 0; font-weight: 500; color: var(--text-color); font-size: 0.95em;">
+                Telefone: <a href="tel:${contact.phone.replace(/[^0-9]/g, '')}" style="color: var(--primary-color); text-decoration: none; font-weight: 700;">${contact.phone}</a>
+            </p>
+        </div>` : '';
+    if (contact) {
+        displayDiv.innerHTML = `
+            <p style="margin-bottom: 5px;"><b>${selectedName}:</b></p>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <p id="${emailId}" style="margin: 0; font-weight: 500; color: var(--link-color); word-break: break-all; font-size: 0.95em;">
+                    ${contact.email}
+                </p>
+                <button class="copy-btn" 
+                        onclick="copyToClipboard('${emailId}', this)" 
+                        style="margin-left: 10px;">
+                    Copiar Email
+                </button>
+            </div>
+            ${phoneHTML}
+            <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 10px; margin-bottom: 0; width: 100%;">
+                ${contact.desc}
+            </p>
+        `;
+        displayDiv.style.display = 'flex';
+    } else {
+        displayDiv.style.display = 'none';
+    }
+}
+
+function updateTreinamentoDetails() {
+    const select = document.getElementById('treinamento-select');
+    const displayDiv = document.getElementById('treinamento-details-display');
+    const selectedTraining = select.value;
+    if (!selectedTraining || selectedTraining === '') {
+        displayDiv.style.display = 'none';
+        return;
+    }
+    const training = TRAINING_DETAILS[selectedTraining];
+    if (training) {
+        displayDiv.innerHTML = `
+            <p style="margin-bottom: 5px;"><b>${selectedTraining}:</b></p>
+            <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 5px; margin-bottom: 15px; width: 100%;">
+                ${training.description}
+            </p>
+            <a href="${training.link}" target="_blank" class="training-btn" style="width: 100%;">Ir ao Treinamento</a>
+        `;
+        displayDiv.style.display = 'flex';
+    } else {
+        displayDiv.style.display = 'none';
+    }
+}
+function filterTreinamentosAndDisplayFirstMatch() {
+    const searchInput = document.getElementById('treinamento-search');
+    const select = document.getElementById('treinamento-select');
+    const noResultsMsg = document.getElementById('no-results-treinamento');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const options = Array.from(select.options).slice(1);
+    let matches = [];
+    options.forEach(option => {
+        const optionText = option.text.toLowerCase();
+        const trainingKey = option.value;
+        const trainingDesc = TRAINING_DETAILS[trainingKey]?.description.toLowerCase() || '';
+        const matched = optionText.includes(searchTerm) || trainingDesc.includes(searchTerm);
+        if (matched || searchTerm === '') {
+            option.style.display = '';
+            if (searchTerm !== '') {
+                matches.push(trainingKey);
+            }
+        } else {
+            option.style.display = 'none';
+        }
+    });
+    if (matches.length === 0 && searchTerm !== '') {
+        noResultsMsg.style.display = 'block';
+        select.style.display = 'none';
+        document.getElementById('treinamento-details-display').style.display = 'none';
+        return;
+    } else {
+        noResultsMsg.style.display = 'none';
+        select.style.display = 'block';
+    }
+    if (searchTerm !== '' && matches.length > 0) {
+        select.value = matches[0];
+        updateTreinamentoDetails();
+    } else if (searchTerm === '') {
+        select.value = '';
+        updateTreinamentoDetails();
+    }
+}
+function updateLojaDetails() {
+    const select = document.getElementById('loja-select');
+    const displayDiv = document.getElementById('loja-details-display');
+    const selectedStoreId = select.value;
+    if (!selectedStoreId || selectedStoreId === '') {
+        displayDiv.style.display = 'none';
+        return;
+    }
+    const store = STORE_DETAILS[selectedStoreId];
+    const dataId = `loja-data-${selectedStoreId}`;
+    const contentToCopy = `
+${store.title}
+Endereço: ${store.address}
+Fone: ${store.phones.join(' / ')}
+E-mail: ${store.email}
+WhatsApp: ${store.whatsapp}
+    `.trim();
+    if (store) {
+        displayDiv.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                <span id="${dataId}" style="display:none; white-space: pre-wrap;">${contentToCopy}</span>
+                <div class="data-text" style="padding-right: 15px; flex-grow: 1;">
+                    <b class="store-title-in-box">${store.title}</b><br>
+                    Endereço: ${store.address}<br>
+                    Fone: ${store.phones.join(' / ')}<br>
+                    E-mail: ${store.email}<br>
+                    WhatsApp: ${store.whatsapp}
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('${dataId}', this)">Copiar Dados</button>
+            </div>
+        `;
+        displayDiv.style.display = 'flex';
+    } else {
+        displayDiv.style.display = 'none';
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+    collapsibleHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            this.parentElement.classList.toggle('active');
+        });
+    });
+    const selectContactElement = document.getElementById('contato-select');
+    if (selectContactElement) {
+        selectContactElement.addEventListener('change', updateContactDetails);
+    }
+    const selectTreinamentoElement = document.getElementById('treinamento-select');
+    if (selectTreinamentoElement) {
+        selectTreinamentoElement.addEventListener('change', updateTreinamentoDetails);
+    }
+    const searchTreinamentoInput = document.getElementById('treinamento-search');
+    if (searchTreinamentoInput) {
+        searchTreinamentoInput.addEventListener('input', filterTreinamentosAndDisplayFirstMatch);
+    }
+    const selectLojaElement = document.getElementById('loja-select');
+    if (selectLojaElement) {
+        selectLojaElement.addEventListener('change', updateLojaDetails);
+    }
+});
 </script>
 </body>
 </html>
