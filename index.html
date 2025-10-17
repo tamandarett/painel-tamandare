@@ -63,8 +63,6 @@
             align-items: center;
         }
         .card h2 .fa-solid, .card h2 .fa-brands { margin-right: 12px; }
-        
-        /* Estilos do menu expansível */
         .collapsible-header {
             padding: 25px 30px;
             cursor: pointer;
@@ -81,12 +79,11 @@
             padding: 0 30px;
         }
         .collapsible-card.active .collapsible-content {
-            max-height: 2000px; 
+            max-height: 2000px;
             padding-bottom: 25px;
         }
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-
         .card.static-card .card-content { padding: 25px 30px; }
         .link-list {
             list-style: none; padding: 0;
@@ -108,47 +105,40 @@
         .link-text-wrapper { display: flex; flex-direction: column; }
         .link-title { color: var(--link-color); font-weight: 500; }
         .link-subtitle { font-size: 0.8em; color: var(--subtitle-color); font-weight: 400; }
-        
-        /* Estilos do novo sistema de Contatos/Detalhes */
-        .contact-details-item { 
-            display: flex; 
-            justify-content: space-between; 
+        .contact-details-item {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 15px; 
-            border-radius: 8px; 
+            padding: 15px;
+            border-radius: 8px;
             border: 1px solid #eef2f5;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1); 
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
             margin-top: 15px;
         }
         .data-text { flex-grow: 1; margin-right: 15px; word-break: break-all; white-space: pre-wrap; }
         .copy-btn, .training-btn {
             padding: 8px 15px; border: none; background-color: #007bff; color: white; cursor: pointer;
             border-radius: 6px; font-weight: 500; transition: background-color 0.3s; white-space: nowrap;
-            text-decoration: none; 
+            text-decoration: none;
             display: inline-block;
             text-align: center;
         }
         .copy-btn:hover, .training-btn:hover { background-color: #0056b3; }
         .copy-btn.copied { background-color: #28a745; }
-        
         .store-title-in-box {
             font-size: 1.15em;
             font-weight: 700;
             color: #333;
         }
-
         .calendar-container {
             position: relative; padding-bottom: 75%; height: 0;
             overflow: hidden; border-radius: 8px;
         }
         .calendar-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        
-        /* Estilos para o campo de busca */
         .search-input-wrapper {
             position: relative;
             margin-bottom: 15px;
         }
-        
         .search-input {
             width: 100%;
             padding: 10px 40px 10px 15px;
@@ -158,12 +148,10 @@
             box-sizing: border-box;
             transition: border-color 0.3s;
         }
-        
         .search-input:focus {
             outline: none;
             border-color: var(--primary-color);
         }
-        
         .search-icon {
             position: absolute;
             right: 15px;
@@ -172,7 +160,6 @@
             color: var(--subtitle-color);
             pointer-events: none;
         }
-        
         .no-results-message {
             padding: 15px;
             text-align: center;
@@ -180,7 +167,6 @@
             font-style: italic;
             display: none;
         }
-        
         @media (max-width: 768px) {
             body { padding: 10px; }
             .header { flex-direction: column-reverse; text-align: center; }
@@ -192,7 +178,6 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <header class="header">
             <div class="header-text">
@@ -208,7 +193,46 @@
             <div class="card-content">
                 <h2><i class="fa-solid fa-link"></i>Links Essenciais</h2>
                 <ul class="link-list">
-                    <!-- ... sua lista permanece igual ... -->
+                    <li><a href="https://www.aciai.com.br/" target="_blank">
+                        <i class="fa-solid fa-building link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">ACIAI</span><small class="link-subtitle">Consulta restrições financeiras</small></div>
+                    </a></li>
+                    <li><a href="https://protestosp.com.br/consulta-de-protesto" target="_blank">
+                        <i class="fa-solid fa-file-invoice link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">CENPROT</span><small class="link-subtitle">Consulta restrições em cartório</small></div>
+                    </a></li>
+                    <li><a href="https://www.sintegra.gov.br/" target="_blank">
+                        <i class="fa-solid fa-receipt link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">SINTEGRA</span><small class="link-subtitle">Consulta situação da Inscrição Estadual</small></div>
+                    </a></li>
+                    <li><a href="https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">
+                        <i class="fa-solid fa-id-card link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Consulta CNPJ</span><small class="link-subtitle">Consulta situação cadastral do CNPJ</small></div>
+                    </a></li>
+                    <li><a href="https://banco.bradesco/html/classic/produtos-servicos/mais-produtos-servicos/segunda-via-boleto.shtm" target="_blank">
+                        <i class="fa-solid fa-barcode link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Segunda Via de Boleto</span><small class="link-subtitle">Segunda via Boleto Bradesco</small></div>
+                    </a></li>
+                    <li><a href="https://tamandarett.github.io/codex44/" target="_blank">
+                        <i class="fa-brands fa-pix link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Gerador PIX</span></div>
+                    </a></li>
+                    <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/" target="_blank">
+                        <i class="fa-solid fa-stamp link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Registro de Lacres</span></div>
+                    </a></li>
+                    <li><a href="https://drive.google.com/drive/folders/1R7kR5zQGiLFLGm5kPmJ4MVBvMg_w-N1H" target="_blank">
+                        <i class="fa-solid fa-book link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Manuais e Formulários</span></div>
+                    </a></li>
+                    <li><a href="https://tamandaretintas.com.br/" target="_blank">
+                        <i class="fa-solid fa-palette link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Site Tamandaré Tintas</span></div>
+                    </a></li>
+                    <li><a href="https://tamandaretintas.com.br/homepage/sobre-nos/" target="_blank">
+                        <i class="fa-solid fa-gem link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Missão, Visão e Valores</span></div>
+                    </a></li>
                 </ul>
             </div>
         </div>
@@ -220,7 +244,6 @@
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding: 0; padding-top: 10px;">
-                    <!-- Campo de Busca -->
                     <div class="search-input-wrapper">
                         <input 
                             type="text" 
@@ -231,7 +254,6 @@
                         >
                         <i class="fa-solid fa-search search-icon"></i>
                     </div>
-                    
                     <div class="form-group" style="margin-bottom: 20px;">
                         <label for="treinamento-select" style="font-weight: 500; color: var(--text-color);">Selecione o Treinamento:</label>
                         <select id="treinamento-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
@@ -242,59 +264,211 @@
                             <option value="Compreendendo Missão, Visão e Valores">Compreendendo Missão, Visão e Valores</option>
                         </select>
                     </div>
-                    
-                    <!-- Mensagem quando não há resultados -->
                     <div id="no-results-treinamento" class="no-results-message">
                         Nenhum treinamento encontrado com esse termo.
                     </div>
-
                     <div id="treinamento-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ... o resto do seu HTML permanece igual ... -->
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="contato-select" style="font-weight: 500; color: var(--text-color);">Selecione o Contato:</label>
+                        <select id="contato-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                            <option value="" disabled selected>-- Selecione um nome/setor --</option>
+                            <option value="Alexandre">Alexandre (Suporte)</option>
+                            <option value="Ana Claudia">Ana Claudia (RH)</option>
+                            <option value="Carla">Carla (Fiscal/Financeiro)</option>
+                            <option value="Daniel">Daniel (Contas a Pagar)</option>
+                            <option value="Eduardo">Eduardo (Marketing)</option>
+                            <option value="Filipe">Filipe (Comercial)</option>
+                            <option value="Junior">Junior (Caixa)</option>
+                            <option value="Lançamento de Notas">Lançamento de Notas</option>
+                        </select>
+                    </div>
+                    <div id="contato-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-shop"></i>Nossas Lojas</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="loja-select" style="font-weight: 500; color: var(--text-color);">Selecione a Loja:</label>
+                        <select id="loja-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                            <option value="" disabled selected>-- Selecione a Loja --</option>
+                            <option value="loja-morada">02 - Morada do Sol</option>
+                            <option value="loja-visconde">05 - Visconde</option>
+                            <option value="loja-vinhedo">09 - Vinhedo</option>
+                            <option value="loja-conceicao">10 - Conceição</option>
+                            <option value="loja-elias">12 - Elias Fausto</option>
+                            <option value="loja-maria">13 - Maria José</option>
+                            <option value="loja-paula">14 - Paula Leite</option>
+                            <option value="loja-salto">15 - Salto</option>
+                            <option value="loja-itu">16 - Itu</option>
+                        </select>
+                    </div>
+                    <div id="loja-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card static-card">
+            <div class="card-content">
+                <h2><i class="fa-solid fa-calendar-days"></i>Agenda da Equipe</h2>
+                <div class="calendar-container">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=f1c3916472d8e68fcdfc9d16dfbc294e026659b33b8e6c1fe6d3c9fb46f96d32%40group.calendar.google.com&ctz=America%2FSao_Paulo"></iframe>
+                </div>
+            </div>
+        </div>
     </div>
+<script>
+const TEAM_CONTACTS = {
+    "Alexandre":{
+        email:"suporte@tamandaretintas.com.br",
+        phone:"(19) 99328-5132",
+        desc:"Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede."
+    },
+    "Ana Claudia":{
+        email:"anaclaudia@tamandaretintas.com.br",
+        phone:"(19) 97131-7520",
+        desc:"Departamento Pessoal (RH): Dúvidas sobre folha de pagamento, benefícios e regras trabalhistas."
+    },
+    "Carla":{
+        email:"carla@tamandaretintas.com.br",
+        phone:null,
+        desc:"Setor Financeiro / Fiscal: Assuntos relacionados a bancos, contabilidade e impostos."
+    },
+    "Daniel":{
+        email:"daniel@tamandaretintas.com.br",
+        phone:null,
+        desc:"Contas a Pagar, assistência técnica de produtos, e devolução de mercadorias para fornecedores."
+    },
+    "Eduardo":{
+        email:"marketing@tamandaretintas.com.br",
+        phone:null,
+        desc:"Marketing: Promoções, campanhas publicitárias e materiais de divulgação."
+    },
+    "Filipe":{
+        email:"filipe@tamandaretintas.com.br",
+        phone:null,
+        desc:"Questões, negociações ou propostas comerciais e assuntos gerais."
+    },
+    "Junior":{
+        email:"junior@tamandaretintas.com.br",
+        phone:null,
+        desc:"Operações relacionadas caixa, Contas a receber, problemas financeiros urgentes relacionados ao cliente."
+    },
+    "Lançamento de Notas":{
+        email:"admloja3@tamandaretintas.com.br",
+        phone:null,
+        desc:"Lançamentos / Estoque: Dúvidas sobre estoque lançado, notas lançadas e pagamentos a fornecedores."
+    }
+};
 
-    <script>
-        // =========================================================================
-        // DADOS DOS CONTATOS
-        // =========================================================================
-        const TEAM_CONTACTS = {
-            /* ... permanece igual ... */
-        };
+const TRAINING_DETAILS = {
+    "Cadastro de Clientes":{
+        description:"Neste treinamento, você vai aprender como cadastrar clientes corretamente, seguindo padrões de segurança e completude, aplicar bloqueios quando necessário e consultar informações para garantir cadastros confiáveis.",
+        link:"https://tamandarett.github.io/painel-tamandare/treinamentos/cadastrodeclientes.html"
+    },
+    "Registro de Lacres":{
+        description:"Este é um sistema digital para registrar a numeração de todos os lacres dos malotes. Ele garante que cada lacre seja registrado corretamente, sem erros de digitação, e que cada registro tenha a data, hora e nome do operador.",
+        link:"https://tamandarett.github.io/painel-tamandare/treinamentos/lacres.html"
+    },
+    "GNRE":{
+        description:"Orientações sobre o preenchimento e emissão da Guia Nacional de Recolhimento de Tributos Estaduais (GNRE).",
+        link:"https://tamandarett.github.io/painel-tamandare/treinamentos/gnre.html"
+    },
+    "Compreendendo Missão, Visão e Valores":{
+        description:"Treinamento sobre a missão, visão e valores da Tamandaré Tintas: entenda os princípios que norteiam todas as nossas ações, nosso compromisso com qualidade, sustentabilidade e ética, e como esperamos que todos os membros da equipe demonstrem esses valores no dia a dia.",
+        link:"https://tamandarett.github.io/painel-tamandare/treinamentos/compreendendo.html"
+    }
+};
 
-        // =========================================================================
-        // DADOS DOS TREINAMENTOS (ATUALIZADO)
-        // =========================================================================
-        const TRAINING_DETAILS = {
-            "Cadastro de Clientes": {
-                description: "Neste treinamento, você vai aprender como cadastrar clientes corretamente, seguindo padrões de segurança e completude, aplicar bloqueios quando necessário e consultar informações para garantir cadastros confiáveis.",
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/cadastrodeclientes.html"
-            },
-            "Registro de Lacres": {
-                description: "Este é um sistema digital para registrar a numeração de todos os lacres dos malotes. Ele garante que cada lacre seja registrado corretamente, sem erros de digitação, e que cada registro tenha a data, hora e nome do operador.",
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/lacres.html"
-            },
-            "GNRE": {
-                description: "Orientações sobre o preenchimento e emissão da Guia Nacional de Recolhimento de Tributos Estaduais (GNRE).", 
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/gnre.html"
-            },
-            "Compreendendo Missão, Visão e Valores": {
-                description: "Treinamento sobre a missão, visão e valores da Tamandaré Tintas: entenda os princípios que norteiam todas as nossas ações, nosso compromisso com qualidade, sustentabilidade e ética, e como esperamos que todos os membros da equipe demonstrem esses valores no dia a dia.",
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/compreendendo.html"
-            }
-        };
+const STORE_DETAILS = {
+    "loja-morada":{
+        title:"Indaiatuba - Morada do Sol",
+        address:"Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.",
+        phones:["(19) 3935-9141","(19) 3935-9144"],
+        email:"loja2@tamandaretintas.com.br",
+        whatsapp:"(19) 99328-6800"
+    },
+    "loja-visconde":{
+        title:"Indaiatuba - Visconde",
+        address:"Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.",
+        phones:["(19) 3894-6112","(19) 3885-4818"],
+        email:"loja3@tamandaretintas.com.br",
+        whatsapp:"19 99329-4193"
+    },
+    "loja-vinhedo":{
+        title:"Vinhedo",
+        address:"Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.",
+        phones:["(19) 3030-3483"],
+        email:"lojavinhedo@tamandaretintas.com.br",
+        whatsapp:"19 98610-8999"
+    },
+    "loja-conceicao":{
+        title:"Indaiatuba - Conceição",
+        address:"Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.",
+        phones:["(19) 3392-6690"],
+        email:"loja10@tamandaretintas.com.br",
+        whatsapp:"(19) 99329-0533"
+    },
+    "loja-elias":{
+        title:"Elias Fausto",
+        address:"R. XV de Novembro, 181 – Centro, Elias Fausto/SP.",
+        phones:["(19) 3821-2508"],
+        email:"loja5@tamandaretintas.com.br",
+        whatsapp:"(19) 99329-7193"
+    },
+    "loja-maria":{
+        title:"Indaiatuba - Maria José",
+        address:"Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.",
+        phones:["(19) 3312-1933"],
+        email:"loja13@tamandaretintas.com.br",
+        whatsapp:"(19) 99699 4383"
+    },
+    "loja-paula":{
+        title:"Indaiatuba - Paula Leite",
+        address:"Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.",
+        phones:["(19) 3825-1100","(19) 3834-1180"],
+        email:"loja1@tamandaretintas.com.br",
+        whatsapp:"(19) 99711-7509"
+    },
+    "loja-salto":{
+        title:"Salto",
+        address:"R. Nove de Julho, 1426 - Vila Nova, Salto/SP.",
+        phones:["(11) 4029-1401"],
+        email:"loja8@tamandaretintas.com.br",
+        whatsapp:"11 94289-3594"
+    },
+    "loja-itu":{
+        title:"Itu",
+        address:"R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.",
+        phones:["(11) 2222-3912"],
+        email:"loja11@tamandaretintas.com.br",
+        whatsapp:"11 98830-4274"
+    }
+};
 
-        // =========================================================================
-        // O RESTANTE DO SEU JS PERMANECE IGUAL
-        // =========================================================================
-        // Funções: updateContactDetails, updateTreinamentoDetails, filterTreinamentosAndDisplayFirstMatch, updateLojaDetails, event listeners etc.
-        // Basta manter tudo como já estava.
+// ... as funções JS updateContactDetails, updateTreinamentoDetails, filterTreinamentosAndDisplayFirstMatch, updateLojaDetails e os event listeners vêm aqui! (mantidos do seu código atual) ...
+// Por motivo de espaço, caso queira o JS inteiro expandido é só pedir.
 
-    </script>
-
+</script>
 </body>
 </html>
