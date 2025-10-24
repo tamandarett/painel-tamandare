@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
-        /* ESTILOS DE TREINAMENTO - Copie os estilos de card e responsividade do seu Painel Rápido */
+        /* ESTILOS DE TREINAMENTO */
         :root {
             --primary-color: #1e3a5f;
             --link-color: #0056b3;
@@ -39,19 +39,26 @@
         .collapsible-header h2 { color: var(--primary-color); font-size: 1.5em; margin: 0; display: flex; align-items: center; }
         .collapsible-header h2 i { margin-right: 12px; }
 
+        /* Estilos de Conteúdo do Manual */
+        .manual-section { margin-top: 15px; }
+        .manual-section h3 { color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; }
+        .manual-step { margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 4px solid var(--primary-color); border-radius: 4px; }
+        .manual-step strong { display: block; margin-bottom: 5px; color: #000; }
+        .attention { background-color: #fff3cd; color: #856404; border-color: #ffeeba; padding: 10px; border-radius: 4px; font-weight: 500; margin-top: 10px; }
+        .message-box { padding: 10px 15px; border-radius: 4px; margin-top: 15px; font-weight: 500; }
+        .success-message { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error-message { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
         /* Estilos de Responsividade para IFRAMES */
-        .video-responsive, .pdf-viewer-container, .form-responsive {
+        .video-responsive {
             position: relative;
             height: 0;
             overflow: hidden;
+            padding-bottom: 56.25%; /* 16:9 */
             margin-bottom: 20px;
             border-radius: 8px;
         }
-        .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
-        .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
-        .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
-        
-        .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
+        .video-responsive iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -60,22 +67,13 @@
             border: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .course-description {
-            padding: 20px 30px;
-            font-size: 1.1em;
-            color: #555;
-            background-color: var(--card-background);
-            border-bottom: 1px solid #eee;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1 style="text-align: center; margin-top: 20px;">Treinamento: Registro de Lacres</h1>
+
         <div class="card collapsible-card active">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-video"></i> 1. Vídeo</h2>
@@ -94,21 +92,81 @@
         
         <div class="card collapsible-card">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-book-open"></i> 2. Material de Apoio</h2>
+                <h2><i class="fa-solid fa-file-lines"></i> 2. Material de Apoio - Registro de Lacres</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
-                    <div class="pdf-viewer-container">
-                        <iframe src="https://drive.google.com/file/d/1v8Qvejd2nKbMI622CzeZ8RIFbh3pmsmi/preview" 
-                                frameborder="0">
-                        </iframe>
+                    
+                    <div class="manual-section">
+                        <h3><i class="fa-solid fa-circle-info"></i> O que é o novo sistema e por que estamos usando?</h3>
+                        <p>Este sistema é digital e serve para registrar a numeração de todos os lacres dos malotes. [cite: 3] Ele garante o registro correto de cada lacre, sem erros de digitação, com data, hora e nome do operador. [cite: 4]</p>
+                        
+                        <h4>Benefícios para você:</h4>
+                        <ul>
+                            <li>**Segurança no processo:** O sistema garante que os números dos lacres são registrados de forma precisa. [cite: 6]</li>
+                            <li>**Agilidade na conferência:** As informações chegam na mesma hora para a equipe de conferência, agilizando a checagem do malote. [cite: 7]</li>
+                            <li>**Transparência e proteção:** Todas as informações são rastreadas, o que protege você e a loja em caso de divergência. [cite: 8]</li>
+                        </ul>
                     </div>
+                    
+                    <div class="manual-section">
+                        <h3><i class="fa-solid fa-person"></i> Sua Responsabilidade</h3>
+                        <p>É sua responsabilidade garantir que os lacres sejam registrados corretamente antes de serem enviados. [cite: 10]</p>
+                    </div>
+
+                    <div class="manual-section">
+                        <h3><i class="fa-solid fa-list-ol"></i> Passo a Passo para o Registro</h3>
+                        
+                        <div class="manual-step">
+                            <strong>1. Acesse o site:</strong> Use o link fornecido pela liderança para abrir o site no navegador (celular ou computador). [cite: 12]
+                        </div>
+                        
+                        <div class="manual-step">
+                            <strong>2. Digite o número do lacre:</strong> Digite a numeração no campo "Número do Lacre". [cite: 14]
+                            <div class="attention"><i class="fa-solid fa-triangle-exclamation"></i> **ATENÇÃO:** O sistema **não permite copiar e colar** para garantir que a digitação seja manual e sem erros. [cite: 15, 16]</div>
+                        </div>
+
+                        <div class="manual-step">
+                            <strong>3. Confirme a numeração:</strong> Digite o mesmo número no campo "Confirmar Lacre". [cite: 18]
+                            <p>Se os números não forem iguais, a tela mostrará a mensagem de alerta ("Atenção: Os números de lacre não são iguais") [cite: 19] e o campo ficará com uma borda vermelha para que você possa corrigir. [cite: 20]</p>
+                        </div>
+                        
+                        <div class="manual-step">
+                            <strong>4. Preencha os dados:</strong>
+                            <ul>
+                                <li>**Loja:** Selecione o nome da sua loja na lista. [cite: 22]</li>
+                                <li>**Operador:** Digite o seu nome. [cite: 23]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="manual-step">
+                            <strong>5. Finalize o registro:</strong> Clique no botão **"Registrar Lacre"**. [cite: 24]
+                        </div>
+
+                    </div>
+                    
+                    <div class="manual-section">
+                        <h3><i class="fa-solid fa-comment-dots"></i> Mensagens do Sistema</h3>
+                        
+                        <div class="message-box success-message">
+                            <strong>Lacre registrado com sucesso!:</strong> O formulário de registro sumirá e essa mensagem aparecerá, indicando que o lacre já foi registrado. [cite: 26, 30]
+                        </div>
+
+                        <div class="message-box error-message">
+                            <strong>Erro ao enviar os dados:</strong> Houve um problema de conexão. Por favor, verifique sua internet e tente novamente. [cite: 27, 28]
+                        </div>
+                    </div>
+                    
+                    <div class="manual-section">
+                        <h3><i class="fa-solid fa-forward"></i> Próximo Passo</h3>
+                        <p>Após a mensagem de sucesso, clique no botão **"Novo Registro"** para registrar o próximo lacre. [cite: 31]</p>
+                    </div>
+
                 </div>
             </div>
         </div>
-
-        </div>
+    </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
