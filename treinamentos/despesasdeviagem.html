@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
+        /* Insira aqui todo o bloco <style> do seu index.html
+           (para garantir que as variáveis e as classes .card, .collapsible-card, etc. funcionem) */
         
         :root {
             --primary-color: #1e3a5f;
@@ -94,7 +96,7 @@
 <body>
 
     <div class="container">
-        <h1 style="text-align: center; margin-top: 20px;">Treinamento: Material e Arquivos de Apoio</h1>
+                <h1 style="text-align: center; margin-top: 20px;">Treinamento: Material e Arquivos de Apoio</h1>
 
                 <div class="card collapsible-card active">
             <div class="collapsible-header">
@@ -129,7 +131,7 @@
             </div>
         </div>
 
-    </div>
+            </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -140,7 +142,7 @@
                 });
             });
             
-            // O script original para garantir que o primeiro card esteja ativo foi mantido.
+            // Ativa o primeiro card por padrão para que o conteúdo seja visível ao carregar
             const firstCard = document.querySelector('.collapsible-card');
             if (firstCard) {
                 firstCard.classList.add('active');
