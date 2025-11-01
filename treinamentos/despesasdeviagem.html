@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento de Equipe - Curso</title>
+    
+    <meta name="robots" content="noindex">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        
+        :root {
+            --primary-color: #1e3a5f;
+            --link-color: #0056b3;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: auto; }
+        
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card-content { padding: 25px 30px; }
+        
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        /* Classes essenciais para a expansão */
+        .collapsible-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .collapsible-header:hover { background-color: #f8f9fa; }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 30px;
+        }
+        .collapsible-card.active .collapsible-content {
+            max-height: 2000px; 
+            padding-bottom: 25px;
+        }
+        .toggle-icon { transition: transform 0.4s ease-out; }
+        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
+
+        /* Estilos de Responsividade para IFRAMES (Essenciais para o conteúdo do curso) */
+        .video-responsive, .pdf-viewer-container, .form-responsive {
+            position: relative;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
+        .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
+        .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
+        
+        .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 20px;">Treinamento: Material e Arquivos de Apoio</h1>
+
+                <div class="card collapsible-card active">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-file-pdf"></i> 1. Manual</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="pdf-viewer-container">
+                                                <iframe src="https://drive.google.com/file/d/1LsyxjYvs4wJ2-XscvvH_2ZyKLLTv91d9/preview" 
+                                frameborder="0">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-download"></i> 2. Arquivos para Download </h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <p>Clique no link abaixo para acessar ou baixar o arquivo:</p>
+                    <p>
+                        <a href="https://docs.google.com/spreadsheets/d/1_sJyQ_EVmfOK_a3iV4Bvxu_vDEMCgwYf/edit?usp=drive_link&ouid=111664530682891076414&rtpof=true&sd=true" target="_blank" style="color: var(--link-color); text-decoration: none; font-weight: 500;">
+                            <i class="fa-solid fa-file-excel"></i> Planilha para Download
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+            
+            // O script original para garantir que o primeiro card esteja ativo foi mantido.
+            const firstCard = document.querySelector('.collapsible-card');
+            if (firstCard) {
+                firstCard.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
