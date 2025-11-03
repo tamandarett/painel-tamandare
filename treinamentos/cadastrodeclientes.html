@@ -4,18 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treinamento de Equipe - Curso</title>
-    
     <meta name="robots" content="noindex">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <style>
-        /* Insira aqui todo o bloco <style> do seu index.html
-           (para garantir que as variáveis e as classes .card, .collapsible-card, etc. funcionem) */
-        
         :root {
             --primary-color: #1e3a5f;
             --link-color: #0056b3;
@@ -31,7 +25,6 @@
             padding: 20px;
         }
         .container { max-width: 900px; margin: auto; }
-        
         .card {
             background-color: var(--card-background);
             border-radius: 12px;
@@ -40,14 +33,11 @@
             overflow: hidden;
         }
         .card-content { padding: 25px 30px; }
-        
         h1 {
             color: var(--primary-color);
             font-weight: 700;
             margin-bottom: 5px;
         }
-
-        /* Classes essenciais para a expansão */
         .collapsible-header {
             padding: 25px 30px;
             cursor: pointer;
@@ -69,8 +59,6 @@
         }
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-
-        /* Estilos de Responsividade para IFRAMES (Essenciais para o conteúdo do curso) */
         .video-responsive, .pdf-viewer-container, .form-responsive {
             position: relative;
             height: 0;
@@ -81,7 +69,6 @@
         .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
         .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
         .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
-        
         .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
             position: absolute;
             top: 0;
@@ -91,13 +78,17 @@
             border: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+        /* Ajuste nas imagens no conteúdo para boa responsividade */
+        .card-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1 style="text-align: center; margin-top: 20px;">Treinamento: Cadastro de Clientes</h1>
-
         <div class="card collapsible-card active">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-video"></i> 1.Vídeo</h2>
@@ -113,7 +104,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-book-open"></i> 2. Material de Apoio </h2>
@@ -121,15 +111,115 @@
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
-                    <div class="pdf-viewer-container">
-                        <iframe src="https://drive.google.com/file/d/1iZS12KNBodqJ3mq39mcChWdvcDCFlAd8/preview" 
-                                frameborder="0">
-                        </iframe>
-                    </div>
+                    <!-- INÍCIO DO MATERIAL DE APOIO DO MANUAL -->
+                    <h3>1. Objetivo</h3>
+                    <p>Garantir que o cadastro de clientes seja feito de forma padronizada, completa e segura, viabilizando vendas, concessão de crédito e relacionamento de longo prazo.</p>
+                    <h3>2. Cadastro</h3>
+                    <p>Para garantir cadastro completo e detalhado, cadastrar clientes usando o caminho <b>CADASTRO &rarr; PESSOA FÍSICA ou JURÍDICA</b>.</p>
+                    <h3>3. Dados Obrigatórios</h3>
+                    <ul>
+                        <li>Nome / Razão Social</li>
+                        <li>CPF / CNPJ e, para PJ, IE ou indicação de ISENTO</li>
+                        <li>Endereço completo</li>
+                        <li>Telefone</li>
+                        <li>E-mail (ou marcar como "sem e-mail" conforme procedimento abaixo)</li>
+                    </ul>
+                    <p><b>Importante:</b> Quanto mais informações, mais seguro e útil será o cadastro.</p>
+                    <h3>4. Bloqueios de Cliente</h3>
+                    <h4>4.1 Restrição de Pagamento</h4>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/cadastroclientes/cadastreo%20de%20cliente1.png?raw=true" alt="Tela de Restrição de Pagamento">
+                    <p><b>Consequências práticas no sistema:</b><br>
+                    Quando o cliente tiver crédito negado, deve-se incluir uma restrição de pagamento.<br>
+                    Para isso, acessar <b>Vendas → Restrição de pagamentos</b> e selecionar o código adequado (ex: 03 -- Cliente com restrição). Nessa condição, o cliente ficará limitado a compras <b>somente à vista</b>. Caso o vendedor tente usar Vale, faturado ou Carteira, o sistema bloqueia e pede senha de liberação.
+                    </p>
+                    <h4>4.1.1 Hierarquia das Restrições de Pagamento</h4>
+                    <p>Quando mais de uma condição se aplica ao mesmo cliente, <b>sempre deve prevalecer a restrição mais rigorosa:</b></p>
+                    <ul>
+                        <li>Cliente não informa e-mail &rarr; aplicar código <b>02 -- Cliente sem e-mail</b></li>
+                        <li>Se há restrição financeira na consulta ACIAI ou CENPROT &rarr; aplicar <b>03 -- Cliente com restrição</b></li>
+                        <li>Se não houver consulta, aplicar <b>00 -- Sem consulta</b> (mais restritivo do que ausência de e-mail)</li>
+                    </ul>
+                    <p><b>Ordem de prioridade (da mais forte para a mais fraca):</b></p>
+                    <ol>
+                        <li>04 -- Apenas DP (exigência contratual ou específica do cliente)</li>
+                        <li>05 -- Apenas com nota (cliente exige nota DANFE em todas as compras)</li>
+                        <li>03 -- Cliente com restrição (financeira, protesto ou score muito baixo)</li>
+                        <li>00 -- Sem consulta (não foi feita análise &rarr; não pode comprar a prazo)</li>
+                        <li>02 -- Cliente sem e-mail (crédito bom, mas sem e-mail &rarr; não pode usar formas que dependem de e-mail)</li>
+                    </ol>
+                    <p><b>Sempre que houver dúvida, deve ser escolhida a opção mais restritiva.</b></p>
+                    <h4>4.2 Limite de Crédito</h4>
+                    <p>Define um valor máximo para compras a prazo; ao atingir, o sistema bloqueia vendas a prazo automaticamente.</p>
+                    <h4>4.3 Bloqueio com Motivo</h4>
+                    <p>Utilize quando houver necessidade de justificar o bloqueio. Motivos típicos: atualização cadastral, bloqueio por débitos, solicitação do cliente.</p>
+                    <h4>4.4 Bloqueio por Restrição Fiscal</h4>
+                    <p>Impede qualquer venda, até à vista. Só para casos graves e fiscais (ex: CNPJ baixado). <b>Não usar para questões comerciais!</b></p>
+                    <h3>5. Cadastro de Cliente sem E-mail</h3>
+                    <ul>
+                        <li><b>Quando usar:</b> Cliente não possui ou se recusa a informar e-mail.</li>
+                        <li>
+                            <b>Passo a passo:</b>
+                            <ol>
+                                <li>Na aba Principal → E-mail, preencher <b>123@123.com</b></li>
+                                <li>Na aba Vendas → Restrição de Pagamento, selecionar o código 02 -- Cliente sem e-mail. (Se houver restrição, usar 03; se não consultado, usar 00)</li>
+                                <li>Deixar o campo E-mail envio NF-e em branco</li>
+                                <li>Em vendas faturadas, garantir que a via da NF seja assinada e entregue com boleto</li>
+                                <li>Registrar no campo Aviso o resultado da consulta e quem fez</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <b>Formas de pagamento liberadas:</b>
+                            <ul>
+                                <li>DN --- Dinheiro</li>
+                                <li>CT --- Cartão (crédito/débito) / 021 - PIX QR Code</li>
+                                <li>CR --- Crédito Cliente</li>
+                                <li>DP --- Depósito em conta</li>
+                                <li>FT --- Faturado (nota + boleto, com assinatura)</li>
+                                <li>IX --- PIX Cópia e Cola</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>BLOQUEADAS:</b>
+                            <ul>
+                                <li>VL --- Vale</li>
+                                <li>CA --- Nota em Carteira</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p style="color: #b71c1c;"><b>⚠️ Atenção:</b> As notas e boletos são enviados exclusivamente por e-mail. Caso o cliente precise acessar formas de pagamento como Vale ou Carteira, será necessário informar um e-mail válido.</p>
+                    <h3>6. Procedimentos Especiais e Boas Práticas</h3>
+                    <ul>
+                        <li>Cadastro com vários e-mails: incluir referência e marcar uso para NF-e/cobrança</li>
+                        <li>Registrar no cadastro resultado de consulta, autorizações de retirada e prazo de validade</li>
+                        <li>Revisar contatos e bloqueios periodicamente</li>
+                        <li>Quem alterar cadastro deve se identificar no campo Aviso</li>
+                    </ul>
+                    <h3>7. Avisos</h3>
+                    <p>No campo Aviso sempre incluir: resultado da consulta, data e nome do responsável.</p>
+                    <ul>
+                        <li>NADA CONSTA -- SCORE BOM -- JUNIOR -- 08/2025</li>
+                        <li>NÃO VENDER FATURADO</li>
+                        <li>NENHUM AUTORIZADO</li>
+                        <li>NÃO VENDER SEM AUTORIZAÇÃO DE JOANA</li>
+                    </ul>
+                    <h3>8. Classificação de Score e Consultas Complementares</h3>
+                    <ul>
+                        <li>Faixas de Score: 0--300 Ruim | 301--700 Médio | 701--1000 Bom</li>
+                        <li>
+                            <b>Onde consultar/complementar:</b>
+                            <ul>
+                                <li>ACIAI (Associação Comercial): <a href="https://www.aciai.com.br/" target="_blank">https://www.aciai.com.br/</a></li>
+                                <li>CENPROT (Protesto): <a href="https://protestosp.com.br/consulta-de-protesto" target="_blank">https://protestosp.com.br/consulta-de-protesto</a></li>
+                                <li>Receita Federal (situação CNPJ): <a href="https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp</a></li>
+                                <li>SINTEGRA (Inscrição Estadual): <a href="https://www.sintegra.gov.br/" target="_blank">https://www.sintegra.gov.br/</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/cadastroclientes/cadastro%20de%20clientes%202.png?raw=true" alt="Fluxo para Definição de Código de Restrição">
+                    <!-- FIM DO MATERIAL DE APOIO DO MANUAL -->
                 </div>
             </div>
         </div>
-
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-list-check"></i> 3. Complete o Teste Rápido</h2>
@@ -146,9 +236,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
@@ -157,7 +245,6 @@
                     this.parentElement.classList.toggle('active');
                 });
             });
-            
             // Ativa o primeiro card por padrão para que o vídeo seja visível ao carregar
             const firstCard = document.querySelector('.collapsible-card');
             if (firstCard) {
