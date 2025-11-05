@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <style>
         :root {
             --primary-color: #1e3a5f;
@@ -186,7 +185,6 @@
                 <img src="./logo-tamandare.png" alt="Logo Tamandaré Tintas">
             </div>
         </header>
-
         <div class="card static-card">
             <div class="card-content">
                 <h2><i class="fa-solid fa-link"></i>Links Essenciais</h2>
@@ -230,7 +228,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-graduation-cap"></i>Treinamento da Equipe</h2>
@@ -256,6 +253,9 @@
                             <option value="Cadastro de Clientes">Cadastro de Clientes</option>
                             <option value="Registro de Lacres">Registro de Lacres</option>
                             <option value="GNRE">GNRE</option>
+                            <option value="Procedimento de Devolução e Recusa de Mercadorias">Procedimento de Devolução e Recusa de Mercadorias</option>
+                            <option value="Despesa de Viagem">Despesa de Viagem</option>
+                            <option value="Vendas e Transferência entre lojas">Vendas e Transferência entre lojas</option>
                         </select>
                     </div>
                     <div id="no-results-treinamento" class="no-results-message">
@@ -405,6 +405,18 @@ const TRAINING_DETAILS = {
     "GNRE":{
         description:"Orientações sobre o preenchimento e emissão da Guia Nacional de Recolhimento de Tributos Estaduais (GNRE).",
         link:"https://tamandarett.github.io/painel-tamandare/treinamentos/gnre.html"
+    },
+    "Procedimento de Devolução e Recusa de Mercadorias": {
+        description: "Este treinamento serve para conhecer as diferenças entre recusa e devolução e as regras e procedimento para cada uma delas.",
+        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/devolucao.html"
+    },
+    "Despesa de Viagem": {
+        description: "Este treinamento explica as regras e procedimentos para realizar pagamento e baixas de despesas relacionadas a viagem, tal como pedágios e alimentação em trânsito.",
+        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/despesasdeviagem.html"
+    },
+    "Vendas e Transferência entre lojas": {
+        description: "Este treinamento explica as regras e procedimentos para realizar vendas e transferências de mercadorias entre lojas do grupo Tamandaré Tintas e Marqui & Venturini.",
+        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/vendasentrelojas.html"
     }
 };
 
