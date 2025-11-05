@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento: Vendas entre Lojas e Transferências de Mercadoria</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --link-color: #0056b3;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 30px 32px 32px 32px;
+            margin-bottom: 32px;
+        }
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+        }
+        h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 1.4em;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 18px auto;
+            height: auto;
+        }
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 24px;
+            border-radius: 8px;
+        }
+        .video-responsive iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        ul, ol {
+            margin-left: 30px;
+        }
+        .dica {
+            background: #ebf4fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            color: #205080;
+        }
+        .atencao {
+            background: #fff3f0;
+            border-left: 4px solid #cc4125;
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            color: #b71c1c;
+        }
+        @media (max-width: 600px) {
+            .card { padding: 16px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Treinamento: Vendas entre Lojas e Transferências de Mercadoria</h1>
+        <div class="card">
+
+            <h2>Regra Principal</h2>
+            <p>A operação a ser realizada depende da Razão Social:</p>
+            <ul>
+                <li><b>Transferência:</b> Circulação entre lojas da <b>mesma</b> Razão Social (ex: Marqui & Venturini entre si).</li>
+                <li>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/vendasentrelojas/image1.png?raw=true" alt="Transferência entre lojas da mesma Razão Social">
+                </li>
+                <li><b>Venda:</b> Circulação entre lojas de <b>Razões Sociais diferentes</b> (ex: Marqui & Venturini para Tamandaré Tintas)</li>
+            </ul>
+
+            <h2>Transferências</h2>
+            <p>Para transferências, devemos utilizar a rotina de <b>Outras notas</b> localizada em <b>VENDAS &rarr; NOTA FISCAL &rarr; OUTRAS NOTAS</b>.</p>
+            <div class="dica">
+                <b>Dados importantes:</b><br>
+                Vendedor: 1099 -- Vendas entre lojas do grupo.<br>
+                Natureza: 009 -- Transferência entre lojas.<br>
+                Preços: 4 -- Custo Médio.
+            </div>
+            <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/vendasentrelojas/image2.png?raw=true" alt="Rotina Outras Notas">
+
+            <div class="atencao">
+                <b>⚠️ ATENÇÃO - Preço Zerado:</b> Se o produto aparecer com preço <b>R$ 0,00</b>, a loja deve pedir para a <b>matriz</b> consultar o <b>Preço de Custo Médio</b> e inseri-lo manualmente na NF.
+            </div>
+
+            <ul>
+                <li><b>Loja Morada:</b> para lojas Tamandaré Tintas.</li>
+                <li><b>Loja Visconde:</b> para lojas Marqui & Venturini.</li>
+            </ul>
+
+            <div class="dica">
+                <b>💡 Dica:</b> É possível aproveitar o pedido feito pelos vendedores para não precisar digitá-lo novamente. Use o atalho <b>F8</b> para abrir a janela onde é possível informar o número do pedido a ser carregado.
+            </div>
+
+            <h2>Vendas entre lojas</h2>
+            <p>Nas <b>vendas</b>, o processo é um pouco diferente.<br>
+            Esse tipo de operação deve ser realizado em <b>VENDAS &rarr; LANÇAMENTO DE VENDAS</b>, pois se trata, de fato, de uma <b>venda entre lojas</b>.</p>
+
+            <p>O procedimento é praticamente igual a uma venda comum, com apenas duas diferenças importantes:</p>
+            <ol>
+                <li><b>Forma de pagamento:</b> deve ser sempre <b>CA</b>.</li>
+                <li><b>Preço:</b> deve ser aplicado o <b>desconto diferenciado</b> definido para vendas entre lojas.</li>
+            </ol>
+
+            <h3>Desconto para Vendas entre lojas</h3>
+            <p>Para venda entre lojas temos duas formas de desconto a depender do tipo de produto que vamos vender.</p>
+
+            <h4>Tintas de máquina</h4>
+            <p>
+                Em caso de tintas de máquina — seja <b>Suvinil</b>, <b>Advance</b>, <b>Lazzuril</b>, <b>Alessi</b> ou outras — o desconto é sempre o mesmo:<br>
+                <b>➡️ 30% de desconto aplicado no total da NF</b>, na aba "Desconto".
+            </p>
+            <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/vendasentrelojas/image3.png?raw=true" alt="30% de desconto aplicado">
+            <p>
+                <b>Importante:</b><br>
+                Neste tipo de venda devem constar <b>apenas produtos da máquina</b>.<br>
+                Não deve haver <b>nenhum outro produto incluído</b>, tais como <b>catalisadores (Parte B ou C)</b>, <b>thinners</b> ou qualquer outro item.
+            </p>
+            <p>
+                Se, ao selecionar o produto na máquina, o sistema adicionar automaticamente a <b>Parte B</b>, ela deve ser <b>excluída do pedido</b>, e uma <b>nova venda separada</b> deve ser realizada exclusivamente para esse item.
+            </p>
+
+            <h4>Demais produtos</h4>
+            <p>
+                Para produtos como <b>Parte B, Parte C, Thinners</b> e todos os demais <b>que não são tintas de máquina</b>, o desconto segue um processo diferente:<br>
+                <b>➡️ Devem ser vendidos a preço de custo.</b>
+            </p>
+
+            <div class="dica">
+                <b>Dados Importantes</b><br>
+                Vendedor: 1099 — Vendas entre lojas do grupo<br>
+                Forma: CA
+            </div>
+
+            <h4>Passo a Passo para Localizar e Aplicar o Custo Médio:</h4>
+            <ol>
+                <li>Clique sobre o produto na venda.</li>
+                <li>Use o atalho <b>F7</b> (Função "Margem").</li>
+                <li>Clique na <b>Lupa</b> (Detalhes).</li>
+                <li>Clique no ícone <b>%</b> (Negociar).</li>
+                <li>Clique no ícone <b>Positivo</b> (Autorizar).</li>
+                <li>Na tela, substitua o "Preço negociado" pelo valor do <b>Custo Médio</b>.</li>
+            </ol>
+
+            <h3>Vídeo demonstrativo:</h3>
+            <div class="video-responsive">
+                <iframe src="https://drive.google.com/file/d/13M_hIlz_eid-PzoL5ccKmGncJBzCUQ0N/preview" allowfullscreen></iframe>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
