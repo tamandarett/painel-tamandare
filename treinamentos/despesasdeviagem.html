@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Despesas de Viagem</title>
-    
     <meta name="robots" content="noindex">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <style>
         :root {
             --primary-color: #1e3a5f;
@@ -41,6 +38,30 @@
             font-weight: 700;
             margin-bottom: 5px;
         }
+        .manual-title {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .manual-section-title {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #1e3a5f;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .manual-list {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        .manual-img {
+            max-width: 100%;
+            display: block;
+            margin: 16px auto 16px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
         .collapsible-header {
             padding: 25px 30px;
             cursor: pointer;
@@ -62,25 +83,6 @@
         }
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-        .video-responsive, .pdf-viewer-container, .form-responsive {
-            position: relative;
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
-        .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
-        .form-responsive { padding-bottom: 1500px; /* Altura para o Forms de Teste */ }
-        .video-responsive iframe, .pdf-viewer-container iframe, .form-responsive iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
     </style>
 </head>
 <body>
@@ -89,14 +91,58 @@
 
         <div class="card collapsible-card active">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-file-pdf"></i> 1. Manual (PDF)</h2>
+                <h2><i class="fa-solid fa-book"></i> 1. Manual</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
-                    <div class="pdf-viewer-container">
-                        <iframe src="https://drive.google.com/file/d/1LsyxjYvs4wJ2-XscvvH_2ZyKLLTv91d9/preview"
-                                frameborder="0"></iframe>
+                    <div class="manual-title">Pagamentos de Despesa de Viagem</div>
+
+                    <div class="manual-section-title">Transferência</div>
+                    <div>Fazer a transferência do valor gasto em: <b>Vendas &rarr; Caixa &rarr; Transferência &rarr; Transferência</b></div>
+                    
+                    <div class="manual-section-title">Lançamento no sistema</div>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/despesadeviagem/imagem1.png?raw=true" class="manual-img" alt="Lançamento no sistema">
+                    
+                    <div class="manual-section-title">Dados Importantes</div>
+                    <ul class="manual-list">
+                        <li><b>Fornecedor:</b> 2677 -- Despesa de viagem</li>
+                        <li><b>Documento:</b> Dar "Enter", ele preenche sozinho, depois "R" de recibo e 1 no último espaço</li>
+                        <li><b>Tipo de Documento:</b> RC -- Recibo</li>
+                        <li><b>Tipo de Despesa:</b> 248 - Despesa de Viagens</li>
+                        <li><b>Centro de Custo:</b> Selecionar o correspondente à sua loja</li>
+                        <li><b>Data de emissão:</b> Data da emissão do comprovante</li>
+                        <li><b>Competência:</b> Mês e ano da despesa</li>
+                        <li><b>Histórico:</b> preenchido automaticamente</li>
+                        <li><b>Tipo de Baixa:</b> 01 -- Normal</li>
+                        <li><b>Data do pagamento:</b> Data do pagamento</li>
+                        <li><b>Forma de Pagamento:</b> DN -- Dinheiro</li>
+                        <li><b>Banco:</b> Tesouraria correspondente à sua loja</li>
+                        <li><b>Valor Pago:</b> Valor do recibo</li>
+                    </ul>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/despesadeviagem/imagem2.png?raw=true" class="manual-img" alt="Dados Importantes">
+
+                    <div class="manual-section-title">Relatório</div>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/despesadeviagem/imagem3.png?raw=true" class="manual-img" alt="Relatório">
+                    <div>
+                        Deve-se preencher obrigatoriamente:<br>
+                        <b>Nome:</b> Nome do motorista<br>
+                        <b>Data:</b> Data da viagem<br>
+                        <b>Veículo:</b> Placa do veículo<br>
+                        <b>Destino:</b> Destino da entrega<br>
+                        Quanto ao preenchimento dos demais dados, vai depender dos custos que forem utilizados. Caso não seja, é só deixar em branco.
+                    </div>
+
+                    <div class="manual-section-title">Organização</div>
+                    <div>
+                        Esses documentos devem ser grampeados e organizados na seguinte ordem:
+                        <ul class="manual-list">
+                            <li>Cupons e recibos de pedágio, gasolina, refeição etc.</li>
+                            <li>Relatório de despesas de viagem</li>
+                            <li>Recibo referente à baixa no sistema</li>
+                            <li>Transferência de caixa (comprovante de lançamento)</li>
+                        </ul>
+                        <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/despesadeviagem/imagem4.png?raw=true" class="manual-img" alt="Organização">
                     </div>
                 </div>
             </div>
