@@ -25,6 +25,7 @@
             padding: 20px;
         }
         .container { max-width: 900px; margin: auto; }
+
         .card {
             background-color: var(--card-background);
             border-radius: 12px;
@@ -38,7 +39,6 @@
             font-weight: 700;
             margin-bottom: 5px;
         }
-        /* Classes essenciais para a expansão */
         .collapsible-header {
             padding: 25px 30px;
             cursor: pointer;
@@ -49,25 +49,24 @@
         }
         .collapsible-header:hover { background-color: #f8f9fa; }
         .collapsible-content {
-            max-height: 0;
+            height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
+            transition: height 0.5s cubic-bezier(.15,1.18,.74,1.18);
             padding: 0 30px;
         }
         .collapsible-card.active .collapsible-content {
-            max-height: 2000px; 
+            /* O height será setado via JS, não direto aqui! */
             padding-bottom: 25px;
         }
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-        /* Estilos de Responsividade para IFRAMES */
         .video-responsive {
             position: relative;
             height: 0;
             overflow: hidden;
             margin-bottom: 20px;
             border-radius: 8px;
-            padding-bottom: 56.25%; /* 16:9 */
+            padding-bottom: 56.25%;
         }
         .video-responsive iframe {
             position: absolute;
@@ -78,7 +77,6 @@
             border: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        /* Manual & imagens */
         .manual-title {
             font-size: 1.3em;
             color: var(--primary-color);
@@ -103,6 +101,10 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
         }
+        @media (max-width: 600px) {
+            .card-content { padding: 10px 5px; }
+            .collapsible-content { padding: 0 5px; }
+        }
     </style>
 </head>
 <body>
@@ -111,7 +113,7 @@
 
         <div class="card collapsible-card active">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-video"></i> 1.Vídeo</h2>
+                <h2><i class="fa-solid fa-video"></i> 1. Vídeo</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
@@ -198,17 +200,41 @@
         </div>
     </div>
     <script>
+        // Colapsar/Expandir cards corretamente com altura dinâmica
+        function setCollapsible(card, expanded) {
+            const content = card.querySelector('.collapsible-content');
+            if (expanded) {
+                content.style.height = content.scrollHeight + "px";
+                setTimeout(() => { content.style.height = "auto"; }, 500);
+            } else {
+                content.style.height = content.scrollHeight + "px";
+                void content.offsetWidth; // repaint for transition
+                content.style.height = "0";
+            }
+        }
         document.addEventListener('DOMContentLoaded', function() {
-            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-            collapsibleHeaders.forEach(header => {
+            const cards = document.querySelectorAll('.collapsible-card');
+            cards.forEach(card => {
+                const header = card.querySelector('.collapsible-header');
+                const content = card.querySelector('.collapsible-content');
+                // Inicialmente: ativa só o primeiro card
+                if (card === cards[0]) {
+                    card.classList.add('active');
+                    content.style.height = content.scrollHeight + "px";
+                    setTimeout(() => { content.style.height = "auto"; }, 500);
+                } else {
+                    content.style.height = "0";
+                }
                 header.addEventListener('click', function() {
-                    this.parentElement.classList.toggle('active');
+                    if (card.classList.contains('active')) {
+                        card.classList.remove('active');
+                        setCollapsible(card, false);
+                    } else {
+                        card.classList.add('active');
+                        setCollapsible(card, true);
+                    }
                 });
             });
-            const firstCard = document.querySelector('.collapsible-card');
-            if (firstCard) {
-                firstCard.classList.add('active');
-            }
         });
     </script>
 </body>
