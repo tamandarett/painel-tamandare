@@ -72,13 +72,14 @@
         }
         .collapsible-header:hover { background-color: #f8f9fa; }
         .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
+            /* Removido max-height fixo e overflow para expandir conforme o conteúdo */
+            max-height: none;
+            overflow: visible;
             padding: 0 30px;
+            transition: none;
         }
         .collapsible-card.active .collapsible-content {
-            max-height: 2000px; 
+            max-height: none;
             padding-bottom: 25px;
         }
         .toggle-icon { transition: transform 0.4s ease-out; }
