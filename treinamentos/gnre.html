@@ -25,7 +25,6 @@
             padding: 20px;
         }
         .container { max-width: 900px; margin: auto; }
-
         .card {
             background-color: var(--card-background);
             border-radius: 12px;
@@ -134,22 +133,61 @@
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
                     <div class="manual-title">Manual GNRE - Procedimento para Vendas com Entrega em São Paulo</div>
-                    <div class="manual-section-title">Passo a Passo do Preenchimento:</div>
+                    
+                    <div class="manual-section-title">Quando não é necessário recolher GNRE</div>
+                    <p>Para vendas realizadas a clientes de outros estados, mas com entrega dentro do Estado de São Paulo, não é necessário recolher a GNRE.</p>
+                    <p>Para garantir isso, siga os passos abaixo:</p>
+
+                    <div class="manual-section-title">1. Cadastro do endereço de entrega</div>
                     <ul class="manual-list">
-                        <li>O responsável pelo faturamento deve acessar o site da GNRE e preencher os campos conforme exemplos abaixo e capturas de tela.</li>
-                        <li>Confira atentamente o preenchimento de todos os campos antes de gerar a guia.</li>
-                        <li>Emitida a GNRE, efetue o pagamento e anexe a documentação ao processo da nota fiscal.</li>
+                        <li>No GIX, acesse: Cadastro &rarr; Pessoa Física / Pessoa Jurídica</li>
+                        <li>Inclua um endereço de entrega no Estado de São Paulo.</li>
+                        <li><b>Importante:</b> O dado mais importante é o CEP, é por ele que o GIX e a SEFAZ identifica o local e calcula os impostos.</li>
                     </ul>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre01.png?raw=true" class="manual-img" alt="Cadastro Endereço">
 
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre01.png?raw=true" class="manual-img" alt="Tela GNRE 1">
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre02.png?raw=true" class="manual-img" alt="Tela GNRE 2">
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre03.png?raw=true" class="manual-img" alt="Tela GNRE 3">
+                    <div class="manual-section-title">2. Inserir observação na venda</div>
+                    <ul class="manual-list">
+                        <li>No lançamento da venda, registre a seguinte observação sem alterações:</li>
+                    </ul>
+                    <blockquote style="background:#f8f9fa;border-left:4px solid #1e3a5f;padding:8px 16px;font-size:0.97em;">
+                        “Não aplicabilidade do recolhimento do ICMS Diferencial de Alíquotas por se tratar de operação interna, visto que a mercadoria é entregue e utilizada neste Estado, com base na RC 30071/2024 e conforme o princípio da circulação física dos bens na Lei Complementar nº 87/96.”
+                    </blockquote>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre02.png?raw=true" class="manual-img" alt="Observação na Venda">
 
-                    <div class="manual-section-title">Conferência dos campos e geração do boleto:</div>
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre04.png?raw=true" class="manual-img" alt="Tela GNRE 4">
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/GNRE05.png?raw=true" class="manual-img" alt="GNRE gerada">
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre06.png?raw=true" class="manual-img" alt="Comprovante GNRE">
+                    <div class="manual-section-title">3. Ajustar a natureza da operação</div>
+                    <ul class="manual-list">
+                        <li>No lançamento da venda, altere a Natureza da Operação para: <b>001 – Venda SP</b> usando o atalho da tecla F9.</li>
+                    </ul>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre03.png?raw=true" class="manual-img" alt="Natureza da Operação">
 
+                    <div class="manual-section-title">4. Ajustar o tipo para ICMS</div>
+                    <ul class="manual-list">
+                        <li><b>Importante:</b> Essa alteração deve ser feita apenas na venda, não no cadastro do cliente.</li>
+                        <li>Ainda no pedido de venda, vá até a aba “Especiais”.</li>
+                        <li>O sistema, por padrão, assume o tipo de ICMS do cadastro do cliente. Altere manualmente para “Não Contribuinte”, mesmo que o cliente seja contribuinte.</li>
+                        <li><b>Observação:</b> Isso corrige uma limitação do sistema GIX, que deixou de calcular corretamente a GNRE em determinadas situações.</li>
+                    </ul>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre04.png?raw=true" class="manual-img" alt="Tipo ICMS">
+
+                    <div class="manual-section-title">5. Validação final</div>
+                    <ul class="manual-list">
+                        <li>Após todos os passos, confira se o campo Tributos está zerado.</li>
+                    </ul>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/GNRE05.png?raw=true" class="manual-img" alt="Tributos Zerados">
+                    
+                    <div class="manual-section-title">Checklist rápido</div>
+                    <ul class="manual-list">
+                        <li>Endereço de entrega em SP cadastrado.</li>
+                        <li>Observação legal inserida corretamente.</li>
+                        <li>Natureza da operação ajustada para 001 – Venda SP.</li>
+                        <li>Tipo para ICMS marcado como Não Contribuinte.</li>
+                        <li>Campo Tributos zerado.</li>
+                    </ul>
+                    
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre06.png?raw=true" class="manual-img" alt="Exemplo Final">
+
+                    <p>Assim, garante-se que a operação seja tratada como interna em São Paulo, sem necessidade de recolhimento da GNRE.</p>
                     <div class="manual-section-title">Observações Importantes:</div>
                     <ul class="manual-list">
                         <li>Este procedimento é obrigatório para vendas com entrega para o estado de São Paulo quando houver substituição tributária.</li>
