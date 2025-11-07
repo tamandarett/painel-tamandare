@@ -4,17 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treinamento de Equipe - GNRE</title>
-    
     <meta name="robots" content="noindex">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <style>
-        /* Bloco de Estilos CSS */
-        
         :root {
             --primary-color: #1e3a5f;
             --link-color: #0056b3;
@@ -30,7 +25,7 @@
             padding: 20px;
         }
         .container { max-width: 900px; margin: auto; }
-        
+
         .card {
             background-color: var(--card-background);
             border-radius: 12px;
@@ -39,13 +34,11 @@
             overflow: hidden;
         }
         .card-content { padding: 25px 30px; }
-        
         h1 {
             color: var(--primary-color);
             font-weight: 700;
             margin-bottom: 5px;
         }
-
         /* Classes essenciais para a expansão */
         .collapsible-header {
             padding: 25px 30px;
@@ -68,19 +61,16 @@
         }
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-
         /* Estilos de Responsividade para IFRAMES */
-        .video-responsive, .pdf-viewer-container {
+        .video-responsive {
             position: relative;
             height: 0;
             overflow: hidden;
             margin-bottom: 20px;
             border-radius: 8px;
+            padding-bottom: 56.25%; /* 16:9 */
         }
-        .video-responsive { padding-bottom: 56.25%; /* 16:9 */ }
-        .pdf-viewer-container { padding-bottom: 120%; /* Altura para PDFs */ }
-        
-        .video-responsive iframe, .pdf-viewer-container iframe {
+        .video-responsive iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -89,10 +79,34 @@
             border: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+        /* Manual & imagens */
+        .manual-title {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .manual-section-title {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #1e3a5f;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .manual-list {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        .manual-img {
+            max-width: 100%;
+            display: block;
+            margin: 22px auto 22px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1 style="text-align: center; margin-top: 20px;">Treinamento: GNRE</h1>
 
@@ -119,17 +133,32 @@
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
-                    <div class="pdf-viewer-container">
-                        <iframe src="https://drive.google.com/file/d/12rId1XfzFDHjw4-O_CZbM6PHpDkZgkZM/preview" 
-                                frameborder="0">
-                        </iframe>
-                    </div>
+                    <div class="manual-title">Manual GNRE - Procedimento para Vendas com Entrega em São Paulo</div>
+                    <div class="manual-section-title">Passo a Passo do Preenchimento:</div>
+                    <ul class="manual-list">
+                        <li>O responsável pelo faturamento deve acessar o site da GNRE e preencher os campos conforme exemplos abaixo e capturas de tela.</li>
+                        <li>Confira atentamente o preenchimento de todos os campos antes de gerar a guia.</li>
+                        <li>Emitida a GNRE, efetue o pagamento e anexe a documentação ao processo da nota fiscal.</li>
+                    </ul>
+
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre01.png?raw=true" class="manual-img" alt="Tela GNRE 1">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre02.png?raw=true" class="manual-img" alt="Tela GNRE 2">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre03.png?raw=true" class="manual-img" alt="Tela GNRE 3">
+
+                    <div class="manual-section-title">Conferência dos campos e geração do boleto:</div>
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre04.png?raw=true" class="manual-img" alt="Tela GNRE 4">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/GNRE05.png?raw=true" class="manual-img" alt="GNRE gerada">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre06.png?raw=true" class="manual-img" alt="Comprovante GNRE">
+
+                    <div class="manual-section-title">Observações Importantes:</div>
+                    <ul class="manual-list">
+                        <li>Este procedimento é obrigatório para vendas com entrega para o estado de São Paulo quando houver substituição tributária.</li>
+                        <li>Em caso de dúvida procure o setor fiscal.</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        
     </div>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
@@ -138,8 +167,6 @@
                     this.parentElement.classList.toggle('active');
                 });
             });
-            
-            // Ativa o primeiro card por padrão para que o vídeo seja visível ao carregar
             const firstCard = document.querySelector('.collapsible-card');
             if (firstCard) {
                 firstCard.classList.add('active');
