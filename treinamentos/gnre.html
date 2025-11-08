@@ -16,6 +16,7 @@
             --background-color: #f4f7f9;
             --card-background: #ffffff;
             --text-color: #333;
+            --alert-bg: #fff3cd;
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -34,11 +35,7 @@
             overflow: hidden;
         }
         .card-content { padding: 25px 30px; }
-        h1 {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
+        h1 { color: var(--primary-color); font-weight: 700; margin-bottom: 5px; }
         .collapsible-header {
             padding: 25px 30px;
             cursor: pointer;
@@ -48,62 +45,67 @@
             transition: background-color 0.2s;
         }
         .collapsible-header:hover { background-color: #f8f9fa; }
-        .collapsible-content {
-            height: 0;
-            overflow: hidden;
-            transition: height 0.5s cubic-bezier(.15,1.18,.74,1.18);
-            padding: 0 30px;
-        }
-        .collapsible-card.active .collapsible-content {
-            /* O height será setado via JS, não direto aqui! */
-            padding-bottom: 25px;
-        }
+        .collapsible-content { height: 0; overflow: hidden; transition: height 0.5s cubic-bezier(.15,1.18,.74,1.18); padding: 0 30px; }
+        .collapsible-card.active .collapsible-content { padding-bottom: 25px; }
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
         .video-responsive {
-            position: relative;
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
+            position: relative; height: 0; overflow: hidden; margin-bottom: 20px; border-radius: 8px; padding-bottom: 56.25%;
+        }
+        .video-responsive iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+        .manual-title { font-size: 1.3em; color: var(--primary-color); font-weight: 700; margin-bottom: 20px; }
+        .manual-section-title { font-size: 1.15em; font-weight: bold; color: #1e3a5f; margin-top: 25px; margin-bottom: 10px; }
+        .manual-list { margin-left: 20px; margin-bottom: 15px; }
+        .manual-img { max-width: 100%; display: block; margin: 22px auto 22px auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);}
+        .alert-info {
+            background-color: var(--alert-bg);
+            color: #856404;
+            text-align: center;
+            padding: 12px 18px;
             border-radius: 8px;
-            padding-bottom: 56.25%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin: 18px auto 18px auto;
+            font-weight: 500;
+            max-width: 540px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
-        .video-responsive iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .manual-title {
-            font-size: 1.3em;
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        .manual-section-title {
-            font-size: 1.15em;
-            font-weight: bold;
-            color: #1e3a5f;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        .manual-list {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        .manual-img {
-            max-width: 100%;
-            display: block;
-            margin: 22px auto 22px auto;
+        .alert-info i { font-size: 1.25em; }
+        .alert-note {
+            background: #f8f9fa;
+            color: #0c5460;
+            text-align: center;
+            padding: 11px 18px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            margin: 18px auto 18px auto;
+            font-size: 0.98em;
+            max-width: 540px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .alert-pointer {
+            background-color: #e9ecef;
+            color: #495057;
+            text-align: center;
+            padding: 10px 18px;
+            border-radius: 8px;
+            margin: 18px auto 18px auto;
+            font-size: 1.01em;
+            font-weight: 600;
+            max-width: 540px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
         @media (max-width: 600px) {
             .card-content { padding: 10px 5px; }
             .collapsible-content { padding: 0 5px; }
+            .alert-info, .alert-pointer, .alert-note { max-width: 100%; font-size: 0.97em;}
         }
     </style>
 </head>
@@ -137,15 +139,16 @@
                     <div class="manual-title">Manual GNRE - Procedimento para Vendas com Entrega em São Paulo</div>
                     
                     <div class="manual-section-title">Quando não é necessário recolher GNRE</div>
-                    <p>Para vendas realizadas a clientes de outros estados, mas com entrega dentro do Estado de São Paulo, não é necessário recolher a GNRE.</p>
-                    <p>Para garantir isso, siga os passos abaixo:</p>
+                    <p>Para vendas realizadas a clientes de outros estados, mas com entrega dentro do Estado de São Paulo, não é necessário recolher a GNRE. Para garantir isso, siga os passos abaixo:</p>
 
                     <div class="manual-section-title">1. Cadastro do endereço de entrega</div>
                     <ul class="manual-list">
                         <li>No GIX, acesse: Cadastro &rarr; Pessoa Física / Pessoa Jurídica</li>
                         <li>Inclua um endereço de entrega no Estado de São Paulo.</li>
-                        <li><b>Importante:</b> O dado mais importante é o CEP, é por ele que o GIX e a SEFAZ identifica o local e calcula os impostos.</li>
                     </ul>
+                    <div class="alert-info"><i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>Importante: O dado mais importante é o CEP, é por ele que o GIX e a SEFAZ identifica o local e calcula os impostos.</span>
+                    </div>
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre01.png?raw=true" class="manual-img" alt="Cadastro Endereço">
 
                     <div class="manual-section-title">2. Inserir observação na venda</div>
@@ -162,23 +165,30 @@
                         <li>No lançamento da venda, altere a Natureza da Operação para: <b>001 – Venda SP</b> usando o atalho da tecla F9.</li>
                     </ul>
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre03.png?raw=true" class="manual-img" alt="Natureza da Operação">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre04.png?raw=true" class="manual-img" alt="Tecla F9">
 
                     <div class="manual-section-title">4. Ajustar o tipo para ICMS</div>
+                    <div class="alert-info"><i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>Importante: Essa alteração deve ser feita apenas na venda, não no cadastro do cliente.</span>
+                    </div>
                     <ul class="manual-list">
-                        <li><b>Importante:</b> Essa alteração deve ser feita apenas na venda, não no cadastro do cliente.</li>
                         <li>Ainda no pedido de venda, vá até a aba “Especiais”.</li>
-                        <li>O sistema, por padrão, assume o tipo de ICMS do cadastro do cliente. Altere manualmente para “Não Contribuinte”, mesmo que o cliente seja contribuinte.</li>
-                        <li><b>Observação:</b> Isso corrige uma limitação do sistema GIX, que deixou de calcular corretamente a GNRE em determinadas situações.</li>
+                        <li>O sistema, por padrão, assume o tipo de ICMS do cadastro do cliente.</li>
+                        <li>Altere manualmente para “Não Contribuinte”, mesmo que o cliente seja contribuinte.</li>
                     </ul>
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre04.png?raw=true" class="manual-img" alt="Tipo ICMS">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/GNRE05.png?raw=true" class="manual-img" alt="Tipo ICMS">
+                    <div class="alert-note"><i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Observação: Isso corrige uma limitação do sistema GIX, que deixou de calcular corretamente a GNRE em determinadas situações.</span>
+                    </div>
 
                     <div class="manual-section-title">5. Validação final</div>
                     <ul class="manual-list">
                         <li>Após todos os passos, confira se o campo Tributos está zerado.</li>
                     </ul>
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/GNRE05.png?raw=true" class="manual-img" alt="Tributos Zerados">
-                    
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre06.png?raw=true" class="manual-img" alt="Tributos Zerados">
+
                     <div class="manual-section-title">Checklist rápido</div>
+                    Antes de finalizar, confirme:
                     <ul class="manual-list">
                         <li>Endereço de entrega em SP cadastrado.</li>
                         <li>Observação legal inserida corretamente.</li>
@@ -186,15 +196,9 @@
                         <li>Tipo para ICMS marcado como Não Contribuinte.</li>
                         <li>Campo Tributos zerado.</li>
                     </ul>
-                    
-                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/GNRE/gnre06.png?raw=true" class="manual-img" alt="Exemplo Final">
-
-                    <p>Assim, garante-se que a operação seja tratada como interna em São Paulo, sem necessidade de recolhimento da GNRE.</p>
-                    <div class="manual-section-title">Observações Importantes:</div>
-                    <ul class="manual-list">
-                        <li>Este procedimento é obrigatório para vendas com entrega para o estado de São Paulo quando houver substituição tributária.</li>
-                        <li>Em caso de dúvida procure o setor fiscal.</li>
-                    </ul>
+                    <div class="alert-pointer"><i class="fa-solid fa-hand-point-right"></i>
+                        <span>Assim, garante-se que a operação seja tratada como interna em São Paulo, sem necessidade de recolhimento da GNRE.</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -208,7 +212,7 @@
                 setTimeout(() => { content.style.height = "auto"; }, 500);
             } else {
                 content.style.height = content.scrollHeight + "px";
-                void content.offsetWidth; // repaint for transition
+                void content.offsetWidth;
                 content.style.height = "0";
             }
         }
@@ -217,7 +221,6 @@
             cards.forEach(card => {
                 const header = card.querySelector('.collapsible-header');
                 const content = card.querySelector('.collapsible-content');
-                // Inicialmente: ativa só o primeiro card
                 if (card === cards[0]) {
                     card.classList.add('active');
                     content.style.height = content.scrollHeight + "px";
