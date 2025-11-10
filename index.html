@@ -349,8 +349,16 @@
         </div>
     </div>
 <script>
-// Mantém todo JS original
-// ... (mesmo código JS que você já usa)
+// JavaScript COMPLETO para expansão/recolhimento das sessões (collapsible)
+document.addEventListener('DOMContentLoaded', function() {
+    const collapsibleCards = document.querySelectorAll('.collapsible-card');
+    collapsibleCards.forEach(function(card){
+        const header = card.querySelector('.collapsible-header');
+        header.addEventListener('click', function() {
+            card.classList.toggle('active');
+        });
+    });
+});
 </script>
 </body>
 </html>
