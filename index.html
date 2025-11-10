@@ -203,7 +203,44 @@
         <div class="card static-card">
             <div class="card-content">
                 <h2><i class="fa-solid fa-link"></i>Links Essenciais</h2>
-                <!-- ... tudo igual ... -->
+                <ul class="link-list">
+                    <li><a href="https://www.aciai.com.br/" target="_blank">
+                        <i class="fa-solid fa-building link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">ACIAI</span><small class="link-subtitle">Consulta restrições financeiras</small></div>
+                    </a></li>
+                    <li><a href="https://protestosp.com.br/consulta-de-protesto" target="_blank">
+                        <i class="fa-solid fa-file-invoice link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">CENPROT</span><small class="link-subtitle">Consulta restrições em cartório</small></div>
+                    </a></li>
+                    <li><a href="https://www.sintegra.gov.br/" target="_blank">
+                        <i class="fa-solid fa-receipt link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">SINTEGRA</span><small class="link-subtitle">Consulta situação da Inscrição Estadual</small></div>
+                    </a></li>
+                    <li><a href="https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">
+                        <i class="fa-solid fa-id-card link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Consulta CNPJ</span><small class="link-subtitle">Consulta situação cadastral do CNPJ</small></div>
+                    </a></li>
+                    <li><a href="https://banco.bradesco/html/classic/produtos-servicos/mais-produtos-servicos/segunda-via-boleto.shtm" target="_blank">
+                        <i class="fa-solid fa-barcode link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Segunda Via de Boleto</span><small class="link-subtitle">Segunda via Boleto Bradesco</small></div>
+                    </a></li>
+                    <li><a href="https://tamandarett.github.io/codex44/" target="_blank">
+                        <i class="fa-brands fa-pix link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Gerador PIX</span></div>
+                    </a></li>
+                    <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/" target="_blank">
+                        <i class="fa-solid fa-stamp link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Registro de Lacres</span></div>
+                    </a></li>
+                    <li><a href="https://drive.google.com/drive/folders/1Bb5c4ULT6W4IRfHjOFZsxuY9Czh-lhxM?usp=drive_link" target="_blank">
+                        <i class="fa-solid fa-book link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Formulários</span></div>
+                    </a></li>
+                    <li><a href="https://tamandaretintas.com.br/" target="_blank">
+                        <i class="fa-solid fa-palette link-icon"></i>
+                        <div class="link-text-wrapper"><span class="link-title">Site Tamandaré Tintas</span></div>
+                     </a></li>
+                </ul>
             </div>
         </div>
         <div class="card collapsible-card">
@@ -213,7 +250,6 @@
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding: 0; padding-top: 10px;">
-                    <!-- Bloco de destaque -->
                     <div class="training-highlight">
                         <i class="fa-solid fa-star"></i>
                         <span>Treinamento em destaque: <b>Vendas e Transferência entre lojas</b></span>
@@ -250,9 +286,112 @@
                 </div>
             </div>
         </div>
-        <!-- ... demais cards (contatos, lojas, agenda) iguais ... -->
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="contato-select" style="font-weight: 500; color: var(--text-color);">Selecione o Contato:</label>
+                        <select id="contato-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                            <option value="" disabled selected>-- Selecione um nome/setor --</option>
+                            <option value="Alexandre">Alexandre (Suporte)</option>
+                            <option value="Ana Claudia">Ana Claudia (RH)</option>
+                            <option value="Carla">Carla (Fiscal/Financeiro)</option>
+                            <option value="Daniel">Daniel (Contas a Pagar)</option>
+                            <option value="Eduardo">Eduardo (Marketing)</option>
+                            <option value="Filipe">Filipe (Comercial)</option>
+                            <option value="Junior">Junior (Caixa)</option>
+                            <option value="Lançamento de Notas">Lançamento de Notas</option>
+                        </select>
+                    </div>
+                    <div id="contato-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-shop"></i>Nossas Lojas</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding: 0; padding-top: 10px;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="loja-select" style="font-weight: 500; color: var(--text-color);">Selecione a Loja:</label>
+                        <select id="loja-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
+                            <option value="" disabled selected>-- Selecione a Loja --</option>
+                            <option value="loja-morada">02 - Morada do Sol</option>
+                            <option value="loja-visconde">05 - Visconde</option>
+                            <option value="loja-vinhedo">09 - Vinhedo</option>
+                            <option value="loja-conceicao">10 - Conceição</option>
+                            <option value="loja-elias">12 - Elias Fausto</option>
+                            <option value="loja-maria">13 - Maria José</option>
+                            <option value="loja-paula">14 - Paula Leite</option>
+                            <option value="loja-salto">15 - Salto</option>
+                            <option value="loja-itu">16 - Itu</option>
+                        </select>
+                    </div>
+                    <div id="loja-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card static-card">
+            <div class="card-content">
+                <h2><i class="fa-solid fa-calendar-days"></i>Agenda da Equipe</h2>
+                <div class="calendar-container">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=f1c3916472d8e68fcdfc9d16dfbc294e026659b33b8e6c1fe6d3c9fb46f96d32%40group.calendar.google.com&ctz=America%2FSao_Paulo"></iframe>
+                </div>
+            </div>
+        </div>
     </div>
 <script>
+const TEAM_CONTACTS = {
+    "Alexandre":{
+        email:"suporte@tamandaretintas.com.br",
+        phone:"(19) 99328-5132",
+        desc:"Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede."
+    },
+    "Ana Claudia":{
+        email:"anaclaudia@tamandaretintas.com.br",
+        phone:"(19) 97131-7520",
+        desc:"Departamento Pessoal (RH): Dúvidas sobre folha de pagamento, benefícios e regras trabalhistas."
+    },
+    "Carla":{
+        email:"carla@tamandaretintas.com.br",
+        phone:null,
+        desc:"Setor Financeiro / Fiscal: Assuntos relacionados a bancos, contabilidade e impostos."
+    },
+    "Daniel":{
+        email:"daniel@tamandaretintas.com.br",
+        phone:null,
+        desc:"Contas a Pagar, assistência técnica de produtos, e devolução de mercadorias para fornecedores."
+    },
+    "Eduardo":{
+        email:"marketing@tamandaretintas.com.br",
+        phone:null,
+        desc:"Marketing: Promoções, campanhas publicitárias e materiais de divulgação."
+    },
+    "Filipe":{
+        email:"filipe@tamandaretintas.com.br",
+        phone:null,
+        desc:"Questões, negociações ou propostas comerciais e assuntos gerais."
+    },
+    "Junior":{
+        email:"junior@tamandaretintas.com.br",
+        phone:null,
+        desc:"Operações relacionadas caixa, Contas a receber, problemas financeiros urgentes relacionados ao cliente."
+    },
+    "Lançamento de Notas":{
+        email:"admloja3@tamandaretintas.com.br",
+        phone:null,
+        desc:"Lançamentos / Estoque: Dúvidas sobre estoque lançado, notas lançadas e pagamentos a fornecedores."
+    }
+};
+
 const TRAINING_DETAILS = {
     "Jornada Essencial Tamandaré Tintas": {
         description: "Esta trilha de treinamento foi estruturada para guiar você através dos pilares da Tamandaré Tintas: desde a compreensão profunda de nosso propósito e cultura até as técnicas de comunicação e atendimento que garantem a satisfação de nossos clientes. Complete os 4 módulos para entender os fundamentos do sucesso em nossa equipe.",
@@ -301,6 +440,131 @@ const TRAINING_DETAILS = {
     }
 };
 
+const STORE_DETAILS = {
+    "loja-morada":{
+        title:"Indaiatuba - Morada do Sol",
+        address:"Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.",
+        phones:["(19) 3935-9141","(19) 3935-9144"],
+        email:"loja2@tamandaretintas.com.br",
+        whatsapp:"(19) 99328-6800"
+    },
+    "loja-visconde":{
+        title:"Indaiatuba - Visconde",
+        address:"Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.",
+        phones:["(19) 3894-6112","(19) 3885-4818"],
+        email:"loja3@tamandaretintas.com.br",
+        whatsapp:"19 99329-4193"
+    },
+    "loja-vinhedo":{
+        title:"Vinhedo",
+        address:"Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.",
+        phones:["(19) 3030-3483"],
+        email:"lojavinhedo@tamandaretintas.com.br",
+        whatsapp:"19 98610-8999"
+    },
+    "loja-conceicao":{
+        title:"Indaiatuba - Conceição",
+        address:"Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.",
+        phones:["(19) 3392-6690"],
+        email:"loja10@tamandaretintas.com.br",
+        whatsapp:"(19) 99329-0533"
+    },
+    "loja-elias":{
+        title:"Elias Fausto",
+        address:"R. XV de Novembro, 181 – Centro, Elias Fausto/SP.",
+        phones:["(19) 3821-2508"],
+        email:"loja5@tamandaretintas.com.br",
+        whatsapp:"(19) 99329-7193"
+    },
+    "loja-maria":{
+        title:"Indaiatuba - Maria José",
+        address:"Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.",
+        phones:["(19) 3312-1933"],
+        email:"loja13@tamandaretintas.com.br",
+        whatsapp:"(19) 99699 4383"
+    },
+    "loja-paula":{
+        title:"Indaiatuba - Paula Leite",
+        address:"Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.",
+        phones:["(19) 3825-1100","(19) 3834-1180"],
+        email:"loja1@tamandaretintas.com.br",
+        whatsapp:"(19) 99711-7509"
+    },
+    "loja-salto":{
+        title:"Salto",
+        address:"R. Nove de Julho, 1426 - Vila Nova, Salto/SP.",
+        phones:["(11) 4029-1401"],
+        email:"loja8@tamandaretintas.com.br",
+        whatsapp:"11 94289-3594"
+    },
+    "loja-itu":{
+        title:"Itu",
+        address:"R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.",
+        phones:["(11) 2222-3912"],
+        email:"loja11@tamandaretintas.com.br",
+        whatsapp:"11 98830-4274"
+    }
+};
+
+function copyToClipboard(elementId, buttonElement) {
+    const isStore = elementId.startsWith('loja-data-');
+    let textToCopy = '';
+    if (isStore) {
+        textToCopy = document.getElementById(elementId).innerText;
+    } else {
+        textToCopy = document.getElementById(elementId).innerText;
+    }
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = buttonElement.innerText;
+        buttonElement.innerText = 'Copiado!';
+        buttonElement.classList.add('copied');
+        setTimeout(() => {
+            buttonElement.innerText = originalText;
+            buttonElement.classList.remove('copied');
+        }, 2000);
+    }).catch(err => { console.error('Erro ao copiar texto: ', err); });
+}
+
+function updateContactDetails() {
+    const select = document.getElementById('contato-select');
+    const displayDiv = document.getElementById('contato-details-display');
+    const selectedName = select.value;
+    if (!selectedName || selectedName === '') {
+        displayDiv.style.display = 'none';
+        return;
+    }
+    const contact = TEAM_CONTACTS[selectedName];
+    const emailId = `selected-email-${selectedName.replace(/[^a-zA-Z0-9]/g, '-')}`;
+    const phoneHTML = contact.phone ? `
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 5px;">
+            <p style="margin: 0; font-weight: 500; color: var(--text-color); font-size: 0.95em;">
+                Telefone: <a href="tel:${contact.phone.replace(/[^0-9]/g, '')}" style="color: var(--primary-color); text-decoration: none; font-weight: 700;">${contact.phone}</a>
+            </p>
+        </div>` : '';
+    if (contact) {
+        displayDiv.innerHTML = `
+            <p style="margin-bottom: 5px;"><b>${selectedName}:</b></p>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <p id="${emailId}" style="margin: 0; font-weight: 500; color: var(--link-color); word-break: break-all; font-size: 0.95em;">
+                    ${contact.email}
+                </p>
+                <button class="copy-btn"
+                        onclick="copyToClipboard('${emailId}', this)"
+                        style="margin-left: 10px;">
+                    Copiar Email
+                </button>
+            </div>
+            ${phoneHTML}
+            <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 10px; margin-bottom: 0; width: 100%;">
+                ${contact.desc}
+            </p>
+        `;
+        displayDiv.style.display = 'flex';
+    } else {
+        displayDiv.style.display = 'none';
+    }
+}
+
 function updateTreinamentoDetails() {
     const select = document.getElementById('treinamento-select');
     const displayDiv = document.getElementById('treinamento-details-display');
@@ -333,6 +597,82 @@ function updateTreinamentoDetails() {
     }
 }
 
+function filterTreinamentosAndDisplayFirstMatch() {
+    const searchInput = document.getElementById('treinamento-search');
+    const select = document.getElementById('treinamento-select');
+    const noResultsMsg = document.getElementById('no-results-treinamento');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const options = Array.from(select.options).slice(1);
+    let matches = [];
+    options.forEach(option => {
+        const optionText = option.text.toLowerCase();
+        const trainingKey = option.value;
+        const trainingDesc = TRAINING_DETAILS[trainingKey]?.description.toLowerCase() || '';
+        const matched = optionText.includes(searchTerm) || trainingDesc.includes(searchTerm);
+        if (matched || searchTerm === '') {
+            option.style.display = '';
+            if (searchTerm !== '') {
+                matches.push(trainingKey);
+            }
+        } else {
+            option.style.display = 'none';
+        }
+    });
+    if (matches.length === 0 && searchTerm !== '') {
+        noResultsMsg.style.display = 'block';
+        select.style.display = 'none';
+        document.getElementById('treinamento-details-display').style.display = 'none';
+        return;
+    } else {
+        noResultsMsg.style.display = 'none';
+        select.style.display = 'block';
+    }
+    if (searchTerm !== '' && matches.length > 0) {
+        select.value = matches[0];
+        updateTreinamentoDetails();
+    } else if (searchTerm === '') {
+        select.value = '';
+        updateTreinamentoDetails();
+    }
+}
+
+function updateLojaDetails() {
+    const select = document.getElementById('loja-select');
+    const displayDiv = document.getElementById('loja-details-display');
+    const selectedStoreId = select.value;
+    if (!selectedStoreId || selectedStoreId === '') {
+        displayDiv.style.display = 'none';
+        return;
+    }
+    const store = STORE_DETAILS[selectedStoreId];
+    const dataId = `loja-data-${selectedStoreId}`;
+    const contentToCopy = `
+${store.title}
+Endereço: ${store.address}
+Fone: ${store.phones.join(' / ')}
+E-mail: ${store.email}
+WhatsApp: ${store.whatsapp}
+    `.trim();
+    if (store) {
+        displayDiv.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                <span id="${dataId}" style="display:none; white-space: pre-wrap;">${contentToCopy}</span>
+                <div class="data-text" style="padding-right: 15px; flex-grow: 1;">
+                    <b class="store-title-in-box">${store.title}</b><br>
+                    Endereço: ${store.address}<br>
+                    Fone: ${store.phones.join(' / ')}<br>
+                    E-mail: ${store.email}<br>
+                    WhatsApp: ${store.whatsapp}
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('${dataId}', this)">Copiar Dados</button>
+            </div>
+        `;
+        displayDiv.style.display = 'flex';
+    } else {
+        displayDiv.style.display = 'none';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Collapsible (expande/recolhe) sessões
     const collapsibleCards = document.querySelectorAll('.collapsible-card');
@@ -348,7 +688,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (selectTreinamentoElement) {
         selectTreinamentoElement.addEventListener('change', updateTreinamentoDetails);
     }
-    // Garante exibição correta ao recarregar ou manter seleção
+    const searchTreinamentoInput = document.getElementById('treinamento-search');
+    if (searchTreinamentoInput) {
+        searchTreinamentoInput.addEventListener('input', filterTreinamentosAndDisplayFirstMatch);
+    }
+    // Contatos e lojas
+    const selectContactElement = document.getElementById('contato-select');
+    if (selectContactElement) {
+        selectContactElement.addEventListener('change', updateContactDetails);
+    }
+    const selectLojaElement = document.getElementById('loja-select');
+    if (selectLojaElement) {
+        selectLojaElement.addEventListener('change', updateLojaDetails);
+    }
+    // Garantir exibição correta ao recarregar ou manter seleção
     updateTreinamentoDetails();
 });
 </script>
