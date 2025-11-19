@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Crédito — Treinamento ACIAI</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --link-color: #0056b3;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 30px 32px 32px 32px;
+            margin-bottom: 32px;
+        }
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+        }
+        h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 1.4em;
+        }
+        img {
+            display: block;
+            max-width: 180px;
+            border-radius: 8px;
+            margin: 16px auto 30px auto;
+        }
+        ul, ol {
+            margin-left: 30px;
+        }
+        .dica {
+            background: #ebf4fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            color: #205080;
+        }
+        .atencao {
+            background: #fff3f0;
+            border-left: 4px solid #cc4125;
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            color: #b71c1c;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 18px;
+        }
+        th, td {
+            border: 1px solid #d7e1eb;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ebf4fa;
+            color: #205080;
+            font-weight: 500;
+        }
+        @media (max-width: 600px) {
+            .card { padding: 16px 8px; }
+            img { max-width: 100px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/logo.png" alt="Logo da ACIAI">
+        <h1>Análise de Crédito — Treinamento</h1>
+        <div class="card">
+
+            <h2>Introdução</h2>
+            <p>
+                Este material foi desenvolvido para auxiliar você a interpretar corretamente os dados apresentados nas consultas de crédito realizadas pela ACIAI. O objetivo é que todos os colaboradores compreendam o significado de cada informação exibida na tela de consulta, indo além do simples score ou da existência de protestos.
+            </p>
+            <p>
+                Saber ler e interpretar esses dados é fundamental para tomar decisões mais seguras, justas e alinhadas com as práticas mais modernas de cessão de crédito. Com este conteúdo, você aprenderá a analisar indicadores cadastrais, financeiros e comportamentais, entendendo sua importância prática no processo de aprovação ou recusa de crédito. Assim, evitamos riscos desnecessários e garantimos um atendimento mais técnico, eficiente e responsável.
+            </p>
+            <div class="dica">
+                <b>Boas Práticas:</b><br>
+                É essencial que as decisões estejam sempre de acordo com a política de crédito interna, respeitando os critérios estabelecidos para aprovação, reprovação ou condicionamento de vendas. Recomenda-se manter o bom senso, buscar esclarecimentos quando houver dúvida e adotar uma postura ética e criteriosa.
+            </div>
+            <p>
+                No início da próxima reunião, haverá um teste rápido com perguntas para fixação dos principais conceitos abordados. As respostas não serão usadas para avaliação de desempenho, mas como ferramenta de aprendizado. A participação ativa é fundamental para o sucesso dessa iniciativa!
+            </p>
+            <hr>
+
+            <h2>Pessoa Jurídica</h2>
+            <h3>1. Identificação</h3>
+            <p>
+                A identificação de uma empresa é o primeiro passo de qualquer análise de crédito. Este conjunto de dados cadastrais é essencial para garantir que a análise seja feita para o CNPJ correto, prevenindo fraudes e evitando decisões equivocadas.
+            </p>
+            <ul>
+                <li><b>CNPJ:</b> Número único, obrigatório, registrado na Receita Federal. Como o CPF das empresas.</li>
+                <li><b>Razão Social e Nome Fantasia:</b> Razão social é o nome jurídico; nome fantasia é a marca comercial.</li>
+                <li><b>NIRE:</b> Registro na Junta Comercial; essencial para saber se a empresa está regularizada.</li>
+                <li><b>Situação do CNPJ:</b> Ativa, suspensa, inapta ou baixada. Situação fiscal da empresa.</li>
+                <li><b>Data de Fundação:</b> Empresas com mais tempo de mercado tendem a ser mais estáveis.</li>
+                <li><b>Inscrição Estadual:</b> Verifica habilitação para operações que envolvam ICMS.</li>
+                <li><b>Natureza Jurídica:</b> LTDA, S/A, MEI, etc. Define estrutura societária e grau de responsabilidade dos sócios.</li>
+                <li><b>CNAE:</b> Classificação Nacional de Atividades Econômicas. Entende o ramo principal da empresa.</li>
+            </ul>
+            <div class="dica">
+                <b>Análise Comparativa:</b><br>
+                MEI de transporte recém-criada: mais risco de inadimplência, estrutura frágil e limitada.<br>
+                LTDA alimentícia consolidada: mais segurança, estrutura robusta e histórico comprovado.
+            </div>
+
+            <h3>2. Faixa de Funcionários</h3>
+            <p>
+                Indica o porte estimado da empresa com base na força de trabalho. Fundamental para entender a estrutura operacional e potencial de geração de receita.
+            </p>
+            <table>
+                <tr><th>Faixa</th><th>Quantidade de Funcionários</th></tr>
+                <tr><td>1</td><td>1 até 19</td></tr>
+                <tr><td>2</td><td>20 até 99</td></tr>
+                <tr><td>3</td><td>100 até 499</td></tr>
+                <tr><td>4</td><td>500 até 999</td></tr>
+                <tr><td>5</td><td>1.000 até 2.999</td></tr>
+                <tr><td>6</td><td>3.000 até 4.999</td></tr>
+                <tr><td>7</td><td>5.000 até 6.999</td></tr>
+                <tr><td>8</td><td>7.000 até 8.999</td></tr>
+                <tr><td>9</td><td>9.000 até 9.999</td></tr>
+                <tr><td>10</td><td>Acima de 10.000</td></tr>
+                <tr><td>-</td><td>Informação não disponível</td></tr>
+            </table>
+            <div class="dica">
+                <b>Importante:</b> Empresas maiores geralmente movimentam mais dinheiro e têm maior capacidade de pagamento. Micro e pequenas empresas são mais vulneráveis à oscilações de mercado.
+            </div>
+            <table>
+                <tr><th>Porte da Empresa</th><th>Número de Funcionários</th></tr>
+                <tr><td>Microempresa (ME)</td><td>até 9 (comércio/serviços) ou 19 (indústria)</td></tr>
+                <tr><td>Pequena Empresa (EPP)</td><td>até 49 (comércio/serviços) ou 99 (indústria)</td></tr>
+                <tr><td>Média Empresa</td><td>até 99 (comércio/serviços) ou 499 (indústria)</td></tr>
+                <tr><td>Grande Empresa</td><td>acima de 100 (comércio/serviços) ou 500 (indústria)</td></tr>
+            </table>
+
+            <h3>3. Localização</h3>
+            <p>
+                Verifica a existência física, contexto econômico da região e prevenção a fraudes.
+            </p>
+            <ul>
+                <li>Endereço completo</li>
+                <li>Bairro, Cidade, UF</li>
+            </ul>
+            <div class="dica">
+                <b>Validação de Existência:</b> Endereço comercial ou industrial reforça legitimidade; residencial pode levantar dúvidas.
+            </div>
+            <div class="atencao">
+                <b>Alertas:</b>
+                Endereços incompletos/genéricos, áreas inexistentes, repetidos para vários CNPJs, ou residencial para atividade industrial = sinal de alerta!
+            </div>
+
+            <h3>4. Pagamento Pontual</h3>
+            <p>
+                Indica o comportamento financeiro através dos pagamentos feitos até 5 dias após o vencimento.
+            </p>
+            <table>
+                <tr><th>Pontuação</th><th>Significado</th></tr>
+                <tr><td>100</td><td>Pagamentos totalmente pontuais</td></tr>
+                <tr><td>0</td><td>Nenhum pagamento pontual</td></tr>
+            </table>
+            <div class="dica">
+                <b>Empresas acima de 85 pontos = excelentes pagadoras.</b><br>
+                Entre 60–85 = bom comportamento, mas podem ter atrasos pontuais.<br>
+                Abaixo de 60 = avaliar outros indicadores antes de conceder crédito.
+            </div>
+
+            <h3>5. Pagamento Atrasado</h3>
+            <p>
+                Avalia pagamentos feitos após 5 dias de vencimento; quanto maior, mais problema de controle financeiro.
+            </p>
+            <table>
+                <tr><th>Faixa</th><th>Situação Indicada</th></tr>
+                <tr><td>0–20</td><td>Baixíssimo risco</td></tr>
+                <tr><td>21–50</td><td>Atrasos ocasionais</td></tr>
+                <tr><td>51–80</td><td>Risco moderado</td></tr>
+                <tr><td>81–100</td><td>Alto risco (atenção especial)</td></tr>
+            </table>
+            <div class="atencao">
+                Pagamentos frequentemente atrasados são sinal de fluxo de caixa descontrolado e podem indicar risco de inadimplência crescente!
+            </div>
+
+            <h3>6. Atraso Médio (em dias)</h3>
+            <p>
+                Mostra a média de dias para pagamentos atrasados, complementando índices anteriores.
+            </p>
+            <table>
+                <tr><th>Atraso Médio</th><th>Interpretação</th></tr>
+                <tr><td>0–5 dias</td><td>Atrasos mínimos, quase pontual</td></tr>
+                <tr><td>6–15 dias</td><td>Atrasos leves (atenção)</td></tr>
+                <tr><td>16–30 dias</td><td>Atrasos preocupantes</td></tr>
+                <tr><td>Acima de 30</td><td>Risco elevado (tendência à inadimplência)</td></tr>
+            </table>
+            <div class="dica">
+                <b>Análise conjunta:</b> Pagamento pontual + pagamento atrasado + atraso médio = panorama fiel da pontualidade da empresa.
+            </div>
+            <div class="dica">
+                <b>Exemplo:</b> Empresa madura com atraso médio alto = possível dificuldade financeira recente. Empresa nova sem registros ainda requer observação cautelosa.
+            </div>
+
+            <h3>7. Compromissos (Quantidade de Títulos)</h3>
+            <p>
+                Mede a quantidade de títulos registrados no mercado com a empresa.
+            </p>
+            <ul>
+                <li>Pontuação alta = 15.000 títulos = boa circulação e confiança dos fornecedores.</li>
+                <li>Pontuação baixa = menos de 10 títulos = pode ser empresa nova, crédito restrito ou baixa movimentação.</li>
+            </ul>
+
+            <h3>8. Crédito Obtido (Valor em R$)</h3>
+            <p>
+                Valor total das transações de crédito nos últimos 12 meses. Indica confiança comercial.
+            </p>
+            <div class="atencao">
+                <b>Pontuação 150:</b> R$150.000 em crédito.<br>
+                <b>Pontuação 0:</b> menos de R$100.<br>
+                Valores muito altos ou baixos podem indicar necessidade de análise adicional!
+            </div>
+
+            <h3>9. Comprometimento Futuro</h3>
+            <p>
+                Mostra títulos a pagar no futuro, organizados por faixa de vencimento (até 30, 31–60, 61–90, mais de 90 dias).
+            </p>
+            <div class="dica">
+                <b>Sinais de alerta:</b><br>
+                Alta concentração de compromissos próximos ou acúmulo acima de 90 dias = risco de inadimplência futura.
+            </div>
+
+            <h3>10. Tempo de Relacionamento com Fornecedores</h3>
+            <p>
+                Revela há quanto tempo a empresa tem relação com fornecedores, divididos por faixas.
+            </p>
+            <ul>
+                <li>Até 6 meses</li>
+                <li>7 a 12 meses</li>
+                <li>1 a 2 anos</li>
+                <li>3 a 5 anos</li>
+                <li>6 a 10 anos</li>
+                <li>Mais de 10 anos</li>
+            </ul>
+
+            <h3>11. Acontecimentos Importantes</h3>
+            <p>
+                Destaca eventos comerciais relevantes dos últimos 12 meses (última compra, maior fatura, maior crédito concedido).
+            </p>
+            <div class="dica">
+                <b>Importante:</b> Nível recente de atividade permite detectar se está em expansão ou retração, fundamental para avaliar pedidos de crédito altos.
+            </div>
+
+            <h3>12. Consultas</h3>
+            <p>
+                Histórico de consultas ao CNPJ (total, por mês, últimas empresas que consultaram).
+            </p>
+            <table>
+                <tr><th>Volume de Consultas</th><th>Interpretação</th></tr>
+                <tr><td>0 a 5 (últimos 3 meses)</td><td>Normal</td></tr>
+                <tr><td>6 a 15</td><td>Exige atenção</td></tr>
+                <tr><td>Acima de 15</td><td>Risco elevado ou endividamento</td></tr>
+            </table>
+
+            <h3>13. Pendências e Restrições Financeiras</h3>
+            <p>
+                Aponta títulos vencidos e não pagos (quantidade, valor, credores, data do primeiro título e detalhes).
+            </p>
+            <div class="atencao">
+                <b>Relevância:</b> Pendências recentes ou grandes volumes = risco grave de inadimplência.
+            </div>
+
+            <h3>14. Cheques Sem Fundos</h3>
+            <p>
+                Registra cheques devolvidos por insuficiência de fundos (motivo 12), conta encerrada (13).
+            </p>
+            <div class="atencao">
+                <b>Importante:</b> Motivos 12 e 13 são graves e normalmente levam à reprovação de crédito.
+            </div>
+
+            <h3>15. Cheques Sustados</h3>
+            <p>
+                Sustação por motivo legal/judicial; pode indicar conflitos comerciais ou ações judiciais.
+            </p>
+            <div class="dica">
+                Casos frequentes merecem investigação - pode haver má-fé ou fraudes.
+            </div>
+
+            <h3>16. Cheques Devolvidos Informados por Usuários</h3>
+            <p>
+                Cheques devolvidos que ainda não constam em registros oficiais, mas relatados por empresas.
+            </p>
+            <div class="dica">
+                Riscos ocultos podem ser descobertos aqui; analise antes que se tornem oficiais.
+            </div>
+
+            <h3>17. Protestos</h3>
+            <p>
+                Registro formal de dívida em cartório; um dos sinais mais graves de inadimplência.
+            </p>
+            <div class="atencao">
+                <b>Protestos recentes (últimos 12 meses)</b> geralmente resultam em reprovação.<br>
+                <b>Protestos antigos</b> devem ser analisados em contexto.<br>
+                <b>Protestos ativos</b> = alto risco!
+            </div>
+            <div class="dica">
+                <b>Observação:</b> Analisar a natureza da dívida, valor, frequência e contexto dos protestos, não apenas a existência.
+            </div>
+
+            <hr>
+            <h2>Pessoa Física</h2>
+            <h3>1. Score de Aprovação</h3>
+            <p>
+                Pontuação estatística de 0 a 1000 que indica a chance de consumidor pagar as contas em dia nos próximos meses.
+            </p>
+            <table>
+                <tr><th>Faixa de Score</th><th>Interpretação</th><th>Risco de inadimplência</th></tr>
+                <tr><td>800–1000</td><td>Excelente</td><td>&lt;2%</td></tr>
+                <tr><td>700–799</td><td>Muito bom</td><td>2% a 5%</td></tr>
+                <tr><td>500–699</td><td>Regular</td><td>5% a 20%</td></tr>
+                <tr><td>300–499</td><td>Alto risco</td><td>20% a 40%</td></tr>
+                <tr><td>Abaixo de 300</td><td>Muito alto risco</td><td>&gt;40%</td></tr>
+            </table>
+            <div class="dica">
+                <b>Prático:</b> Score baixo exige avaliação conjunta com renda, consultas recentes, faturas em atraso e garantias.
+            </div>
+
+            <h3>2. Registro de Débito</h3>
+            <p>
+                Dívidas vencidas e não pagas registradas em órgãos de proteção ao crédito (SPC, Serasa, Boa Vista).
+            </p>
+            <table>
+                <tr><th>Situação</th><th>Interpretação</th></tr>
+                <tr><td>Recente (&lt;6 meses) e valor alto</td><td>Alto risco</td></tr>
+                <tr><td>Antigo (&gt;1 ano) e valor baixo</td><td>Pode ser dívida esquecida</td></tr>
+                <tr><td>Vários débitos seguidos</td><td>Reprovação recomendada</td></tr>
+            </table>
+            <div class="atencao">
+                <b>Estatística:</b> Endividamento médio por CPF inadimplente no Brasil gira em torno de R$4.500 (mais de 70 mi negativados).
+            </div>
+
+            <h3>3. Protestos</h3>
+            <p>
+                Registro público em cartório de dívida não paga; é um dos indícios mais sérios de inadimplência formal.
+            </p>
+            <table>
+                <tr><th>Situação</th><th>Risco Interpretado</th></tr>
+                <tr><td>1 protesto antigo e quitado</td><td>Médio a baixo</td></tr>
+                <tr><td>2 ou mais recentes (últimos 12 meses)</td><td>Alto risco</td></tr>
+                <tr><td>Valor elevado (&gt;R$5.000)</td><td>Muito alto risco</td></tr>
+            </table>
+            <div class="dica">
+                <b>Observação importante:</b><br>
+                Avaliar contexto dos protestos (valor, número, recorrência), não só a existência.
+            </div>
+
+            <h3>4. Ações Cíveis</h3>
+            <p>
+                Processos judiciais do consumidor — podem ter vínculo direto com dívidas não quitadas.
+            </p>
+            <table>
+                <tr><th>Tipo de Ação</th><th>Impacto</th></tr>
+                <tr><td>Ações frequentes de execução</td><td>Muito alto risco</td></tr>
+                <tr><td>Ação de cobrança isolada</td><td>Risco moderado</td></tr>
+                <tr><td>Ações antigas, encerradas</td><td>Risco neutro (se quitadas)</td></tr>
+            </table>
+            <div class="dica">
+                Analisar status atual do processo e datas recentes.
+            </div>
+
+            <h3>5. Cheques Devolvidos / Sustados</h3>
+            <p>
+                Motivos relevantes para análise: Motivo 11 — Sem fundos (1ª apresentação); 12 — Sem fundos (2ª); 13 — Conta encerrada; 14 — Prática espúria.
+            </p>
+            <table>
+                <tr><th>Situação</th><th>Interpretação</th></tr>
+                <tr><td>1 ou 2 cheques (motivo 11)</td><td>Aceitável com cautela</td></tr>
+                <tr><td>Motivos 12, 13 ou 14</td><td>Risco elevado</td></tr>
+                <tr><td>Mais de 3 cheques devolvidos</td><td>Alto risco</td></tr>
+            </table>
+
+            <h3>6. Consultas Anteriores</h3>
+            <p>
+                Quantidade de vezes que o CPF foi consultado nos últimos 90 dias. Alto número pode indicar superendividamento.
+            </p>
+            <table>
+                <tr><th>Nº de consultas (90 dias)</th><th>Interpretação</th></tr>
+                <tr><td>Até 3</td><td>Normal</td></tr>
+                <tr><td>4 a 6</td><td>Atenção</td></tr>
+                <tr><td>Acima de 6</td><td>Alto risco</td></tr>
+            </table>
+            <div class="dica">
+                Consultas em datas próximas = tentativa de crédito em cadeia.
+            </div>
+
+            <h3>7. Contratos Recentes</h3>
+            <p>
+                Volume de novos contratos, como cartões, empréstimos, crediários ou financiamentos.
+            </p>
+            <table>
+                <tr><th>Faixa</th><th>Interpretação</th></tr>
+                <tr><td>A</td><td>Baixo volume (consumidor saudável)</td></tr>
+                <tr><td>B</td><td>Volume razoável (risco controlado)</td></tr>
+                <tr><td>C</td><td>Consumo elevado (atenção)</td></tr>
+                <tr><td>D</td><td>Comprometimento preocupante</td></tr>
+                <tr><td>E</td><td>Excesso de contratos (alto risco)</td></tr>
+            </table>
+
+            <h3>8. Fatura em Atraso</h3>
+            <p>
+                Mede pagamentos em relação a contas e contratos financeiros. Faixa A = pontual, E = atraso crônico.
+            </p>
+            <table>
+                <tr><th>Faixa</th><th>Situação</th></tr>
+                <tr><td>A</td><td>Pagador pontual</td></tr>
+                <tr><td>B</td><td>Pequenos atrasos</td></tr>
+                <tr><td>C</td><td>Atrasos moderados</td></tr>
+                <tr><td>D</td><td>Atrasos recorrentes</td></tr>
+                <tr><td>E</td><td>Atraso crônico</td></tr>
+            </table>
+            <div class="atencao">
+                Faixas D ou E = reprovação ou garantias adicionais, mesmo que score seja alto.
+            </div>
+
+            <h3>9. Renda Presumida</h3>
+            <p>
+                Estimativa mensal baseada em contratos, localidade, faixa etária e histórico de consumo.
+            </p>
+            <table>
+                <tr><th>Renda Presumida</th><th>Situação</th></tr>
+                <tr><td>Acima de R$ 5.000</td><td>Perfil elevado (maior flexibilidade)</td></tr>
+                <tr><td>R$ 3.000 a 5.000</td><td>Classe média (equilíbrio financeiro)</td></tr>
+                <tr><td>Abaixo de R$ 3.000</td><td>Atenção à capacidade de pagamento</td></tr>
+            </table>
+
+            <h3>10. Status no Cadastro Positivo</h3>
+            <p>
+                Banco de dados que registra pagamentos em dia (contas de água, luz, internet, boletos e financiamentos).
+            </p>
+            <div class="dica">
+                Consumidor com Cadastro Positivo ativo pode ter score melhorado e aprovação facilitada.
+            </div>
+
+            <h3>11. Participação em Empresas</h3>
+            <p>
+                Consumidor sócio, administrador ou responsável legal por CNPJs ativos/inativos; risco aumenta se empresas negativas ou falidas.
+            </p>
+            <div class="atencao">
+                Sócios de empresas falidas ou com protestos devem ter crédito pessoal mais restrito.
+            </div>
+
+            <h3>12. Recuperações e Falências</h3>
+            <p>
+                Se o CPF está ligado a empresas que pediram recuperação judicial ou falência.
+            </p>
+
+            <h3>13. Alerta de Documento</h3>
+            <p>
+                Indica registros de extravio, roubo ou uso indevido de documentos do CPF.
+            </p>
+            <div class="atencao">
+                Essencial para evitar fraudes! Solicite documento atualizado com foto e confirme dados antes de conceder crédito.
+            </div>
+
+            <hr>
+            <h2>Conclusão</h2>
+            <p>
+                A análise de crédito é fundamental para segurança e sustentabilidade nas operações comerciais. Ao aplicar corretamente os indicadores apresentados, os analistas conseguem identificar sinais de risco e oportunidades de forma estratégica.
+            </p>
+            <p>
+                Mais que seguir regras, o processo exige senso crítico, responsabilidade e alinhamento com as políticas da empresa, equilibrando segurança financeira e atendimento ao cliente.
+            </p>
+            <p>
+                Este manual foi criado para apoiar decisões conscientes e padronizadas, promovendo cultura de crédito técnica, justa e eficaz. Ao utilizá-lo, esperamos contribuir para redução da inadimplência, fortalecimento das relações comerciais e carteira sólida.
+            </p>
+            <div class="dica">
+                <b>Destaque:</b> Cada colaborador tem papel essencial: atenção aos detalhes, domínio dos indicadores e compromisso com práticas corretas transformam a análise de crédito em vantagem competitiva!
+            </div>
+            <hr>
+            <h2>Referências Bibliográficas</h2>
+            <ul>
+                <li>SERASA EXPERIAN. Manual de Consulta de Crédito Pessoa Jurídica. São Paulo: Serasa, 2023.</li>
+                <li>SPC BRASIL. Relatórios de Análise de Risco — Guia de Indicadores. São Paulo: SPC, 2022.</li>
+                <li>SEBRAE. Porte de empresas e critérios de classificação. Brasília: SEBRAE Nacional, 2023.</li>
+                <li>BANCO CENTRAL DO BRASIL. Estatísticas de crédito e inadimplência. Brasília: BCB, 2024.</li>
+                <li>IBGE. Cadastro Nacional de Endereços para Fins Estatísticos. Rio de Janeiro: IBGE, 2023.</li>
+                <li>CARTÓRIOS DE PROTESTO — IEPTB. Consulta Nacional de Protestos. São Paulo: Instituto de Estudos de Protesto de Títulos do Brasil, 2024.</li>
+                <li>SERPRO. Cadastro Positivo: conceito e aplicações. Brasília: SERPRO, 2024.</li>
+                <li>BOA VISTA SCPC. Indicadores de inadimplência Pessoa Física. São Paulo: Boa Vista, 2024.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
