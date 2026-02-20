@@ -303,14 +303,26 @@ function toggleResultado(index) {
 }
 
 // ==========================================
-// INICIALIZAÇÃO
+// INICIALIZAÇÃO E COMPORTAMENTO "ACORDEÃO"
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     carregarBase();
     document.getElementById("pergunta")?.addEventListener("keypress", e => { if (e.key === "Enter") buscar(); });
     
-    document.querySelectorAll('.collapsible-card').forEach(card => {
-        card.querySelector('.collapsible-header').addEventListener('click', () => card.classList.toggle('active'));
+    // COMPORTAMENTO "ACORDEÃO" (Abre uma, fecha as outras)
+    const collapsibleCards = document.querySelectorAll('.collapsible-card');
+    collapsibleCards.forEach(card => {
+        card.querySelector('.collapsible-header').addEventListener('click', () => {
+            const jaEstavaAberto = card.classList.contains('active');
+            
+            // 1. Fecha todas as abas
+            collapsibleCards.forEach(c => c.classList.remove('active'));
+            
+            // 2. Abre a aba clicada (apenas se ela não estava aberta)
+            if (!jaEstavaAberto) {
+                card.classList.add('active');
+            }
+        });
     });
 
     const selTreino = document.getElementById('treinamento-select');
