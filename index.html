@@ -5,342 +5,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Rápido - Tamandaré Tintas</title>
     <meta name="robots" content="noindex">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #1e3a5f;
-            --link-color: #0056b3;
-            --background-color: #f4f7f9;
-            --card-background: #ffffff;
-            --text-color: #333;
-            --subtitle-color: #6c757d;
-            --highlight-bg: #fff5b1;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-        }
-        .container { max-width: 900px; margin: auto; }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-        .header-text h1 {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        .header-text p {
-            color: #555;
-            font-size: 1.1em;
-            margin: 0;
-        }
-        .header-logo img {
-            max-height: 50px;
-        }
-        .card {
-            background-color: var(--card-background);
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            overflow: hidden;
-        }
-        .card h2 {
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin: 0;
-            display: flex;
-            align-items: center;
-        }
-        .card h2 .fa-solid, .card h2 .fa-brands { margin-right: 12px; }
-        .collapsible-header {
-            padding: 25px 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.2s;
-        }
-        .collapsible-header:hover { background-color: #f8f9fa; }
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            padding: 0 30px;
-        }
-        .collapsible-card.active .collapsible-content {
-            max-height: 2000px;
-            padding-bottom: 25px;
-        }
-        .toggle-icon { transition: transform 0.4s ease-out; }
-        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-        .card.static-card .card-content { padding: 25px 30px; }
-        .link-list {
-            list-style: none; padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-        }
-        .link-list li a {
-            display: flex; align-items: flex-start; padding: 12px;
-            border-radius: 8px; text-decoration: none;
-            background-color: #f8f9fa; transition: background-color 0.3s, color 0.3s;
-            height: 100%; box-sizing: border-box;
-        }
-        .link-list li a:hover { background-color: #e9ecef; }
-        .link-icon {
-            margin-right: 12px; width: 20px; text-align: center;
-            color: #007bff; margin-top: 3px;
-        }
-        .link-text-wrapper { display: flex; flex-direction: column; }
-        .link-title { color: var(--link-color); font-weight: 500; }
-        .link-subtitle { font-size: 0.8em; color: var(--subtitle-color); font-weight: 400; }
-        .contact-details-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #eef2f5;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            margin-top: 15px;
-        }
-        .data-text { flex-grow: 1; margin-right: 15px; word-break: break-all; white-space: pre-wrap; }
-        .copy-btn, .training-btn {
-            padding: 8px 15px; border: none; background-color: #007bff; color: white; cursor: pointer;
-            border-radius: 6px; font-weight: 500; transition: background-color 0.3s; white-space: nowrap;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-        .copy-btn:hover, .training-btn:hover { background-color: #0056b3; }
-        .copy-btn.copied { background-color: #28a745; }
-        .store-title-in-box {
-            font-size: 1.15em;
-            font-weight: 700;
-            color: #333;
-        }
-        .calendar-container {
-            position: relative; padding-bottom: 75%; height: 0;
-            overflow: hidden; border-radius: 8px;
-        }
-        .calendar-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .search-input-wrapper {
-            position: relative;
-            margin-bottom: 15px;
-        }
-        .search-input {
-            width: 100%;
-            padding: 10px 40px 10px 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 1em;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        .search-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--subtitle-color);
-            pointer-events: none;
-        }
-        .no-results-message {
-            padding: 15px;
-            text-align: center;
-            color: var(--subtitle-color);
-            font-style: italic;
-            display: none;
-        }
-        .training-highlight {
-            display: flex;
-            align-items: center;
-            background: var(--highlight-bg);
-            color: #b68400;
-            padding: 12px 18px;
-            border-radius: 8px;
-            margin: 0 0 18px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            font-weight: 600;
-            gap: 10px;
-        }
-        .training-highlight i { margin-right: 7px; color: #FFC107;}
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            .header { flex-direction: column-reverse; text-align: center; }
-            .header-logo { margin-bottom: 15px; }
-            .collapsible-header, .card.static-card .card-content { padding: 20px; }
-            .data-item { flex-direction: column; align-items: flex-start; }
-            .copy-btn, .training-btn { margin-top: 10px; width: 100%; }
-            .training-highlight { font-size: 0.97em; }
-        }
-    </style>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <link rel="shortcut icon" type="image/png" href="favicon.png">
 </head>
 <body>
+    <div class="top-bar"></div>
     <div class="container">
+        
         <header class="header">
             <div class="header-text">
                 <h1>Painel Tamandaré Tintas</h1>
-                <p>Links, contatos e informações essenciais para a equipe.</p>
+                <p>Ferramentas, contatos e procedimentos para a operação.</p>
             </div>
             <div class="header-logo">
-                <img src="./logo-tamandare.png" alt="Logo Tamandaré Tintas">
+                <img src="./logo-tamandare.png" alt="Logo Tamandaré Tintas" onerror="this.style.display='none'">
             </div>
         </header>
+
         <div class="card static-card">
             <div class="card-content">
                 <h2><i class="fa-solid fa-link"></i>Links Essenciais</h2>
                 <ul class="link-list">
                     <li><a href="https://www.aciai.com.br/" target="_blank">
-                        <i class="fa-solid fa-building link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">ACIAI</span><small class="link-subtitle">Consulta restrições financeiras</small></div>
+                        <div class="link-icon"><i class="fa-solid fa-building"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">ACIAI</span><span class="link-subtitle">Consulta restrições</span></div>
                     </a></li>
                     <li><a href="https://protestosp.com.br/consulta-de-protesto" target="_blank">
-                        <i class="fa-solid fa-file-invoice link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">CENPROT</span><small class="link-subtitle">Consulta restrições em cartório</small></div>
+                        <div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">CENPROT</span><span class="link-subtitle">Restrições em cartório</span></div>
                     </a></li>
                     <li><a href="https://www.sintegra.gov.br/" target="_blank">
-                        <i class="fa-solid fa-receipt link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">SINTEGRA</span><small class="link-subtitle">Consulta situação da Inscrição Estadual</small></div>
+                        <div class="link-icon"><i class="fa-solid fa-receipt"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">SINTEGRA</span><span class="link-subtitle">Inscrição Estadual</span></div>
                     </a></li>
                     <li><a href="https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">
-                        <i class="fa-solid fa-id-card link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">Consulta CNPJ</span><small class="link-subtitle">Consulta situação cadastral do CNPJ</small></div>
+                        <div class="link-icon"><i class="fa-solid fa-id-card"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">Consulta CNPJ</span><span class="link-subtitle">Situação cadastral</span></div>
                     </a></li>
                     <li><a href="https://banco.bradesco/html/classic/produtos-servicos/mais-produtos-servicos/segunda-via-boleto.shtm" target="_blank">
-                        <i class="fa-solid fa-barcode link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">Segunda Via de Boleto</span><small class="link-subtitle">Segunda via Boleto Bradesco</small></div>
+                        <div class="link-icon"><i class="fa-solid fa-barcode"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">2ª Via Boleto</span><span class="link-subtitle">Boleto Bradesco</span></div>
                     </a></li>
                     <li><a href="https://tamandarett.github.io/codex44/" target="_blank">
-                        <i class="fa-brands fa-pix link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">Gerador PIX</span></div>
+                        <div class="link-icon"><i class="fa-brands fa-pix"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">Gerador PIX</span><span class="link-subtitle">Criar QR Code</span></div>
                     </a></li>
                     <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/" target="_blank">
-                        <i class="fa-solid fa-stamp link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">Registro de Lacres</span></div>
+                        <div class="link-icon"><i class="fa-solid fa-stamp"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">Registro de Lacres</span><span class="link-subtitle">Malotes</span></div>
                     </a></li>
                     <li><a href="https://drive.google.com/drive/folders/1Bb5c4ULT6W4IRfHjOFZsxuY9Czh-lhxM?usp=drive_link" target="_blank">
-                        <i class="fa-solid fa-book link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">Formulários</span></div>
-                    </a></li>
-                    <li><a href="https://tamandaretintas.com.br/" target="_blank">
-                        <i class="fa-solid fa-palette link-icon"></i>
-                        <div class="link-text-wrapper"><span class="link-title">Site Tamandaré Tintas</span></div>
+                        <div class="link-icon"><i class="fa-solid fa-book"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">Formulários</span><span class="link-subtitle">Documentos em nuvem</span></div>
                     </a></li>
                 </ul>
             </div>
         </div>
-        <div class="card collapsible-card">
+
+        <div class="card collapsible-card highlight-card">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-graduation-cap"></i>Treinamento da Equipe</h2>
+                <h2><i class="fa-solid fa-magnifying-glass"></i>Tira-Dúvidas (Manuais)</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
-                <div class="card-content" style="padding: 0; padding-top: 10px;">
-                    <div class="training-highlight">
-                        <i class="fa-solid fa-star"></i>
-                        <span>Treinamento em destaque: <b>Vendas e Transferência entre lojas</b></span>
-                        <a href="https://tamandarett.github.io/painel-tamandare/treinamentos/vendasentrelojas.html" target="_blank" class="training-btn" style="margin-left: 12px;">Acessar</a>
-                    </div>
-                    <div class="search-input-wrapper">
-                        <input
-                            type="text"
-                            id="treinamento-search"
-                            class="search-input"
-                            placeholder="Buscar treinamento..."
-                            autocomplete="off"
-                        >
-                        <i class="fa-solid fa-search search-icon"></i>
-                    </div>
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label for="treinamento-select" style="font-weight: 500; color: var(--text-color);">Selecione o Treinamento:</label>
-                        <select id="treinamento-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
-                            <option value="" disabled selected>-- Selecione um Treinamento --</option>
-                            <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial Tamandaré Tintas: Do Propósito ao Cliente</option>
-                            <option value="Cadastro de Clientes">Cadastro de Clientes</option>
-                            <option value="Registro de Lacres">Registro de Lacres</option>
-                            <option value="GNRE">GNRE: Notas para Fora do Estado</option>
-                            <option value="Procedimento de Devolução e Recusa de Mercadorias">Procedimento de Devolução e Recusa de Mercadorias</option>
-                            <option value="Despesa de Viagem">Despesa de Viagem</option>
-                            <option value="Vendas e Transferência entre lojas">Vendas e Transferência entre lojas ⭐</option>
-                            <option value="Análise de Crédito">Análise de Crédito — Interpretando os dados da ACIAI</option>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;">Busque rápidos procedimentos operacionais e fiscais.</p>
+                
+                <div class="search-container-inputs">
+                    <div class="input-box">
+                        <label for="loja-busca">Sua Unidade</label>
+                        <select id="loja-busca" class="modern-select">
+                            <option value="" disabled selected>Selecione a loja...</option>
+                            <option>02 - Morada do Sol</option>
+                            <option>05 - Visconde</option>
+                            <option>09 - Vinhedo</option>
+                            <option>10 - Conceição</option>
+                            <option>12 - Elias Fausto</option>
+                            <option>13 - Maria José</option>
+                            <option>14 - Paula Leite</option>
+                            <option>15 - Salto</option>
+                            <option>16 - Itu</option>
                         </select>
                     </div>
-                    <div id="no-results-treinamento" class="no-results-message">
-                        Nenhum treinamento encontrado com esse termo.
-                    </div>
-                    <div id="treinamento-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+                    <div class="input-box large">
+                        <label for="pergunta">Qual a sua dúvida?</label>
+                        <input type="text" id="pergunta" class="search-input" placeholder="Ex: CFOP devolução" autocomplete="off" />
                     </div>
                 </div>
+
+                <div class="search-actions">
+                    <button id="btnBuscar" class="btn-primary" onclick="buscar()">Pesquisar</button>
+                    <button id="btnLimpar" class="btn-secondary" onclick="limparBusca()" style="display: none;">Limpar Resultados</button>
+                </div>
+
+                <div id="resultado" class="results-container" style="display: none;"></div>
             </div>
         </div>
+
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-graduation-cap"></i>Treinamentos Completos</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="training-highlight">
+                    <i class="fa-solid fa-star"></i>
+                    <span style="flex-grow: 1;">Em destaque: <b>Vendas e Transferência entre lojas</b></span>
+                    <a href="https://tamandarett.github.io/painel-tamandare/treinamentos/vendasentrelojas.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">Acessar</a>
+                </div>
+                
+                <div class="search-input-wrapper-icon">
+                    <input type="text" id="treinamento-search" class="search-input" placeholder="Filtrar treinamentos..." autocomplete="off">
+                    <i class="fa-solid fa-search search-icon-inside"></i>
+                </div>
+                
+                <label for="treinamento-select">Selecione o Treinamento:</label>
+                <select id="treinamento-select" class="modern-select">
+                    <option value="" disabled selected>-- Selecione um Treinamento --</option>
+                    <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial Tamandaré Tintas: Do Propósito ao Cliente</option>
+                    <option value="Cadastro de Clientes">Cadastro de Clientes</option>
+                    <option value="Registro de Lacres">Registro de Lacres</option>
+                    <option value="GNRE">GNRE: Notas para Fora do Estado</option>
+                    <option value="Procedimento de Devolução e Recusa de Mercadorias">Procedimento de Devolução e Recusa</option>
+                    <option value="Despesa de Viagem">Despesa de Viagem</option>
+                    <option value="Vendas e Transferência entre lojas">Vendas e Transferência entre lojas ⭐</option>
+                    <option value="Análise de Crédito">Análise de Crédito — Dados da ACIAI</option>
+                </select>
+                
+                <div id="no-results-treinamento" class="no-results-message">Nenhum treinamento encontrado.</div>
+                <div id="treinamento-details-display" class="contact-details-item" style="display: none;"></div>
+            </div>
+        </div>
+
         <div class="card collapsible-card">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
-                <div class="card-content" style="padding: 0; padding-top: 10px;">
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label for="contato-select" style="font-weight: 500; color: var(--text-color);">Selecione o Contato:</label>
-                        <select id="contato-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
-                            <option value="" disabled selected>-- Selecione um nome/setor --</option>
-                            <option value="Alexandre">Alexandre (Suporte)</option>
-                            <option value="Ana Claudia">Ana Claudia (RH)</option>
-                            <option value="Carla">Carla (Fiscal/Financeiro)</option>
-                            <option value="Daniel">Daniel (Contas a Pagar)</option>
-                            <option value="Eduardo">Eduardo (Marketing)</option>
-                            <option value="Filipe">Filipe (Comercial)</option>
-                            <option value="Junior">Junior (Caixa)</option>
-                            <option value="Lançamento de Notas">Lançamento de Notas</option>
-                        </select>
-                    </div>
-                    <div id="contato-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
-                    </div>
+                <div style="padding-top: 15px;">
+                    <label for="contato-select">Selecione o Contato / Setor:</label>
+                    <select id="contato-select" class="modern-select">
+                        <option value="" disabled selected>-- Selecione um nome/setor --</option>
+                        <option value="Alexandre">Alexandre (Suporte)</option>
+                        <option value="Ana Claudia">Ana Claudia (RH)</option>
+                        <option value="Carla">Carla (Fiscal/Financeiro)</option>
+                        <option value="Daniel">Daniel (Contas a Pagar)</option>
+                        <option value="Eduardo">Eduardo (Marketing)</option>
+                        <option value="Filipe">Filipe (Comercial)</option>
+                        <option value="Junior">Junior (Caixa)</option>
+                        <option value="Lançamento de Notas">Lançamento de Notas</option>
+                    </select>
                 </div>
+                <div id="contato-details-display" class="contact-details-item" style="display: none; flex-direction: column;"></div>
             </div>
         </div>
+
         <div class="card collapsible-card">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-shop"></i>Nossas Lojas</h2>
+                <h2><i class="fa-solid fa-shop"></i>Dados das Lojas</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
-                <div class="card-content" style="padding: 0; padding-top: 10px;">
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label for="loja-select" style="font-weight: 500; color: var(--text-color);">Selecione a Loja:</label>
-                        <select id="loja-select" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em;">
-                            <option value="" disabled selected>-- Selecione a Loja --</option>
-                            <option value="loja-morada">02 - Morada do Sol</option>
-                            <option value="loja-visconde">05 - Visconde</option>
-                            <option value="loja-vinhedo">09 - Vinhedo</option>
-                            <option value="loja-conceicao">10 - Conceição</option>
-                            <option value="loja-elias">12 - Elias Fausto</option>
-                            <option value="loja-maria">13 - Maria José</option>
-                            <option value="loja-paula">14 - Paula Leite</option>
-                            <option value="loja-salto">15 - Salto</option>
-                            <option value="loja-itu">16 - Itu</option>
-                        </select>
-                    </div>
-                    <div id="loja-details-display" class="contact-details-item" style="box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: none; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
-                    </div>
+                <div style="padding-top: 15px;">
+                    <label for="loja-select">Selecione a Loja:</label>
+                    <select id="loja-select" class="modern-select">
+                        <option value="" disabled selected>-- Selecione a Loja --</option>
+                        <option value="loja-morada">02 - Morada do Sol</option>
+                        <option value="loja-visconde">05 - Visconde</option>
+                        <option value="loja-vinhedo">09 - Vinhedo</option>
+                        <option value="loja-conceicao">10 - Conceição</option>
+                        <option value="loja-elias">12 - Elias Fausto</option>
+                        <option value="loja-maria">13 - Maria José</option>
+                        <option value="loja-paula">14 - Paula Leite</option>
+                        <option value="loja-salto">15 - Salto</option>
+                        <option value="loja-itu">16 - Itu</option>
+                    </select>
                 </div>
+                <div id="loja-details-display" class="contact-details-item" style="display: none;"></div>
             </div>
         </div>
+
         <div class="card static-card">
             <div class="card-content">
                 <h2><i class="fa-solid fa-calendar-days"></i>Agenda da Equipe</h2>
@@ -350,367 +202,19 @@
             </div>
         </div>
     </div>
-<script>
-const TEAM_CONTACTS = {
-    "Alexandre":{
-        email:"suporte@tamandaretintas.com.br",
-        phone:"(19) 99328-5132",
-        desc:"Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede."
-    },
-    "Ana Claudia":{
-        email:"anaclaudia@tamandaretintas.com.br",
-        phone:"(19) 97131-7520",
-        desc:"Departamento Pessoal (RH): Dúvidas sobre folha de pagamento, benefícios e regras trabalhistas."
-    },
-    "Carla":{
-        email:"carla@tamandaretintas.com.br",
-        phone:null,
-        desc:"Setor Financeiro / Fiscal: Assuntos relacionados a bancos, contabilidade e impostos."
-    },
-    "Daniel":{
-        email:"daniel@tamandaretintas.com.br",
-        phone:null,
-        desc:"Contas a Pagar, assistência técnica de produtos, e devolução de mercadorias para fornecedores."
-    },
-    "Eduardo":{
-        email:"marketing@tamandaretintas.com.br",
-        phone:null,
-        desc:"Marketing: Promoções, campanhas publicitárias e materiais de divulgação."
-    },
-    "Filipe":{
-        email:"filipe@tamandaretintas.com.br",
-        phone:null,
-        desc:"Questões, negociações ou propostas comerciais e assuntos gerais."
-    },
-    "Junior":{
-        email:"junior@tamandaretintas.com.br",
-        phone:null,
-        desc:"Operações relacionadas caixa, Contas a receber, problemas financeiros urgentes relacionados ao cliente."
-    },
-    "Lançamento de Notas":{
-        email:"admloja3@tamandaretintas.com.br",
-        phone:null,
-        desc:"Lançamentos / Estoque: Dúvidas sobre estoque lançado, notas lançadas e pagamentos a fornecedores."
-    }
-};
 
-const TRAINING_DETAILS = {
-    "Jornada Essencial Tamandaré Tintas": {
-        description: "Esta trilha de treinamento foi estruturada para guiar você através dos pilares da Tamandaré Tintas: desde a compreensão profunda de nosso propósito e cultura até as técnicas de comunicação e atendimento que garantem a satisfação de nossos clientes. Complete os 4 módulos para entender os fundamentos do sucesso em nossa equipe.",
-        modules: [
-            {
-                title: "Módulo 1: Propósito e Cultura: Missão, Visão e Valores.",
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/compreendendo.html"
-            },
-            {
-                title: "Módulo 2: Pilares do Atendimento: Cortesia, Paciência e Eficiência.",
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/princ%C3%ADpiosdeumbomatendimento.html"
-            },
-            {
-                title: "Módulo 3: Técnicas de Comunicação Eficaz.",
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/t%C3%A9cnicasdecomunica%C3%A7%C3%A3oeficaz.html"
-            },
-            {
-                title: "Módulo 4: Tom e Comunicação Digital.",
-                link: "https://tamandarett.github.io/painel-tamandare/treinamentos/comunicameiodigital.html"
-            }
-        ]
-    },
-    "Cadastro de Clientes":{
-        description:"Neste treinamento, você vai aprender como cadastrar clientes corretamente, seguindo padrões de segurança e completude, aplicar bloqueios quando necessário e consultar informações para garantir cadastros confiáveis.",
-        link:"https://tamandarett.github.io/painel-tamandare/treinamentos/cadastrodeclientes.html"
-    },
-    "Registro de Lacres":{
-        description:"Este é um sistema digital para registrar a numeração de todos os lacres dos malotes. Ele garante que cada lacre seja registrado corretamente, sem erros de digitação, e que cada registro tenha a data, hora e nome do operador.",
-        link:"https://tamandarett.github.io/painel-tamandare/treinamentos/lacres.html"
-    },
-    "GNRE":{
-        description:"Orientações para emissão da GNRE apenas quando necessária.",
-        link:"https://tamandarett.github.io/painel-tamandare/treinamentos/gnre.html"
-    },
-    "Procedimento de Devolução e Recusa de Mercadorias": {
-        description: "Este treinamento serve para conhecer as diferenças entre recusa e devolução bem como as regras e procedimento para cada uma delas.",
-        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/devolucao.html"
-    },
-    "Despesa de Viagem": {
-        description: "Este treinamento explica as regras e procedimentos para realizar pagamento e baixas de despesas relacionadas a viagem.",
-        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/despesasdeviagem.html"
-    },
-    "Vendas e Transferência entre lojas": {
-        description: "Este treinamento explica as regras e procedimentos para realizar vendas e transferências de mercadorias entre lojas do grupo Tamandaré Tintas e Marqui & Venturini.",
-        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/vendasentrelojas.html"
-    },
-    // NOVO TREINAMENTO DE CRÉDITO
-    "Análise de Crédito": {
-        description: "Aprenda a interpretar os dados da ACIAI para realizar uma análise de crédito segura e eficiente. Entenda os principais indicadores de risco e tome decisões informadas.",
-        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/analisedecredito.html"
-    }
-};
-
-const STORE_DETAILS = {
-    "loja-morada":{
-        title:"Indaiatuba - Morada do Sol",
-        address:"Av. Ário Barnabé, 655 - Jardim Morada do Sol, Indaiatuba/SP.",
-        phones:["(19) 3935-9141","(19) 3935-9144"],
-        email:"loja2@tamandaretintas.com.br",
-        whatsapp:"(19) 99328-6800"
-    },
-    "loja-visconde":{
-        title:"Indaiatuba - Visconde",
-        address:"Av. Visconde de Indaiatuba, 441 - Jardim América, Indaiatuba/SP.",
-        phones:["(19) 3894-6112","(19) 3885-4818"],
-        email:"loja3@tamandaretintas.com.br",
-        whatsapp:"19 99329-4193"
-    },
-    "loja-vinhedo":{
-        title:"Vinhedo",
-        address:"Av. Saudade, N 366 - Jardim Alba, Vinhedo/SP.",
-        phones:["(19) 3030-3483"],
-        email:"lojavinhedo@tamandaretintas.com.br",
-        whatsapp:"19 98610-8999"
-    },
-    "loja-conceicao":{
-        title:"Indaiatuba - Conceição",
-        address:"Av. Conceição, 1178 - Vila Maria Helena, Indaiatuba/SP.",
-        phones:["(19) 3392-6690"],
-        email:"loja10@tamandaretintas.com.br",
-        whatsapp:"(19) 99329-0533"
-    },
-    "loja-elias":{
-        title:"Elias Fausto",
-        address:"R. XV de Novembro, 181 – Centro, Elias Fausto/SP.",
-        phones:["(19) 3821-2508"],
-        email:"loja5@tamandaretintas.com.br",
-        whatsapp:"(19) 99329-7193"
-    },
-    "loja-maria":{
-        title:"Indaiatuba - Maria José",
-        address:"Av. Fábio Ferraz Bicudo, 1329 - Maria José, Indaiatuba/SP.",
-        phones:["(19) 3312-1933"],
-        email:"loja13@tamandaretintas.com.br",
-        whatsapp:"(19) 99699 4383"
-    },
-    "loja-paula":{
-        title:"Indaiatuba - Paula Leite",
-        address:"Av. Francisco de Paula Leite, 334 - Jardim Santa Cruz, Indaiatuba/SP.",
-        phones:["(19) 3825-1100","(19) 3834-1180"],
-        email:"loja1@tamandaretintas.com.br",
-        whatsapp:"(19) 99711-7509"
-    },
-    "loja-salto":{
-        title:"Salto",
-        address:"R. Nove de Julho, 1426 - Vila Nova, Salto/SP.",
-        phones:["(11) 4029-1401"],
-        email:"loja8@tamandaretintas.com.br",
-        whatsapp:"11 94289-3594"
-    },
-    "loja-itu":{
-        title:"Itu",
-        address:"R. Arquiteto Márcio João de Arruda, 107 - Vila Leis, Itu/SP.",
-        phones:["(11) 2222-3912"],
-        email:"loja11@tamandaretintas.com.br",
-        whatsapp:"11 98830-4274"
-    }
-};
-
-function copyToClipboard(elementId, buttonElement) {
-    const isStore = elementId.startsWith('loja-data-');
-    let textToCopy = '';
-    if (isStore) {
-        textToCopy = document.getElementById(elementId).innerText;
-    } else {
-        textToCopy = document.getElementById(elementId).innerText;
-    }
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        const originalText = buttonElement.innerText;
-        buttonElement.innerText = 'Copiado!';
-        buttonElement.classList.add('copied');
-        setTimeout(() => {
-            buttonElement.innerText = originalText;
-            buttonElement.classList.remove('copied');
-        }, 2000);
-    }).catch(err => { console.error('Erro ao copiar texto: ', err); });
-}
-
-function updateContactDetails() {
-    const select = document.getElementById('contato-select');
-    const displayDiv = document.getElementById('contato-details-display');
-    const selectedName = select.value;
-    if (!selectedName || selectedName === '') {
-        displayDiv.style.display = 'none';
-        return;
-    }
-    const contact = TEAM_CONTACTS[selectedName];
-    const emailId = `selected-email-${selectedName.replace(/[^a-zA-Z0-9]/g, '-')}`;
-    const phoneHTML = contact.phone ? `
-        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 5px;">
-            <p style="margin: 0; font-weight: 500; color: var(--text-color); font-size: 0.95em;">
-                Telefone: <a href="tel:${contact.phone.replace(/[^0-9]/g, '')}" style="color: var(--primary-color); text-decoration: none; font-weight: 700;">${contact.phone}</a>
-            </p>
-        </div>` : '';
-    if (contact) {
-        displayDiv.innerHTML = `
-            <p style="margin-bottom: 5px;"><b>${selectedName}:</b></p>
-            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <p id="${emailId}" style="margin: 0; font-weight: 500; color: var(--link-color); word-break: break-all; font-size: 0.95em;">
-                    ${contact.email}
-                </p>
-                <button class="copy-btn"
-                        onclick="copyToClipboard('${emailId}', this)"
-                        style="margin-left: 10px;">
-                    Copiar Email
-                </button>
+    <div id="modal-feedback" class="modal-overlay">
+        <div class="modal-content">
+            <h3>O que faltou nesta resposta?</h3>
+            <p>Ajude a melhorar o sistema explicando por que os manuais não resolveram a dúvida.</p>
+            <textarea id="txt-comentario" placeholder="Escreva aqui o seu comentário..." rows="4"></textarea>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="fecharModalFeedback()">Cancelar</button>
+                <button id="btn-enviar-feedback" class="btn-primary" onclick="confirmarFeedback()">Enviar Avaliação</button>
             </div>
-            ${phoneHTML}
-            <p style="font-size: 0.9em; color: var(--subtitle-color); margin-top: 10px; margin-bottom: 0; width: 100%;">
-                ${contact.desc}
-            </p>
-        `;
-        displayDiv.style.display = 'flex';
-    } else {
-        displayDiv.style.display = 'none';
-    }
-}
+        </div>
+    </div>
 
-function updateTreinamentoDetails() {
-    const select = document.getElementById('treinamento-select');
-    const displayDiv = document.getElementById('treinamento-details-display');
-    const selectedTraining = select.value;
-    if (!selectedTraining || selectedTraining === '') {
-        displayDiv.style.display = 'none';
-        return;
-    }
-    const training = TRAINING_DETAILS[selectedTraining];
-    if (training) {
-        let html = `
-            <p style="margin-bottom: 5px;"><b>${selectedTraining}:</b></p>
-            <p style="font-size: 0.9em; color: #6c757d; margin-top: 5px; margin-bottom: 15px; width: 100%;">
-                ${training.description}
-            </p>
-        `;
-        if (training.modules) {
-            html += `<div style="width: 100%; display: flex; flex-direction: column; gap: 10px;">`;
-            training.modules.forEach((mod) => {
-                html += `<a href="${mod.link}" target="_blank" class="training-btn" style="width: 100%;">${mod.title}</a>`;
-            });
-            html += `</div>`;
-        } else if (training.link) {
-            html += `<a href="${training.link}" target="_blank" class="training-btn" style="width: 100%;">Ir ao Treinamento</a>`;
-        }
-        displayDiv.innerHTML = html;
-        displayDiv.style.display = 'flex';
-    } else {
-        displayDiv.style.display = 'none';
-    }
-}
-
-function filterTreinamentosAndDisplayFirstMatch() {
-    const searchInput = document.getElementById('treinamento-search');
-    const select = document.getElementById('treinamento-select');
-    const noResultsMsg = document.getElementById('no-results-treinamento');
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const options = Array.from(select.options).slice(1);
-    let matches = [];
-    options.forEach(option => {
-        const optionText = option.text.toLowerCase();
-        const trainingKey = option.value;
-        const trainingDesc = TRAINING_DETAILS[trainingKey]?.description.toLowerCase() || '';
-        const matched = optionText.includes(searchTerm) || trainingDesc.includes(searchTerm);
-        if (matched || searchTerm === '') {
-            option.style.display = '';
-            if (searchTerm !== '') {
-                matches.push(trainingKey);
-            }
-        } else {
-            option.style.display = 'none';
-        }
-    });
-    if (matches.length === 0 && searchTerm !== '') {
-        noResultsMsg.style.display = 'block';
-        select.style.display = 'none';
-        document.getElementById('treinamento-details-display').style.display = 'none';
-        return;
-    } else {
-        noResultsMsg.style.display = 'none';
-        select.style.display = 'block';
-    }
-    if (searchTerm !== '' && matches.length > 0) {
-        select.value = matches[0];
-        updateTreinamentoDetails();
-    } else if (searchTerm === '') {
-        select.value = '';
-        updateTreinamentoDetails();
-    }
-}
-
-function updateLojaDetails() {
-    const select = document.getElementById('loja-select');
-    const displayDiv = document.getElementById('loja-details-display');
-    const selectedStoreId = select.value;
-    if (!selectedStoreId || selectedStoreId === '') {
-        displayDiv.style.display = 'none';
-        return;
-    }
-    const store = STORE_DETAILS[selectedStoreId];
-    const dataId = `loja-data-${selectedStoreId}`;
-    const contentToCopy = `
-${store.title}
-Endereço: ${store.address}
-Fone: ${store.phones.join(' / ')}
-E-mail: ${store.email}
-WhatsApp: ${store.whatsapp}
-    `.trim();
-    if (store) {
-        displayDiv.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
-                <span id="${dataId}" style="display:none; white-space: pre-wrap;">${contentToCopy}</span>
-                <div class="data-text" style="padding-right: 15px; flex-grow: 1;">
-                    <b class="store-title-in-box">${store.title}</b><br>
-                    Endereço: ${store.address}<br>
-                    Fone: ${store.phones.join(' / ')}<br>
-                    E-mail: ${store.email}<br>
-                    WhatsApp: ${store.whatsapp}
-                </div>
-                <button class="copy-btn" onclick="copyToClipboard('${dataId}', this)">Copiar Dados</button>
-            </div>
-        `;
-        displayDiv.style.display = 'flex';
-    } else {
-        displayDiv.style.display = 'none';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Collapsible (expande/recolhe) sessões
-    const collapsibleCards = document.querySelectorAll('.collapsible-card');
-    collapsibleCards.forEach(function(card){
-        const header = card.querySelector('.collapsible-header');
-        header.addEventListener('click', function() {
-            card.classList.toggle('active');
-        });
-    });
-
-    // Treinamentos: mostra detalhes
-    const selectTreinamentoElement = document.getElementById('treinamento-select');
-    if (selectTreinamentoElement) {
-        selectTreinamentoElement.addEventListener('change', updateTreinamentoDetails);
-    }
-    const searchTreinamentoInput = document.getElementById('treinamento-search');
-    if (searchTreinamentoInput) {
-        searchTreinamentoInput.addEventListener('input', filterTreinamentosAndDisplayFirstMatch);
-    }
-    // Contatos e lojas
-    const selectContactElement = document.getElementById('contato-select');
-    if (selectContactElement) {
-        selectContactElement.addEventListener('change', updateContactDetails);
-    }
-    const selectLojaElement = document.getElementById('loja-select');
-    if (selectLojaElement) {
-        selectLojaElement.addEventListener('change', updateLojaDetails);
-    }
-    // Garantir exibição correta ao recarregar ou manter seleção
-    updateTreinamentoDetails();
-});
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
