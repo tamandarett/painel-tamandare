@@ -6,6 +6,10 @@
     <title>Painel Rápido - Tamandaré Tintas</title>
     <meta name="robots" content="noindex">
     
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#D32F2F">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -216,5 +220,15 @@
     </div>
 
     <script src="script.js"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('App PWA ativado com sucesso.'))
+            .catch(err => console.error('Erro ao ativar o App PWA:', err));
+        });
+      }
+    </script>
 </body>
 </html>
