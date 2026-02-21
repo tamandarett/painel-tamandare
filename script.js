@@ -265,6 +265,10 @@ function buscar() {
 
         if (top.length > 0) {
             const titles = top.map(i => i.titulo).join(" | ");
+            
+            // ---> AQUI ESTÁ A NOVA LINHA DE TELEMETRIA (Registo de Sucesso) <---
+            dispararTelemetria("Busca Realizada", pergunta, titles);
+
             let html = `<div class="feedback-topo"><span class="feedback-texto">Não encontrou a resposta exata?</span><button class="btn-feedback-min" onclick="abrirModalFeedback('${pergunta.replace(/'/g, "\\'")}', '${titles.replace(/'/g, "\\'")}')">👎 Reportar Falha</button></div>`;
             
             html += top.map((item, i) => {
@@ -309,19 +313,12 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarBase();
     document.getElementById("pergunta")?.addEventListener("keypress", e => { if (e.key === "Enter") buscar(); });
     
-    // COMPORTAMENTO "ACORDEÃO" (Abre uma, fecha as outras)
     const collapsibleCards = document.querySelectorAll('.collapsible-card');
     collapsibleCards.forEach(card => {
         card.querySelector('.collapsible-header').addEventListener('click', () => {
             const jaEstavaAberto = card.classList.contains('active');
-            
-            // 1. Fecha todas as abas
             collapsibleCards.forEach(c => c.classList.remove('active'));
-            
-            // 2. Abre a aba clicada (apenas se ela não estava aberta)
-            if (!jaEstavaAberto) {
-                card.classList.add('active');
-            }
+            if (!jaEstavaAberto) { card.classList.add('active'); }
         });
     });
 
