@@ -1,5 +1,5 @@
 // ==========================================
-// DADOS DO PAINEL ORIGINAL
+// DADOS DO PAINEL
 // ==========================================
 const TEAM_CONTACTS = {
     "Alexandre":{ email:"suporte@tamandaretintas.com.br", phone:"(19) 99328-5132", desc:"Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede." },
@@ -44,7 +44,7 @@ const STORE_DETAILS = {
 };
 
 // ==========================================
-// FUNÇÕES DO PAINEL ORIGINAL
+// FUNÇÕES DO PAINEL
 // ==========================================
 function copyToClipboard(elementId, buttonElement) {
     let textToCopy = document.getElementById(elementId).innerText;
@@ -90,8 +90,8 @@ function updateTreinamentoDetails() {
     if (!selectedTraining) { displayDiv.style.display = 'none'; return; }
     
     const training = TRAINING_DETAILS[selectedTraining];
-    let html = `<b style="font-size: 15px; display:block; margin-bottom:5px;">${selectedTraining}</b>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">${training.description}</p>`;
+    
+    let html = `<p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">${training.description}</p>`;
                 
     if (training.modules) {
         html += `<div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">`;
@@ -261,12 +261,11 @@ function buscar() {
 
         const top = brutos.slice(0, 3).map(r => r.item);
         divRes.style.display = "flex";
-        btnLimpar.style.display = "inline-block"; // Mostra o botão de limpar
+        btnLimpar.style.display = "inline-block";
 
         if (top.length > 0) {
             const titles = top.map(i => i.titulo).join(" | ");
             
-            // ---> AQUI ESTÁ A NOVA LINHA DE TELEMETRIA (Registo de Sucesso) <---
             dispararTelemetria("Busca Realizada", pergunta, titles);
 
             let html = `<div class="feedback-topo"><span class="feedback-texto">Não encontrou a resposta exata?</span><button class="btn-feedback-min" onclick="abrirModalFeedback('${pergunta.replace(/'/g, "\\'")}', '${titles.replace(/'/g, "\\'")}')">👎 Reportar Falha</button></div>`;
@@ -302,7 +301,7 @@ function toggleResultado(index) {
         document.getElementById(`resultado-${resultadoAberto}`)?.classList.remove("ativo");
         document.getElementById(`seta-${resultadoAberto}`)?.classList.remove("rotacionar");
     }
-    corpo.classList.toggle("ativo"); seta.classList.toggle("rotacionar");
+    cor corpo.classList.toggle("ativo"); seta.classList.toggle("rotacionar");
     resultadoAberto = corpo.classList.contains("ativo") ? index : null;
 }
 
