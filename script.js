@@ -301,7 +301,8 @@ function toggleResultado(index) {
         document.getElementById(`resultado-${resultadoAberto}`)?.classList.remove("ativo");
         document.getElementById(`seta-${resultadoAberto}`)?.classList.remove("rotacionar");
     }
-    cor corpo.classList.toggle("ativo"); seta.classList.toggle("rotacionar");
+    corpo.classList.toggle("ativo"); 
+    seta.classList.toggle("rotacionar");
     resultadoAberto = corpo.classList.contains("ativo") ? index : null;
 }
 
