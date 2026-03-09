@@ -44,7 +44,7 @@ const STORE_DETAILS = {
 };
 
 // ==========================================
-// FUNÇÕES DO PAINEL
+// FUNÇÕES AUXILIARES
 // ==========================================
 function copyToClipboard(elementId, buttonElement) {
     let textToCopy = document.getElementById(elementId).innerText;
@@ -178,8 +178,9 @@ function mostrarAviso(mensagem) {
     setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
 }
 
+// ATUALIZADO: Força "Tamandaré Tintas" como loja na telemetria
 async function dispararTelemetria(tipo, pergunta, resultadosMostrados, comentario = "") {
-    const loja = document.getElementById("loja-busca")?.value || "Não informada";
+    const loja = "Tamandaré Tintas"; 
     try {
         await fetch(TELEMETRIA_URL, {
             method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -236,15 +237,16 @@ function limparBusca() {
     resultadoAberto = null;
 }
 
+// ATUALIZADO: Removida a obrigatoriedade de selecionar loja no HTML
 function buscar() {
     if (!baseCarregada) return mostrarAviso("⏳ A base de conhecimento está carregando.");
-    const loja = document.getElementById("loja-busca").value;
+    
+    const loja = "Tamandaré Tintas"; // Valor fixo para processamento
     const pergunta = document.getElementById("pergunta").value.trim();
     const btn = document.getElementById("btnBuscar");
     const btnLimpar = document.getElementById("btnLimpar");
     const divRes = document.getElementById("resultado");
 
-    if (!loja) return mostrarAviso("⚠️ Selecione sua unidade.");
     if (!pergunta) return mostrarAviso("⚠️ Digite a dúvida.");
 
     btn.innerText = "Buscando..."; btn.disabled = true;
@@ -265,7 +267,6 @@ function buscar() {
 
         if (top.length > 0) {
             const titles = top.map(i => i.titulo).join(" | ");
-            
             dispararTelemetria("Busca Realizada", pergunta, titles);
 
             let html = `<div class="feedback-topo"><span class="feedback-texto">Não encontrou a resposta exata?</span><button class="btn-feedback-min" onclick="abrirModalFeedback('${pergunta.replace(/'/g, "\\'")}', '${titles.replace(/'/g, "\\'")}')">👎 Reportar Falha</button></div>`;
@@ -307,7 +308,7 @@ function toggleResultado(index) {
 }
 
 // ==========================================
-// INICIALIZAÇÃO E COMPORTAMENTO "ACORDEÃO"
+// INICIALIZAÇÃO
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     carregarBase();
