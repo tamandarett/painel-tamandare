@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="icon" type="image/png" href="favicon.png">
-<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-
-<meta property="og:title" content="Treinamento: Abastecimento de Veículos | Tamandaré Tintas">
-
-<meta property="og:description" content="Manual de procedimentos e vídeo instrutivo para abastecimento via Ticketlog.">
-
-<meta property="og:image" content="https://SEU-USUARIO.github.io/SEU-REPOSITORIO/imagem-preview.jpg">
-
-<meta property="og:url" content="https://SEU-USUARIO.github.io/SEU-REPOSITORIO/">
-
-<meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Treinamento: Abastecimento de Veículos">
-<meta name="twitter:description" content="Manual de procedimentos para abastecimento via Ticketlog.">
-<meta name="twitter:image" content="https://SEU-USUARIO.github.io/SEU-REPOSITORIO/imagem-preview.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treinamento: Abastecimento de Veículos</title>
+    <title>Treinamento: Abastecimento de Veículos | Tamandaré Tintas</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+    <meta property="og:title" content="Treinamento: Abastecimento de Veículos | Tamandaré Tintas">
+    <meta property="og:description" content="Manual de procedimentos e vídeo instrutivo para abastecimento via Ticketlog.">
+    <meta property="og:image" content="favicon.png"> 
+    <meta property="og:type" content="website">
     <meta name="robots" content="noindex">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <style>
         :root {
             --primary-color: #1e3a5f;
@@ -51,9 +44,9 @@
         }
         .card-content { padding: 25px 30px; }
         h1 { color: var(--primary-color); font-weight: 700; text-align: center; margin-top: 20px; }
-        h2 { color: var(--primary-color); font-size: 1.5rem; margin: 0; }
+        h2 { color: var(--primary-color); font-size: 1.2rem; margin: 0; }
         h3 { color: var(--primary-color); border-left: 4px solid var(--secondary-color); padding-left: 10px; margin-top: 25px; }
-        h4 { color: #555; margin-bottom: 10px; }
+        h4 { color: #555; margin-bottom: 10px; font-weight: 700; }
         
         .collapsible-header {
             padding: 25px 30px;
@@ -70,6 +63,7 @@
             transition: max-height 0.4s ease-out;
             padding: 0 30px;
         }
+        /* Classe que controla a abertura */
         .collapsible-card.active .collapsible-content {
             max-height: none; 
             padding-bottom: 25px;
@@ -95,10 +89,10 @@
             width: 100%;
             border-collapse: collapse;
             margin: 15px 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 12px; text-align: left; }
+        th, td { padding: 10px; text-align: left; }
         th { background-color: #f8f9fa; color: var(--primary-color); }
 
         .warning-box {
@@ -111,7 +105,10 @@
         .warning-box i { color: #e65100; margin-right: 10px; }
         
         .critico-text { color: var(--secondary-color); font-weight: bold; }
-        .destaque { background-color: #e3f2fd; padding: 10px; border-radius: 4px; border-left: 4px solid #2196f3; }
+        .destaque { background-color: #e3f2fd; padding: 15px; border-radius: 4px; border-left: 4px solid #2196f3; margin: 15px 0; }
+        
+        a { color: #0056b3; text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -119,7 +116,7 @@
         <h1>Manual de Procedimentos para Abastecimento</h1>
         <p style="text-align: center; color: #666; margin-bottom: 30px;">Serviço Ticketlog - Tamandaré Tintas</p>
 
-        <div class="card collapsible-card active">
+        <div class="card collapsible-card" id="card-video">
             <div class="collapsible-header">
                 <h2><i class="fa-solid fa-video"></i> 1. Vídeo Instrutivo</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
@@ -137,7 +134,7 @@
 
         <div class="card collapsible-card">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-file-lines"></i> 2. Manual na Íntegra</h2>
+                <h2><i class="fa-solid fa-file-lines"></i> 2. Manual de Procedimentos na Íntegra</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
@@ -179,7 +176,7 @@
                     </table>
 
                     <h3>2. Procedimento Padrão de Abastecimento</h3>
-                    <p>Ao realizar o abastecimento em um posto da rede credenciada, siga os passos abaixo:</p>
+                    <p>Siga os passos abaixo em qualquer posto da rede credenciada:</p>
 
                     <table>
                         <thead>
@@ -193,45 +190,45 @@
                             <tr>
                                 <td>1.</td>
                                 <td>Localizar Posto Credenciado</td>
-                                <td>Consulte a rede credenciada no link: <a href="https://maps.goodcard.com.br/ondecomprar_abastecimento/index.php?portal=ticketlog/" target="_blank">Clique aqui</a></td>
+                                <td>Consulte a rede no link: <a href="https://maps.goodcard.com.br/ondecomprar_abastecimento/index.php?portal=ticketlog/" target="_blank">Clique aqui para ver o mapa</a></td>
                             </tr>
                             <tr>
                                 <td>2.</td>
                                 <td>Fornecer Matrícula</td>
-                                <td>Quando solicitado, informe ao frentista sua Matrícula (número de identificação pessoal).</td>
+                                <td>Informe ao frentista seu número de identificação pessoal (Matrícula).</td>
                             </tr>
                             <tr>
                                 <td>3.</td>
                                 <td>Informar Quilometragem (KM)</td>
-                                <td>Verifique o odômetro do veículo e informe o valor exato da Quilometragem.</td>
+                                <td>Verifique o odômetro e informe o valor <b>exato</b> da Quilometragem atual.</td>
                             </tr>
                             <tr>
                                 <td>4.</td>
                                 <td>Digitar Senha</td>
-                                <td>Digite sua Senha Pessoal diretamente no terminal, garantindo que ninguém a veja.</td>
+                                <td>Digite sua senha pessoal no terminal, garantindo privacidade total.</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="warning-box">
-                        <p><strong><i class="fa-solid fa-triangle-exclamation"></i> Controle de Quilometragem (KM) – Ponto Crítico</strong></p>
-                        <p>A quilometragem é essencial para a análise de performance da frota (consumo e rodagem) e como mecanismo de segurança.</p>
-                        <p><b>INFORMAÇÃO DIVERGENTE:</b> A inserção de um número de KM divergente, seja por erro do motorista ou do frentista, resultará no <b>bloqueio automático do abastecimento atual ou do próximo.</b></p>
+                        <p><strong><i class="fa-solid fa-triangle-exclamation"></i> Controle de Quilometragem (KM) – PONTO CRÍTICO</strong></p>
+                        <p>A quilometragem é essencial para a análise de performance da frota e segurança.</p>
+                        <p><b>BLOQUEIO:</b> A inserção de KM divergente resultará no <b>bloqueio automático</b> do abastecimento atual ou do próximo. Confira sempre o painel do carro.</p>
                     </div>
 
                     <h3>3. Compra de Óleo para Reposição</h3>
-                    <p>A compra de óleo para repor o nível no veículo é permitida, desde que siga o protocolo de autorização.</p>
+                    <p>O sistema permite a compra de óleo seguindo rigorosamente este protocolo:</p>
                     
                     <div class="destaque">
-                        <p><strong>Necessidade de Autorização Prévia:</strong> A compra de óleo requer autorização prévia da gestão dos veículos.</p>
+                        <p><strong><i class="fa-solid fa-lock"></i> Autorização Obrigatória:</strong> A compra de óleo requer autorização prévia da gestão de veículos da Tamandaré Tintas.</p>
                     </div>
 
-                    <h4>Procedimento:</h4>
+                    <h4>Passo a Passo para Óleo:</h4>
                     <ul>
-                        <li>O motorista deve <strong>solicitar a liberação</strong> da compra antes de ir ao posto.</li>
-                        <li>Após a solicitação, a liberação será realizada no sistema.</li>
-                        <li>A compra de óleo deve ser feita nos <strong>mesmos postos</strong> da rede credenciada Ticketlog.</li>
-                        <li>A transação deve ser feita em <strong>transação separada</strong>, mesmo que você também vá abastecer combustível.</li>
+                        <li>Solicite a liberação à gestão <strong>antes</strong> de se dirigir ao posto.</li>
+                        <li>A liberação será feita via sistema Ticketlog.</li>
+                        <li>A compra deve ser realizada apenas nos postos credenciados.</li>
+                        <li><strong>IMPORTANTE:</strong> O óleo deve ser pago em uma <strong>transação separada</strong> da transação do combustível.</li>
                     </ul>
 
                 </div>
@@ -241,13 +238,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Lógica para abrir/fechar os cards
             const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
             collapsibleHeaders.forEach(header => {
                 header.addEventListener('click', function() {
-                    const card = this.parentElement;
-                    card.classList.toggle('active');
+                    this.parentElement.classList.toggle('active');
                 });
             });
+
+            // RESULTADO: Força o card de vídeo a iniciar ABERTO
+            const videoCard = document.getElementById('card-video');
+            if (videoCard) {
+                videoCard.classList.add('active');
+            }
         });
     </script>
 </body>
