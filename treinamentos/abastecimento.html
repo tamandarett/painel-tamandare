@@ -71,6 +71,7 @@
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
         
+        /* Ajuste de Vídeo para Celular e Tela Cheia */
         .video-responsive {
             position: relative;
             padding-bottom: 56.25%;
@@ -78,6 +79,7 @@
             overflow: hidden;
             border-radius: 8px;
             background: #000;
+            margin-bottom: 10px;
         }
         .video-responsive iframe {
             position: absolute;
@@ -125,9 +127,13 @@
                 <div class="card-content" style="padding-top: 0;">
                     <div class="video-responsive">
                         <iframe src="https://drive.google.com/file/d/1VSo_P4OtpjA_XX-G-hYAGosIr_puZZyO/preview" 
-                                frameborder="0" allowfullscreen>
+                                allow="autoplay; fullscreen"
+                                allowfullscreen>
                         </iframe>
                     </div>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 10px; font-style: italic;">
+                        <i class="fa-solid fa-circle-info"></i> No celular, clique no ícone do player para ver em tela cheia.
+                    </p>
                 </div>
             </div>
         </div>
