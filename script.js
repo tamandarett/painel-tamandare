@@ -22,6 +22,11 @@ const TRAINING_DETAILS = {
             { title: "Módulo 4: Comunicação Digital", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/comunicameiodigital.html" }
         ]
     },
+    // NOVO TREINAMENTO ADICIONADO ABAIXO
+    "Abastecimento de Veículos": { 
+        description: "Manual de procedimentos para abastecimento de veículos da frota via Ticketlog, incluindo regras de senha, KM e compra de óleo.", 
+        link: "https://tamandarett.github.io/painel-tamandare/treinamentos/abastecimento.html" 
+    },
     "Cadastro de Clientes":{ description:"Como cadastrar clientes corretamente, aplicar bloqueios e consultar informações.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/cadastrodeclientes.html" },
     "Registro de Lacres":{ description:"Sistema digital para registrar a numeração dos lacres dos malotes.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/lacres.html" },
     "GNRE":{ description:"Orientações para emissão da GNRE apenas quando necessária.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/gnre.html" },
@@ -178,7 +183,6 @@ function mostrarAviso(mensagem) {
     setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
 }
 
-// ATUALIZADO: Força "Tamandaré Tintas" como loja na telemetria
 async function dispararTelemetria(tipo, pergunta, resultadosMostrados, comentario = "") {
     const loja = "Tamandaré Tintas"; 
     try {
@@ -237,11 +241,9 @@ function limparBusca() {
     resultadoAberto = null;
 }
 
-// ATUALIZADO: Removida a obrigatoriedade de selecionar loja no HTML
 function buscar() {
     if (!baseCarregada) return mostrarAviso("⏳ A base de conhecimento está carregando.");
     
-    const loja = "Tamandaré Tintas"; // Valor fixo para processamento
     const pergunta = document.getElementById("pergunta").value.trim();
     const btn = document.getElementById("btnBuscar");
     const btnLimpar = document.getElementById("btnLimpar");
