@@ -63,7 +63,6 @@
             transition: max-height 0.4s ease-out;
             padding: 0 30px;
         }
-        /* Classe que controla a abertura */
         .collapsible-card.active .collapsible-content {
             max-height: none; 
             padding-bottom: 25px;
@@ -71,7 +70,7 @@
         .toggle-icon { transition: transform 0.4s ease-out; }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
         
-        /* Ajuste de Vídeo para Celular e Tela Cheia */
+        /* AJUSTE DO VÍDEO: Proporção perfeita 16:9 para YouTube */
         .video-responsive {
             position: relative;
             padding-bottom: 56.25%;
@@ -126,9 +125,10 @@
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
                     <div class="video-responsive">
-                        <iframe src="https://drive.google.com/file/d/1VSo_P4OtpjA_XX-G-hYAGosIr_puZZyO/preview" 
-                                allow="autoplay; fullscreen"
-                                allowfullscreen>
+                        <iframe 
+                            src="https://www.youtube.com/embed/JhOHPKFxuDA?rel=0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <p style="font-size: 0.85rem; color: #666; margin-top: 10px; font-style: italic;">
