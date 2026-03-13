@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+<meta property="og:title" content="Treinamento: Abastecimento de Veículos | Tamandaré Tintas">
+
+<meta property="og:description" content="Manual de procedimentos e vídeo instrutivo para abastecimento via Ticketlog.">
+
+<meta property="og:image" content="https://SEU-USUARIO.github.io/SEU-REPOSITORIO/imagem-preview.jpg">
+
+<meta property="og:url" content="https://SEU-USUARIO.github.io/SEU-REPOSITORIO/">
+
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Treinamento: Abastecimento de Veículos">
+<meta name="twitter:description" content="Manual de procedimentos para abastecimento via Ticketlog.">
+<meta name="twitter:image" content="https://SEU-USUARIO.github.io/SEU-REPOSITORIO/imagem-preview.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treinamento: Abastecimento de Veículos</title>
@@ -13,7 +30,6 @@
         :root {
             --primary-color: #1e3a5f;
             --secondary-color: #b71c1c;
-            --link-color: #0056b3;
             --background-color: #f4f7f9;
             --card-background: #ffffff;
             --text-color: #333;
@@ -34,13 +50,10 @@
             overflow: hidden;
         }
         .card-content { padding: 25px 30px; }
-        h1 {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
+        h1 { color: var(--primary-color); font-weight: 700; text-align: center; margin-top: 20px; }
         h2 { color: var(--primary-color); font-size: 1.5rem; margin: 0; }
         h3 { color: var(--primary-color); border-left: 4px solid var(--secondary-color); padding-left: 10px; margin-top: 25px; }
+        h4 { color: #555; margin-bottom: 10px; }
         
         .collapsible-header {
             padding: 25px 30px;
@@ -82,14 +95,10 @@
             width: 100%;
             border-collapse: collapse;
             margin: 15px 0;
+            font-size: 0.95rem;
         }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: left; }
         th { background-color: #f8f9fa; color: var(--primary-color); }
 
         .warning-box {
@@ -101,17 +110,14 @@
         }
         .warning-box i { color: #e65100; margin-right: 10px; }
         
-        .critico {
-            color: var(--secondary-color);
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+        .critico-text { color: var(--secondary-color); font-weight: bold; }
+        .destaque { background-color: #e3f2fd; padding: 10px; border-radius: 4px; border-left: 4px solid #2196f3; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 style="text-align: center; margin-top: 20px;">Treinamento: Abastecimento de Veículos (Ticketlog)</h1>
-        <p style="text-align: center; color: #666; margin-bottom: 30px;">Manual de Procedimentos Tamandaré Tintas</p>
+        <h1>Manual de Procedimentos para Abastecimento</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Serviço Ticketlog - Tamandaré Tintas</p>
 
         <div class="card collapsible-card active">
             <div class="collapsible-header">
@@ -121,7 +127,7 @@
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
                     <div class="video-responsive">
-                        <iframe src="https://drive.google.com/file/d/13M_hIlz_eid-PzoL5ccKmGncJBzCUQ0N/preview" 
+                        <iframe src="https://drive.google.com/file/d/1VSo_P4OtpjA_XX-G-hYAGosIr_puZZyO/preview" 
                                 frameborder="0" allowfullscreen>
                         </iframe>
                     </div>
@@ -131,14 +137,15 @@
 
         <div class="card collapsible-card">
             <div class="collapsible-header">
-                <h2><i class="fa-solid fa-file-lines"></i> 2. Manual de Procedimentos</h2>
+                <h2><i class="fa-solid fa-file-lines"></i> 2. Manual na Íntegra</h2>
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
                 <div class="card-content" style="padding-top: 0;">
                     
                     <h3>1. Regras Essenciais de Uso</h3>
-                    <p>O cumprimento rigoroso destas regras é obrigatório para garantir a conformidade do sistema.</p>
+                    <p>O cumprimento rigoroso destas regras é obrigatório para garantir a segurança e a conformidade do sistema de gestão da frota.</p>
+                    
                     <table>
                         <thead>
                             <tr>
@@ -150,40 +157,81 @@
                         <tbody>
                             <tr>
                                 <td><b>Cartão</b></td>
-                                <td>Obrigatório no veículo</td>
+                                <td>Obrigatório permanecer no veículo.</td>
                                 <td>O cartão Ticketlog não deve sair do carro em hipótese alguma.</td>
                             </tr>
                             <tr>
                                 <td><b>Senha</b></td>
-                                <td class="critico">Pessoal e Intransferível</td>
-                                <td>Não compartilhe com colegas, frentistas ou terceiros.</td>
+                                <td class="critico-text">PESSOAL E INTRANSFERÍVEL.</td>
+                                <td>A senha é de uso exclusivo do motorista. Não deve ser compartilhada com colegas, frentistas ou terceiros sob nenhuma circunstância.</td>
                             </tr>
                             <tr>
                                 <td><b>Matrícula</b></td>
-                                <td>Identificação Universal</td>
-                                <td>Sua matrícula e senha valem para qualquer carro da sua loja cadastrada.</td>
+                                <td>Identificação Universal.</td>
+                                <td>Sua Matrícula (número de identificação pessoal) e senha são válidas para abastecer qualquer carro pertencente à loja em que você está cadastrado.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Carros de Outras Unidades</b></td>
+                                <td>Cadastro Prévio Necessário.</td>
+                                <td>Se um carro for emprestado de outra unidade, o motorista que fará o abastecimento deve estar cadastrado na loja de origem do veículo para que a transação seja autorizada.</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <h3>2. Procedimento Padrão no Posto</h3>
-                    <ol>
-                        <li><b>Localizar Posto:</b> Consulte a rede no link Ticketlog.</li>
-                        <li><b>Fornecer Matrícula:</b> Informe ao frentista seu número de identificação pessoal.</li>
-                        <li><b>Informar KM:</b> Verifique o odômetro do veículo e informe o valor <b>exato</b>.</li>
-                        <li><b>Digitar Senha:</b> Digite pessoalmente no terminal, garantindo privacidade.</li>
-                    </ol>
+                    <h3>2. Procedimento Padrão de Abastecimento</h3>
+                    <p>Ao realizar o abastecimento em um posto da rede credenciada, siga os passos abaixo:</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Passo</th>
+                                <th>Ação do Motorista</th>
+                                <th>Detalhes Cruciais</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Localizar Posto Credenciado</td>
+                                <td>Consulte a rede credenciada no link: <a href="https://maps.goodcard.com.br/ondecomprar_abastecimento/index.php?portal=ticketlog/" target="_blank">Clique aqui</a></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Fornecer Matrícula</td>
+                                <td>Quando solicitado, informe ao frentista sua Matrícula (número de identificação pessoal).</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Informar Quilometragem (KM)</td>
+                                <td>Verifique o odômetro do veículo e informe o valor exato da Quilometragem.</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Digitar Senha</td>
+                                <td>Digite sua Senha Pessoal diretamente no terminal, garantindo que ninguém a veja.</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     <div class="warning-box">
-                        <p><strong><i class="fa-solid fa-triangle-exclamation"></i> CONTROLE DE QUILOMETRAGEM (KM) – PONTO CRÍTICO</strong></p>
-                        <p>A inserção de um número de KM divergente resultará no <b>bloqueio automático</b> do abastecimento atual ou do próximo. É essencial para a análise de performance da frota.</p>
+                        <p><strong><i class="fa-solid fa-triangle-exclamation"></i> Controle de Quilometragem (KM) – Ponto Crítico</strong></p>
+                        <p>A quilometragem é essencial para a análise de performance da frota (consumo e rodagem) e como mecanismo de segurança.</p>
+                        <p><b>INFORMAÇÃO DIVERGENTE:</b> A inserção de um número de KM divergente, seja por erro do motorista ou do frentista, resultará no <b>bloqueio automático do abastecimento atual ou do próximo.</b></p>
                     </div>
 
                     <h3>3. Compra de Óleo para Reposição</h3>
-                    <p>A compra de óleo é permitida apenas com <b>autorização prévia</b> da gestão de veículos.</p>
+                    <p>A compra de óleo para repor o nível no veículo é permitida, desde que siga o protocolo de autorização.</p>
+                    
+                    <div class="destaque">
+                        <p><strong>Necessidade de Autorização Prévia:</strong> A compra de óleo requer autorização prévia da gestão dos veículos.</p>
+                    </div>
+
+                    <h4>Procedimento:</h4>
                     <ul>
-                        <li>Solicite a liberação antes de ir ao posto.</li>
-                        <li>A compra deve ser feita em <b>transação separada</b> do combustível.</li>
+                        <li>O motorista deve <strong>solicitar a liberação</strong> da compra antes de ir ao posto.</li>
+                        <li>Após a solicitação, a liberação será realizada no sistema.</li>
+                        <li>A compra de óleo deve ser feita nos <strong>mesmos postos</strong> da rede credenciada Ticketlog.</li>
+                        <li>A transação deve ser feita em <strong>transação separada</strong>, mesmo que você também vá abastecer combustível.</li>
                     </ul>
 
                 </div>
