@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento: Abastecimento de Veículos</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #b71c1c;
+            --link-color: #0056b3;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: auto; }
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card-content { padding: 25px 30px; }
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        h2 { color: var(--primary-color); font-size: 1.5rem; margin: 0; }
+        h3 { color: var(--primary-color); border-left: 4px solid var(--secondary-color); padding-left: 10px; margin-top: 25px; }
+        
+        .collapsible-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .collapsible-header:hover { background-color: #f8f9fa; }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 30px;
+        }
+        .collapsible-card.active .collapsible-content {
+            max-height: none; 
+            padding-bottom: 25px;
+        }
+        .toggle-icon { transition: transform 0.4s ease-out; }
+        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
+        
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+        .video-responsive iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th { background-color: #f8f9fa; color: var(--primary-color); }
+
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box i { color: #e65100; margin-right: 10px; }
+        
+        .critico {
+            color: var(--secondary-color);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 20px;">Treinamento: Abastecimento de Veículos (Ticketlog)</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Manual de Procedimentos Tamandaré Tintas</p>
+
+        <div class="card collapsible-card active">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-video"></i> 1. Vídeo Instrutivo</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="video-responsive">
+                        <iframe src="https://drive.google.com/file/d/13M_hIlz_eid-PzoL5ccKmGncJBzCUQ0N/preview" 
+                                frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-file-lines"></i> 2. Manual de Procedimentos</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    
+                    <h3>1. Regras Essenciais de Uso</h3>
+                    <p>O cumprimento rigoroso destas regras é obrigatório para garantir a conformidade do sistema.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Regra</th>
+                                <th>Detalhamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>Cartão</b></td>
+                                <td>Obrigatório no veículo</td>
+                                <td>O cartão Ticketlog não deve sair do carro em hipótese alguma.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Senha</b></td>
+                                <td class="critico">Pessoal e Intransferível</td>
+                                <td>Não compartilhe com colegas, frentistas ou terceiros.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Matrícula</b></td>
+                                <td>Identificação Universal</td>
+                                <td>Sua matrícula e senha valem para qualquer carro da sua loja cadastrada.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>2. Procedimento Padrão no Posto</h3>
+                    <ol>
+                        <li><b>Localizar Posto:</b> Consulte a rede no link Ticketlog.</li>
+                        <li><b>Fornecer Matrícula:</b> Informe ao frentista seu número de identificação pessoal.</li>
+                        <li><b>Informar KM:</b> Verifique o odômetro do veículo e informe o valor <b>exato</b>.</li>
+                        <li><b>Digitar Senha:</b> Digite pessoalmente no terminal, garantindo privacidade.</li>
+                    </ol>
+
+                    <div class="warning-box">
+                        <p><strong><i class="fa-solid fa-triangle-exclamation"></i> CONTROLE DE QUILOMETRAGEM (KM) – PONTO CRÍTICO</strong></p>
+                        <p>A inserção de um número de KM divergente resultará no <b>bloqueio automático</b> do abastecimento atual ou do próximo. É essencial para a análise de performance da frota.</p>
+                    </div>
+
+                    <h3>3. Compra de Óleo para Reposição</h3>
+                    <p>A compra de óleo é permitida apenas com <b>autorização prévia</b> da gestão de veículos.</p>
+                    <ul>
+                        <li>Solicite a liberação antes de ir ao posto.</li>
+                        <li>A compra deve ser feita em <b>transação separada</b> do combustível.</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const card = this.parentElement;
+                    card.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
