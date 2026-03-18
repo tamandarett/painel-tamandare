@@ -12,7 +12,6 @@
     <style>
         :root {
             --primary-color: #1e3a5f;
-            --link-color: #0056b3;
             --background-color: #f4f7f9;
             --card-background: #ffffff;
             --text-color: #333;
@@ -32,8 +31,7 @@
             border-radius: 12px;
             margin-bottom: 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            overflow: hidden;
-            padding: 40px;
+            padding: 30px; /* Reduzi um pouco o padding para ganhar espaço */
         }
         h1 {
             color: var(--primary-color);
@@ -45,30 +43,37 @@
         }
         h2 {
             color: var(--primary-color);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-top: 30px;
             border-left: 5px solid var(--primary-color);
             padding-left: 15px;
         }
         h3 {
             color: var(--text-color);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-top: 20px;
+            font-weight: 700;
         }
         p { margin-bottom: 15px; }
-        ul, ol { margin-bottom: 20px; padding-left: 20px; }
+        ul, ol { margin-bottom: 20px; padding-left: 25px; }
         li { margin-bottom: 8px; }
-        b, strong { color: #000; }
         
+        /* AJUSTE DA IMAGEM PARA NÃO CORTAR */
         .img-container {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .card-content img {
+            width: 100%;
             max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 25px 0;
+            text-align: center;
         }
+        .img-container img {
+            max-width: 100%; /* Garante que não ultrapasse a largura do card */
+            height: auto;    /* Mantém a proporção */
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
         .alerta {
             color: var(--danger-color);
             font-weight: bold;
@@ -93,61 +98,56 @@
             <h1>Treinamento: Carta de Correção Eletrônica (CC-e)</h1>
 
             <h2>1. Definição e Uso</h2>
-            <p>A <b>Carta de Correção Eletrônica (CC-e)</b> é um documento fiscal utilizado para corrigir erros específicos em uma nota fiscal já emitida e autorizada, evitando a necessidade de cancelamento do documento. Sua validade está condicionada a ajustes que <b>não alterem os valores fiscais ou a essência da operação</b>.</p>
+            <p>A <b>Carta de Correção Eletrônica (CC-e)</b> é um documento fiscal utilizado para corrigir erros específicos em uma nota fiscal já emitida e autorizada, sem a necessidade de cancelamento. Ela é válida apenas para ajustes que <b>não alterem os valores fiscais ou a essência da operação</b>.</p>
 
-            <h3>O que pode ser corrigido:</h3>
+            <h3>✅ O que pode ser corrigido:</h3>
             <ul>
                 <li>Descrição do produto (desde que não altere valor ou quantidade);</li>
                 <li>CFOP (quando não muda a natureza da operação);</li>
                 <li>Endereço do destinatário (rua, número, complemento, bairro);</li>
                 <li>Razão social (erros de digitação, abreviações ou grafia);</li>
                 <li>Dados do transportador;</li>
-                <li>Informações complementares e observações.</li>
+                <li>Informações complementares.</li>
             </ul>
 
-            <h3>O que NÃO pode ser corrigido:</h3>
+            <h3>❌ O que NÃO pode ser corrigido:</h3>
             <ul>
                 <li>Valor da nota fiscal ou base de cálculo de impostos (ICMS, IPI, etc.);</li>
                 <li>Quantidade ou preço unitário do produto;</li>
                 <li>Data de emissão da nota;</li>
                 <li>CNPJ ou CPF do emitente ou do destinatário;</li>
-                <li>Natureza da operação (ex: transformar uma venda em devolução);</li>
-                <li>Dados que alterem o cálculo do imposto ou mudem completamente o destinatário.</li>
+                <li>Natureza da operação (ex: venda, devolução, transferência);</li>
+                <li>Dados que alterem o cálculo do imposto.</li>
             </ul>
 
-            <p><b>Em resumo:</b> A CC-e serve apenas para correções formais e administrativas. Se o erro impactar valores ou impostos, o procedimento correto é o cancelamento da nota (dentro do prazo legal) e a emissão de uma nova.</p>
+            <p><b>Resumo:</b> A CC-e serve apenas para correções formais. Se o erro impactar valores ou impostos, deve-se cancelar a nota e emitir uma nova.</p>
 
             <h2>2. Procedimento no Sistema GIX</h2>
-            <p>Para realizar a emissão, siga o caminho: <b>Fiscal &rarr; Carta de Correção &rarr; Gerar</b>.</p>
+            <p>Caminho: <b>Fiscal &rarr; Carta de Correção &rarr; Gerar</b>.</p>
             
             <ol>
                 <li>Clique em <b>"Novo"</b>;</li>
-                <li>Preencha os dados da loja e o número da nota fiscal que precisa de correção;</li>
-                <li>Na coluna <b>"Código"</b>, selecione a opção que melhor descreve o erro. Se a correção específica não estiver listada, utilize a opção <b>"36 - Outros"</b>.</li>
+                <li>Informe os dados da loja e o número da nota fiscal;</li>
+                <li>Na coluna <b>"Código"</b>, escolha a opção adequada ou <b>"36 - Outros"</b>.</li>
             </ol>
 
             <div class="img-container">
-                <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/cartadecorrecao/carta%20de%20corre%C3%A7%C3%A3o.jpg.png" alt="Tela de Carta de Correção no Sistema">
+                <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/cartadecorrecao/carta%20de%20corre%C3%A7%C3%A3o.jpg.png" alt="Tela de Carta de Correção">
             </div>
 
-            <h2>3. Redação da Correção</h2>
-            <p>Ao selecionar o código, um pop-up será aberto para a digitação do texto. Utilize frases curtas, objetivas e claras. Sempre que possível, finalize a frase reforçando a manutenção dos valores fiscais.</p>
-
+            <h2>3. Exemplos de Redação</h2>
             <div class="exemplo-texto">
-                <b>Exemplos de redação:</b><br>
                 • "Correção do endereço do destinatário para: Rua [Nome], nº [Número], Bairro [Bairro]." <br>
                 • "Correção da razão social do destinatário para: [Nome Correto]." <br>
-                • "Correção do CFOP para [Número], sem alteração da natureza da operação." <br>
-                • "Inclusão de complemento no endereço: [Complemento]."
+                • "Correção do CFOP para [Número], sem alteração da natureza da operação."
             </div>
+            <p><b>Dica:</b> Sempre finalize com: <i>"Sem alteração de valores, impostos ou quantidade."</i></p>
 
-            <p><b>Dica:</b> Finalize com: <i>"Sem alteração de valores, impostos ou quantidade."</i></p>
-
-            <h2>4. Finalização e Validade</h2>
-            <p>Após clicar em finalizar, os dados são transmitidos para a Secretaria da Fazenda (SEFAZ). O sistema retornará uma mensagem confirmando o número da CC-e e abrirá automaticamente o pop-up para a impressão do documento.</p>
+            <h2>4. Finalização</h2>
+            <p>Após finalizar, os dados são enviados à SEFAZ. O sistema confirmará o número da CC-e e abrirá o pop-up para impressão automaticamente.</p>
 
             <div class="alerta">
-                ⚠️ Importante: A carta de correção passa a ser parte integrante da nota fiscal original. Ela possui o mesmo valor jurídico que a nota. Em caso de dúvida sobre a legalidade de uma correção, consulte seu gestor antes de emitir, pois as regras da SEFAZ devem ser seguidas sem exceção.
+                ⚠️ Importante: A carta de correção integra a nota fiscal e tem o mesmo valor jurídico. Em caso de dúvida, pergunte antes de emitir.
             </div>
         </div>
     </div>
