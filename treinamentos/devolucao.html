@@ -85,7 +85,7 @@
         }
 
         .collapsible-card.active .collapsible-content {
-            max-height: 6000px; 
+            max-height: 8000px; 
             padding: 10px 35px 40px 35px;
         }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
@@ -109,7 +109,7 @@
             border-radius: 0 8px 8px 0;
         }
         .passo-a-passo { background-color: #f8f9fa; border: 1px solid #e9ecef; padding: 20px; border-radius: 8px; margin: 20px 0; }
-        .destaque-operacional { color: var(--danger-color); font-weight: 700; text-transform: uppercase; }
+        .destaque-operacional { color: var(--danger-color); font-weight: 700; }
     </style>
 </head>
 <body>
@@ -117,7 +117,7 @@
         <h1 class="page-title">Procedimento de Devolução e Recusa de Mercadorias</h1>
         
         <p class="intro-text">
-            A devolução e a recusa de mercadorias possuem <b>procedimentos distintos</b> para fins fiscais e operacionais. Clique nas seções abaixo para ver os detalhes.
+            A devolução e a recusa de mercadorias, apesar de terem por finalidade o desfazimento da venda, possuem procedimentos distintos para fins fiscais.
         </p>
 
         <div class="collapsible-card active" id="card-devolucao">
@@ -128,37 +128,48 @@
             <div class="collapsible-content">
                 <div class="bloco-destaque">
                     <span class="rotulo">Definição:</span>
-                    Ocorre quando o destinatário recebe a mercadoria e decide devolvê-la posteriormente por desacordo comercial.
+                    A devolução ocorre quando o destinatário recebe a mercadoria em seu estabelecimento e, por algum motivo de desacordo comercial, resolve devolver a mercadoria ao fornecedor.
                 </div>
 
                 <h3>Como proceder?</h3>
-                <p>Se o cliente tiver Inscrição Estadual, a emissão da NF de devolução é responsabilidade dele. Só emitimos nota de entrada se o cliente <b>não</b> tiver Inscrição Estadual.</p>
+                <p>Neste caso, caso o destinatário possua inscrição estadual, é de sua responsabilidade a emissão da NF de devolução, não podendo o fornecedor emitir NF para si mesmo com fins de entrada de devolução, exceto quando o destinatário não possuir inscrição estadual.</p>
 
-                <h3>Consulta de Obrigatoriedade</h3>
-                <p>Verifique sempre no site do SINTEGRA (<a href="http://www.sintegra.gov.br/" target="_blank">sintegra.gov.br</a>) pelo CNPJ ou IE.</p>
+                <h3>Como consultar a obrigatoriedade de emissão de NF-e do cliente?</h3>
+                <p>A consulta deve ser realizada no site do SINTEGRA (<a href="http://www.sintegra.gov.br/" target="_blank">www.sintegra.gov.br</a>). Clique no estado ao qual o cliente pertence e realize a consulta usando o CNPJ ou a Inscrição Estadual.</p>
+                
                 <div class="img-container">
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem1.png?raw=true" alt="Consulta SINTEGRA">
                 </div>
 
-                <h3>Conferência da NF do Cliente (Espelho)</h3>
-                <p>A nota dele deve ser idêntica à nossa original em itens, valores e tributos.</p>
-                
-                <p><b>Desconto:</b> Deve constar proporcionalmente no campo <b>DESCONTO</b> se houver na original.</p>
-                <div class="img-container">
-                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/desconto.png" alt="Conferência Desconto">
+                <div class="bloco-destaque">
+                    <span class="rotulo">Exemplo prático:</span>
+                    Veja o exemplo desse cliente: ele alegou que não fazia vendas e que apenas prestava serviço. Note que não importa a atividade que a empresa realmente faz, e sim o que ela declarou como atividade econômica. Isso é o que vai definir as obrigações fiscais que ela terá. Nesse caso, apesar de nunca ter realizado nenhuma compra ou venda, como a empresa foi inscrita com a atividade econômica de “compra e venda de imóveis próprios”, ela tem inscrição estadual e obrigatoriedade total na emissão de NF.
+                    <br><br>
+                    Nessa mesma consulta, na área de “informações NF-e”, fica bem clara a obrigação da emissão da NF-e, tornando fácil o envio e a justificativa para o cliente.
                 </div>
 
-                <p><b>ICMS:</b> Para produtos <b>CST 00</b>, o destaque deve estar no campo <b>VALOR DO ICMS</b> e também individualmente por item.</p>
                 <div class="img-container">
-                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/icms.png" alt="Destaque ICMS">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem2.png?raw=true" alt="Informações NF-e">
+                </div>
+
+                <h3>Como conferir uma NF de devolução emitida pelo cliente</h3>
+                <p>A NF de devolução do cliente deve ser um “espelho” da nota que emitimos para ele, por isso ela deve conter todos os itens da NF original.</p>
+
+                <p><b>Desconto:</b> A NF do cliente deve ter o mesmo desconto que foi aplicado na nota original. Atenção: ele deve ser concedido da mesma forma. Se o desconto da NF original está destacado — ou seja, aparece no campo “DESCONTO” da nota original — ele também deve aparecer na NF de devolução com o valor correspondente aos itens devolvidos.</p>
+                <div class="img-container">
+                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/desconto.png" alt="Exemplo Desconto">
+                </div>
+
+                <p><b>ICMS:</b> Como dito anteriormente, a nota de devolução deve espelhar a NF original, e isso também é verdade para o ICMS. Nos produtos da NF original onde conste o CST 00 (Código de Situação Tributária que representa operações tributadas integralmente), deve haver destaque de ICMS. Esse destaque deve estar no campo de “VALOR DO ICMS”, que fica próximo ao campo “DESCONTO” na área destinada aos impostos da NF.</p>
+                <p>O destaque deve ser feito também de forma individual em cada produto, usando o campo específico em frente à descrição dos itens.</p>
+                <div class="img-container">
+                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/icms.png" alt="Exemplo ICMS">
                 </div>
 
                 <h3>CFOP e Natureza da Operação</h3>
-                <p>Deve-se dar atenção total ao CFOP que o cliente utiliza. Se a NF dele tiver erros de ICMS ou descontos, o sistema trava a entrada; porém, se apenas o CFOP estiver errado, o sistema pode permitir a entrada, o que gera um erro fiscal grave.</p>
+                <p>Deve-se atentar para o CFOP que os clientes estão emitindo nas NFs de devolução. Caso a NF dele seja emitida com ICMS, desconto ou demais valores errados, não será possível dar a entrada, mas isso não acontece se o CFOP estiver errado. Temos que conferir, pois é o único jeito de evitar esse tipo de erro.</p>
                 
-                <p>O CFOP da devolução deve corresponder ao <b>CFOP da NF original + Natureza da Operação</b>. A Natureza da Operação depende do motivo da compra pelo cliente. Por exemplo: se o cliente comprou tintas para pintar a própria loja, trata-se de <b>Uso e Consumo</b>. Logo, a natureza da devolução deve ser "Devolução de material de uso e consumo".</p>
-                
-                <p>O código CFOP varia conforme o regime tributário do produto devolvido, conforme a tabela de referência abaixo:</p>
+                <p>O CFOP da NF de devolução do cliente deve corresponder ao <b>CFOP da NF original + Natureza da Operação</b>. A Natureza da operação na NF de devolução corresponde ao motivo da compra do produto. Por exemplo: o cliente comprou os produtos para pintar sua fábrica; nesse caso, é para <b>uso e consumo</b>. A natureza da operação da NF de devolução deve ser <b>"DEVOLUÇÃO DE MATERIAL DE USO E CONSUMO"</b>, e o CFOP varia dependendo do regime tributário do produto devolvido, conforme a tabela abaixo:</p>
 
                 <div class="img-container">
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem4.png?raw=true" alt="Tabela CFOP">
@@ -174,34 +185,30 @@
             <div class="collapsible-content">
                 <div class="bloco-destaque">
                     <span class="rotulo">Definição:</span>
-                    Ocorre quando o destinatário não recebe a mercadoria no ato da entrega. Ele <b>não dá entrada</b> no material.
+                    Diferentemente da devolução, a recusa ocorre quando o destinatário, no ato da entrega, não recebe a mercadoria por algum motivo de desacordo comercial, ou seja, ele não chega a dar entrada na mercadoria em seu estabelecimento.
                 </div>
 
-                <h3>Documentação</h3>
-                <p>O retorno usa a <b>NF original</b>. O verso deve conter o motivo da recusa assinado pelo cliente ou transportador. O cliente deve manifestar a recusa no Portal da NF-e.</p>
+                <h3>Como proceder?</h3>
+                <p>Neste caso, o transporte da mercadoria em retorno será acompanhado pela própria Nota Fiscal emitida pelo remetente, cuja 1ª via deverá conter indicação, no verso, efetuada pelo destinatário ou pelo transportador, do motivo de não ter sido entregue a mercadoria. Além disso, o destinatário deverá manifestar a recusa também no aplicativo disponibilizado pela SEFAZ ou diretamente no Portal da NF-e.</p>
                 <div class="img-container">
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem3.jpg?raw=true" alt="Manifestação Recusa">
                 </div>
 
                 <h3>Procedimento no Sistema GIX</h3>
-                <p>Para dar entrada na recusa, o procedimento é igual ao da devolução onde emitimos a NF para o cliente. Na recusa, também devemos emitir essa NF de entrada.</p>
+                <p>Para dar entrada na recusa, o procedimento é igual ao da devolução onde emitimos a NF para o cliente; no caso da recusa, também devemos emitir essa NF.</p>
 
                 <div class="passo-a-passo">
                     <ol>
-                        <li>Inicie o processo de emissão de nota de entrada;</li>
-                        <li>No campo <b>TIPO DE DEVOLUÇÃO</b>, preencha obrigatoriamente com <b class="destaque-operacional">RM</b> (Recusa de Mercadoria);</li>
-                        <li>Após confirmar o tipo, surgirá um pop-up para a <b>NATUREZA DA OPERAÇÃO</b>. Selecione a opção <b class="destaque-operacional">RECUSA DE MERCADORIA</b>;</li>
-                        <li>Confirme e siga o processo normal de fechamento como se fosse uma devolução comum.</li>
+                        <li>Inicie o processo de emissão da nota de entrada;</li>
+                        <li>No campo <b>"TIPO DE DEVOLUÇÃO"</b>, preencha com <b>"RM"</b> (Recusa de Mercadoria);</li>
+                        <li>Após confirmar esse tipo de devolução, aparecerá um pop-up para selecionar a <b>"NATUREZA DA OPERAÇÃO"</b>. Aqui, deve-se selecionar a opção <b>"RECUSA DE MERCADORIA"</b>;</li>
+                        <li>Depois de confirmar, é só seguir normalmente como se fosse uma devolução.</li>
                     </ol>
                 </div>
 
                 <div class="nota-fiscal-box">
-                    <p><strong><i class="fa-solid fa-triangle-exclamation"></i> REGRAS CRÍTICAS PARA RECUSA:</strong></p>
-                    <ul>
-                        <li>Deve-se recusar a Nota Fiscal <b>INTEIRA</b>;</li>
-                        <li>Sempre escolha a opção <b class="destaque-operacional">ABATER DUPLICATA</b>;</li>
-                        <li><b>FINANCEIRO:</b> Verifique se o título está em <b>CNAB</b>. Caso esteja, você deve <b>RETIRAR DO CNAB</b> antes de processar a entrada da recusa no sistema.</li>
-                    </ul>
+                    <p><strong><i class="fa-solid fa-triangle-exclamation"></i> ATENÇÃO:</strong></p>
+                    <p>No caso de recusa, deve-se recusar a NF toda e <b>SEMPRE</b> escolher a opção de <b>"ABATER DUPLICATA"</b>. Portanto, verifique se o título está em <b>"CNAB"</b> antes de dar entrada na recusa; caso esteja, deve-se <b>"TIRAR DO CNAB"</b> antes de prosseguir.</p>
                 </div>
             </div>
         </div>
