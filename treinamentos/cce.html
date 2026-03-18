@@ -12,12 +12,11 @@
     <style>
         :root {
             --primary-color: #1e3a5f;
-            --secondary-color: #b71c1c;
+            --link-color: #0056b3;
             --background-color: #f4f7f9;
             --card-background: #ffffff;
             --text-color: #333;
-            --success-color: #2e7d32;
-            --warning-color: #ef6c00;
+            --danger-color: #b71c1c;
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -25,6 +24,7 @@
             color: var(--text-color);
             margin: 0;
             padding: 20px;
+            line-height: 1.6;
         }
         .container { max-width: 900px; margin: auto; }
         .card {
@@ -33,185 +33,123 @@
             margin-bottom: 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             overflow: hidden;
+            padding: 40px;
         }
-        .card-content { padding: 25px 30px; }
-        h1 { color: var(--primary-color); font-weight: 700; text-align: center; margin-top: 20px; }
-        h2 { color: var(--primary-color); font-size: 1.2rem; margin: 0; }
-        h3 { color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 10px; margin-top: 25px; }
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-top: 30px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+        h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+        p { margin-bottom: 15px; }
+        ul, ol { margin-bottom: 20px; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        b, strong { color: #000; }
         
-        .collapsible-header {
-            padding: 25px 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.2s;
+        .img-container {
+            text-align: center;
+            margin: 30px 0;
         }
-        .collapsible-header:hover { background-color: #f8f9fa; }
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            padding: 0 30px;
-        }
-        .collapsible-card.active .collapsible-content {
-            max-height: none; 
-            padding-bottom: 25px;
-        }
-        .toggle-icon { transition: transform 0.4s ease-out; }
-        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
-
-        .check-list { list-style: none; padding-left: 0; }
-        .check-list li::before {
-            content: "\f00c";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--success-color);
-            margin-right: 10px;
-        }
-        .ban-list { list-style: none; padding-left: 0; }
-        .ban-list li::before {
-            content: "\f05e";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--secondary-color);
-            margin-right: 10px;
-        }
-
-        .info-box {
-            background-color: #e3f2fd;
-            border-left: 5px solid #2196f3;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        .warning-box {
-            background-color: #fff3e0;
-            border-left: 5px solid var(--warning-color);
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        img {
+        .card-content img {
             max-width: 100%;
-            height: auto;
             border-radius: 8px;
-            margin: 20px 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
-        .example-block {
-            background: #f8f9fa;
-            border: 1px dashed #ccc;
+        .alerta {
+            color: var(--danger-color);
+            font-weight: bold;
+            border: 1px solid var(--danger-color);
             padding: 15px;
             border-radius: 8px;
+            background-color: #fff8f8;
+            margin: 20px 0;
+        }
+        .exemplo-texto {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ccc;
+            padding: 15px;
             font-style: italic;
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Treinamento: Carta de Correção Eletrônica (CC-e)</h1>
-        <p style="text-align: center; color: #666; margin-bottom: 30px;">Procedimentos Fiscais | Tamandaré Tintas</p>
+        <div class="card">
+            <h1>Treinamento: Carta de Correção Eletrônica (CC-e)</h1>
 
-        <div class="card collapsible-card active">
-            <div class="collapsible-header">
-                <h2><i class="fa-solid fa-circle-check"></i> 1. O que é e Quando usar</h2>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            <h2>1. Definição e Uso</h2>
+            <p>A <b>Carta de Correção Eletrônica (CC-e)</b> é um documento fiscal utilizado para corrigir erros específicos em uma nota fiscal já emitida e autorizada, evitando a necessidade de cancelamento do documento. Sua validade está condicionada a ajustes que <b>não alterem os valores fiscais ou a essência da operação</b>.</p>
+
+            <h3>O que pode ser corrigido:</h3>
+            <ul>
+                <li>Descrição do produto (desde que não altere valor ou quantidade);</li>
+                <li>CFOP (quando não muda a natureza da operação);</li>
+                <li>Endereço do destinatário (rua, número, complemento, bairro);</li>
+                <li>Razão social (erros de digitação, abreviações ou grafia);</li>
+                <li>Dados do transportador;</li>
+                <li>Informações complementares e observações.</li>
+            </ul>
+
+            <h3>O que NÃO pode ser corrigido:</h3>
+            <ul>
+                <li>Valor da nota fiscal ou base de cálculo de impostos (ICMS, IPI, etc.);</li>
+                <li>Quantidade ou preço unitário do produto;</li>
+                <li>Data de emissão da nota;</li>
+                <li>CNPJ ou CPF do emitente ou do destinatário;</li>
+                <li>Natureza da operação (ex: transformar uma venda em devolução);</li>
+                <li>Dados que alterem o cálculo do imposto ou mudem completamente o destinatário.</li>
+            </ul>
+
+            <p><b>Em resumo:</b> A CC-e serve apenas para correções formais e administrativas. Se o erro impactar valores ou impostos, o procedimento correto é o cancelamento da nota (dentro do prazo legal) e a emissão de uma nova.</p>
+
+            <h2>2. Procedimento no Sistema GIX</h2>
+            <p>Para realizar a emissão, siga o caminho: <b>Fiscal &rarr; Carta de Correção &rarr; Gerar</b>.</p>
+            
+            <ol>
+                <li>Clique em <b>"Novo"</b>;</li>
+                <li>Preencha os dados da loja e o número da nota fiscal que precisa de correção;</li>
+                <li>Na coluna <b>"Código"</b>, selecione a opção que melhor descreve o erro. Se a correção específica não estiver listada, utilize a opção <b>"36 - Outros"</b>.</li>
+            </ol>
+
+            <div class="img-container">
+                <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/cartadecorrecao/carta%20de%20corre%C3%A7%C3%A3o.jpg.png" alt="Tela de Carta de Correção no Sistema">
             </div>
-            <div class="collapsible-content">
-                <div class="card-content" style="padding-top: 0;">
-                    <p>A <strong>Carta de Correção Eletrônica (CC-e)</strong> é um documento utilizado para corrigir erros em uma nota fiscal já emitida, sem a necessidade de cancelamento. Ela é válida apenas para ajustes que <strong>não alterem os valores fiscais ou a essência da operação</strong>.</p>
-                    
-                    <h3>✅ O que pode ser corrigido:</h3>
-                    <ul class="check-list">
-                        <li>Descrição do produto (desde que não altere valor ou quantidade);</li>
-                        <li>CFOP (quando não muda a natureza da operação);</li>
-                        <li>Endereço do destinatário (rua, número, complemento, bairro);</li>
-                        <li>Razão social (erros de digitação, abreviações ou grafia);</li>
-                        <li>Dados do transportador;</li>
-                        <li>Informações complementares.</li>
-                    </ul>
 
-                    <h3>❌ O que NÃO pode ser corrigido:</h3>
-                    <ul class="ban-list">
-                        <li>Valor da nota fiscal ou dos impostos (ICMS, IPI, etc.);</li>
-                        <li>Quantidade ou preço do produto;</li>
-                        <li>Data de emissão;</li>
-                        <li>CNPJ/CPF do emitente ou do destinatário;</li>
-                        <li>Natureza da operação (ex: venda, devolução, transferência);</li>
-                        <li>Qualquer dado que altere o cálculo do imposto;</li>
-                        <li>Correções que mudem completamente o destinatário.</li>
-                    </ul>
+            <h2>3. Redação da Correção</h2>
+            <p>Ao selecionar o código, um pop-up será aberto para a digitação do texto. Utilize frases curtas, objetivas e claras. Sempre que possível, finalize a frase reforçando a manutenção dos valores fiscais.</p>
 
-                    <div class="info-box">
-                        <i class="fa-solid fa-lightbulb"></i> <strong>Resumo:</strong> A CC-e serve apenas para <strong>correções formais e administrativas</strong>. Se o erro impactar valores, impostos ou a operação em si, o correto é cancelar a nota (dentro do prazo) e emitir uma nova.
-                    </div>
-                </div>
+            <div class="exemplo-texto">
+                <b>Exemplos de redação:</b><br>
+                • "Correção do endereço do destinatário para: Rua [Nome], nº [Número], Bairro [Bairro]." <br>
+                • "Correção da razão social do destinatário para: [Nome Correto]." <br>
+                • "Correção do CFOP para [Número], sem alteração da natureza da operação." <br>
+                • "Inclusão de complemento no endereço: [Complemento]."
             </div>
-        </div>
 
-        <div class="card collapsible-card">
-            <div class="collapsible-header">
-                <h2><i class="fa-solid fa-gears"></i> 2. Como fazer no Sistema GIX</h2>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-            </div>
-            <div class="collapsible-content">
-                <div class="card-content" style="padding-top: 0;">
-                    <p>Siga o caminho abaixo para realizar a emissão:</p>
-                    <p><strong>Caminho:</strong> <span style="color: var(--primary-color); font-weight: 500;">Fiscal &rarr; Carta de Correção &rarr; Gerar</span></p>
-                    
-                    <ol>
-                        <li>Clique em <strong>“Novo”</strong> e preencha os dados da loja e o número da nota fiscal a ser corrigida;</li>
-                        <li>Na coluna <strong>“Código”</strong>, selecione a opção correspondente à correção desejada. Caso ela não esteja listada, utilize a opção <strong>“36 - Outros”</strong>;</li>
-                        <li>Ao selecionar, um pop-up se abrirá para que seja escrita a correção.</li>
-                    </ol>
+            <p><b>Dica:</b> Finalize com: <i>"Sem alteração de valores, impostos ou quantidade."</i></p>
 
-                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/cartadecorrecao/carta%20de%20corre%C3%A7%C3%A3o.jpg.png" alt="Tela de Emissão de Carta de Correção no GIX">
+            <h2>4. Finalização e Validade</h2>
+            <p>Após clicar em finalizar, os dados são transmitidos para a Secretaria da Fazenda (SEFAZ). O sistema retornará uma mensagem confirmando o número da CC-e e abrirá automaticamente o pop-up para a impressão do documento.</p>
 
-                    <div class="warning-box">
-                        <i class="fa-solid fa-pen-to-square"></i> <strong>Dica de redação:</strong> Use frases curtas e objetivas. Sempre que possível, finalize com: <em>“Sem alteração de valores, impostos ou quantidade.”</em>
-                    </div>
-
-                    <h3>Exemplos Práticos de Texto:</h3>
-                    <div class="example-block">
-                        <p><strong>Correção de endereço:</strong> “Correção do endereço do destinatário para: Rua ___, nº ___, Bairro ___, Cidade ___.”</p>
-                        <p><strong>Correção de razão social (digitação):</strong> “Correção da razão social do destinatário para: ___.”</p>
-                        <p><strong>Correção de CFOP:</strong> “Correção do CFOP para ___, sem alteração da natureza da operação.”</p>
-                        <p><strong>Correção de descrição:</strong> “Correção da descrição do produto para: ___, sem alteração de valores ou quantidades.”</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card collapsible-card">
-            <div class="collapsible-header">
-                <h2><i class="fa-solid fa-file-export"></i> 3. Finalização e Importância Fiscal</h2>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-            </div>
-            <div class="collapsible-content">
-                <div class="card-content" style="padding-top: 0;">
-                    <p>Ao finalizar, os dados são enviados à Secretaria da Fazenda (SEFAZ). O sistema exibirá uma mensagem com o número da carta de correção (CC-e) e, em seguida, o pop-up para impressão aparecerá automaticamente.</p>
-                    
-                    <div class="warning-box" style="border-left-color: var(--secondary-color); background-color: #ffebee;">
-                        <p><strong><i class="fa-solid fa-triangle-exclamation" style="color: var(--secondary-color);"></i> Atenção:</strong></p>
-                        <p>Uma carta de correção (CC-e) integra a nota fiscal e possui o mesmo valor jurídico deste documento. Em caso de dúvidas, <strong>pergunte antes de emitir</strong>. Por se tratar de um documento fiscal, devemos seguir as regras da SEFAZ sem exceção.</p>
-                    </div>
-                </div>
+            <div class="alerta">
+                ⚠️ Importante: A carta de correção passa a ser parte integrante da nota fiscal original. Ela possui o mesmo valor jurídico que a nota. Em caso de dúvida sobre a legalidade de uma correção, consulte seu gestor antes de emitir, pois as regras da SEFAZ devem ser seguidas sem exceção.
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-            collapsibleHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    this.parentElement.classList.toggle('active');
-                });
-            });
-        });
-    </script>
 </body>
 </html>
