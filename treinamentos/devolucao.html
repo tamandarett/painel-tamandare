@@ -4,166 +4,216 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procedimento de Devolução e Recusa | Tamandaré Tintas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
             --primary-color: #1e3a5f;
             --background-body: #f2f2f2;
-            --background-content: #f4f7f9;
             --card-background: #ffffff;
             --text-color: #333;
+            --accent-blue: #0056b3;
+            --soft-blue: #f1f7ff;
+            --danger-color: #b71c1c;
         }
         body {
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: var(--background-body);
             color: var(--text-color);
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
         }
-        .logo-container {
-            width: 100%;
+        .container { max-width: 900px; margin: auto; }
+        
+        h1.page-title {
+            color: var(--primary-color);
+            font-weight: 700;
             text-align: center;
-            padding: 30px 0 20px 0;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            font-size: 2.2em;
         }
-        .logo-tamandare {
-            max-width: 154px;
-            display: block;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .container {
-            max-width: 900px;
-            width: calc(100% - 40px);
-            margin: 0px auto 40px auto;
+
+        /* ESTILO DOS CARDS COLAPSÁVEIS */
+        .collapsible-card {
             background-color: var(--card-background);
             border-radius: 12px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-            padding: 40px 30px;
-            position: relative;
-            z-index: 5;
-        }
-        .page-title {
-            color: var(--primary-color);
-            margin-top: 0;
             margin-bottom: 20px;
-            font-size: 2.2em;
-            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
-        h2 {
-            color: var(--primary-color);
-            margin-top: 35px;
-            margin-bottom: 12px;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .missao, .visao {
-            font-size: 1.12em;
-            font-weight: 500;
-            color: #0056b3;
-            background: #f1f7ff;
-            border-radius: 12px;
-            padding: 12px 18px;
-            margin-bottom: 10px;
-        }
-        ul, ol {
-            margin-left: 22px;
-            padding-left: 0;
-        }
-        .valores-list li {
-            margin-bottom: 18px;
-            font-size: 1.05em;
-        }
-        .destacado {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-right: 8px;
-        }
-        .centralizada {
+        .collapsible-header {
+            padding: 20px 30px;
+            cursor: pointer;
             display: flex;
-            justify-content: center;
-            margin: 24px 0;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--card-background);
+            transition: background-color 0.2s;
         }
-        .centralizada img {
-            max-width: 90%;
+        .collapsible-header:hover { background-color: #f8f9fa; }
+        
+        .collapsible-header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .toggle-icon { 
+            transition: transform 0.3s ease; 
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        /* ESTADO ATIVO */
+        .collapsible-card.active .collapsible-content {
+            max-height: 5000px; /* Valor alto para comportar o texto */
+            padding: 10px 35px 40px 35px;
+        }
+        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
+
+        /* ELEMENTOS INTERNOS */
+        h3 { color: var(--primary-color); margin-top: 25px; font-size: 1.25em; font-weight: 700; }
+        .bloco-destaque {
+            font-size: 1.05em;
+            background: var(--soft-blue);
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 15px 20px;
+            margin-bottom: 20px;
         }
-        @media (max-width: 700px) {
-            .logo-container { padding: 20px 0 10px 0; }
-            .logo-tamandare { max-width: 110px; }
-            .container { 
-                padding: 30px 15px; 
-                width: calc(100% - 30px);
-            }
-            .page-title { font-size: 1.6em; }
-            h2 { font-size: 1.3em; }
-            .missao, .visao { font-size: 1em; }
-            .valores-list li { font-size: 0.95em; }
+        .rotulo { font-weight: 700; color: var(--accent-blue); margin-right: 8px; }
+        .img-container { text-align: center; margin: 25px 0; }
+        .img-container img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; }
+        .nota-fiscal-box {
+            background-color: #fff8f8;
+            border-left: 4px solid var(--danger-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
         }
+        .passo-a-passo { background-color: #f8f9fa; border: 1px solid #e9ecef; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .destaque-operacional { color: var(--danger-color); font-weight: 700; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <div class="logo-container">
-        <img src="../logo-tamandare.png" alt="Logo Tamandaré Tintas" class="logo-tamandare">
-    </div>
-
     <div class="container">
         <h1 class="page-title">Procedimento de Devolução e Recusa de Mercadorias</h1>
-        <p>
-            A devolução e recusa de mercadorias, apesar de terem por finalidade o desfazimento da venda, para fins fiscais possuem <strong>procedimentos distintos</strong>.
+        
+        <p class="intro-text">
+            A devolução e a recusa de mercadorias possuem <b>procedimentos distintos</b> para fins fiscais e operacionais. Clique nas seções abaixo para ver os detalhes.
         </p>
 
-        <h2>Devolução</h2>
-        <div class="missao">
-            <span class="destacado">Definição:</span>
-            A devolução ocorre quando o destinatário recebe a mercadoria em seu estabelecimento e por algum motivo de desacordo comercial, resolve devolver a mercadoria ao fornecedor.
+        <div class="collapsible-card active" id="card-devolucao">
+            <div class="collapsible-header" onclick="toggleCard('card-devolucao')">
+                <h2>1. Devolução</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="bloco-destaque">
+                    <span class="rotulo">Definição:</span>
+                    Ocorre quando o destinatário recebe a mercadoria e decide devolvê-la posteriormente por desacordo comercial.
+                </div>
+
+                <h3>Como proceder?</h3>
+                <p>Se o cliente tiver Inscrição Estadual, a emissão da NF de devolução é responsabilidade dele. Só emitimos nota de entrada se o cliente <b>não</b> tiver Inscrição Estadual.</p>
+
+                <h3>Consulta de Obrigatoriedade</h3>
+                <p>Verifique sempre no site do SINTEGRA (<a href="http://www.sintegra.gov.br/" target="_blank">sintegra.gov.br</a>) pelo CNPJ ou IE.</p>
+                <div class="img-container">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem1.png?raw=true" alt="Consulta SINTEGRA">
+                </div>
+
+                <h3>Conferência da NF do Cliente (Espelho)</h3>
+                <p>A nota dele deve ser idêntica à nossa original em itens, valores e tributos.</p>
+                
+                <p><b>Desconto:</b> Deve constar proporcionalmente no campo <b>DESCONTO</b> se houver na original.</p>
+                <div class="img-container">
+                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/desconto.png" alt="Conferência Desconto">
+                </div>
+
+                <p><b>ICMS:</b> Para produtos <b>CST 00</b>, o destaque deve estar no campo <b>VALOR DO ICMS</b> e também individualmente por item.</p>
+                <div class="img-container">
+                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/icms.png" alt="Destaque ICMS">
+                </div>
+
+                <h3>CFOP e Tabela de Referência</h3>
+                <div class="img-container">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem4.png?raw=true" alt="Tabela CFOP">
+                </div>
+            </div>
         </div>
-        <h2>Como proceder?</h2>
-        <p>
-            Neste caso, caso o destinatário possua inscrição estadual, é de sua responsabilidade a emissão da NF de devolução, não podendo o fornecedor emitir NF para si mesmo com fins de entrada de devolução, exceto quando o destinatário não possuir inscrição estadual.
-        </p>
-        <h2>Como consultar a obrigatoriedade de emissão de NF-e do cliente?</h2>
-        <p>
-            A consulta deve ser realizada no site do SINTEGRA (<a href="http://www.sintegra.gov.br/" target="_blank">www.sintegra.gov.br</a>). Clique no estado ao qual o cliente pertence e realize a consulta usando o CNPJ ou a Inscrição Estadual.
-        </p>
-        <div class="centralizada">
-            <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem1.png?raw=true" alt="Imagem 1 - Consulta SINTEGRA - exemplo" />
-        </div>
-        <div class="visao">
-            <span class="destacado">Exemplo prático:</span>
-            Veja o exemplo desse cliente, ele alegou que não fazia vendas e que apenas prestava serviço. Note que não importa a atividade que a empresa realmente faz, e sim o que ela declarou como atividade econômica. Isso que vai definir as obrigações fiscais que ela terá; e nesse caso, apesar de nunca ter realizado nenhuma compra ou venda, como a empresa foi inscrita com a atividade econômica de “compra e venda de imóveis próprios”, ela tem inscrição estadual e obrigatoriedade total na emissão de NF.
-            <br><br>
-            Nessa mesma consulta, na área de “informações NF-e” fica bem clara a obrigação da emissão da NF-e e fica fácil de enviar e justificar para o cliente.
-        </div>
-        <div class="centralizada">
-            <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem2.png?raw=true" alt="Imagem 2 - Área de informações NF-e" />
-        </div>
-        <h2>Recusa</h2>
-        <div class="missao">
-            <span class="destacado">Definição:</span>
-            Diferentemente da devolução, a recusa ocorre quando o destinatário, no ato da entrega, não recebe a mercadoria por algum motivo de desacordo comercial, ou seja, ele não chega a dar entrada na mercadoria em seu estabelecimento.
-        </div>
-        <h2>Como proceder?</h2>
-        <p>
-            Neste caso, o transporte da mercadoria em retorno será acompanhado pela própria Nota Fiscal emitida pelo remetente, cuja 1ª via deverá conter indicação, no verso, efetuada pelo destinatário ou pelo transportador, do motivo de não ter sido entregue a mercadoria. Além disso, o destinatário deverá manifestar a recusa também no aplicativo disponibilizado pela SEFAZ ou diretamente no Portal da NF-e.
-        </p>
-        <div class="centralizada">
-            <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem3.jpg?raw=true" alt="Imagem 3 - Manifestação de recusa" />
-        </div>
-        <h2>CFOP</h2>
-        <p>
-            Deve-se atentar para o CFOP que os clientes estão emitindo nas NFs de devolução. Caso a NF dele seja emitida com ICMS, desconto ou demais valores errados, não será possível dar a entrada, mas isso não acontece se o CFOP estiver errado. Temos que conferir, pois é o único jeito de evitar esse tipo de erro.
-        </p>
-        <div class="centralizada">
-            <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem4.png?raw=true" alt="Imagem 4 - Tabela de CFOP no processo de devolução" />
+
+        <div class="collapsible-card" id="card-recusa">
+            <div class="collapsible-header" onclick="toggleCard('card-recusa')">
+                <h2>2. Recusa</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="bloco-destaque">
+                    <span class="rotulo">Definição:</span>
+                    Ocorre quando o destinatário não recebe a mercadoria no ato da entrega. Ele <b>não dá entrada</b> no material.
+                </div>
+
+                <h3>Documentação</h3>
+                <p>O retorno usa a <b>NF original</b>. O verso deve conter o motivo da recusa assinado. O cliente deve manifestar a recusa no Portal da NF-e.</p>
+                <div class="img-container">
+                    <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem3.jpg?raw=true" alt="Manifestação Recusa">
+                </div>
+
+                <h3>Procedimento no Sistema GIX</h3>
+                <div class="passo-a-passo">
+                    <ol>
+                        <li>No campo <b>TIPO DE DEVOLUÇÃO</b>, preencha com <b class="destaque-operacional">RM</b> (Recusa de Mercadoria);</li>
+                        <li>No pop-up de <b>NATUREZA DA OPERAÇÃO</b>, selecione <b class="destaque-operacional">RECUSA DE MERCADORIA</b>;</li>
+                        <li>Siga o processo padrão de fechamento.</li>
+                    </ol>
+                </div>
+
+                <div class="nota-fiscal-box">
+                    <p><strong><i class="fa-solid fa-triangle-exclamation"></i> REGRAS CRÍTICAS:</strong></p>
+                    <ul>
+                        <li>Recuse a Nota Fiscal <b>INTEIRA</b>;</li>
+                        <li>Selecione sempre <b class="destaque-operacional">ABATER DUPLICATA</b>;</li>
+                        <li><b>FINANCEIRO:</b> Verifique se o título está em <b>CNAB</b>. Se estiver, <b>retire do CNAB</b> antes de processar a entrada.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        function toggleCard(cardId) {
+            const allCards = document.querySelectorAll('.collapsible-card');
+            const targetCard = document.getElementById(cardId);
+            
+            allCards.forEach(card => {
+                if (card === targetCard) {
+                    card.classList.toggle('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
