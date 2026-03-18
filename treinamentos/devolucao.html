@@ -46,7 +46,6 @@
             margin-right: auto;
         }
 
-        /* ESTILO DOS CARDS COLAPSÁVEIS */
         .collapsible-card {
             background-color: var(--card-background);
             border-radius: 12px;
@@ -85,14 +84,12 @@
             transition: max-height 0.4s ease-out;
         }
 
-        /* ESTADO ATIVO */
         .collapsible-card.active .collapsible-content {
-            max-height: 5000px; /* Valor alto para comportar o texto */
+            max-height: 6000px; 
             padding: 10px 35px 40px 35px;
         }
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
 
-        /* ELEMENTOS INTERNOS */
         h3 { color: var(--primary-color); margin-top: 25px; font-size: 1.25em; font-weight: 700; }
         .bloco-destaque {
             font-size: 1.05em;
@@ -156,7 +153,13 @@
                     <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/icms.png" alt="Destaque ICMS">
                 </div>
 
-                <h3>CFOP e Tabela de Referência</h3>
+                <h3>CFOP e Natureza da Operação</h3>
+                <p>Deve-se dar atenção total ao CFOP que o cliente utiliza. Se a NF dele tiver erros de ICMS ou descontos, o sistema trava a entrada; porém, se apenas o CFOP estiver errado, o sistema pode permitir a entrada, o que gera um erro fiscal grave.</p>
+                
+                <p>O CFOP da devolução deve corresponder ao **CFOP da NF original + Natureza da Operação**. A Natureza da Operação depende do motivo da compra pelo cliente. Por exemplo: se o cliente comprou tintas para pintar a própria loja, trata-se de <b>Uso e Consumo</b>. Logo, a natureza da devolução deve ser "Devolução de material de uso e consumo".</p>
+                
+                <p>O código CFOP varia conforme o regime tributário do produto devolvido, conforme a tabela de referência abaixo:</p>
+
                 <div class="img-container">
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem4.png?raw=true" alt="Tabela CFOP">
                 </div>
@@ -175,26 +178,29 @@
                 </div>
 
                 <h3>Documentação</h3>
-                <p>O retorno usa a <b>NF original</b>. O verso deve conter o motivo da recusa assinado. O cliente deve manifestar a recusa no Portal da NF-e.</p>
+                <p>O retorno usa a <b>NF original</b>. O verso deve conter o motivo da recusa assinado pelo cliente ou transportador. O cliente deve manifestar a recusa no Portal da NF-e.</p>
                 <div class="img-container">
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem3.jpg?raw=true" alt="Manifestação Recusa">
                 </div>
 
                 <h3>Procedimento no Sistema GIX</h3>
+                <p>Para dar entrada na recusa, o procedimento é igual ao da devolução onde emitimos a NF para o cliente. Na recusa, também devemos emitir essa NF de entrada.</p>
+
                 <div class="passo-a-passo">
                     <ol>
-                        <li>No campo <b>TIPO DE DEVOLUÇÃO</b>, preencha com <b class="destaque-operacional">RM</b> (Recusa de Mercadoria);</li>
-                        <li>No pop-up de <b>NATUREZA DA OPERAÇÃO</b>, selecione <b class="destaque-operacional">RECUSA DE MERCADORIA</b>;</li>
-                        <li>Siga o processo padrão de fechamento.</li>
+                        <li>Inicie o processo de emissão de nota de entrada;</li>
+                        <li>No campo <b>TIPO DE DEVOLUÇÃO</b>, preencha obrigatoriamente com <b class="destaque-operacional">RM</b> (Recusa de Mercadoria);</li>
+                        <li>Após confirmar o tipo, surgirá um pop-up para a <b>NATUREZA DA OPERAÇÃO</b>. Selecione a opção <b class="destaque-operacional">RECUSA DE MERCADORIA</b>;</li>
+                        <li>Confirme e siga o processo normal de fechamento como se fosse uma devolução comum.</li>
                     </ol>
                 </div>
 
                 <div class="nota-fiscal-box">
-                    <p><strong><i class="fa-solid fa-triangle-exclamation"></i> REGRAS CRÍTICAS:</strong></p>
+                    <p><strong><i class="fa-solid fa-triangle-exclamation"></i> REGRAS CRÍTICAS PARA RECUSA:</strong></p>
                     <ul>
-                        <li>Recuse a Nota Fiscal <b>INTEIRA</b>;</li>
-                        <li>Selecione sempre <b class="destaque-operacional">ABATER DUPLICATA</b>;</li>
-                        <li><b>FINANCEIRO:</b> Verifique se o título está em <b>CNAB</b>. Se estiver, <b>retire do CNAB</b> antes de processar a entrada.</li>
+                        <li>Deve-se recusar a Nota Fiscal <b>INTEIRA</b>;</li>
+                        <li>Sempre escolha a opção <b class="destaque-operacional">ABATER DUPLICATA</b>;</li>
+                        <li><b>FINANCEIRO:</b> Verifique se o título está em <b>CNAB</b>. Caso esteja, você deve <b>RETIRAR DO CNAB</b> antes de processar a entrada da recusa no sistema.</li>
                     </ul>
                 </div>
             </div>
