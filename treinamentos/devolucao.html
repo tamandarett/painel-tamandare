@@ -91,6 +91,19 @@
         .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
 
         h3 { color: var(--primary-color); margin-top: 25px; font-size: 1.25em; font-weight: 700; }
+        
+        /* Subtítulos Padronizados (Desconto, ICMS, CFOP) */
+        .sub-topico {
+            color: var(--primary-color);
+            font-size: 1.15em;
+            font-weight: 700;
+            margin-top: 25px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
         .bloco-destaque {
             font-size: 1.05em;
             background: var(--soft-blue);
@@ -99,8 +112,9 @@
             margin-bottom: 20px;
         }
         .rotulo { font-weight: 700; color: var(--accent-blue); margin-right: 8px; }
-        .img-container { text-align: center; margin: 25px 0; }
+        .img-container { text-align: center; margin: 20px 0; }
         .img-container img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; }
+        
         .nota-fiscal-box {
             background-color: #fff8f8;
             border-left: 4px solid var(--danger-color);
@@ -110,6 +124,13 @@
         }
         .passo-a-passo { background-color: #f8f9fa; border: 1px solid #e9ecef; padding: 20px; border-radius: 8px; margin: 20px 0; }
         .destaque-operacional { color: var(--danger-color); font-weight: 700; }
+        
+        .alerta-texto {
+            display: block;
+            margin-top: 10px;
+            color: var(--danger-color);
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
@@ -155,18 +176,35 @@
                 <h3>Como conferir uma NF de devolução emitida pelo cliente</h3>
                 <p>A NF de devolução do cliente deve ser um “espelho” da nota que emitimos para ele, por isso ela deve conter todos os itens da NF original.</p>
 
-                <p><b>Desconto:</b> A NF do cliente deve ter o mesmo desconto que foi aplicado na nota original. Atenção: ele deve ser concedido da mesma forma. Se o desconto da NF original está destacado — ou seja, aparece no campo “DESCONTO” da nota original — ele também deve aparecer na NF de devolução com o valor correspondente aos itens devolvidos.</p>
+                <span class="sub-topico">Desconto</span>
+                <p>
+                    A NF do cliente deve ter o mesmo desconto que foi aplicado na nota original. 
+                    <span class="alerta-texto">Atenção:</span> 
+                    Ele deve ser concedido da mesma forma. Se o desconto da NF original está destacado — ou seja, aparece no campo “DESCONTO” da nota original — ele também deve aparecer na NF de devolução com o valor correspondente aos itens devolvidos.
+                </p>
                 <div class="img-container">
                     <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/desconto.png" alt="Exemplo Desconto">
                 </div>
 
-                <p><b>ICMS:</b> Como dito anteriormente, a nota de devolução deve espelhar a NF original, e isso também é verdade para o ICMS. Nos produtos da NF original onde conste o CST 00 (Código de Situação Tributária que representa operações tributadas integralmente), deve haver destaque de ICMS. Esse destaque deve estar no campo de “VALOR DO ICMS”, que fica próximo ao campo “DESCONTO” na área destinada aos impostos da NF.</p>
-                <p>O destaque deve ser feito também de forma individual em cada produto, usando o campo específico em frente à descrição dos itens.</p>
+                <span class="sub-topico">ICMS</span>
+                <p>
+                    Como dito anteriormente, a nota de devolução deve espelhar a NF original, e isso também é verdade para o ICMS. Nos produtos da NF original onde conste o <b>CST 00*</b>, deve haver destaque de ICMS. Esse destaque deve estar no campo de “VALOR DO ICMS”, que fica próximo ao campo “DESCONTO” na área destinada aos impostos da NF. 
+                    <br><br>
+                    O destaque deve ser feito também de forma individual em cada produto, usando o campo específico em frente à descrição dos itens.
+                </p>
+
+                <div class="bloco-destaque">
+                    <span class="rotulo">*O que é CST:</span>
+                    O CST na nota fiscal é o Código de Situação Tributária, um identificador usado para classificar a tributação de produtos ou serviços.
+                    <br>• <b>000:</b> Tributado integralmente.
+                    <br>• <b>060:</b> ICMS-ST recolhido anteriormente.
+                </div>
+
                 <div class="img-container">
                     <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/dev/icms.png" alt="Exemplo ICMS">
                 </div>
 
-                <h3>CFOP e Natureza da Operação</h3>
+                <span class="sub-topico">CFOP</span>
                 <p>Deve-se atentar para o CFOP que os clientes estão emitindo nas NFs de devolução. Caso a NF dele seja emitida com ICMS, desconto ou demais valores errados, não será possível dar a entrada, mas isso não acontece se o CFOP estiver errado. Temos que conferir, pois é o único jeito de evitar esse tipo de erro.</p>
                 
                 <p>O CFOP da NF de devolução do cliente deve corresponder ao <b>CFOP da NF original + Natureza da Operação</b>. A Natureza da operação na NF de devolução corresponde ao motivo da compra do produto. Por exemplo: o cliente comprou os produtos para pintar sua fábrica; nesse caso, é para <b>uso e consumo</b>. A natureza da operação da NF de devolução deve ser <b>"DEVOLUÇÃO DE MATERIAL DE USO E CONSUMO"</b>, e o CFOP varia dependendo do regime tributário do produto devolvido, conforme a tabela abaixo:</p>
