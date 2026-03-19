@@ -30,7 +30,7 @@ const TRAINING_DETAILS = {
     "Cadastro de Clientes":{ description:"Como cadastrar clientes corretamente, aplicar bloqueios e consultar informações.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/cadastrodeclientes.html" },
     "Registro de Lacres":{ description:"Sistema digital para registrar a numeração dos lacres dos malotes.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/lacres.html" },
     "GNRE":{ description:"Orientações para emissão da GNRE apenas quando necessária.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/gnre.html" },
-    "Procedimento de Devolução e Recusa de Mercadorias": { description: "Diferenças entre recusa e devolução e regras de cada uma.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/devolucao.html" },
+    "Devolução e Recusa de Mercadorias": { description: "Diferenças entre recusa e devolução e regras de cada uma.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/devolucao.html" },
     "Despesa de Viagem": { description: "Regras para pagamento e baixas de despesas de viagem.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/despesasdeviagem.html" },
     "Carta de Correção": { description: "Manual de como emitir uma carta de correção.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/cce.html" },
     "Vendas e Transferência entre lojas": { description: "Regras para vendas e transferências entre lojas do grupo.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/vendasentrelojas.html" },
