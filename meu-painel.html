@@ -15,42 +15,40 @@
     <link rel="shortcut icon" type="image/png" href="favicon.png">
 
     <style>
-        /* Ajuste de Espaçamento Superior */
         .container { margin-top: 10px !important; max-width: 1200px; }
         .header { margin-bottom: 15px !important; }
         .top-bar-custom { height: 4px; background: #D32F2F; width: 100%; position: fixed; top: 0; left: 0; z-index: 100; }
 
-        /* Layout em Colunas */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 350px;
             gap: 20px;
-            align-items: start;
+            align-items: stretch; /* Garante que as colunas tenham a mesma altura */
         }
 
-        /* Grid de Links - Mantendo o visual original mas em 2 colunas */
         .link-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 10px;
         }
 
-        /* Removendo subtítulos para ganhar altura */
         .link-subtitle { display: none !important; }
-        .link-title { font-size: 15px !important; margin-top: 2px; }
+        .link-title { font-size: 15px !important; }
 
-        /* Pendências com Scroll Interno e Altura Fixa */
+        /* Caixa de Tarefas Fixa com Scroll Interno */
         .tasks-card {
             display: flex;
             flex-direction: column;
-            max-height: 520px; /* Altura aproximada para alinhar com os links */
+            height: 100%; /* Ocupa a altura total da coluna definida pelo card de links */
         }
+        
         .todo-list-wrapper {
             overflow-y: auto;
             flex-grow: 1;
             padding-right: 8px;
+            max-height: 400px; /* Limite visual para manter o alinhamento */
         }
-        /* Scrollbar discreta */
+
         .todo-list-wrapper::-webkit-scrollbar { width: 5px; }
         .todo-list-wrapper::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
 
@@ -58,6 +56,7 @@
         .todo-input-group input { 
             flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Inter', sans-serif;
         }
+        
         .todo-item { 
             display: flex; align-items: center; justify-content: space-between; 
             padding: 10px 5px; border-bottom: 1px solid #eee; cursor: pointer;
@@ -65,11 +64,10 @@
         .todo-text { font-size: 14px; color: #333; flex: 1; }
         .todo-text.completed { text-decoration: line-through; color: #999; }
         .btn-del { background: none; border: none; color: #D32F2F; cursor: pointer; opacity: 0.5; }
-        .btn-del:hover { opacity: 1; }
 
         @media (max-width: 1000px) {
             .main-grid { grid-template-columns: 1fr; }
-            .tasks-card { max-height: none; }
+            .tasks-card { height: auto; }
         }
     </style>
 </head>
@@ -89,41 +87,45 @@
 
         <div class="main-grid">
             <section>
-                <div class="card static-card">
+                <div class="card static-card" style="height: 100%;">
                     <div class="card-content">
                         <h2><i class="fa-solid fa-star"></i> Meus Atalhos</h2>
                         <ul class="link-list link-grid">
-                            <li><a href="https://protestosp.com.br/Home/Acesso" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Protesto SP</span></div>
-                            </a></li>
-                            <li><a href="https://employers.indeed.com/jobs" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-briefcase"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Indeed</span></div>
-                            </a></li>
-                            <li><a href="https://github.com/" target="_blank">
-                                <div class="link-icon"><i class="fa-brands fa-github"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">GitHub</span></div>
-                            </a></li>
-                            <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/conferencia.html" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-stamp"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Conferência de Lacres</span></div>
+                            <li><a href="https://awstou.ifractal.com.br/tamandaretintas/login.php" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-clock"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Ponto Eletrônico</span></div>
                             </a></li>
                             <li><a href="https://tamandarett.github.io/auditoria-caixa/" target="_blank">
                                 <div class="link-icon"><i class="fa-solid fa-calculator"></i></div>
                                 <div class="link-text-wrapper"><span class="link-title">Auditoria Caixa</span></div>
                             </a></li>
-                            <li><a href="https://plataforma.ticketlog.com.br/" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-gas-pump"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Ticket Log</span></div>
+                            <li><a href="https://www.cielo.com.br/" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-credit-card"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Cielo</span></div>
                             </a></li>
-                            <li><a href="https://awstou.ifractal.com.br/tamandaretintas/login.php" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-clock"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Ponto Eletrônico</span></div>
+                            <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/conferencia.html" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-stamp"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Conferência de Lacres</span></div>
+                            </a></li>
+                            <li><a href="https://github.com/" target="_blank">
+                                <div class="link-icon"><i class="fa-brands fa-github"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">GitHub</span></div>
+                            </a></li>
+                            <li><a href="https://employers.indeed.com/jobs" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-briefcase"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Indeed</span></div>
                             </a></li>
                             <li><a href="https://tamandarett.github.io/painel-tamandare/" target="_blank">
                                 <div class="link-icon"><i class="fa-solid fa-house"></i></div>
                                 <div class="link-text-wrapper"><span class="link-title">Painel Operacional</span></div>
+                            </a></li>
+                            <li><a href="https://protestosp.com.br/Home/Acesso" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Protesto SP</span></div>
+                            </a></li>
+                            <li><a href="https://plataforma.ticketlog.com.br/" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-gas-pump"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Ticket Log</span></div>
                             </a></li>
                         </ul>
                     </div>
@@ -133,7 +135,7 @@
             <aside>
                 <div class="card static-card tasks-card">
                     <div class="card-content">
-                        <h2><i class="fa-solid fa-list-check"></i> Pendências</h2>
+                        <h2><i class="fa-solid fa-list-check"></i> Tarefas</h2>
                         <div class="todo-input-group">
                             <input type="text" id="todo-input" placeholder="Novo item..." autocomplete="off">
                             <button onclick="addTask()" class="btn-primary">Add</button>
