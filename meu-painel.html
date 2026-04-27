@@ -6,80 +6,70 @@
     <title>Meu Painel</title>
     <meta name="robots" content="noindex">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
 
     <style>
-        /* Reset de espaços mortos no topo */
-        body { padding-top: 10px; }
-        .container { margin-top: 0 !important; max-width: 1300px; padding: 0 15px; }
-        .top-bar-custom { height: 3px; background: #D32F2F; width: 100%; position: fixed; top: 0; left: 0; z-index: 100; }
-        
-        /* Header ultra compacto */
-        .header { 
-            margin-bottom: 10px !important; 
-            padding: 5px 0 !important; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-        }
-        .header h1 { margin: 0; font-size: 22px; }
-        .header p { margin: 0; font-size: 13px; }
-        .header-logo img { max-height: 45px; }
+        /* Ajuste de Espaçamento Superior */
+        .container { margin-top: 10px !important; max-width: 1200px; }
+        .header { margin-bottom: 15px !important; }
+        .top-bar-custom { height: 4px; background: #D32F2F; width: 100%; position: fixed; top: 0; left: 0; z-index: 100; }
 
-        /* Grid principal */
+        /* Layout em Colunas */
         .main-grid {
             display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 15px;
-            height: calc(100vh - 100px); /* Ocupa o resto da tela */
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+            align-items: start;
         }
 
-        /* Grid de Links em 2 colunas */
-        .link-grid-compact {
+        /* Grid de Links - Mantendo o visual original mas em 2 colunas */
+        .link-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
         }
 
-        .link-list li { margin-bottom: 0 !important; }
-        .link-list li a { 
-            padding: 8px 12px !important; 
-            background: #fff; 
-            border: 1px solid #eee;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-        }
-        .link-icon { font-size: 16px !important; margin-right: 12px !important; width: 25px !important; text-align: center; }
-        .link-title { font-size: 14px !important; font-weight: 600; }
-        .link-subtitle { display: none; } /* Removido para ganhar espaço */
+        /* Removendo subtítulos para ganhar altura */
+        .link-subtitle { display: none !important; }
+        .link-title { font-size: 15px !important; margin-top: 2px; }
 
-        /* Card de Pendências com Scroll Interno */
-        .tasks-container {
+        /* Pendências com Scroll Interno e Altura Fixa */
+        .tasks-card {
             display: flex;
             flex-direction: column;
-            height: 100%; /* Segue a altura do grid */
-            max-height: 500px; /* Limite para não estourar */
+            max-height: 520px; /* Altura aproximada para alinhar com os links */
         }
-        .todo-list-scroll {
-            flex: 1;
+        .todo-list-wrapper {
             overflow-y: auto;
-            padding-right: 5px;
-            margin-top: 10px;
+            flex-grow: 1;
+            padding-right: 8px;
         }
-        /* Scrollbar fina para não poluir */
-        .todo-list-scroll::-webkit-scrollbar { width: 4px; }
-        .todo-list-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        /* Scrollbar discreta */
+        .todo-list-wrapper::-webkit-scrollbar { width: 5px; }
+        .todo-list-wrapper::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
 
-        .todo-input-group input { padding: 8px; font-size: 13px; }
-        .todo-item { padding: 8px 0; font-size: 13px; }
+        .todo-input-group { display: flex; gap: 8px; margin-bottom: 15px; }
+        .todo-input-group input { 
+            flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Inter', sans-serif;
+        }
+        .todo-item { 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 10px 5px; border-bottom: 1px solid #eee; cursor: pointer;
+        }
+        .todo-text { font-size: 14px; color: #333; flex: 1; }
+        .todo-text.completed { text-decoration: line-through; color: #999; }
+        .btn-del { background: none; border: none; color: #D32F2F; cursor: pointer; opacity: 0.5; }
+        .btn-del:hover { opacity: 1; }
 
-        @media (max-width: 900px) {
-            .main-grid { grid-template-columns: 1fr; height: auto; }
-            .tasks-container { max-height: 400px; }
+        @media (max-width: 1000px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .tasks-card { max-height: none; }
         }
     </style>
 </head>
@@ -90,7 +80,7 @@
         <header class="header">
             <div class="header-text">
                 <h1>Meu Painel</h1>
-                <p>Tamandaré Tintas • Gestão</p>
+                <p>Gestão e Atalhos Rápidos</p>
             </div>
             <div class="header-logo">
                 <img src="./logo-tamandare.png" alt="Logo" onerror="this.style.display='none'">
@@ -98,55 +88,59 @@
         </header>
 
         <div class="main-grid">
-            <section class="card static-card">
-                <div class="card-content" style="padding: 15px;">
-                    <h2 style="margin-bottom: 12px; font-size: 16px;"><i class="fa-solid fa-link"></i> Atalhos</h2>
-                    <ul class="link-list link-grid-compact">
-                        <li><a href="https://protestosp.com.br/Home/Acesso" target="_blank">
-                            <div class="link-icon" style="color: #d32f2f;"><i class="fa-solid fa-file-invoice"></i></div>
-                            <span class="link-title">Protesto SP</span>
-                        </a></li>
-                        <li><a href="https://employers.indeed.com/jobs" target="_blank">
-                            <div class="link-icon" style="color: #2557a7;"><i class="fa-solid fa-briefcase"></i></div>
-                            <span class="link-title">Indeed</span>
-                        </a></li>
-                        <li><a href="https://github.com/" target="_blank">
-                            <div class="link-icon" style="color: #333;"><i class="fa-brands fa-github"></i></div>
-                            <span class="link-title">GitHub</span>
-                        </a></li>
-                        <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/conferencia.html" target="_blank">
-                            <div class="link-icon" style="color: #d32f2f;"><i class="fa-solid fa-stamp"></i></div>
-                            <span class="link-title">Conferência de Lacres</span>
-                        </a></li>
-                        <li><a href="https://tamandarett.github.io/auditoria-caixa/" target="_blank">
-                            <div class="link-icon" style="color: #2e7d32;"><i class="fa-solid fa-calculator"></i></div>
-                            <span class="link-title">Auditoria Caixa</span>
-                        </a></li>
-                        <li><a href="https://plataforma.ticketlog.com.br/" target="_blank">
-                            <div class="link-icon" style="color: #ed7000;"><i class="fa-solid fa-gas-pump"></i></div>
-                            <span class="link-title">Ticket Log</span>
-                        </a></li>
-                        <li><a href="https://awstou.ifractal.com.br/tamandaretintas/login.php" target="_blank">
-                            <div class="link-icon" style="color: #1976d2;"><i class="fa-solid fa-clock"></i></div>
-                            <span class="link-title">Ponto Eletrônico</span>
-                        </a></li>
-                        <li><a href="https://tamandarett.github.io/painel-tamandare/" target="_blank">
-                            <div class="link-icon" style="color: #d32f2f;"><i class="fa-solid fa-house"></i></div>
-                            <span class="link-title">Painel Operacional</span>
-                        </a></li>
-                    </ul>
+            <section>
+                <div class="card static-card">
+                    <div class="card-content">
+                        <h2><i class="fa-solid fa-star"></i> Meus Atalhos</h2>
+                        <ul class="link-list link-grid">
+                            <li><a href="https://protestosp.com.br/Home/Acesso" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Protesto SP</span></div>
+                            </a></li>
+                            <li><a href="https://employers.indeed.com/jobs" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-briefcase"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Indeed</span></div>
+                            </a></li>
+                            <li><a href="https://github.com/" target="_blank">
+                                <div class="link-icon"><i class="fa-brands fa-github"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">GitHub</span></div>
+                            </a></li>
+                            <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/conferencia.html" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-stamp"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Conferência de Lacres</span></div>
+                            </a></li>
+                            <li><a href="https://tamandarett.github.io/auditoria-caixa/" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-calculator"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Auditoria Caixa</span></div>
+                            </a></li>
+                            <li><a href="https://plataforma.ticketlog.com.br/" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-gas-pump"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Ticket Log</span></div>
+                            </a></li>
+                            <li><a href="https://awstou.ifractal.com.br/tamandaretintas/login.php" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-clock"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Ponto Eletrônico</span></div>
+                            </a></li>
+                            <li><a href="https://tamandarett.github.io/painel-tamandare/" target="_blank">
+                                <div class="link-icon"><i class="fa-solid fa-house"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">Painel Operacional</span></div>
+                            </a></li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
-            <aside class="card static-card tasks-container">
-                <div class="card-content" style="padding: 15px; display: flex; flex-direction: column; height: 100%;">
-                    <h2 style="margin-bottom: 12px; font-size: 16px;"><i class="fa-solid fa-list-check"></i> Pendências</h2>
-                    <div class="todo-input-group">
-                        <input type="text" id="todo-input" placeholder="Novo item..." autocomplete="off">
-                        <button onclick="addTask()" class="btn-primary" style="padding: 0 10px;">+</button>
-                    </div>
-                    <div class="todo-list-scroll">
-                        <ul id="todo-list" class="todo-list"></ul>
+            <aside>
+                <div class="card static-card tasks-card">
+                    <div class="card-content">
+                        <h2><i class="fa-solid fa-list-check"></i> Pendências</h2>
+                        <div class="todo-input-group">
+                            <input type="text" id="todo-input" placeholder="Novo item..." autocomplete="off">
+                            <button onclick="addTask()" class="btn-primary">Add</button>
+                        </div>
+                        <div class="todo-list-wrapper">
+                            <ul id="todo-list" class="todo-list"></ul>
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -193,7 +187,7 @@
                 <li class="todo-item" onclick="toggleTask(${i})">
                     <span class="todo-text ${task.completed ? 'completed' : ''}">${task.text}</span>
                     <button class="btn-del" onclick="deleteTask(event, ${i})">
-                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </li>
             `).join('');
