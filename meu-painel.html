@@ -23,38 +23,52 @@
             display: grid;
             grid-template-columns: 1fr 350px;
             gap: 20px;
-            align-items: stretch; /* Garante que as colunas tenham a mesma altura */
+            align-items: stretch;
         }
 
+        /* Força 3 colunas exatas como no painel principal */
         .link-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 12px;
         }
 
         .link-subtitle { display: none !important; }
-        .link-title { font-size: 15px !important; }
+        .link-title { font-size: 14px !important; }
 
-        /* Caixa de Tarefas Fixa com Scroll Interno */
-        .tasks-card {
-            display: flex;
-            flex-direction: column;
-            height: 100%; /* Ocupa a altura total da coluna definida pelo card de links */
-        }
+        /* Estilos dos Links Personalizáveis */
+        .custom-link-wrapper { position: relative; }
         
-        .todo-list-wrapper {
-            overflow-y: auto;
-            flex-grow: 1;
-            padding-right: 8px;
-            max-height: 400px; /* Limite visual para manter o alinhamento */
+        .custom-slot-empty {
+            display: flex; align-items: center; justify-content: center;
+            padding: 16px; border: 2px dashed #CBD5E0; border-radius: 10px;
+            color: var(--text-muted); cursor: pointer; height: 100%;
+            transition: all 0.2s; background: transparent; font-size: 14px; font-weight: 600;
         }
+        .custom-slot-empty:hover { border-color: var(--primary-color); color: var(--primary-color); background: #FFF5F5; }
 
+        .btn-edit-link {
+            position: absolute; top: 5px; right: 5px;
+            background: white; border: 1px solid #E2E8F0; border-radius: 6px;
+            width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--text-muted); opacity: 0; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .custom-link-wrapper:hover .btn-edit-link { opacity: 1; }
+        .btn-edit-link:hover { color: var(--primary-color); border-color: var(--primary-color); }
+
+        /* Caixa de Tarefas */
+        .tasks-card { display: flex; flex-direction: column; height: 100%; }
+        .todo-list-wrapper { overflow-y: auto; flex-grow: 1; padding-right: 8px; max-height: 400px; }
         .todo-list-wrapper::-webkit-scrollbar { width: 5px; }
         .todo-list-wrapper::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
 
         @media (max-width: 1000px) {
             .main-grid { grid-template-columns: 1fr; }
+            .link-grid { grid-template-columns: 1fr 1fr; } /* 2 no celular para não esmagar */
             .tasks-card { height: auto; }
+        }
+        @media (max-width: 600px) {
+            .link-grid { grid-template-columns: 1fr; } /* 1 no celular pequeno */
         }
     </style>
 </head>
@@ -77,44 +91,17 @@
                 <div class="card static-card" style="height: 100%;">
                     <div class="card-content">
                         <h2><i class="fa-solid fa-star"></i> Meus Atalhos</h2>
-                        <ul class="link-list link-grid">
-                            <li><a href="https://awstou.ifractal.com.br/tamandaretintas/login.php" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-clock"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Ponto Eletrônico</span></div>
-                            </a></li>
-                            <li><a href="https://tamandarett.github.io/auditoria-caixa/" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-calculator"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Auditoria Caixa</span></div>
-                            </a></li>
-                            <li><a href="https://www.cielo.com.br/" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-credit-card"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Cielo</span></div>
-                            </a></li>
-                            <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/conferencia.html" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-stamp"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Conferência de Lacres</span></div>
-                            </a></li>
-                            <li><a href="https://github.com/" target="_blank">
-                                <div class="link-icon"><i class="fa-brands fa-github"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">GitHub</span></div>
-                            </a></li>
-                            <li><a href="https://employers.indeed.com/jobs" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-briefcase"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Indeed</span></div>
-                            </a></li>
-                            <li><a href="https://tamandarett.github.io/painel-tamandare/" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-house"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Painel Rápido</span></div>
-                            </a></li>
-                            <li><a href="https://protestosp.com.br/Home/Acesso" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Protesto SP</span></div>
-                            </a></li>
-                            <li><a href="https://plataforma.ticketlog.com.br/" target="_blank">
-                                <div class="link-icon"><i class="fa-solid fa-gas-pump"></i></div>
-                                <div class="link-text-wrapper"><span class="link-title">Ticket Log</span></div>
-                            </a></li>
-                        </ul>
+                        <ul id="main-links-container" class="link-list link-grid">
+                            <li><a href="https://awstou.ifractal.com.br/tamandaretintas/login.php" target="_blank"><div class="link-icon"><i class="fa-solid fa-clock"></i></div><div class="link-text-wrapper"><span class="link-title">Ponto Eletrônico</span></div></a></li>
+                            <li><a href="https://tamandarett.github.io/auditoria-caixa/" target="_blank"><div class="link-icon"><i class="fa-solid fa-calculator"></i></div><div class="link-text-wrapper"><span class="link-title">Auditoria Caixa</span></div></a></li>
+                            <li><a href="https://www.cielo.com.br/" target="_blank"><div class="link-icon"><i class="fa-solid fa-credit-card"></i></div><div class="link-text-wrapper"><span class="link-title">Cielo</span></div></a></li>
+                            <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/conferencia.html" target="_blank"><div class="link-icon"><i class="fa-solid fa-stamp"></i></div><div class="link-text-wrapper"><span class="link-title">Conf. Lacres</span></div></a></li>
+                            <li><a href="https://github.com/" target="_blank"><div class="link-icon"><i class="fa-brands fa-github"></i></div><div class="link-text-wrapper"><span class="link-title">GitHub</span></div></a></li>
+                            <li><a href="https://employers.indeed.com/jobs" target="_blank"><div class="link-icon"><i class="fa-solid fa-briefcase"></i></div><div class="link-text-wrapper"><span class="link-title">Indeed</span></div></a></li>
+                            <li><a href="https://tamandarett.github.io/painel-tamandare/" target="_blank"><div class="link-icon"><i class="fa-solid fa-house"></i></div><div class="link-text-wrapper"><span class="link-title">Painel Rápido</span></div></a></li>
+                            <li><a href="https://protestosp.com.br/Home/Acesso" target="_blank"><div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div><div class="link-text-wrapper"><span class="link-title">Protesto SP</span></div></a></li>
+                            <li><a href="https://plataforma.ticketlog.com.br/" target="_blank"><div class="link-icon"><i class="fa-solid fa-gas-pump"></i></div><div class="link-text-wrapper"><span class="link-title">Ticket Log</span></div></a></li>
+                            </ul>
                     </div>
                 </div>
             </section>
@@ -123,16 +110,13 @@
                 <div class="card static-card tasks-card">
                     <div class="card-content">
                         <h2><i class="fa-solid fa-list-check"></i> Tarefas</h2>
-                        
                         <div class="todo-input-container" style="margin-bottom: 10px;">
                             <input type="text" id="todo-input" placeholder="Nova tarefa..." autocomplete="off">
                             <button onclick="addTarefa()"><i class="fa-solid fa-plus"></i></button>
                         </div>
-                        
                         <div class="todo-list-wrapper">
                             <ul id="todo-list" class="todo-list"></ul>
                         </div>
-                        
                         <button class="btn-clean" onclick="limparConcluidas()">Limpar Concluídas</button>
                     </div>
                 </div>
@@ -140,8 +124,125 @@
         </div>
     </div>
 
+    <div id="modal-link" class="modal-overlay">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 15px; color: var(--primary-color);">Personalizar Atalho</h3>
+            
+            <label for="custom-title">Nome do Atalho</label>
+            <input type="text" id="custom-title" class="search-input" placeholder="Ex: Drive da Loja" autocomplete="off">
+            
+            <label for="custom-url">Link (URL)</label>
+            <input type="url" id="custom-url" class="search-input" placeholder="https://..." autocomplete="off">
+            
+            <label for="custom-icon">Ícone</label>
+            <select id="custom-icon" class="modern-select">
+                <option value="fa-globe">Globo (Padrão)</option>
+                <option value="fa-star">Estrela</option>
+                <option value="fa-folder">Pasta</option>
+                <option value="fa-file-lines">Documento</option>
+                <option value="fa-envelope">Email</option>
+                <option value="fa-chart-line">Gráfico</option>
+                <option value="fa-whatsapp">WhatsApp</option>
+                <option value="fa-truck">Caminhão / Entrega</option>
+                <option value="fa-users">Pessoas</option>
+            </select>
+            
+            <div class="modal-actions" style="margin-top: 20px;">
+                <button class="btn-secondary" onclick="fecharModalLink()">Cancelar</button>
+                <button id="btn-remover-link" class="btn-secondary" style="color: #D32F2F; border-color: #D32F2F; display: none;" onclick="removerLink()">Limpar Espaço</button>
+                <button class="btn-primary" onclick="salvarLink()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Lógica de tarefas idêntica ao Painel Rápido e usando o mesmo localStorage (tt_tasks)
+        // ==========================================
+        // GESTÃO DE LINKS PERSONALIZADOS (LOCALSTORAGE)
+        // ==========================================
+        // 6 espaços vazios por padrão
+        let customLinks = JSON.parse(localStorage.getItem('tt_custom_links')) || [null, null, null, null, null, null];
+        let currentEditSlot = -1;
+
+        function renderCustomLinks() {
+            const container = document.getElementById('main-links-container');
+            
+            // Remove os customizados da tela para recriar (mantém os fixos intactos)
+            container.querySelectorAll('.custom-link-wrapper').forEach(el => el.remove());
+
+            customLinks.forEach((link, index) => {
+                const li = document.createElement('li');
+                li.className = 'custom-link-wrapper';
+
+                if (link) {
+                    // Tem link salvo
+                    li.innerHTML = `
+                        <a href="${link.url}" target="_blank">
+                            <div class="link-icon" style="background:#F4F7F6;"><i class="fa-solid ${link.icon}"></i></div>
+                            <div class="link-text-wrapper"><span class="link-title">${link.title}</span></div>
+                        </a>
+                        <button class="btn-edit-link" onclick="abrirModalLink(${index})" title="Editar"><i class="fa-solid fa-pen" style="font-size:11px;"></i></button>
+                    `;
+                } else {
+                    // Espaço Vazio
+                    li.innerHTML = `
+                        <div class="custom-slot-empty" onclick="abrirModalLink(${index})">
+                            <i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Personalizar
+                        </div>
+                    `;
+                }
+                container.appendChild(li);
+            });
+        }
+
+        function abrirModalLink(index) {
+            currentEditSlot = index;
+            const link = customLinks[index];
+            
+            document.getElementById('custom-title').value = link ? link.title : '';
+            document.getElementById('custom-url').value = link ? link.url : '';
+            document.getElementById('custom-icon').value = link ? link.icon : 'fa-globe';
+            
+            document.getElementById('btn-remover-link').style.display = link ? 'inline-block' : 'none';
+            document.getElementById('modal-link').classList.add('show');
+            document.getElementById('custom-title').focus();
+        }
+
+        function fecharModalLink() {
+            document.getElementById('modal-link').classList.remove('show');
+        }
+
+        function salvarLink() {
+            const title = document.getElementById('custom-title').value.trim();
+            let url = document.getElementById('custom-url').value.trim();
+            const icon = document.getElementById('custom-icon').value;
+            
+            if(!title || !url) {
+                alert("Preencha o Nome e o Link para salvar.");
+                return;
+            }
+
+            // Garante que o link funcione mesmo se a pessoa esquecer do https
+            if(!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+
+            customLinks[currentEditSlot] = { title, url, icon };
+            localStorage.setItem('tt_custom_links', JSON.stringify(customLinks));
+            
+            fecharModalLink();
+            renderCustomLinks();
+        }
+
+        function removerLink() {
+            customLinks[currentEditSlot] = null;
+            localStorage.setItem('tt_custom_links', JSON.stringify(customLinks));
+            fecharModalLink();
+            renderCustomLinks();
+        }
+
+        // ==========================================
+        // GESTÃO DE TAREFAS (LOCALSTORAGE)
+        // ==========================================
         let tarefas = JSON.parse(localStorage.getItem('tt_tasks')) || [];
 
         function renderTarefas() {
@@ -149,8 +250,6 @@
             if(!lista) return;
             
             lista.innerHTML = '';
-            
-            // Ordena: não concluídas primeiro
             tarefas.sort((a,b) => a.done - b.done).forEach((t, i) => {
                 const li = document.createElement('li');
                 li.className = `todo-item ${t.done ? 'done' : ''}`;
@@ -161,37 +260,28 @@
                 `;
                 lista.appendChild(li);
             });
-            
             localStorage.setItem('tt_tasks', JSON.stringify(tarefas));
         }
 
         function addTarefa() { 
             const input = document.getElementById('todo-input');
             if(!input.value.trim()) return;
-            
             tarefas.push({texto: input.value.trim(), done: false});
             input.value = ''; 
             renderTarefas();
         }
+        function toggleT(i) { tarefas[i].done = !tarefas[i].done; renderTarefas(); }
+        function removeT(i) { tarefas.splice(i, 1); renderTarefas(); }
+        function limparConcluidas() { tarefas = tarefas.filter(t => !t.done); renderTarefas(); }
 
-        function toggleT(i) { 
-            tarefas[i].done = !tarefas[i].done; 
-            renderTarefas(); 
-        }
-
-        function removeT(i) { 
-            tarefas.splice(i, 1); 
-            renderTarefas(); 
-        }
-
-        function limparConcluidas() { 
-            tarefas = tarefas.filter(t => !t.done); 
-            renderTarefas(); 
-        }
-
-        // Inicialização e Event Listeners
+        // ==========================================
+        // INICIALIZAÇÃO
+        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             renderTarefas();
+            renderCustomLinks();
+            
+            // Suporte ao Enter na tarefa
             document.getElementById('todo-input').addEventListener('keypress', e => { 
                 if(e.key === 'Enter') addTarefa(); 
             });
