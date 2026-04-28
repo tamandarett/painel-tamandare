@@ -52,19 +52,6 @@
         .todo-list-wrapper::-webkit-scrollbar { width: 5px; }
         .todo-list-wrapper::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
 
-        .todo-input-group { display: flex; gap: 8px; margin-bottom: 15px; }
-        .todo-input-group input { 
-            flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Inter', sans-serif;
-        }
-        
-        .todo-item { 
-            display: flex; align-items: center; justify-content: space-between; 
-            padding: 10px 5px; border-bottom: 1px solid #eee; cursor: pointer;
-        }
-        .todo-text { font-size: 14px; color: #333; flex: 1; }
-        .todo-text.completed { text-decoration: line-through; color: #999; }
-        .btn-del { background: none; border: none; color: #D32F2F; cursor: pointer; opacity: 0.5; }
-
         @media (max-width: 1000px) {
             .main-grid { grid-template-columns: 1fr; }
             .tasks-card { height: auto; }
@@ -136,13 +123,17 @@
                 <div class="card static-card tasks-card">
                     <div class="card-content">
                         <h2><i class="fa-solid fa-list-check"></i> Tarefas</h2>
-                        <div class="todo-input-group">
-                            <input type="text" id="todo-input" placeholder="Novo item..." autocomplete="off">
-                            <button onclick="addTask()" class="btn-primary">Add</button>
+                        
+                        <div class="todo-input-container" style="margin-bottom: 10px;">
+                            <input type="text" id="todo-input" placeholder="Nova tarefa..." autocomplete="off">
+                            <button onclick="addTarefa()"><i class="fa-solid fa-plus"></i></button>
                         </div>
+                        
                         <div class="todo-list-wrapper">
                             <ul id="todo-list" class="todo-list"></ul>
                         </div>
+                        
+                        <button class="btn-clean" onclick="limparConcluidas()">Limpar Concluídas</button>
                     </div>
                 </div>
             </aside>
@@ -150,50 +141,61 @@
     </div>
 
     <script>
-        const input = document.getElementById('todo-input');
-        const listElement = document.getElementById('todo-list');
+        // Lógica de tarefas idêntica ao Painel Rápido e usando o mesmo localStorage (tt_tasks)
+        let tarefas = JSON.parse(localStorage.getItem('tt_tasks')) || [];
 
-        document.addEventListener('DOMContentLoaded', renderTasks);
-        input.addEventListener('keypress', (e) => { if(e.key === 'Enter') addTask(); });
-
-        function getTasks() { return JSON.parse(localStorage.getItem('minhas_tarefas') || '[]'); }
-
-        function addTask() {
-            const text = input.value.trim();
-            if (!text) return;
-            const tasks = getTasks();
-            tasks.push({ text, completed: false });
-            localStorage.setItem('minhas_tarefas', JSON.stringify(tasks));
-            input.value = '';
-            renderTasks();
+        function renderTarefas() {
+            const lista = document.getElementById('todo-list');
+            if(!lista) return;
+            
+            lista.innerHTML = '';
+            
+            // Ordena: não concluídas primeiro
+            tarefas.sort((a,b) => a.done - b.done).forEach((t, i) => {
+                const li = document.createElement('li');
+                li.className = `todo-item ${t.done ? 'done' : ''}`;
+                li.innerHTML = `
+                    <input type="checkbox" ${t.done ? 'checked' : ''} onclick="toggleT(${i})">
+                    <span onclick="toggleT(${i})">${t.texto}</span>
+                    <i class="fa-solid fa-trash-can" onclick="removeT(${i})"></i>
+                `;
+                lista.appendChild(li);
+            });
+            
+            localStorage.setItem('tt_tasks', JSON.stringify(tarefas));
         }
 
-        function toggleTask(index) {
-            const tasks = getTasks();
-            tasks[index].completed = !tasks[index].completed;
-            localStorage.setItem('minhas_tarefas', JSON.stringify(tasks));
-            renderTasks();
+        function addTarefa() { 
+            const input = document.getElementById('todo-input');
+            if(!input.value.trim()) return;
+            
+            tarefas.push({texto: input.value.trim(), done: false});
+            input.value = ''; 
+            renderTarefas();
         }
 
-        function deleteTask(event, index) {
-            event.stopPropagation();
-            const tasks = getTasks();
-            tasks.splice(index, 1);
-            localStorage.setItem('minhas_tarefas', JSON.stringify(tasks));
-            renderTasks();
+        function toggleT(i) { 
+            tarefas[i].done = !tarefas[i].done; 
+            renderTarefas(); 
         }
 
-        function renderTasks() {
-            const tasks = getTasks();
-            listElement.innerHTML = tasks.map((task, i) => `
-                <li class="todo-item" onclick="toggleTask(${i})">
-                    <span class="todo-text ${task.completed ? 'completed' : ''}">${task.text}</span>
-                    <button class="btn-del" onclick="deleteTask(event, ${i})">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </li>
-            `).join('');
+        function removeT(i) { 
+            tarefas.splice(i, 1); 
+            renderTarefas(); 
         }
+
+        function limparConcluidas() { 
+            tarefas = tarefas.filter(t => !t.done); 
+            renderTarefas(); 
+        }
+
+        // Inicialização e Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTarefas();
+            document.getElementById('todo-input').addEventListener('keypress', e => { 
+                if(e.key === 'Enter') addTarefa(); 
+            });
+        });
     </script>
 </body>
 </html>
