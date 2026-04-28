@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <div class="layout-grid-middle">
+<div class="layout-grid-middle">
             <div class="card card-fixed-height highlight-card">
                 <div class="card-header-simple"><h2><i class="fa-solid fa-magnifying-glass"></i>Tira-Dúvidas</h2></div>
                 <div class="card-body-scroll">
@@ -93,28 +93,28 @@
                 <div class="card-body-scroll">
                     <input type="text" id="treinamento-search" class="search-input" placeholder="Filtrar..." oninput="filterTreinamentosAndDisplayFirstMatch()">
                     <select id="treinamento-select" class="modern-select" onchange="updateTreinamentoDetails()">
-                        <option value="" disabled selected>-- Selecione --</option>
-                        <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial</option>
+                        <option value="" disabled>-- Selecione --</option>
                         <option value="Abastecimento de Veículos">Abastecimento</option>
-                        <option value="Cadastro de Clientes">Cadastro Clientes</option>
-                        <option value="Registro de Lacres">Registro Lacres</option>
-                        <option value="Carta de Correção">Carta de Correção</option>
-                        <option value="GNRE">GNRE: Notas Externas</option>
-                        <option value="Devolução e Recusa de Mercadorias">Devolução/Recusa</option>
-                        <option value="Despesa de Viagem">Despesa Viagem</option>
-                        <option value="Vendas e Transferência entre lojas">Vendas/Transf.</option>
                         <option value="Análise de Crédito">Análise de Crédito</option>
+                        <option value="Cadastro de Clientes">Cadastro Clientes</option>
+                        <option value="Carta de Correção">Carta de Correção</option>
+                        <option value="Despesa de Viagem">Despesa Viagem</option>
+                        <option value="Devolução e Recusa de Mercadorias">Devolução/Recusa</option>
+                        <option value="GNRE">GNRE: Notas Externas</option>
+                        <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial</option>
+                        <option value="Registro de Lacres">Registro Lacres</option>
+                        <option value="Vendas e Transferência entre lojas">Vendas/Transf.</option>
                     </select>
                     <div id="no-results-treinamento" class="no-results-message" style="display:none">Nada encontrado.</div>
                     <div id="treinamento-details-display" class="contact-details-item" style="display:none"></div>
                 </div>
             </div>
 
-            <div class="card card-fixed-height">
+            <div class="card card-fixed-height-small">
                 <div class="card-header-simple"><h2><i class="fa-solid fa-address-book"></i>Contatos</h2></div>
                 <div class="card-body-scroll">
                     <select id="contato-select" class="modern-select" onchange="updateContactDetails()">
-                        <option value="" disabled selected>-- Selecione --</option>
+                        <option value="" disabled>-- Selecione --</option>
                         <option value="Alexandre">Alexandre (Suporte)</option>
                         <option value="Ana Claudia">Ana Claudia (RH)</option>
                         <option value="Carla">Carla (Fiscal)</option>
@@ -127,6 +127,26 @@
                     <div id="contato-details-display" class="contact-details-item" style="display:none"></div>
                 </div>
             </div>
+
+            <div class="card card-fixed-height-small">
+                <div class="card-header-simple"><h2><i class="fa-solid fa-shop"></i>Dados Lojas</h2></div>
+                <div class="card-body-scroll">
+                    <select id="loja-select" class="modern-select" onchange="updateLojaDetails()">
+                        <option value="" disabled>-- Selecione --</option>
+                        <option value="loja-morada">02 - Morada</option>
+                        <option value="loja-visconde">05 - Visconde</option>
+                        <option value="loja-vinhedo">09 - Vinhedo</option>
+                        <option value="loja-conceicao">10 - Conceição</option>
+                        <option value="loja-elias">12 - Elias Fausto</option>
+                        <option value="loja-maria">13 - Maria José</option>
+                        <option value="loja-paula">14 - Paula Leite</option>
+                        <option value="loja-salto">15 - Salto</option>
+                        <option value="loja-itu">16 - Itu</option>
+                    </select>
+                    <div id="loja-details-display" class="contact-details-item" style="display:none"></div>
+                </div>
+            </div>
+        </div>
 
             <div class="card card-fixed-height">
                 <div class="card-header-simple"><h2><i class="fa-solid fa-shop"></i>Dados Lojas</h2></div>
