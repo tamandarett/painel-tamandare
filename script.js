@@ -36,19 +36,35 @@ async function carregarBase() { try { const r = await fetch("https://script.goog
 function buscar() { const p = document.getElementById("pergunta").value; if(!p) return; const res = motor.search(normalizar(p)).slice(0, 5); const div = document.getElementById("resultado"); div.innerHTML = res.map(r => `<div class="card-resultado"><span class="area-tag">${r.item.area}</span><h3 style="margin:4px 0;">${r.item.titulo}</h3><p style="font-size:11px; color:var(--text-muted);">${r.item.resumo}</p>${r.item.manual_url ? `<a href="${r.item.manual_url}" target="_blank" class="btn-primary" style="margin-top:8px; font-size:10px;">Baixar PDF</a>`:''}</div>`).join(''); div.style.display = 'block'; document.getElementById("btnLimpar").style.display = 'inline-block'; }
 function limparBusca() { document.getElementById("pergunta").value = ""; document.getElementById("resultado").style.display = 'none'; document.getElementById("btnLimpar").style.display = 'none'; }
 
-// DATA, HORA E CLIMA (ORDEM AJUSTADA)
+// DATA, HORA, CLIMA E CIDADE
 function updateClock() {
     const now = new Date();
     document.getElementById('date').innerText = now.toLocaleDateString('pt-BR');
     document.getElementById('clock').innerText = now.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
 }
+
 async function getWeather() {
     navigator.geolocation.getCurrentPosition(async (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
         try {
-            const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&current_weather=true`);
-            const d = await r.json(); document.getElementById('temp').innerText = `${Math.round(d.current_weather.temperature)}°C`;
-        } catch(e) { document.getElementById('temp').innerText = "N/D"; }
-    }, () => { document.getElementById('temp').innerText = "Bloqueado"; });
+            // Busca a temperatura
+            const rTemp = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+            const dTemp = await rTemp.json(); 
+            document.getElementById('temp').innerText = `${Math.round(dTemp.current_weather.temperature)}°C`;
+            
+            // Busca a cidade via Geocoding Reverso gratuito
+            const rCity = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=pt`);
+            const dCity = await rCity.json();
+            document.getElementById('city').innerText = dCity.city ? `${dCity.city}:` : "Local:";
+        } catch(e) { 
+            document.getElementById('temp').innerText = "N/D"; 
+            document.getElementById('city').innerText = "Erro:"; 
+        }
+    }, () => { 
+        document.getElementById('temp').innerText = ""; 
+        document.getElementById('city').innerText = "Permissão negada"; 
+    });
 }
 
 // TAREFAS
@@ -62,6 +78,6 @@ function limparConcluidas() { tarefas = tarefas.filter(t=>!t.done); renderTarefa
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
     carregarBase(); renderTarefas(); updateClock(); getWeather();
-    setInterval(updateClock, 60000); // Atualiza hora a cada minuto
+    setInterval(updateClock, 60000);
     document.getElementById('pergunta').addEventListener('keypress', e => { if(e.key === 'Enter') buscar(); });
 });
