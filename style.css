@@ -15,7 +15,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-color); color: var
 .header-text h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px;}
 .header-text p { color: var(--text-muted); font-size: 14px; }
 .header-center { justify-self: center; }
-.header-center img { height: 75px; width: auto; }
+.header-center img { height: 120px; width: auto; }
 .header-logo { justify-self: end; }
 .header-logo img { height: 50px; width: auto; }
 
