@@ -4,21 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Rápido - Tamandaré Tintas</title>
-    <meta name="robots" content="noindex">
-    
-    <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#D32F2F">
-    <link rel="apple-touch-icon" href="favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
 </head>
 <body>
     <div class="top-bar"></div>
@@ -27,61 +16,47 @@
         <header class="header">
             <div class="header-text">
                 <h1>Painel Tamandaré Tintas</h1>
-                <p>Ferramentas, contatos e procedimentos para a operação.</p>
+                <p>Operação e Procedimentos</p>
             </div>
             <div class="header-logo">
-                <img src="./logo-tamandare.png" alt="Logo Tamandaré Tintas" onerror="this.style.display='none'">
+                <img src="./logo-tamandare.png" alt="Logo" onerror="this.style.display='none'">
             </div>
         </header>
+
+        <div class="info-bar">
+            <div class="info-item" id="date-time">
+                <i class="fa-regular fa-clock"></i> <span id="clock">00:00:00</span> - <span id="date">00/00</span>
+            </div>
+            <div class="info-item" id="weather">
+                <i class="fa-solid fa-cloud-sun"></i> <span id="temp">--°C</span>
+            </div>
+            <div class="info-message">
+                <i class="fa-solid fa-bullhorn"></i> 
+                <span><strong>Aviso:</strong> Edite esta mensagem no HTML para todos lerem.</span>
+            </div>
+        </div>
 
         <div class="layout-grid-top">
             <div class="card static-card">
                 <div class="card-content">
                     <h2><i class="fa-solid fa-link"></i>Links Essenciais</h2>
                     <ul class="link-list">
-                        <li><a href="https://www.aciai.com.br/" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-building"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">ACIAI</span><span class="link-subtitle">Consulta Restrições</span></div>
-                        </a></li>
-                        <li><a href="https://protestosp.com.br/consulta-de-protesto" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">CENPROT</span><span class="link-subtitle">Restrições em Cartório</span></div>
-                        </a></li>
-                        <li><a href="https://www.sintegra.gov.br/" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-receipt"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">SINTEGRA</span><span class="link-subtitle">Inscrição Estadual</span></div>
-                        </a></li>
-                        <li><a href="https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-id-card"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">Consulta CNPJ</span><span class="link-subtitle">Situação Cadastral</span></div>
-                        </a></li>
-                        <li><a href="https://banco.bradesco/html/classic/produtos-servicos/mais-produtos-servicos/segunda-via-boleto.shtm" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-barcode"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">2ª Via Boleto</span><span class="link-subtitle">Boleto Bradesco</span></div>
-                        </a></li>
-                        <li><a href="https://tamandarett.github.io/codex44/" target="_blank">
-                            <div class="link-icon"><i class="fa-brands fa-pix"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">Gerador PIX</span><span class="link-subtitle">Criar QR Code</span></div>
-                        </a></li>
-                        <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-stamp"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">Registro de Lacres</span><span class="link-subtitle">Envio de Malotes</span></div>
-                        </a></li>
-                        <li><a href="https://drive.google.com/drive/folders/1Bb5c4ULT6W4IRfHjOFZsxuY9Czh-lhxM?usp=drive_link" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-book"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">Formulários</span><span class="link-subtitle">Documentos em Nuvem</span></div>
-                        </a></li>                    
-                        <li><a href="https://tamandarett.github.io/registrodecaixa/" target="_blank">
-                            <div class="link-icon"><i class="fa-solid fa-calculator"></i></div>
-                            <div class="link-text-wrapper"><span class="link-title">Registro de Caixa</span><span class="link-subtitle">Calculadora Inteligente</span></div>
-                        </a></li>
-                     </ul>
+                        <li><a href="https://www.aciai.com.br/" target="_blank"><div class="link-icon"><i class="fa-solid fa-building"></i></div><div class="link-text-wrapper"><span class="link-title">ACIAI</span></div></a></li>
+                        <li><a href="https://protestosp.com.br/" target="_blank"><div class="link-icon"><i class="fa-solid fa-file-invoice"></i></div><div class="link-text-wrapper"><span class="link-title">CENPROT</span></div></a></li>
+                        <li><a href="https://www.sintegra.gov.br/" target="_blank"><div class="link-icon"><i class="fa-solid fa-receipt"></i></div><div class="link-text-wrapper"><span class="link-title">SINTEGRA</span></div></a></li>
+                        <li><a href="https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank"><div class="link-icon"><i class="fa-solid fa-id-card"></i></div><div class="link-text-wrapper"><span class="link-title">CNPJ</span></div></a></li>
+                        <li><a href="https://banco.bradesco/html/classic/produtos-servicos/mais-produtos-servicos/segunda-via-boleto.shtm" target="_blank"><div class="link-icon"><i class="fa-solid fa-barcode"></i></div><div class="link-text-wrapper"><span class="link-title">2ª Via</span></div></a></li>
+                        <li><a href="https://tamandarett.github.io/codex44/" target="_blank"><div class="link-icon"><i class="fa-brands fa-pix"></i></div><div class="link-text-wrapper"><span class="link-title">Pix</span></div></a></li>
+                        <li><a href="https://tamandarett.github.io/administrador-lacres-maqui/" target="_blank"><div class="link-icon"><i class="fa-solid fa-stamp"></i></div><div class="link-text-wrapper"><span class="link-title">Lacres</span></div></a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1Bb5c4ULT6W4IRfHjOFZsxuY9Czh-lhxM" target="_blank"><div class="link-icon"><i class="fa-solid fa-book"></i></div><div class="link-text-wrapper"><span class="link-title">Docs</span></div></a></li>
+                        <li><a href="https://tamandarett.github.io/registrodecaixa/" target="_blank"><div class="link-icon"><i class="fa-solid fa-calculator"></i></div><div class="link-text-wrapper"><span class="link-title">Caixa</span></div></a></li>
+                    </ul>
                 </div>
             </div>
 
             <div class="card static-card" id="card-lembretes">
                 <div class="card-content">
-                    <h2><i class="fa-solid fa-list-check"></i>Meus Lembretes</h2>
+                    <h2><i class="fa-solid fa-list-check"></i>Tarefas</h2>
                     <div class="todo-input-container">
                         <input type="text" id="todo-input" placeholder="Nova tarefa..." onkeypress="if(event.key==='Enter') addTarefa()">
                         <button onclick="addTarefa()"><i class="fa-solid fa-plus"></i></button>
@@ -93,80 +68,64 @@
         </div>
 
         <div class="layout-grid-middle">
-            <div class="card card-open highlight-card">
-                <div class="card-header-simple">
-                    <h2><i class="fa-solid fa-magnifying-glass"></i>Tira-Dúvidas</h2>
-                </div>
-                <div class="card-body-open">
-                    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 10px;">Busque procedimentos operacionais.</p>
-                    <div class="search-container-inputs">
-                        <input type="text" id="pergunta" class="search-input" placeholder="Ex: CFOP devolução" autocomplete="off" />
-                    </div>
+            <div class="card card-fixed-height highlight-card">
+                <div class="card-header-simple"><h2><i class="fa-solid fa-magnifying-glass"></i>Tira-Dúvidas</h2></div>
+                <div class="card-body-scroll">
+                    <input type="text" id="pergunta" class="search-input" placeholder="O que busca?" autocomplete="off" />
                     <div class="search-actions">
-                        <button id="btnBuscar" class="btn-primary" onclick="buscar()">Pesquisar</button>
-                        <button id="btnLimpar" class="btn-secondary" onclick="limparBusca()" style="display: none;">Limpar</button>
+                        <button class="btn-primary" onclick="buscar()">Pesquisar</button>
+                        <button id="btnLimpar" class="btn-secondary" onclick="limparBusca()" style="display:none">Limpar</button>
                     </div>
-                    <div id="resultado" class="results-container" style="display: none;"></div>
+                    <div id="resultado" class="results-container"></div>
                 </div>
             </div>
 
-            <div class="card card-open">
-                <div class="card-header-simple">
-                    <h2><i class="fa-solid fa-graduation-cap"></i>Treinamentos</h2>
-                </div>
-                <div class="card-body-open">
-                    <div class="search-input-wrapper-icon">
-                        <input type="text" id="treinamento-search" class="search-input" placeholder="Filtrar treinamentos..." autocomplete="off">
-                        <i class="fa-solid fa-search search-icon-inside"></i>
-                    </div>
-                    <select id="treinamento-select" class="modern-select">
+            <div class="card card-fixed-height">
+                <div class="card-header-simple"><h2><i class="fa-solid fa-graduation-cap"></i>Treinamentos</h2></div>
+                <div class="card-body-scroll">
+                    <input type="text" id="treinamento-search" class="search-input" placeholder="Filtrar..." oninput="filterTreinamentosAndDisplayFirstMatch()">
+                    <select id="treinamento-select" class="modern-select" onchange="updateTreinamentoDetails()">
                         <option value="" disabled selected>-- Selecione --</option>
                         <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial</option>
-                        <option value="Abastecimento de Veículos">Abastecimento (Ticketlog)</option>
-                        <option value="Cadastro de Clientes">Cadastro de Clientes</option>
-                        <option value="Registro de Lacres">Registro de Lacres</option>
+                        <option value="Abastecimento de Veículos">Abastecimento</option>
+                        <option value="Cadastro de Clientes">Cadastro Clientes</option>
+                        <option value="Registro de Lacres">Registro Lacres</option>
                         <option value="Carta de Correção">Carta de Correção</option>
                         <option value="GNRE">GNRE: Notas Externas</option>
-                        <option value="Devolução e Recusa de Mercadorias">Devolução e Recusa</option>
-                        <option value="Despesa de Viagem">Despesa de Viagem</option>
-                        <option value="Vendas e Transferência entre lojas">Vendas e Transf.</option>
+                        <option value="Devolução e Recusa de Mercadorias">Devolução/Recusa</option>
+                        <option value="Despesa de Viagem">Despesa Viagem</option>
+                        <option value="Vendas e Transferência entre lojas">Vendas/Transf.</option>
                         <option value="Análise de Crédito">Análise de Crédito</option>
                     </select>
-                    <div id="no-results-treinamento" class="no-results-message">Nenhum treinamento encontrado.</div>
-                    <div id="treinamento-details-display" class="contact-details-item" style="display: none;"></div>
+                    <div id="no-results-treinamento" class="no-results-message">Nada encontrado.</div>
+                    <div id="treinamento-details-display" class="contact-details-item" style="display:none"></div>
                 </div>
             </div>
 
-            <div class="card card-open">
-                <div class="card-header-simple">
-                    <h2><i class="fa-solid fa-address-book"></i>Contatos</h2>
-                </div>
-                <div class="card-body-open">
-                    <label for="contato-select">Setor / Responsável:</label>
-                    <select id="contato-select" class="modern-select">
+            <div class="card card-fixed-height">
+                <div class="card-header-simple"><h2><i class="fa-solid fa-address-book"></i>Contatos</h2></div>
+                <div class="card-body-scroll">
+                    <select id="contato-select" class="modern-select" onchange="updateContactDetails()">
                         <option value="" disabled selected>-- Selecione --</option>
                         <option value="Alexandre">Alexandre (Suporte)</option>
                         <option value="Ana Claudia">Ana Claudia (RH)</option>
                         <option value="Carla">Carla (Fiscal)</option>
-                        <option value="Daniel">Daniel (Contas a Pagar)</option>
-                        <option value="Eduardo">Eduardo (Marketing)</option>
+                        <option value="Daniel">Daniel (Pagar)</option>
+                        <option value="Eduardo">Eduardo (Mkt)</option>
                         <option value="Filipe">Filipe (Comercial)</option>
                         <option value="Junior">Junior (Caixa)</option>
-                        <option value="Lançamento de Notas">Lançamento de Notas</option>
+                        <option value="Lançamento de Notas">Lançamento Notas</option>
                     </select>
-                    <div id="contato-details-display" class="contact-details-item" style="display: none; flex-direction: column;"></div>
+                    <div id="contato-details-display" class="contact-details-item" style="display:none"></div>
                 </div>
             </div>
 
-            <div class="card card-open">
-                <div class="card-header-simple">
-                    <h2><i class="fa-solid fa-shop"></i>Dados das Lojas</h2>
-                </div>
-                <div class="card-body-open">
-                    <label for="loja-select">Selecione a Unidade:</label>
-                    <select id="loja-select" class="modern-select">
+            <div class="card card-fixed-height">
+                <div class="card-header-simple"><h2><i class="fa-solid fa-shop"></i>Dados Lojas</h2></div>
+                <div class="card-body-scroll">
+                    <select id="loja-select" class="modern-select" onchange="updateLojaDetails()">
                         <option value="" disabled selected>-- Selecione --</option>
-                        <option value="loja-morada">02 - Morada do Sol</option>
+                        <option value="loja-morada">02 - Morada</option>
                         <option value="loja-visconde">05 - Visconde</option>
                         <option value="loja-vinhedo">09 - Vinhedo</option>
                         <option value="loja-conceicao">10 - Conceição</option>
@@ -176,34 +135,21 @@
                         <option value="loja-salto">15 - Salto</option>
                         <option value="loja-itu">16 - Itu</option>
                     </select>
-                    <div id="loja-details-display" class="contact-details-item" style="display: none;"></div>
+                    <div id="loja-details-display" class="contact-details-item" style="display:none"></div>
                 </div>
             </div>
         </div>
 
         <div class="card static-card">
             <div class="card-content">
-                <h2><i class="fa-solid fa-calendar-days"></i>Agenda da Equipe</h2>
+                <h2><i class="fa-solid fa-calendar-days"></i>Agenda</h2>
                 <div class="calendar-container">
                     <iframe src="https://calendar.google.com/calendar/embed?src=f1c3916472d8e68fcdfc9d16dfbc294e026659b33b8e6c1fe6d3c9fb46f96d32%40group.calendar.google.com&ctz=America%2FSao_Paulo"></iframe>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="modal-feedback" class="modal-overlay">
-        <div class="modal-content">
-            <h3>O que faltou nesta resposta?</h3>
-            <p>Ajude a melhorar o sistema.</p>
-            <textarea id="txt-comentario" placeholder="Escreva aqui..." rows="4"></textarea>
-            <div class="modal-actions">
-                <button class="btn-secondary" onclick="fecharModalFeedback()">Cancelar</button>
-                <button id="btn-enviar-feedback" class="btn-primary" onclick="confirmarFeedback()">Enviar</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
     <div class="toast-notificacao"></div>
+    <script src="script.js"></script>
 </body>
 </html>
