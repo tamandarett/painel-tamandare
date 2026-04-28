@@ -375,4 +375,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('contato-select').addEventListener('change', updateContactDetails);
     document.getElementById('loja-select').addEventListener('change', updateLojaDetails);
     document.getElementById('pergunta').addEventListener('keypress', e => { if(e.key === 'Enter') buscar(); });
+
+    // Força o primeiro item real (index 1) a carregar por padrão nos 3 quadros
+    const selTreino = document.getElementById('treinamento-select');
+    if (selTreino) { selTreino.selectedIndex = 1; updateTreinamentoDetails(); }
+
+    const selContato = document.getElementById('contato-select');
+    if (selContato) { selContato.selectedIndex = 1; updateContactDetails(); }
+
+    const selLoja = document.getElementById('loja-select');
+    if (selLoja) { selLoja.selectedIndex = 1; updateLojaDetails(); }
 });
