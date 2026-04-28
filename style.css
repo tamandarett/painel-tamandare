@@ -36,6 +36,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-color); color: var
 .card { background: white; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; }
 .card.static-card .card-content { padding: 25px 30px; }
 .card-fixed-height { height: 380px; display: flex; flex-direction: column; }
+/* Classe adicionada para Contatos e Lojas ficarem 10% menores */
+.card-fixed-height-small { height: 340px; display: flex; flex-direction: column; }
 .card-header-simple { padding: 20px 25px 5px 25px; }
 .card-body-scroll { padding: 10px 25px 25px 25px; flex: 1; overflow-y: auto; }
 .card h2 { font-size: 17px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center;}
