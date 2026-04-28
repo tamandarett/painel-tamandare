@@ -15,8 +15,11 @@
         
         <header class="header">
             <div class="header-text">
-                <h1>Painel Tamandaré Tintas</h1>
+                <h1>Painel Rápido</h1>
                 <p>Operação e Procedimentos</p>
+            </div>
+            <div class="header-center">
+                <img src="./Logo30.png" alt="30 Anos" onerror="this.style.display='none'">
             </div>
             <div class="header-logo">
                 <img src="./logo-tamandare.png" alt="Logo" onerror="this.style.display='none'">
@@ -24,15 +27,18 @@
         </header>
 
         <div class="info-bar">
-            <div class="info-item" id="date-time">
-                <i class="fa-regular fa-clock"></i> <span id="clock">00:00:00</span> - <span id="date">00/00</span>
-            </div>
             <div class="info-item" id="weather">
                 <i class="fa-solid fa-cloud-sun"></i> <span id="temp">--°C</span>
             </div>
+            <div class="info-item" id="date-display">
+                <i class="fa-regular fa-calendar"></i> <span id="date">00/00/0000</span>
+            </div>
+            <div class="info-item" id="time-display">
+                <i class="fa-regular fa-clock"></i> <span id="clock">00:00</span>
+            </div>
             <div class="info-message">
                 <i class="fa-solid fa-bullhorn"></i> 
-                <span><strong>Aviso:</strong> Edite esta mensagem no HTML para todos lerem.</span>
+                <span><strong>Tamandaré Tintas – 30 anos em 2026.</strong></span>
             </div>
         </div>
 
@@ -97,7 +103,7 @@
                         <option value="Vendas e Transferência entre lojas">Vendas/Transf.</option>
                         <option value="Análise de Crédito">Análise de Crédito</option>
                     </select>
-                    <div id="no-results-treinamento" class="no-results-message">Nada encontrado.</div>
+                    <div id="no-results-treinamento" class="no-results-message" style="display:none">Nada encontrado.</div>
                     <div id="treinamento-details-display" class="contact-details-item" style="display:none"></div>
                 </div>
             </div>
