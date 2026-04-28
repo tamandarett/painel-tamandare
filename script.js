@@ -1,5 +1,5 @@
 // ==========================================
-// DADOS DO PAINEL (RESTAURADOS NA ÍNTEGRA)
+// DADOS DO PAINEL
 // ==========================================
 const TEAM_CONTACTS = {
     "Alexandre":{ email:"suporte@tamandaretintas.com.br", phone:"(19) 99328-5132", desc:"Suporte Técnico, problemas com equipamentos, sistemas ou infraestrutura de rede." },
@@ -46,7 +46,7 @@ const STORE_DETAILS = {
 };
 
 // ==========================================
-// FUNÇÕES AUXILIARES E ATUALIZADORES (RESTAURADOS)
+// FUNÇÕES AUXILIARES
 // ==========================================
 function normalizar(texto) { return String(texto || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
 
@@ -157,7 +157,7 @@ function filterTreinamentosAndDisplayFirstMatch() {
 }
 
 // ==========================================
-// TIRA-DÚVIDAS (MOTOR DE BUSCA RESTAURADO)
+// TIRA-DÚVIDAS (MOTOR DE BUSCA)
 // ==========================================
 let baseConhecimento = [];
 let motorBusca = null;
@@ -194,11 +194,9 @@ function buscar() {
         brutos = motorBusca.search(terms.trim() !== "" ? terms : limpo);
     }
 
-    // RETORNADO PARA TOP 3 COMO ORIGINAL
     const top = brutos.slice(0, 3).map(r => r.item);
     
     if (top.length > 0) {
-        // TEMPLATE HTML ORIGINAL DE RESULTADOS RESTAURADO
         let html = top.map((item, i) => {
             let btnMan = item.manual_url ? `<a href="${item.manual_url}" target="_blank" class="btn-primary" style="margin-top:10px; font-size:12px; padding: 10px 16px; display:inline-block;">📘 Abrir Manual PDF</a>` : "";
             let passos = Array.isArray(item.passos) ? item.passos : (item.passos ? item.passos.split('\n') : []);
@@ -233,7 +231,7 @@ function limparBusca() {
 }
 
 // ==========================================
-// DATA, HORA E CLIMA (SEM CIDADE)
+// DATA, HORA E CLIMA
 // ==========================================
 function updateClock() {
     const now = new Date();
@@ -252,6 +250,112 @@ async function getWeather() {
 }
 
 // ==========================================
+// GESTÃO DE LINKS PERSONALIZADOS (INLINE) - PAINEL RÁPIDO (3 SLOTS)
+// ==========================================
+let customLinks = [null, null, null];
+try {
+    let saved = JSON.parse(localStorage.getItem('tt_custom_links_rapido'));
+    if (Array.isArray(saved)) {
+        let valid = saved.filter(s => s !== null && s.title);
+        for (let i = 0; i < 3 && i < valid.length; i++) { customLinks[i] = valid[i]; }
+    }
+} catch(e) {}
+
+let currentEditSlot = -1;
+
+function renderCustomLinks() {
+    const container = document.getElementById('main-links-container');
+    container.querySelectorAll('.custom-slot').forEach(el => el.remove());
+
+    customLinks.forEach((link, index) => {
+        const li = document.createElement('li');
+        li.className = 'custom-slot';
+
+        if (currentEditSlot === index) {
+            li.innerHTML = `
+                <div class="inline-edit-box">
+                    <input type="text" id="inline-title" placeholder="Nome (Ex: Drive)" value="${link ? link.title : ''}" autocomplete="off">
+                    <input type="text" id="inline-url" placeholder="Link (https://...)" value="${link ? link.url : ''}" autocomplete="off">
+                    <select id="inline-icon">
+                        <option value="fa-globe" ${link?.icon=='fa-globe'?'selected':''}>Globo</option>
+                        <option value="fa-star" ${link?.icon=='fa-star'?'selected':''}>Estrela</option>
+                        <option value="fa-folder" ${link?.icon=='fa-folder'?'selected':''}>Pasta</option>
+                        <option value="fa-file-lines" ${link?.icon=='fa-file-lines'?'selected':''}>Documento</option>
+                        <option value="fa-envelope" ${link?.icon=='fa-envelope'?'selected':''}>Email</option>
+                        <option value="fa-chart-line" ${link?.icon=='fa-chart-line'?'selected':''}>Gráfico</option>
+                    </select>
+                    <div class="inline-edit-actions">
+                        <button class="inline-btn-cancel" onclick="cancelarEdicao()">Cancelar</button>
+                        ${link ? `<button class="inline-btn-del" onclick="removerSlot(${index})" title="Excluir"><i class="fa-solid fa-trash"></i></button>` : ''}
+                        <button class="inline-btn-save" onclick="salvarSlot(${index})">Salvar</button>
+                    </div>
+                </div>
+            `;
+        } else if (link) {
+            li.innerHTML = `
+                <div class="custom-link-wrapper">
+                    <a href="${link.url}" target="_blank">
+                        <div class="link-icon" style="background:#F4F7F6;"><i class="fa-solid ${link.icon}"></i></div>
+                        <div class="link-text-wrapper"><span class="link-title">${link.title}</span></div>
+                    </a>
+                    <button class="btn-edit-link" onclick="editarSlot(${index})" title="Editar"><i class="fa-solid fa-pen" style="font-size:11px;"></i></button>
+                </div>
+            `;
+        } else {
+            li.innerHTML = `
+                <div class="custom-slot-empty" onclick="editarSlot(${index})">
+                    <i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Personalizar
+                </div>
+            `;
+        }
+        container.appendChild(li);
+    });
+}
+
+function editarSlot(index) {
+    currentEditSlot = index;
+    renderCustomLinks();
+    setTimeout(() => document.getElementById('inline-title').focus(), 50);
+}
+
+function cancelarEdicao() {
+    currentEditSlot = -1;
+    renderCustomLinks();
+}
+
+function salvarSlot(index) {
+    const title = document.getElementById('inline-title').value.trim();
+    let url = document.getElementById('inline-url').value.trim();
+    const icon = document.getElementById('inline-icon').value;
+    
+    if(!title || !url) {
+        mostrarAviso("⚠️ Preencha o Nome e o Link.");
+        return;
+    }
+
+    if(!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+    }
+
+    customLinks[index] = { title, url, icon };
+    localStorage.setItem('tt_custom_links_rapido', JSON.stringify(customLinks));
+    
+    currentEditSlot = -1;
+    renderCustomLinks();
+    mostrarAviso("✅ Atalho salvo com sucesso.");
+}
+
+function removerSlot(index) {
+    customLinks[index] = null;
+    customLinks.sort((a, b) => (a === null) - (b === null));
+    localStorage.setItem('tt_custom_links_rapido', JSON.stringify(customLinks));
+    
+    currentEditSlot = -1;
+    renderCustomLinks();
+    mostrarAviso("🗑️ Atalho removido.");
+}
+
+// ==========================================
 // TAREFAS
 // ==========================================
 let tarefas = JSON.parse(localStorage.getItem('tt_tasks')) || [];
@@ -265,7 +369,7 @@ function limparConcluidas() { tarefas = tarefas.filter(t=>!t.done); renderTarefa
 // INIT
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    carregarBase(); renderTarefas(); updateClock(); getWeather();
+    carregarBase(); renderTarefas(); renderCustomLinks(); updateClock(); getWeather();
     setInterval(updateClock, 60000);
     
     document.getElementById('contato-select').addEventListener('change', updateContactDetails);
