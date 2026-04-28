@@ -35,16 +35,18 @@
         .link-subtitle { display: none !important; }
         .link-title { font-size: 14px !important; }
 
-        /* Estilos dos Links Personalizáveis */
-        .custom-link-wrapper { position: relative; }
+        /* =====================================
+           LINKS PERSONALIZADOS (EDIÇÃO INLINE)
+           ===================================== */
+        .custom-link-wrapper { position: relative; height: 100%; }
         
-        .add-link-btn {
+        .custom-slot-empty {
             display: flex; align-items: center; justify-content: center;
             padding: 16px; border: 2px dashed #CBD5E0; border-radius: 10px;
             color: var(--text-muted); cursor: pointer; height: 100%; min-height: 60px;
             transition: all 0.2s; background: transparent; font-size: 14px; font-weight: 600;
         }
-        .add-link-btn:hover { border-color: var(--primary-color); color: var(--primary-color); background: #FFF5F5; }
+        .custom-slot-empty:hover { border-color: var(--primary-color); color: var(--primary-color); background: #FFF5F5; }
 
         .btn-edit-link {
             position: absolute; top: 5px; right: 5px;
@@ -55,19 +57,51 @@
         .custom-link-wrapper:hover .btn-edit-link { opacity: 1; }
         .btn-edit-link:hover { color: var(--primary-color); border-color: var(--primary-color); }
 
+        /* Formulário Dentro do Card */
+        .inline-edit-box {
+            display: flex; flex-direction: column; gap: 6px;
+            background: #F8FAFC; padding: 12px; border: 1px solid #CBD5E0;
+            border-radius: 10px; height: 100%; justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        
+        .inline-edit-box input, .inline-edit-box select {
+            padding: 6px 8px; border: 1px solid #E2E8F0; border-radius: 6px;
+            font-size: 12px; font-family: 'Inter', sans-serif; outline: none; width: 100%;
+        }
+        .inline-edit-box input:focus { border-color: var(--primary-color); }
+        
+        .inline-edit-actions {
+            display: flex; justify-content: space-between; align-items: center; margin-top: 4px; gap: 5px;
+        }
+        .inline-btn-save { background: var(--primary-color); color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600; flex: 1;}
+        .inline-btn-cancel { background: transparent; color: #718096; border: 1px solid #CBD5E0; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600;}
+        .inline-btn-del { background: #FFF5F5; color: #D32F2F; border: 1px solid #FED7D7; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 11px; }
+
         /* Caixa de Tarefas */
         .tasks-card { display: flex; flex-direction: column; height: 100%; }
         .todo-list-wrapper { overflow-y: auto; flex-grow: 1; padding-right: 8px; max-height: 400px; }
         .todo-list-wrapper::-webkit-scrollbar { width: 5px; }
         .todo-list-wrapper::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
 
+        /* Toast Notificação */
+        .toast-notificacao {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: #2D3748; color: white; padding: 12px 24px;
+            border-radius: 8px; display: none; font-size: 13px; z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-weight: 600;
+        }
+        .toast-notificacao.show { display: block; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+
         @media (max-width: 1000px) {
             .main-grid { grid-template-columns: 1fr; }
-            .link-grid { grid-template-columns: 1fr 1fr; }
+            .link-grid { grid-template-columns: 1fr 1fr !important; }
             .tasks-card { height: auto; }
         }
         @media (max-width: 600px) {
-            .link-grid { grid-template-columns: 1fr; }
+            .link-grid { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
@@ -123,109 +157,104 @@
         </div>
     </div>
 
-    <div id="modal-link" class="modal-overlay">
-        <div class="modal-content">
-            <h3 style="margin-bottom: 15px; color: var(--primary-color);">Atalho Personalizado</h3>
-            
-            <label for="custom-title">Nome do Atalho</label>
-            <input type="text" id="custom-title" class="search-input" placeholder="Ex: Drive da Loja" autocomplete="off">
-            
-            <label for="custom-url">Link (URL)</label>
-            <input type="url" id="custom-url" class="search-input" placeholder="https://..." autocomplete="off">
-            
-            <label for="custom-icon">Ícone</label>
-            <select id="custom-icon" class="modern-select">
-                <option value="fa-globe">Globo (Padrão)</option>
-                <option value="fa-star">Estrela</option>
-                <option value="fa-folder">Pasta</option>
-                <option value="fa-file-lines">Documento</option>
-                <option value="fa-envelope">Email</option>
-                <option value="fa-chart-line">Gráfico</option>
-                <option value="fa-whatsapp">WhatsApp</option>
-                <option value="fa-truck">Caminhão / Entrega</option>
-                <option value="fa-users">Pessoas</option>
-            </select>
-            
-            <div class="modal-actions" style="margin-top: 20px;">
-                <button class="btn-secondary" onclick="fecharModalLink()">Cancelar</button>
-                <button id="btn-remover-link" class="btn-secondary" style="color: #D32F2F; border-color: #D32F2F; display: none;" onclick="removerLink()">Excluir</button>
-                <button class="btn-primary" onclick="salvarLink()">Salvar</button>
-            </div>
-        </div>
-    </div>
+    <div class="toast-notificacao"></div>
 
     <script>
         // ==========================================
-        // GESTÃO DE LINKS PERSONALIZADOS (LIMITE DE 6)
+        // SISTEMA DE NOTIFICAÇÃO
         // ==========================================
-        let customLinks = JSON.parse(localStorage.getItem('tt_custom_links')) || [];
+        function mostrarAviso(mensagem) {
+            const toast = document.querySelector('.toast-notificacao');
+            toast.innerText = mensagem;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ==========================================
+        // GESTÃO DE LINKS (INLINE EDIT)
+        // ==========================================
+        // Garante que o array tenha sempre 6 posições, preenchidas ou nulas.
+        let customLinks = [null, null, null, null, null, null];
+        try {
+            let saved = JSON.parse(localStorage.getItem('tt_custom_links'));
+            if (Array.isArray(saved)) {
+                let valid = saved.filter(s => s !== null && s.title);
+                for (let i = 0; i < 6 && i < valid.length; i++) { customLinks[i] = valid[i]; }
+            }
+        } catch(e) {}
+
         let currentEditSlot = -1;
-        const LIMITE_LINKS = 6;
 
         function renderCustomLinks() {
             const container = document.getElementById('main-links-container');
-            
-            // Remove os links gerados via JS
-            container.querySelectorAll('.custom-link-wrapper, .add-link-wrapper').forEach(el => el.remove());
+            container.querySelectorAll('.custom-slot').forEach(el => el.remove());
 
-            // 1. Renderiza os links que já foram salvos
             customLinks.forEach((link, index) => {
                 const li = document.createElement('li');
-                li.className = 'custom-link-wrapper';
-                li.innerHTML = `
-                    <a href="${link.url}" target="_blank">
-                        <div class="link-icon" style="background:#F4F7F6;"><i class="fa-solid ${link.icon}"></i></div>
-                        <div class="link-text-wrapper"><span class="link-title">${link.title}</span></div>
-                    </a>
-                    <button class="btn-edit-link" onclick="abrirModalLink(${index})" title="Editar"><i class="fa-solid fa-pen" style="font-size:11px;"></i></button>
-                `;
+                li.className = 'custom-slot';
+
+                if (currentEditSlot === index) {
+                    // MODO EDIÇÃO
+                    li.innerHTML = `
+                        <div class="inline-edit-box">
+                            <input type="text" id="inline-title" placeholder="Nome (Ex: Drive)" value="${link ? link.title : ''}" autocomplete="off">
+                            <input type="text" id="inline-url" placeholder="Link (https://...)" value="${link ? link.url : ''}" autocomplete="off">
+                            <select id="inline-icon">
+                                <option value="fa-globe" ${link?.icon=='fa-globe'?'selected':''}>Globo</option>
+                                <option value="fa-star" ${link?.icon=='fa-star'?'selected':''}>Estrela</option>
+                                <option value="fa-folder" ${link?.icon=='fa-folder'?'selected':''}>Pasta</option>
+                                <option value="fa-file-lines" ${link?.icon=='fa-file-lines'?'selected':''}>Documento</option>
+                                <option value="fa-envelope" ${link?.icon=='fa-envelope'?'selected':''}>Email</option>
+                                <option value="fa-chart-line" ${link?.icon=='fa-chart-line'?'selected':''}>Gráfico</option>
+                            </select>
+                            <div class="inline-edit-actions">
+                                <button class="inline-btn-cancel" onclick="cancelarEdicao()">Cancelar</button>
+                                ${link ? `<button class="inline-btn-del" onclick="removerSlot(${index})" title="Excluir"><i class="fa-solid fa-trash"></i></button>` : ''}
+                                <button class="inline-btn-save" onclick="salvarSlot(${index})">Salvar</button>
+                            </div>
+                        </div>
+                    `;
+                } else if (link) {
+                    // MODO EXIBIÇÃO
+                    li.innerHTML = `
+                        <div class="custom-link-wrapper">
+                            <a href="${link.url}" target="_blank">
+                                <div class="link-icon" style="background:#F4F7F6;"><i class="fa-solid ${link.icon}"></i></div>
+                                <div class="link-text-wrapper"><span class="link-title">${link.title}</span></div>
+                            </a>
+                            <button class="btn-edit-link" onclick="editarSlot(${index})" title="Editar"><i class="fa-solid fa-pen" style="font-size:11px;"></i></button>
+                        </div>
+                    `;
+                } else {
+                    // MODO VAZIO
+                    li.innerHTML = `
+                        <div class="custom-slot-empty" onclick="editarSlot(${index})">
+                            <i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Personalizar
+                        </div>
+                    `;
+                }
                 container.appendChild(li);
             });
-
-            // 2. Só coloca o botão adicionar se não tiver atingido o limite
-            if (customLinks.length < LIMITE_LINKS) {
-                const addLi = document.createElement('li');
-                addLi.className = 'add-link-wrapper';
-                addLi.innerHTML = `
-                    <div class="add-link-btn" onclick="abrirModalLink(-1)">
-                        <i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Adicionar Atalho
-                    </div>
-                `;
-                container.appendChild(addLi);
-            }
         }
 
-        function abrirModalLink(index) {
+        function editarSlot(index) {
             currentEditSlot = index;
-            
-            if (index === -1) {
-                document.getElementById('custom-title').value = '';
-                document.getElementById('custom-url').value = '';
-                document.getElementById('custom-icon').value = 'fa-globe';
-                document.getElementById('btn-remover-link').style.display = 'none';
-            } else {
-                const link = customLinks[index];
-                document.getElementById('custom-title').value = link.title;
-                document.getElementById('custom-url').value = link.url;
-                document.getElementById('custom-icon').value = link.icon;
-                document.getElementById('btn-remover-link').style.display = 'inline-block';
-            }
-            
-            document.getElementById('modal-link').classList.add('show');
-            document.getElementById('custom-title').focus();
+            renderCustomLinks();
+            setTimeout(() => document.getElementById('inline-title').focus(), 50);
         }
 
-        function fecharModalLink() {
-            document.getElementById('modal-link').classList.remove('show');
+        function cancelarEdicao() {
+            currentEditSlot = -1;
+            renderCustomLinks();
         }
 
-        function salvarLink() {
-            const title = document.getElementById('custom-title').value.trim();
-            let url = document.getElementById('custom-url').value.trim();
-            const icon = document.getElementById('custom-icon').value;
+        function salvarSlot(index) {
+            const title = document.getElementById('inline-title').value.trim();
+            let url = document.getElementById('inline-url').value.trim();
+            const icon = document.getElementById('inline-icon').value;
             
             if(!title || !url) {
-                alert("Preencha o Nome e o Link para salvar.");
+                mostrarAviso("⚠️ Preencha o Nome e o Link para salvar.");
                 return;
             }
 
@@ -233,31 +262,27 @@
                 url = 'https://' + url;
             }
 
-            if (currentEditSlot === -1) {
-                if (customLinks.length >= LIMITE_LINKS) {
-                    alert("Você atingiu o limite máximo de 6 atalhos personalizados.");
-                    return;
-                }
-                customLinks.push({ title, url, icon });
-            } else {
-                customLinks[currentEditSlot] = { title, url, icon };
-            }
-            
+            customLinks[index] = { title, url, icon };
             localStorage.setItem('tt_custom_links', JSON.stringify(customLinks));
             
-            fecharModalLink();
+            currentEditSlot = -1;
             renderCustomLinks();
+            mostrarAviso("✅ Atalho salvo com sucesso.");
         }
 
-        function removerLink() {
-            customLinks.splice(currentEditSlot, 1);
+        function removerSlot(index) {
+            customLinks[index] = null;
+            // Reorganiza a lista para os vazios ficarem sempre no final
+            customLinks.sort((a, b) => (a === null) - (b === null));
             localStorage.setItem('tt_custom_links', JSON.stringify(customLinks));
-            fecharModalLink();
+            
+            currentEditSlot = -1;
             renderCustomLinks();
+            mostrarAviso("🗑️ Atalho removido.");
         }
 
         // ==========================================
-        // GESTÃO DE TAREFAS
+        // GESTÃO DE TAREFAS (Sincronizado)
         // ==========================================
         let tarefas = JSON.parse(localStorage.getItem('tt_tasks')) || [];
 
@@ -291,12 +316,11 @@
         function limparConcluidas() { tarefas = tarefas.filter(t => !t.done); renderTarefas(); }
 
         // ==========================================
-        // INICIALIZAÇÃO
+        // INIT
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             renderTarefas();
             renderCustomLinks();
-            
             document.getElementById('todo-input').addEventListener('keypress', e => { 
                 if(e.key === 'Enter') addTarefa(); 
             });
