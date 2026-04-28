@@ -93,101 +93,89 @@
         </div>
 
         <div class="layout-grid-middle">
-            <div class="card collapsible-card highlight-card active">
-                <div class="collapsible-header">
-                    <h2><i class="fa-solid fa-magnifying-glass"></i>Tira-Dúvidas (Manuais)</h2>
-                    <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            <div class="card card-open highlight-card">
+                <div class="card-header-simple">
+                    <h2><i class="fa-solid fa-magnifying-glass"></i>Tira-Dúvidas</h2>
                 </div>
-                <div class="collapsible-content">
-                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;">Busque rápidos procedimentos operacionais e fiscais.</p>
+                <div class="card-body-open">
+                    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 10px;">Busque procedimentos operacionais.</p>
                     <div class="search-container-inputs">
-                        <div class="input-box large">
-                            <label for="pergunta">Qual a sua dúvida?</label>
-                            <input type="text" id="pergunta" class="search-input" placeholder="Ex: CFOP devolução" autocomplete="off" />
-                        </div>
+                        <input type="text" id="pergunta" class="search-input" placeholder="Ex: CFOP devolução" autocomplete="off" />
                     </div>
                     <div class="search-actions">
                         <button id="btnBuscar" class="btn-primary" onclick="buscar()">Pesquisar</button>
-                        <button id="btnLimpar" class="btn-secondary" onclick="limparBusca()" style="display: none;">Limpar Resultados</button>
+                        <button id="btnLimpar" class="btn-secondary" onclick="limparBusca()" style="display: none;">Limpar</button>
                     </div>
                     <div id="resultado" class="results-container" style="display: none;"></div>
                 </div>
             </div>
 
-            <div class="card collapsible-card">
-                <div class="collapsible-header">
-                    <h2><i class="fa-solid fa-graduation-cap"></i>Treinamentos Completos</h2>
-                    <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            <div class="card card-open">
+                <div class="card-header-simple">
+                    <h2><i class="fa-solid fa-graduation-cap"></i>Treinamentos</h2>
                 </div>
-                <div class="collapsible-content">
+                <div class="card-body-open">
                     <div class="search-input-wrapper-icon">
                         <input type="text" id="treinamento-search" class="search-input" placeholder="Filtrar treinamentos..." autocomplete="off">
                         <i class="fa-solid fa-search search-icon-inside"></i>
                     </div>
-                    <label for="treinamento-select">Selecione o Treinamento:</label>
                     <select id="treinamento-select" class="modern-select">
-                        <option value="" disabled selected>-- Selecione um Treinamento --</option>
-                        <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial Tamandaré Tintas</option>
-                        <option value="Abastecimento de Veículos">Abastecimento de Veículos (Ticketlog)</option>
+                        <option value="" disabled selected>-- Selecione --</option>
+                        <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial</option>
+                        <option value="Abastecimento de Veículos">Abastecimento (Ticketlog)</option>
                         <option value="Cadastro de Clientes">Cadastro de Clientes</option>
                         <option value="Registro de Lacres">Registro de Lacres</option>
                         <option value="Carta de Correção">Carta de Correção</option>
-                        <option value="GNRE">GNRE: Notas para Fora do Estado</option>
+                        <option value="GNRE">GNRE: Notas Externas</option>
                         <option value="Devolução e Recusa de Mercadorias">Devolução e Recusa</option>
                         <option value="Despesa de Viagem">Despesa de Viagem</option>
-                        <option value="Vendas e Transferência entre lojas">Vendas e Transferência entre lojas</option>
-                        <option value="Análise de Crédito">Análise de Crédito — Dados da ACIAI</option>
+                        <option value="Vendas e Transferência entre lojas">Vendas e Transf.</option>
+                        <option value="Análise de Crédito">Análise de Crédito</option>
                     </select>
                     <div id="no-results-treinamento" class="no-results-message">Nenhum treinamento encontrado.</div>
                     <div id="treinamento-details-display" class="contact-details-item" style="display: none;"></div>
                 </div>
             </div>
 
-            <div class="card collapsible-card">
-                <div class="collapsible-header">
-                    <h2><i class="fa-solid fa-address-book"></i>Contatos da Equipe</h2>
-                    <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            <div class="card card-open">
+                <div class="card-header-simple">
+                    <h2><i class="fa-solid fa-address-book"></i>Contatos</h2>
                 </div>
-                <div class="collapsible-content">
-                    <div style="padding-top: 15px;">
-                        <label for="contato-select">Selecione o Contato / Setor:</label>
-                        <select id="contato-select" class="modern-select">
-                            <option value="" disabled selected>-- Selecione um nome/setor --</option>
-                            <option value="Alexandre">Alexandre (Suporte)</option>
-                            <option value="Ana Claudia">Ana Claudia (RH)</option>
-                            <option value="Carla">Carla (Fiscal/Financeiro)</option>
-                            <option value="Daniel">Daniel (Contas a Pagar)</option>
-                            <option value="Eduardo">Eduardo (Marketing)</option>
-                            <option value="Filipe">Filipe (Comercial)</option>
-                            <option value="Junior">Junior (Caixa)</option>
-                            <option value="Lançamento de Notas">Lançamento de Notas</option>
-                        </select>
-                    </div>
+                <div class="card-body-open">
+                    <label for="contato-select">Setor / Responsável:</label>
+                    <select id="contato-select" class="modern-select">
+                        <option value="" disabled selected>-- Selecione --</option>
+                        <option value="Alexandre">Alexandre (Suporte)</option>
+                        <option value="Ana Claudia">Ana Claudia (RH)</option>
+                        <option value="Carla">Carla (Fiscal)</option>
+                        <option value="Daniel">Daniel (Contas a Pagar)</option>
+                        <option value="Eduardo">Eduardo (Marketing)</option>
+                        <option value="Filipe">Filipe (Comercial)</option>
+                        <option value="Junior">Junior (Caixa)</option>
+                        <option value="Lançamento de Notas">Lançamento de Notas</option>
+                    </select>
                     <div id="contato-details-display" class="contact-details-item" style="display: none; flex-direction: column;"></div>
                 </div>
             </div>
 
-            <div class="card collapsible-card">
-                <div class="collapsible-header">
+            <div class="card card-open">
+                <div class="card-header-simple">
                     <h2><i class="fa-solid fa-shop"></i>Dados das Lojas</h2>
-                    <i class="fa-solid fa-chevron-down toggle-icon"></i>
                 </div>
-                <div class="collapsible-content">
-                    <div style="padding-top: 15px;">
-                        <label for="loja-select">Selecione a Loja:</label>
-                        <select id="loja-select" class="modern-select">
-                            <option value="" disabled selected>-- Selecione a Loja --</option>
-                            <option value="loja-morada">02 - Morada do Sol</option>
-                            <option value="loja-visconde">05 - Visconde</option>
-                            <option value="loja-vinhedo">09 - Vinhedo</option>
-                            <option value="loja-conceicao">10 - Conceição</option>
-                            <option value="loja-elias">12 - Elias Fausto</option>
-                            <option value="loja-maria">13 - Maria José</option>
-                            <option value="loja-paula">14 - Paula Leite</option>
-                            <option value="loja-salto">15 - Salto</option>
-                            <option value="loja-itu">16 - Itu</option>
-                        </select>
-                    </div>
+                <div class="card-body-open">
+                    <label for="loja-select">Selecione a Unidade:</label>
+                    <select id="loja-select" class="modern-select">
+                        <option value="" disabled selected>-- Selecione --</option>
+                        <option value="loja-morada">02 - Morada do Sol</option>
+                        <option value="loja-visconde">05 - Visconde</option>
+                        <option value="loja-vinhedo">09 - Vinhedo</option>
+                        <option value="loja-conceicao">10 - Conceição</option>
+                        <option value="loja-elias">12 - Elias Fausto</option>
+                        <option value="loja-maria">13 - Maria José</option>
+                        <option value="loja-paula">14 - Paula Leite</option>
+                        <option value="loja-salto">15 - Salto</option>
+                        <option value="loja-itu">16 - Itu</option>
+                    </select>
                     <div id="loja-details-display" class="contact-details-item" style="display: none;"></div>
                 </div>
             </div>
@@ -206,25 +194,16 @@
     <div id="modal-feedback" class="modal-overlay">
         <div class="modal-content">
             <h3>O que faltou nesta resposta?</h3>
-            <p>Ajude a melhorar o sistema explicando por que os manuais não resolveram a dúvida.</p>
-            <textarea id="txt-comentario" placeholder="Escreva aqui o seu comentário..." rows="4"></textarea>
+            <p>Ajude a melhorar o sistema.</p>
+            <textarea id="txt-comentario" placeholder="Escreva aqui..." rows="4"></textarea>
             <div class="modal-actions">
                 <button class="btn-secondary" onclick="fecharModalFeedback()">Cancelar</button>
-                <button id="btn-enviar-feedback" class="btn-primary" onclick="confirmarFeedback()">Enviar Avaliação</button>
+                <button id="btn-enviar-feedback" class="btn-primary" onclick="confirmarFeedback()">Enviar</button>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('App PWA ativado com sucesso.'))
-            .catch(err => console.error('Erro ao ativar o App PWA:', err));
-        });
-      }
-    </script>
+    <div class="toast-notificacao"></div>
 </body>
 </html>
