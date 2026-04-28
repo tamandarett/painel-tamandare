@@ -22,7 +22,6 @@ const TRAINING_DETAILS = {
             { title: "Módulo 4: Comunicação Digital", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/comunicameiodigital.html" }
         ]
     },
-    // NOVO TREINAMENTO ADICIONADO ABAIXO
     "Abastecimento de Veículos": { 
         description: "Manual de procedimentos para abastecimento de veículos da frota via Ticketlog, incluindo regras de senha, KM e compra de óleo.", 
         link: "https://tamandarett.github.io/painel-tamandare/treinamentos/abastecimento.html" 
@@ -79,7 +78,7 @@ function updateContactDetails() {
         <div style="width: 100%;">
             <b style="font-size: 15px;">${selectedName}</b>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
-                <span id="${emailId}" style="color:var(--link-color); font-weight:500;">${contact.email}</span>
+                <span id="${emailId}" style="color:var(--primary-color); font-weight:500;">${contact.email}</span>
                 <button class="btn-primary" onclick="copyToClipboard('${emailId}', this)" style="padding: 6px 12px; font-size:12px;">Copiar Email</button>
             </div>
             ${phoneHTML}
@@ -96,14 +95,10 @@ function updateTreinamentoDetails() {
     if (!selectedTraining) { displayDiv.style.display = 'none'; return; }
     
     const training = TRAINING_DETAILS[selectedTraining];
-    
     let html = `<p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">${training.description}</p>`;
-                
     if (training.modules) {
         html += `<div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">`;
-        training.modules.forEach(mod => {
-            html += `<a href="${mod.link}" target="_blank" class="btn-secondary" style="text-align: left;">${mod.title}</a>`;
-        });
+        training.modules.forEach(mod => { html += `<a href="${mod.link}" target="_blank" class="btn-secondary" style="text-align: left;">${mod.title}</a>`; });
         html += `</div>`;
     } else if (training.link) {
         html += `<a href="${training.link}" target="_blank" class="btn-primary" style="width: 100%;">Acessar Treinamento</a>`;
@@ -118,18 +113,14 @@ function filterTreinamentosAndDisplayFirstMatch() {
     const noResults = document.getElementById('no-results-treinamento');
     const options = Array.from(select.options).slice(1);
     let matches = [];
-    
     options.forEach(opt => {
         const key = opt.value;
         const desc = TRAINING_DETAILS[key]?.description.toLowerCase() || '';
         if (opt.text.toLowerCase().includes(searchInput) || desc.includes(searchInput) || searchInput === '') {
             opt.style.display = '';
             if (searchInput !== '') matches.push(key);
-        } else {
-            opt.style.display = 'none';
-        }
+        } else { opt.style.display = 'none'; }
     });
-    
     if (matches.length === 0 && searchInput !== '') {
         noResults.style.display = 'block'; select.style.display = 'none';
         document.getElementById('treinamento-details-display').style.display = 'none';
@@ -145,11 +136,9 @@ function updateLojaDetails() {
     const displayDiv = document.getElementById('loja-details-display');
     const id = select.value;
     if (!id) { displayDiv.style.display = 'none'; return; }
-    
     const s = STORE_DETAILS[id];
     const dataId = `dados-${id}`;
     const txt = `${s.title}\nEndereço: ${s.address}\nFone: ${s.phones.join(' / ')}\nE-mail: ${s.email}\nWhatsApp: ${s.whatsapp}`;
-    
     displayDiv.innerHTML = `
         <span id="${dataId}" style="display:none;">${txt}</span>
         <div class="data-text">
@@ -162,7 +151,7 @@ function updateLojaDetails() {
 }
 
 // ==========================================
-// TIRA-DÚVIDAS (MOTOR DE BUSCA E TELEMETRIA)
+// TIRA-DÚVIDAS (BUSCA E TELEMETRIA)
 // ==========================================
 const API_URL = "https://script.google.com/macros/s/AKfycbzgVw2IXifIBFgHGzlKqQ3kmHBQxuVHDuta2h5neJzwvPQsb3eaLADS0kJ6GrPBxKs/exec";
 const TELEMETRIA_URL = "https://script.google.com/macros/s/AKfycbwo9KkfICH6kuhrv0pLzqbSTfVpZzx5NGw5y9Uy3IIFrpCwGFAx_oZhQzcFQnvYAD2F/exec";
@@ -186,116 +175,56 @@ function mostrarAviso(mensagem) {
 
 async function dispararTelemetria(tipo, pergunta, resultadosMostrados, comentario = "") {
     const loja = "Tamandaré Tintas"; 
-    try {
-        await fetch(TELEMETRIA_URL, {
-            method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify({ loja, pergunta, tipo, resultados: resultadosMostrados, comentario })
-        });
-    } catch (e) { console.error("Erro na telemetria:", e); }
+    try { await fetch(TELEMETRIA_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ loja, pergunta, tipo, resultados: resultadosMostrados, comentario }) }); } catch (e) { console.error("Erro na telemetria:", e); }
 }
 
-function abrirModalFeedback(pergunta, resultados) {
-    feedbackContexto = { pergunta, resultados };
-    document.getElementById('modal-feedback').classList.add('show');
-}
-
-function fecharModalFeedback() {
-    document.getElementById('modal-feedback').classList.remove('show');
-    document.getElementById('txt-comentario').value = '';
-    feedbackContexto = null;
-}
-
+function abrirModalFeedback(pergunta, resultados) { feedbackContexto = { pergunta, resultados }; document.getElementById('modal-feedback').classList.add('show'); }
+function fecharModalFeedback() { document.getElementById('modal-feedback').classList.remove('show'); document.getElementById('txt-comentario').value = ''; feedbackContexto = null; }
 function confirmarFeedback() {
     if (!feedbackContexto) return;
     const txt = document.getElementById('txt-comentario');
     const btn = document.getElementById('btn-enviar-feedback');
     if (btn) { btn.innerText = "Enviando..."; btn.disabled = true; }
-
-    dispararTelemetria("Resposta Ruim", feedbackContexto.pergunta, feedbackContexto.resultados, txt.value.trim()).then(() => {
-        fecharModalFeedback(); mostrarAviso("✅ Avaliação registrada. Obrigado!");
-        if (btn) { btn.innerText = "Enviar Avaliação"; btn.disabled = false; }
-    });
+    dispararTelemetria("Resposta Ruim", feedbackContexto.pergunta, feedbackContexto.resultados, txt.value.trim()).then(() => { fecharModalFeedback(); mostrarAviso("✅ Avaliação registrada."); if (btn) { btn.innerText = "Enviar Avaliação"; btn.disabled = false; } });
 }
 
 async function carregarBase() {
     try {
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error(`Falha API: ${res.status}`);
         baseConhecimento = await res.json();
-        motorBusca = new Fuse(baseConhecimento, {
-            useExtendedSearch: true, keys: [{name:'titulo',weight:0.6}, {name:'palavras_chave',weight:0.3}, {name:'resumo',weight:0.1}, {name:'passos',weight:0.1}],
-            threshold: 0.3, ignoreLocation: true, ignoreFieldNorm: true,
-            getFn: (obj, path) => {
-                const valor = obj[path[0]];
-                return Array.isArray(valor) ? valor.map(v => normalizar(v)) : normalizar(valor);
-            }
-        });
+        motorBusca = new Fuse(baseConhecimento, { useExtendedSearch: true, keys: [{name:'titulo',weight:0.6}, {name:'palavras_chave',weight:0.3}, {name:'resumo',weight:0.1}], threshold: 0.3, ignoreLocation: true, getFn: (obj, path) => normalizar(obj[path[0]]) });
         baseCarregada = true;
-    } catch (error) { console.error("Erro ao carregar base:", error); baseCarregada = false; }
+    } catch (error) { console.error("Erro ao carregar base:", error); }
 }
 
-function limparBusca() {
-    document.getElementById("pergunta").value = "";
-    document.getElementById("resultado").innerHTML = "";
-    document.getElementById("resultado").style.display = "none";
-    document.getElementById("btnLimpar").style.display = "none";
-    resultadoAberto = null;
-}
+function limparBusca() { document.getElementById("pergunta").value = ""; document.getElementById("resultado").innerHTML = ""; document.getElementById("resultado").style.display = "none"; document.getElementById("btnLimpar").style.display = "none"; resultadoAberto = null; }
 
 function buscar() {
-    if (!baseCarregada) return mostrarAviso("⏳ A base de conhecimento está carregando.");
-    
+    if (!baseCarregada) return mostrarAviso("⏳ Carregando base...");
     const pergunta = document.getElementById("pergunta").value.trim();
-    const btn = document.getElementById("btnBuscar");
-    const btnLimpar = document.getElementById("btnLimpar");
-    const divRes = document.getElementById("resultado");
-
     if (!pergunta) return mostrarAviso("⚠️ Digite a dúvida.");
-
-    btn.innerText = "Buscando..."; btn.disabled = true;
-    divRes.innerHTML = ""; divRes.style.display = "none";
-    resultadoAberto = null;
-
-    setTimeout(() => {
-        let limpo = normalizar(pergunta).replace(/[?.,!]/g, "");
-        let brutos = motorBusca.search(limpo);
-        if (brutos.length === 0) {
-            let terms = limpo.split(/\s+/).filter(p => !["como","eu","faco","para","um","uma","o","a","os","as","de","do","da","em","no","na","que","qual","quais","por","onde"].includes(p)).join(" | ");
-            brutos = motorBusca.search(terms.trim() !== "" ? terms : limpo);
-        }
-
-        const top = brutos.slice(0, 3).map(r => r.item);
-        divRes.style.display = "flex";
-        btnLimpar.style.display = "inline-block";
-
-        if (top.length > 0) {
-            const titles = top.map(i => i.titulo).join(" | ");
-            dispararTelemetria("Busca Realizada", pergunta, titles);
-
-            let html = `<div class="feedback-topo"><span class="feedback-texto">Não encontrou a resposta exata?</span><button class="btn-feedback-min" onclick="abrirModalFeedback('${pergunta.replace(/'/g, "\\'")}', '${titles.replace(/'/g, "\\'")}')">👎 Reportar Falha</button></div>`;
-            
-            html += top.map((item, i) => {
-                let btnMan = item.manual_url ? `<a href="${item.manual_url}" target="_blank" class="btn-primary" style="margin-top:10px; font-size:13px; padding: 10px 16px;">📘 Abrir Manual PDF</a>` : "";
-                let passos = Array.isArray(item.passos) ? item.passos : (item.passos ? item.passos.split('\n') : []);
-                return `
-                    <div class="card-resultado">
-                        <div class="resultado-header" onclick="toggleResultado(${i})">
-                            <div><h3>${item.titulo}</h3><span class="area-tag" data-area="${item.area}">${item.area}</span></div>
-                            <i class="fa-solid fa-chevron-down seta-result" id="seta-${i}"></i>
-                        </div>
-                        <div class="resultado-body" id="resultado-${i}">
-                            <p><strong>Resumo:</strong> ${item.resumo}</p>
-                            <h4>Passos:</h4><ul>${passos.map(p => `<li>${p}</li>`).join("")}</ul>${btnMan}
-                        </div>
-                    </div>`;
-            }).join("");
-            divRes.innerHTML = html;
-        } else {
-            dispararTelemetria("Não Encontrado", pergunta, "Nenhum resultado");
-            divRes.innerHTML = `<div class="card-resultado" style="padding:25px;text-align:center;box-shadow:none;"><h3 style="color:#C53030;margin-bottom:10px;margin-top:0;">Informação não encontrada</h3><p style="color:var(--text-muted);margin:0;">Sua pesquisa foi registrada para inclusão futura no sistema.</p></div>`;
-        }
-        btn.innerText = "Pesquisar"; btn.disabled = false;
-    }, 300);
+    const divRes = document.getElementById("resultado");
+    divRes.innerHTML = ""; divRes.style.display = "flex"; document.getElementById("btnLimpar").style.display = "inline-block";
+    let brutos = motorBusca.search(normalizar(pergunta));
+    const top = brutos.slice(0, 3).map(r => r.item);
+    if (top.length > 0) {
+        const titles = top.map(i => i.titulo).join(" | ");
+        dispararTelemetria("Busca Realizada", pergunta, titles);
+        let html = `<div class="feedback-topo"><span style="font-size:13px;color:#C53030">Não encontrou?</span><button class="btn-feedback-min" onclick="abrirModalFeedback('${pergunta}', '${titles}')">Reportar Falha</button></div>`;
+        html += top.map((item, i) => `
+            <div class="card-resultado">
+                <div class="resultado-header" onclick="toggleResultado(${i})">
+                    <div><h3>${item.titulo}</h3><span class="area-tag">${item.area}</span></div>
+                    <i class="fa-solid fa-chevron-down seta-result" id="seta-${i}"></i>
+                </div>
+                <div class="resultado-body" id="resultado-${i}">
+                    <p><strong>Resumo:</strong> ${item.resumo}</p>
+                    <h4>Passos:</h4><ul>${(item.passos||"").split('\n').map(p => `<li>${p}</li>`).join("")}</ul>
+                    ${item.manual_url ? `<a href="${item.manual_url}" target="_blank" class="btn-primary" style="margin-top:10px">Abrir PDF</a>` : ""}
+                </div>
+            </div>`).join("");
+        divRes.innerHTML = html;
+    } else { divRes.innerHTML = "<p style='padding:20px;text-align:center'>Nenhum resultado.</p>"; }
 }
 
 function toggleResultado(index) {
@@ -305,34 +234,64 @@ function toggleResultado(index) {
         document.getElementById(`resultado-${resultadoAberto}`)?.classList.remove("ativo");
         document.getElementById(`seta-${resultadoAberto}`)?.classList.remove("rotacionar");
     }
-    corpo.classList.toggle("ativo"); 
-    seta.classList.toggle("rotacionar");
+    corpo.classList.toggle("ativo"); seta.classList.toggle("rotacionar");
     resultadoAberto = corpo.classList.contains("ativo") ? index : null;
 }
+
+// ==========================================
+// SISTEMA DE TAREFAS (LOCAL STORAGE)
+// ==========================================
+let tarefas = JSON.parse(localStorage.getItem('tt_tasks')) || [];
+
+function renderTarefas() {
+    const lista = document.getElementById('todo-list');
+    if(!lista) return;
+    lista.innerHTML = '';
+    tarefas.sort((a, b) => a.concluida - b.concluida);
+    tarefas.forEach((t, i) => {
+        const item = document.createElement('li');
+        item.className = `todo-item ${t.concluida ? 'done' : ''}`;
+        item.innerHTML = `
+            <input type="checkbox" ${t.concluida ? 'checked' : ''} onclick="toggleTarefa(${i})">
+            <span onclick="toggleTarefa(${i})">${t.texto}</span>
+            <i class="fa-solid fa-trash-can" onclick="removeTarefa(${i})"></i>
+        `;
+        lista.appendChild(item);
+    });
+    localStorage.setItem('tt_tasks', JSON.stringify(tarefas));
+}
+
+function addTarefa() {
+    const input = document.getElementById('todo-input');
+    if (!input.value.trim()) return;
+    tarefas.push({ texto: input.value, concluida: false });
+    input.value = '';
+    renderTarefas();
+}
+
+function toggleTarefa(index) { tarefas[index].concluida = !tarefas[index].concluida; renderTarefas(); }
+function removeTarefa(index) { tarefas.splice(index, 1); renderTarefas(); }
+function limparConcluidas() { tarefas = tarefas.filter(t => !t.concluida); renderTarefas(); }
 
 // ==========================================
 // INICIALIZAÇÃO
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     carregarBase();
+    renderTarefas();
     document.getElementById("pergunta")?.addEventListener("keypress", e => { if (e.key === "Enter") buscar(); });
     
     const collapsibleCards = document.querySelectorAll('.collapsible-card');
     collapsibleCards.forEach(card => {
         card.querySelector('.collapsible-header').addEventListener('click', () => {
-            const jaEstavaAberto = card.classList.contains('active');
+            const jaAberto = card.classList.contains('active');
             collapsibleCards.forEach(c => c.classList.remove('active'));
-            if (!jaEstavaAberto) { card.classList.add('active'); }
+            if (!jaAberto) card.classList.add('active');
         });
     });
 
-    const selTreino = document.getElementById('treinamento-select');
-    if(selTreino) selTreino.addEventListener('change', updateTreinamentoDetails);
+    document.getElementById('treinamento-select')?.addEventListener('change', updateTreinamentoDetails);
     document.getElementById('treinamento-search')?.addEventListener('input', filterTreinamentosAndDisplayFirstMatch);
-    
-    const selCont = document.getElementById('contato-select');
-    if(selCont) selCont.addEventListener('change', updateContactDetails);
-    
-    const selLoja = document.getElementById('loja-select');
-    if(selLoja) selLoja.addEventListener('change', updateLojaDetails);
+    document.getElementById('contato-select')?.addEventListener('change', updateContactDetails);
+    document.getElementById('loja-select')?.addEventListener('change', updateLojaDetails);
 });
