@@ -111,7 +111,17 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-color); color: var
 .contact-details-item { border: 1px solid var(--border-color); background: #FDFDFD; padding: 15px; border-radius: 8px; font-size: 14px; display: flex; flex-direction: column; align-items: flex-start; width: 100%;}
 .data-text { width: 100%; }
 
-.calendar-container { position: relative; padding-bottom: 70%; height: 0; border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; }
+/* CALENDARIO */
+.calendar-container { 
+    position: relative; 
+    width: 60%; 
+    padding-bottom: 40%; 
+    margin: 0 auto; 
+    height: 0; 
+    border: 1px solid var(--border-color); 
+    border-radius: 10px; 
+    overflow: hidden; 
+}
 .calendar-container iframe { position: absolute; top:0; left:0; width: 100%; height:100%; border:0; }
 
 .toast-notificacao { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #2D3748; color: white; padding: 12px 24px; border-radius: 8px; display: none; font-size: 13px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-weight: 600; }
@@ -119,9 +129,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-color); color: var
 @keyframes slideUp { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
 .no-results-message { font-size: 13px; color: var(--text-muted); }
 
+/* MOBILE */
 @media (max-width: 900px) {
     .layout-grid-top, .layout-grid-middle { grid-template-columns: 1fr; }
     .header { grid-template-columns: 1fr; gap: 15px; justify-items: center; text-align: center; margin-top: 15px;}
     .card-fixed-height { height: auto; max-height: 500px; }
     .info-bar { flex-wrap: wrap; justify-content: center;}
+    .calendar-container { width: 100%; padding-bottom: 80%; }
 }
