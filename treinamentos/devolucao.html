@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procedimento de Devolução e Recusa | Tamandaré Tintas</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -141,6 +141,20 @@
             border-radius: 0 8px 8px 0;
         }
         .excecao-box p { margin: 10px 0; }
+
+        /* Destaque para subtítulos com ícone */
+        .subtitulo-destaque {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .subtitulo-destaque::before {
+            content: "◆ ";
+            color: var(--accent-blue);
+        }
     </style>
 </head>
 <body>
@@ -184,7 +198,7 @@
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem2.png?raw=true" alt="Informações NF-e">
                 </div>
 
-                <!-- AVISO DE EXCEÇÃO (inserido antes de "Como conferir...") -->
+                <!-- AVISO DE EXCEÇÃO -->
                 <div class="excecao-box">
                     <p><strong>⚠️ Exceções</strong></p>
                     <p><strong>MEI (Microempreendedor Individual – Estado de São Paulo):</strong> Quando o cliente for MEI estabelecido no Estado de São Paulo, a nota fiscal de devolução poderá ser emitida pela Tamandaré Tintas, pois o MEI é dispensado dessa emissão pela legislação paulista.</p>
@@ -202,6 +216,8 @@
                 <i class="fa-solid fa-chevron-down toggle-icon"></i>
             </div>
             <div class="collapsible-content">
+                <!-- Subtítulo MEI com destaque -->
+                <span class="subtitulo-destaque">MEI</span>
                 <p>Para saber se um CNPJ é MEI, você deve analisar dois caminhos: a Razão Social (o nome oficial da empresa) e a Consulta do SIMEI (o sistema oficial do governo).</p>
 
                 <h3>Passo 1: Analise o Nome Oficial (Razão Social)</h3>
@@ -212,12 +228,12 @@
                 <p><strong>📌 Formato Antigo (Empresas abertas antes de dezembro de 2022)</strong><br>
                 Mostra o nome completo do proprietário seguido do CPF dele.<br>
                 • Exemplo: JOSÉ DA SILVA SAURO 12345678900</p>
-                <p>⚠️ <strong>Atenção:</strong> Em ambos os casos, <b></b>sempre haverá o nome de uma pessoa física<b></b>. Se a Razão Social for um nome inventado (como "Padaria Central LTDA"), não é MEI. O MEI também pode usar o Nome Social (para pessoas transgênero) no lugar do nome de batismo.</p>
+                <p>⚠️ <strong>Atenção:</strong> Em ambos os casos, <b>sempre haverá o nome de uma pessoa física</b>. Se a Razão Social for um nome inventado (como "Padaria Central LTDA"), não é MEI. O MEI também pode usar o Nome Social (para pessoas transgênero) no lugar do nome de batismo.</p>
 
                 <h3>Passo 2: Faça a Consulta do SIMEI</h3>
                 <p>O jeito mais seguro de confirmar é pela internet. O SIMEI é o sistema de impostos exclusivo de quem é MEI.</p>
                 <ol>
-                    <li>Acesse o site de Consulta de Optantes do Simples Nacional (Disponível no Painel Rápido).</li>
+                    <li>Acesse o site de Consulta de Optantes do Simples Nacional.</li>
                     <li>Digite o número do CNPJ e clique em Consultar.</li>
                     <li>Olhe para a linha escrita "Situação Atual do SIMEI".</li>
                 </ol>
@@ -249,7 +265,8 @@
                     </tr>
                 </table>
 
-                <h3>Construtora Pura vs. Contribuinte de ICMS</h3>
+                <!-- Subtítulo Construtora Pura com mesmo destaque -->
+                <span class="subtitulo-destaque">Construtora Pura vs. Contribuinte de ICMS</span>
                 <h4>Passo 1: Consulta Cadastral no CADESP / SINTEGRA</h4>
                 <p>O primeiro passo é verificar o status da Inscrição Estadual (IE) no Cadastro de Contribuintes do ICMS de São Paulo (CADESP).</p>
                 <ul>
@@ -364,14 +381,22 @@
         function toggleCard(cardId) {
             const allCards = document.querySelectorAll('.collapsible-card');
             const targetCard = document.getElementById(cardId);
-            
+            const wasActive = targetCard.classList.contains('active');
+
+            // Fecha todas
             allCards.forEach(card => {
-                if (card === targetCard) {
-                    card.classList.toggle('active');
-                } else {
-                    card.classList.remove('active');
-                }
+                card.classList.remove('active');
             });
+
+            // Se não estava ativo, abre e faz scroll
+            if (!wasActive) {
+                targetCard.classList.add('active');
+                // Scroll suave até o cabeçalho da seção
+                setTimeout(() => {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+            // Se já estava ativo, apenas fecha (não faz scroll)
         }
     </script>
 </body>
