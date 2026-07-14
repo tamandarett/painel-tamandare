@@ -257,7 +257,7 @@ try {
     let saved = JSON.parse(localStorage.getItem('tt_custom_links_rapido'));
     if (Array.isArray(saved)) {
         let valid = saved.filter(s => s !== null && s.title);
-        for (let i = 0; i < 5 && i < valid.length; i++) { customLinks[i] = valid[i]; }
+        for (let i = 0; i < 3 && i < valid.length; i++) { customLinks[i] = valid[i]; }
     }
 } catch(e) {}
 
