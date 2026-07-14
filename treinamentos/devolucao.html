@@ -132,6 +132,15 @@
             color: var(--danger-color);
             font-weight: 700;
         }
+
+        .excecao-box {
+            background-color: #fff3cd;
+            border-left: 6px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .excecao-box p { margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -142,6 +151,7 @@
             A devolução e a recusa de mercadorias, apesar de terem por finalidade o desfazimento da venda, possuem procedimentos distintos para fins fiscais.
         </p>
 
+        <!-- Seção 1: Devolução (parte inicial) -->
         <div class="collapsible-card active" id="card-devolucao">
             <div class="collapsible-header" onclick="toggleCard('card-devolucao')">
                 <h2>1. Devolução</h2>
@@ -174,7 +184,98 @@
                     <img src="https://github.com/tamandarett/imagenstreinamento/blob/main/devolucao/imagem2.png?raw=true" alt="Informações NF-e">
                 </div>
 
-                <h3>Como conferir uma NF de devolução emitida pelo cliente</h3>
+                <!-- AVISO DE EXCEÇÃO (inserido antes de "Como conferir...") -->
+                <div class="excecao-box">
+                    <p><strong>⚠️ Exceções</strong></p>
+                    <p><strong>MEI (Microempreendedor Individual – Estado de São Paulo):</strong> Quando o cliente for MEI estabelecido no Estado de São Paulo, a nota fiscal de devolução poderá ser emitida pela Tamandaré Tintas, pois o MEI é dispensado dessa emissão pela legislação paulista.</p>
+                    <p><strong>Construtora “Pura”:</strong> Empresas classificadas como construtora pura, embora possuam Inscrição Estadual por exigência cadastral, não são contribuintes do ICMS. Nesses casos, a nota fiscal de devolução também poderá ser emitida pela Tamandaré Tintas.</p>
+                    <p><strong>Importante:</strong> Essas exceções devem ser aplicadas apenas quando o cliente se enquadrar nas condições acima. Nos demais casos, permanece a regra geral de que a nota fiscal de devolução deve ser emitida pelo próprio cliente. Veja na sessão abaixo como identificar essas exceções.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Seção 2: Como Identificar a exceção (MEI e Construtora “Pura”) -->
+        <div class="collapsible-card" id="card-identificacao">
+            <div class="collapsible-header" onclick="toggleCard('card-identificacao')">
+                <h2>Como Identificar a exceção (MEI e Construtora “Pura”)</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <p>Para saber se um CNPJ é MEI, você deve analisar dois caminhos: a Razão Social (o nome oficial da empresa) e a Consulta do SIMEI (o sistema oficial do governo).</p>
+
+                <h3>Passo 1: Analise o Nome Oficial (Razão Social)</h3>
+                <p>O MEI é uma empresa ligada diretamente ao nome do dono. Por isso, a Razão Social sempre segue regras rígidas e automáticas da Receita Federal. Você verá duas variações de formato no mercado:</p>
+                <p><strong>📌 Formato Novo (Empresas abertas ou atualizadas recentemente)</strong><br>
+                Mostra os 8 primeiros números do CNPJ seguidos do nome completo do proprietário.<br>
+                • Exemplo: 12.345.678 JOSÉ DA SILVA SAURO</p>
+                <p><strong>📌 Formato Antigo (Empresas abertas antes de dezembro de 2022)</strong><br>
+                Mostra o nome completo do proprietário seguido do CPF dele.<br>
+                • Exemplo: JOSÉ DA SILVA SAURO 12345678900</p>
+                <p>⚠️ <strong>Atenção:</strong> Em ambos os casos, <b></b>sempre haverá o nome de uma pessoa física<b></b>. Se a Razão Social for um nome inventado (como "Padaria Central LTDA"), não é MEI. O MEI também pode usar o Nome Social (para pessoas transgênero) no lugar do nome de batismo.</p>
+
+                <h3>Passo 2: Faça a Consulta do SIMEI</h3>
+                <p>O jeito mais seguro de confirmar é pela internet. O SIMEI é o sistema de impostos exclusivo de quem é MEI.</p>
+                <ol>
+                    <li>Acesse o site de Consulta de Optantes do Simples Nacional (Disponível no Painel Rápido).</li>
+                    <li>Digite o número do CNPJ e clique em Consultar.</li>
+                    <li>Olhe para a linha escrita "Situação Atual do SIMEI".</li>
+                </ol>
+                <p><strong>Como ler o resultado:</strong></p>
+                <ul>
+                    <li>🟢 "Enquadrado/Optante pelo SIMEI desde: DD/MM/AAAA": Significa que a empresa é MEI. Esse campo só fica positivo para quem é Microempreendedor Individual.</li>
+                    <li>🔴 "Não optante pelo SIMEI": Significa que a empresa NÃO é MEI. Se na linha de cima (Simples Nacional) estiver "Optante", ela é uma Microempresa (ME) ou Empresa de Pequeno Porte (EPP), mas não MEI.</li>
+                </ul>
+                <div class="img-container">
+                    <img src="https://raw.githubusercontent.com/tamandarett/imagenstreinamento/refs/heads/main/devolucao/simei.png" alt="Consulta SIMEI">
+                </div>
+
+                <h3>Resumo das Diferenças</h3>
+                <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+                    <tr style="background:#e9ecef;">
+                        <th style="border:1px solid #ccc; padding:8px;">Característica</th>
+                        <th style="border:1px solid #ccc; padding:8px;">É MEI 🟢</th>
+                        <th style="border:1px solid #ccc; padding:8px;">Não é MEI 🔴</th>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid #ccc; padding:8px;">Razão Social</td>
+                        <td style="border:1px solid #ccc; padding:8px;">Nome da pessoa + CNPJ (ou CPF)</td>
+                        <td style="border:1px solid #ccc; padding:8px;">Nome comercial inventado</td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid #ccc; padding:8px;">Status do SIMEI</td>
+                        <td style="border:1px solid #ccc; padding:8px;">Mostra como "Optante"</td>
+                        <td style="border:1px solid #ccc; padding:8px;">Mostra como "Não optante"</td>
+                    </tr>
+                </table>
+
+                <h3>Construtora Pura vs. Contribuinte de ICMS</h3>
+                <h4>Passo 1: Consulta Cadastral no CADESP / SINTEGRA</h4>
+                <p>O primeiro passo é verificar o status da Inscrição Estadual (IE) no Cadastro de Contribuintes do ICMS de São Paulo (CADESP).</p>
+                <ul>
+                    <li><strong>Acesse:</strong> O site oficial do CADESP ou do Sintegra SP.</li>
+                    <li><strong>Insira:</strong> O CNPJ ou a Inscrição Estadual da empresa.</li>
+                    <li><strong>O que analisar:</strong> Verifique o campo Regime de Apuração.</li>
+                    <li><strong>Resultado:</strong> Se constar como "Não Contribuinte", "Isento" ou houver uma observação indicando "Inscrição exclusiva para circulação de bens/insumos", a empresa é uma construtora pura. Se constar "Simples Nacional" ou " Regime Periódico De Apuração", avance para o Passo 2.</li>
+                </ul>
+
+                <h4>Passo 2: Análise da Atividade Econômica (CNAE)</h4>
+                <p>Consulte o Cartão CNPJ da empresa no site da Receita Federal para avaliar as atividades econômicas declaradas.</p>
+                <ul>
+                    <li><strong>Critério de Exclusividade:</strong> A construtora pura possui APENAS códigos de atividade da Seção F do CNAE (códigos iniciados em 41, 42 ou 43), que englobam a construção de edifícios, obras de infraestrutura e serviços especializados.</li>
+                    <li><strong>Ponto de Desqualificação:</strong> Identifique se há qualquer CNAE de comércio (iniciados em 45, 46 ou 47) ou de industrialização/fabricação (como fabricação de esquadrias ou estruturas metálicas para terceiros).</li>
+                    <li><strong>A PRESENÇA DE APENAS UM CNAE COMERCIAL DESENQUADRA A EMPRESA COMO CONSTRUTORA PURA, tornando-a contribuinte regular do ICMS.</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Seção 3: Como conferir uma NF de devolução emitida pelo cliente -->
+        <div class="collapsible-card" id="card-conferir">
+            <div class="collapsible-header" onclick="toggleCard('card-conferir')">
+                <h2>Como conferir uma NF de devolução emitida pelo cliente</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
                 <p>A NF de devolução do cliente deve ser um “espelho” da nota que emitimos para ele, por isso ela deve conter todos os itens da NF original.</p>
 
                 <span class="sub-topico">Desconto</span>
@@ -221,6 +322,7 @@
             </div>
         </div>
 
+        <!-- Seção 4: Recusa -->
         <div class="collapsible-card" id="card-recusa">
             <div class="collapsible-header" onclick="toggleCard('card-recusa')">
                 <h2>2. Recusa</h2>
