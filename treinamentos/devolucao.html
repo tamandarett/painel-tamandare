@@ -376,28 +376,35 @@
             </div>
         </div>
     </div>
-
     <script>
-        function toggleCard(cardId) {
-            const allCards = document.querySelectorAll('.collapsible-card');
-            const targetCard = document.getElementById(cardId);
-            const wasActive = targetCard.classList.contains('active');
+    function toggleCard(cardId) {
+        const allCards = document.querySelectorAll('.collapsible-card');
+        const targetCard = document.getElementById(cardId);
+        const wasActive = targetCard.classList.contains('active');
 
-            // Fecha todas
-            allCards.forEach(card => {
-                card.classList.remove('active');
-            });
+        // Fecha todas as outras seções
+        allCards.forEach(card => {
+            card.classList.remove('active');
+        });
 
-            // Se não estava ativo, abre e faz scroll
-            if (!wasActive) {
-                targetCard.classList.add('active');
-                // Scroll suave até o cabeçalho da seção
-                setTimeout(() => {
-                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
-            }
-            // Se já estava ativo, apenas fecha (não faz scroll)
+        // Se não estava ativo, abre e faz scroll preciso
+        if (!wasActive) {
+            targetCard.classList.add('active');
+            
+            // Usamos setTimeout para garantir que o navegador processe a classe "active" primeiro
+            setTimeout(() => {
+                // Calcula a distância exata do topo do card até o topo do documento,
+                // considerando o quanto a página já rolou (window.scrollY)
+                const yOffset = -20; // Ajuste este valor (em pixels) se quiser uma folga no topo
+                const yPosition = targetCard.getBoundingClientRect().top + window.scrollY + yOffset;
+                
+                window.scrollTo({
+                    top: yPosition,
+                    behavior: 'smooth'
+                });
+            }, 50); // Um delay menor de 50ms já é suficiente para iniciar a rolagem corretamente
         }
-    </script>
+    }
+</script>
 </body>
 </html>
