@@ -169,7 +169,7 @@
             <!-- Tira-Dúvidas (Estilo Google) -->
             <div class="search-container">
                 <h2><i class="fa-solid fa-magnifying-glass"></i> Tira-Dúvidas</h2>
-                <input type="text" id="pergunta" class="google-search-input" placeholder="O que busca?" autocomplete="off" />
+                <input type="text" id="pergunta" class="google-search-input" placeholder="O que busca?" autocomplete="off" onkeypress="if(event.key === 'Enter') { this.value.trim() === '' ? limparBusca() : buscar(); }" />
                 <div class="search-actions-google">
                     <button onclick="buscar()">Pesquisar</button>
                     <button id="btnLimpar" onclick="limparBusca()" style="display:none">Limpar</button>
