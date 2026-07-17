@@ -140,6 +140,34 @@
         .btn-whatsapp {
             background-color: #25D366;
         }
+
+        /* ========== NOVAS REGRAS PARA MOBILE ========== */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+            .header-center {
+                display: none !important;
+            }
+            .header-text {
+                order: 1 !important;
+                width: 100% !important;
+                text-align: center !important;
+                margin-bottom: 10px !important;
+            }
+            .header-logo {
+                order: 2 !important;
+                width: 100% !important;
+                text-align: center !important;
+                margin-top: 10px !important;
+            }
+            .header-logo img {
+                display: inline-block !important;
+                max-width: 150px; /* Ajuste conforme sua preferência */
+            }
+        }
     </style>
 </head>
 <body>
