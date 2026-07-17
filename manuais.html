@@ -45,8 +45,9 @@
         }
 
         .header-manuais .logos-container img {
-            max-width: 100%;
-            height: auto;
+            max-height: 60px; /* Limite de altura restaurado */
+            width: auto;
+            object-fit: contain;
         }
 
         /* Layout estilo Google */
@@ -122,7 +123,7 @@
             width: 100%;
         }
 
-        /* Container de Treinamentos (Abaixo da pesquisa) */
+        /* Container de Treinamentos */
         .treinamentos-container {
             width: 100%;
             max-width: 650px;
@@ -144,7 +145,7 @@
             gap: 8px;
         }
 
-        /* Botões lado a lado centralizados */
+        /* Botões lado a lado */
         .botoes-acao {
             display: flex;
             gap: 12px;
@@ -183,7 +184,6 @@
         /* Ajustes para Dispositivos Móveis */
         @media (max-width: 768px) {
             .header-manuais {
-                /* Inverte a ordem: Logos ficam por cima do título */
                 flex-direction: column-reverse;
             }
             .header-manuais .header-text {
@@ -200,7 +200,7 @@
     <div class="top-bar"></div>
     <div class="container">
         
-        <!-- Cabeçalho ajustado -->
+        <!-- Cabeçalho -->
         <header class="header-manuais">
             <div class="header-text">
                 <h1>Manuais e Treinamentos</h1>
@@ -212,7 +212,7 @@
             </div>
         </header>
 
-        <!-- Hack para injetar a loja na planilha apenas via HTML -->
+        <!-- Hack para injetar a loja na planilha -->
         <select id="loja-select" style="display: none;">
             <option value="Gerentes" selected>Gerentes</option>
         </select>
