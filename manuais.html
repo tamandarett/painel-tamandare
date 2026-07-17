@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuais e Treinamentos - Tamandaré Tintas</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+    <style>
+        /* Grid dedicado para manter os dois blocos simétricos e alinhados nesta página */
+        .manuais-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .manuais-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1ebc5a;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+    <div class="container">
+        <header class="header">
+            <div class="header-text">
+                <h1>Manuais e Treinamentos</h1>
+                <p>Base de Conhecimento</p>
+            </div>
+            <div class="header-center">
+                <img src="./Logo30.png" alt="30 Anos" onerror="this.style.display='none'">
+            </div>
+            <div class="header-logo">
+                <img src="./logo-tamandare.png" alt="Logo" onerror="this.style.display='none'">
+            </div>
+        </header>
+
+        <div class="manuais-grid">
+            <!-- Bloco Tira-Dúvidas (Motor 100% preservado) -->
+            <div class="card highlight-card">
+                <div class="card-header-simple"><h2><i class="fa-solid fa-magnifying-glass"></i>Tira-Dúvidas</h2></div>
+                <div class="card-body-scroll" style="min-height: 350px;">
+                    <input type="text" id="pergunta" class="search-input" placeholder="O que busca?" autocomplete="off" />
+                    <div class="search-actions">
+                        <button class="btn-primary" onclick="buscar()">Pesquisar</button>
+                        <button id="btnLimpar" class="btn-secondary" onclick="limparBusca()" style="display:none">Limpar</button>
+                    </div>
+                    <div id="resultado" class="results-container"></div>
+                </div>
+            </div>
+
+            <!-- Bloco Treinamentos -->
+            <div class="card">
+                <div class="card-header-simple"><h2><i class="fa-solid fa-graduation-cap"></i>Treinamentos</h2></div>
+                <div class="card-body-scroll" style="min-height: 350px;">
+                    <input type="text" id="treinamento-search" class="search-input" placeholder="Filtrar..." oninput="filterTreinamentosCustom()">
+                    <select id="treinamento-select" class="modern-select" onchange="updateTreinamentoDetailsCustom()">
+                        <option value="" disabled selected>-- Selecione --</option>
+                        <option value="Abastecimento de Veículos">Abastecimento de Veículos</option>
+                        <option value="Análise de Crédito">Análise de Crédito</option>
+                        <option value="Cadastro de Clientes">Cadastro de Clientes</option>
+                        <option value="Carta de Correção">Carta de Correção</option>
+                        <option value="Despesa de Viagem">Despesa Viagem</option>
+                        <option value="Devolução e Recusa de Mercadorias">Devolução e Recusa de Mercadorias</option>
+                        <option value="GNRE">GNRE: Vendas para Clientes de Fora do Estado</option>
+                        <option value="Jornada Essencial Tamandaré Tintas">Jornada Essencial Tamandaré Tintas</option>
+                        <option value="Registro de Lacres">Registro de Lacres</option>
+                        <option value="Vendas e Transferência entre lojas">Vendas e Transferência entre lojas.</option>
+                    </select>
+                    <div id="no-results-treinamento" class="no-results-message" style="display:none">Nada encontrado.</div>
+                    <div id="treinamento-details-display" class="contact-details-item" style="display:none; margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts Base -->
+    <script src="script.js"></script>
+    
+    <!-- Script Dedicado para Injeção do Botão WhatsApp -->
+    <script>
+        function updateTreinamentoDetailsCustom() {
+            // 1. Executa a função original do script.js
+            if (typeof updateTreinamentoDetails === 'function') {
+                updateTreinamentoDetails();
+            }
+
+            const select = document.getElementById('treinamento-select');
+            const selectedValue = select.value;
+            const displayDiv = document.getElementById('treinamento-details-display');
+
+            // 2. Aguarda a renderização do script.js
+            setTimeout(() => {
+                if (selectedValue === "Abastecimento de Veículos" && displayDiv.style.display !== 'none') {
+                    if (!document.getElementById('btn-wpp-abastecimento')) {
+                        
+                        // Captura o link gerado pelo seu script.js para enviar a URL correta no texto
+                        const linkElement = displayDiv.querySelector('a');
+                        const urlLink = linkElement ? linkElement.href : "https://tamandarett.github.io/painel-tamandare/treinamentos/abastecimento.html";
+                        
+                        const msgWhatsApp = encodeURIComponent(`Treinamento Tamandaré Tintas - Abastecimento de Veículos:\n${urlLink}`);
+                        const urlWhatsApp = `https://wa.me/?text=${msgWhatsApp}`;
+
+                        const btnWpp = document.createElement('a');
+                        btnWpp.id = 'btn-wpp-abastecimento';
+                        btnWpp.href = urlWhatsApp;
+                        btnWpp.target = '_blank';
+                        btnWpp.className = 'btn-whatsapp';
+                        btnWpp.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp';
+                        
+                        // Insere logo após o botão original
+                        if (linkElement) {
+                            linkElement.parentNode.insertBefore(btnWpp, linkElement.nextSibling);
+                        } else {
+                            displayDiv.appendChild(btnWpp);
+                        }
+                    }
+                } else {
+                    // Limpa o botão se o usuário trocar para outro treinamento
+                    const btnWpp = document.getElementById('btn-wpp-abastecimento');
+                    if (btnWpp) btnWpp.remove();
+                }
+            }, 50); 
+        }
+
+        // Intercepta a barra de pesquisa de treinamentos para rodar a função com WhatsApp
+        function filterTreinamentosCustom() {
+            if (typeof filterTreinamentosAndDisplayFirstMatch === 'function') {
+                filterTreinamentosAndDisplayFirstMatch();
+            }
+            setTimeout(updateTreinamentoDetailsCustom, 50);
+        }
+    </script>
+</body>
+</html>
