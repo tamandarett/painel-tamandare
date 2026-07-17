@@ -30,6 +30,7 @@ const TRAINING_DETAILS = {
     "Despesa de Viagem": { description: "Regras para pagamento e baixas de despesas de viagem.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/despesasdeviagem.html" },
     "Carta de Correção": { description: "Manual de como emitir uma carta de correção.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/cce.html" },
     "Vendas e Transferência entre lojas": { description: "Regras para vendas e transferências entre lojas do grupo.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/vendasentrelojas.html" },
+    "Manual de Compras das Lojas": { description: "Este manual tem como objetivo padronizar as compras realizadas diretamente pelas lojas.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/compras.html" },
     "Análise de Crédito": { description: "Interprete os dados da ACIAI para análise de crédito segura.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/analisedecredito.html" }
 };
 
