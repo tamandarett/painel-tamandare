@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Compras das Lojas | Tamandaré Tintas</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --background-body: #f2f2f2;
+            --card-background: #ffffff;
+            --text-color: #333;
+            --accent-blue: #0056b3;
+            --soft-blue: #f1f7ff;
+            --danger-color: #b71c1c;
+            --success-green: #2e7d32;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-body);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: var(--card-background);
+            border-radius: 12px;
+            padding: 30px 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        h1.page-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 0;
+            font-size: 2.2em;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.7rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+            font-size: 1.25em;
+            font-weight: 700;
+        }
+
+        .bloco-destaque {
+            font-size: 1.05em;
+            background: var(--soft-blue);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .atencao-box {
+            background-color: #fff3cd;
+            border-left: 6px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .atencao-box p { margin: 10px 0; }
+
+        .importante-box {
+            background-color: #e8f0fe;
+            border-left: 6px solid var(--accent-blue);
+            padding: 20px;
+            margin: 25px 0 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .importante-box p { margin: 10px 0; }
+
+        .resumo-final {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px 35px;
+            margin-top: 40px;
+            border: 1px solid #e9ecef;
+        }
+        .resumo-final h2 {
+            border-left-color: var(--success-green);
+            margin-top: 0;
+        }
+        .resumo-final ul {
+            list-style: none;
+            padding: 0;
+        }
+        .resumo-final ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        .resumo-final ul li i {
+            color: var(--success-green);
+            margin-right: 12px;
+            font-size: 1.2em;
+            width: 24px;
+        }
+        .resumo-final ul li:last-child {
+            border-bottom: none;
+        }
+
+        .dica-final {
+            background: var(--soft-blue);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 2px dashed #ddd;
+            margin: 40px 0 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Manual de Compras das Lojas</h1>
+
+        <p class="intro-text">
+            Este manual tem como objetivo padronizar as compras realizadas diretamente pelas lojas, garantindo um melhor controle financeiro, fiscal e de estoque, além de evitar atrasos em pagamentos, protestos e erros de lançamento.
+        </p>
+
+        <!-- Seção 1 -->
+        <h2>1. Forma de compra</h2>
+        <p>O padrão da empresa para compras é sempre:</p>
+        <ul>
+            <li>Compra com <strong>Nota Fiscal (DANFE)</strong>;</li>
+            <li>Pagamento por <strong>boleto com vencimento para 14 dias</strong>.</li>
+        </ul>
+        <p>Caso o fornecedor não trabalhe com boleto e aceite apenas PIX, o pagamento será realizado <strong>em até 5 dias após o recebimento da Nota Fiscal pela loja</strong>. Esse é o prazo médio necessário para que a documentação chegue ao escritório e o pagamento seja processado.</p>
+        <p>Sempre dê preferência para:</p>
+        <ul>
+            <li>fornecedores que já sejam clientes da loja;</li>
+            <li>fornecedores que emitam Nota Fiscal;</li>
+            <li>pagamentos por boleto bancário.</li>
+        </ul>
+
+        <hr>
+
+        <!-- Seção 2 -->
+        <h2>2. Exija sempre Nota Fiscal</h2>
+        <p>Toda compra de materiais, produtos ou contratação de serviços deve possuir <strong>Nota Fiscal</strong>.</p>
+        <p>Antes de efetuar qualquer compra ou solicitar um serviço, confirme se o fornecedor emite Nota Fiscal.</p>
+        <p>A Nota Fiscal é indispensável para:</p>
+        <ul>
+            <li>registro da compra;</li>
+            <li>controle financeiro;</li>
+            <li>controle fiscal;</li>
+            <li>garantia dos produtos e serviços;</li>
+            <li>prestação de contas da empresa.</li>
+        </ul>
+
+        <div class="atencao-box">
+            <p><strong>⚠️ Atenção</strong></p>
+            <p>Por sermos uma empresa, <strong>não é possível lançar compras utilizando cupom fiscal</strong>.</p>
+            <p>Sempre solicite ao fornecedor a <strong>Nota Fiscal eletrônica (DANFE)</strong>.</p>
+            <p>A única exceção são as <strong>despesas de viagem</strong>, que devem ser comprovadas com <strong>cupom fiscal</strong>, emitido <strong>sem o CNPJ da loja</strong>, conforme orientações do Manual de Despesas de Viagem.</p>
+            <p>Compras sem Nota Fiscal inevitavelmente podem acontecer em situações muito específicas. No entanto, elas devem ser tratadas como <strong>exceção extrema</strong>, somente quando realmente não existir outra alternativa ou fornecedor que possa atender à necessidade.</p>
+        </div>
+
+        <div class="importante-box">
+            <p><strong><i class="fa-solid fa-circle-info"></i> Importante</strong></p>
+            <p>A responsabilidade de solicitar e acompanhar a emissão da Nota Fiscal é da própria loja que realizou a compra ou contratou o serviço.</p>
+            <p>Combine previamente com o fornecedor como será feita a emissão da Nota Fiscal e acompanhe o processo até o recebimento do documento, para que ele possa ser enviado ao escritório junto com o malote do caixa.</p>
+        </div>
+
+        <hr>
+
+        <!-- Seção 3 -->
+        <h2>3. Evite pagamentos em dinheiro</h2>
+        <p>Sempre que possível, evite utilizar dinheiro do caixa.</p>
+        <p>Quanto menor a movimentação em dinheiro:</p>
+        <ul>
+            <li>maior é a segurança da loja;</li>
+            <li>menor é a chance de erros de caixa;</li>
+            <li>melhor é o controle financeiro.</li>
+        </ul>
+        <p>Quando não houver alternativa e o pagamento precisar ser realizado à vista, a Nota Fiscal deverá ser lançada utilizando a opção <strong>"Pagamento à Vista"</strong>, o mesmo caminho utilizado para despesas de viagem.</p>
+
+        <div class="atencao-box">
+            <p><strong>⚠️ Atenção</strong></p>
+            <ul>
+                <li>Não é necessário preencher o formulário de Despesas de Viagem, pois ele é exclusivo para esse tipo de gasto.</li>
+                <li>Informe corretamente o fornecedor da Nota Fiscal.</li>
+                <li>Escolha corretamente o <strong>Tipo de Despesa</strong>.</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <!-- Seção 4 -->
+        <h2>4. Identificação e destinação da compra</h2>
+        <p>O campo <strong>Tipo de Despesa</strong> é um dos itens mais importantes do lançamento.</p>
+        <p>É por meio dele que são elaborados relatórios, indicadores e demonstrativos financeiros da empresa.</p>
+        <p>Por esse motivo:</p>
+        <ul>
+            <li>escolha sempre o tipo de despesa correto;</li>
+            <li>nunca utilize categorias apenas por serem parecidas;</li>
+            <li>em caso de dúvida, pergunte antes de realizar o lançamento.</li>
+        </ul>
+        <p>Um lançamento incorreto pode comprometer diversas análises financeiras da empresa.</p>
+
+        <h3>A compra deve pertencer à loja que utilizará o produto</h3>
+        <p>Toda compra deve ser emitida para a loja que efetivamente utilizará o produto ou serviço.</p>
+        <p><strong>Nunca realize compras utilizando o cadastro (CNPJ) de outra loja do grupo sem autorização prévia.</strong></p>
+        <p>Esse cuidado é fundamental para manter o controle fiscal e financeiro de cada unidade.</p>
+        <p>Sempre que algum funcionário retornar com uma Nota Fiscal:</p>
+        <ul>
+            <li>confira imediatamente se o CNPJ da loja está correto;</li>
+            <li>caso exista qualquer erro no faturamento, solicite a correção ao fornecedor o quanto antes.</li>
+        </ul>
+        <p>Quanto mais rápido o erro for identificado, maiores serão as chances de conseguir corrigir a Nota Fiscal.</p>
+
+        <hr>
+
+        <!-- Seção 5 -->
+        <h2>5. Envio da Nota Fiscal e do boleto</h2>
+        <p>Após a compra, a responsabilidade da loja não termina.</p>
+        <p>É obrigação da unidade acompanhar todo o processo:</p>
+        <ol>
+            <li>Realizar a compra;</li>
+            <li>Receber a Nota Fiscal;</li>
+            <li>Receber o boleto (quando houver);</li>
+            <li>Conferir se os documentos estão corretos;</li>
+            <li>Encaminhar a Nota Fiscal e o boleto para a Visconde.</li>
+        </ol>
+        <p>Esse acompanhamento deve ser realizado em conjunto pelo <strong>Gerente</strong> e pelo <strong>Caixa</strong>, garantindo que nenhum documento fique pendente e evitando atrasos nos pagamentos.</p>
+
+        <hr>
+
+        <!-- Resumo -->
+        <div class="resumo-final">
+            <h2>Resumo das principais regras</h2>
+            <ul>
+                <li><i class="fa-solid fa-check-circle"></i> Sempre comprar com Nota Fiscal (DANFE).</li>
+                <li><i class="fa-solid fa-check-circle"></i> Dar preferência a fornecedores clientes da loja.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Priorizar pagamento por boleto (14 dias).</li>
+                <li><i class="fa-solid fa-check-circle"></i> Utilizar PIX apenas quando necessário.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Evitar pagamentos em dinheiro.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Escolher corretamente o Tipo de Despesa.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Emitir a compra sempre no CNPJ da loja que utilizará o produto.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Conferir o CNPJ da Nota Fiscal antes de encaminhá-la.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Encaminhar a Nota Fiscal e o boleto para a Visconde assim que forem recebidos.</li>
+            </ul>
+            <div class="dica-final">
+                <i class="fa-solid fa-lightbulb" style="color: var(--accent-blue); margin-right: 10px;"></i>
+                Em caso de dúvidas sobre qualquer etapa do processo, consulte o setor responsável antes de concluir a compra ou realizar o lançamento.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
