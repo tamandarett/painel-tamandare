@@ -10,46 +10,6 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <style>
-        /* Ajustes do Cabeçalho - Centralizado com logos lado a lado */
-        .header-manuais {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .header-manuais .header-text {
-            margin-bottom: 20px;
-        }
-
-        .header-manuais h1 {
-            margin: 0;
-            font-size: 28px;
-            color: #202124;
-        }
-
-        .header-manuais p {
-            margin: 5px 0 0 0;
-            color: #5f6368;
-            font-size: 14px;
-        }
-
-        .header-manuais .logos-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .header-manuais .logos-container img {
-            max-height: 55px; /* Limita a altura para não ocupar muita tela no mobile */
-            width: auto;
-            object-fit: contain;
-        }
-
         /* Layout estilo Google */
         .google-layout {
             display: flex;
@@ -57,7 +17,7 @@
             align-items: center;
             justify-content: flex-start;
             min-height: 70vh;
-            padding-top: 4vh;
+            padding-top: 5vh;
             gap: 40px;
         }
 
@@ -180,38 +140,33 @@
         .btn-whatsapp {
             background-color: #25D366;
         }
-        
-        @media (max-width: 480px) {
-            .botoes-acao {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="top-bar"></div>
     <div class="container">
-        
-        <!-- Cabeçalho ajustado -->
-        <header class="header-manuais">
+        <header class="header">
             <div class="header-text">
                 <h1>Manuais e Treinamentos</h1>
                 <p>Caixa e Faturamento</p>
             </div>
-            <div class="logos-container">
+            <div class="header-center">
                 <img src="./Logo30.png" alt="30 Anos" onerror="this.style.display='none'">
+            </div>
+            <div class="header-logo">
                 <img src="./logo-tamandare.png" alt="Logo" onerror="this.style.display='none'">
             </div>
         </header>
 
         <!-- Hack para injetar a loja na planilha apenas via HTML -->
+        <!-- Ocultamos o select, mas deixamos a opção 'Gerentes' marcada -->
         <select id="loja-select" style="display: none;">
             <option value="Gerentes" selected>Gerentes</option>
         </select>
 
         <div class="google-layout">
             
-            <!-- Tira-Dúvidas -->
+            <!-- Tira-Dúvidas (Estilo Google) -->
             <div class="search-container">
                 <h2><i class="fa-solid fa-magnifying-glass"></i> Tira-Dúvidas</h2>
                 <input type="text" id="pergunta" class="google-search-input" placeholder="O que busca?" autocomplete="off" onkeypress="if(event.key === 'Enter') { this.value.trim() === '' ? limparBusca() : buscar(); }" />
@@ -222,7 +177,7 @@
                 <div id="resultado" class="results-container"></div>
             </div>
 
-            <!-- Treinamentos -->
+            <!-- Treinamentos (Cartão compacto abaixo) -->
             <div class="treinamentos-container">
                 <h3><i class="fa-solid fa-graduation-cap"></i> Treinamentos Rápido</h3>
                 
@@ -255,6 +210,7 @@
     <!-- Script Dedicado para formatação dos Botões -->
     <script>
         function updateTreinamentoDetailsCustom() {
+            // Executa a função original do script.js
             if (typeof updateTreinamentoDetails === 'function') {
                 updateTreinamentoDetails();
             }
@@ -263,21 +219,27 @@
             const selectedValue = select.value;
             const displayDiv = document.getElementById('treinamento-details-display');
 
+            // Aguarda a renderização do link pelo script.js para reestilizar
             setTimeout(() => {
                 if (displayDiv.style.display !== 'none') {
                     const linkElement = displayDiv.querySelector('a:not(.btn-whatsapp)');
                     
                     if (linkElement) {
+                        // Limpa o wrapper antigo para evitar duplicidade caso o usuário troque de opção rápido
                         let wrapper = displayDiv.querySelector('.botoes-acao');
                         if (wrapper) wrapper.remove();
 
+                        // Cria um novo wrapper flexível
                         wrapper = document.createElement('div');
                         wrapper.className = 'botoes-acao';
                         
+                        // Formata o botão original
                         linkElement.className = 'btn-acessar';
+                        // Move o botão original para dentro do wrapper
                         linkElement.parentNode.insertBefore(wrapper, linkElement);
                         wrapper.appendChild(linkElement);
 
+                        // Injeta WhatsApp apenas no Abastecimento
                         if (selectedValue === "Abastecimento de Veículos") {
                             const urlLink = linkElement.href;
                             const msgWhatsApp = encodeURIComponent(`Treinamento Tamandaré Tintas - Abastecimento de Veículos:\n${urlLink}`);
