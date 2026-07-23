@@ -200,7 +200,7 @@ function buscar() {
     
     if (top.length > 0) {
         let html = top.map((item, i) => {
-            let btnMan = item.manual_url ? `<a href="${item.manual_url}" target="_blank" class="btn-primary" style="margin-top:10px; font-size:12px; padding: 10px 16px; display:inline-block;">📘 Abrir Manual PDF</a>` : "";
+            let btnMan = item.manual_url ? `<a href="${item.manual_url}" target="_blank" class="btn-primary" style="margin-top:10px; font-size:12px; padding: 10px 16px; display:inline-block;">📘 Abrir Manual</a>` : "";
             let passos = Array.isArray(item.passos) ? item.passos : (item.passos ? item.passos.split('\n') : []);
             
             return `
