@@ -22,6 +22,7 @@ const TRAINING_DETAILS = {
             { title: "Módulo 4: Comunicação Digital", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/comunicameiodigital.html" }
         ]
     },
+    "Recebimento de Pagamentos na Entrega": { description: "Manual de procedimentos para o passo a passo de como realizar recebimentos no ato da entrega.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/recebimento.html" },
     "Abastecimento de Veículos": { description: "Manual de procedimentos para abastecimento de veículos da frota via Ticketlog, incluindo regras de senha, KM e compra de óleo.", link: "https://tamandarett.github.io/painel-tamandare/treinamentos/abastecimento.html" },
     "Cadastro de Clientes":{ description:"Como cadastrar clientes corretamente, aplicar bloqueios e consultar informações.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/cadastrodeclientes.html" },
     "Registro de Lacres":{ description:"Sistema digital para registrar a numeração dos lacres dos malotes.", link:"https://tamandarett.github.io/painel-tamandare/treinamentos/lacres.html" },
