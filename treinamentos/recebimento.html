@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento: Recebimento de Pagamentos na Entrega | Tamandaré Tintas</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+    <meta property="og:title" content="Treinamento: Recebimento de Pagamentos na Entrega | Tamandaré Tintas">
+    <meta property="og:description" content="Manual de procedimentos e vídeo instrutivo para cobrança no ato da entrega.">
+    <meta property="og:image" content="favicon.png"> 
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #b71c1c;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: auto; }
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card-content { padding: 25px 30px; }
+        h1 { color: var(--primary-color); font-weight: 700; text-align: center; margin-top: 20px; }
+        h2 { color: var(--primary-color); font-size: 1.2rem; margin: 0; }
+        h3 { color: var(--primary-color); border-left: 4px solid var(--secondary-color); padding-left: 10px; margin-top: 25px; }
+        h4 { color: #555; margin-bottom: 10px; font-weight: 700; }
+        
+        .collapsible-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .collapsible-header:hover { background-color: #f8f9fa; }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 30px;
+        }
+        .collapsible-card.active .collapsible-content {
+            max-height: none; 
+            padding-bottom: 25px;
+        }
+        .toggle-icon { transition: transform 0.4s ease-out; }
+        .collapsible-card.active .toggle-icon { transform: rotate(180deg); }
+        
+        /* AJUSTE DO VÍDEO: Proporção perfeita 16:9 para YouTube */
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+            margin-bottom: 10px;
+        }
+        .video-responsive iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 10px; text-align: left; }
+        th { background-color: #f8f9fa; color: var(--primary-color); }
+
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box i { color: #e65100; margin-right: 10px; }
+        
+        .critico-text { color: var(--secondary-color); font-weight: bold; }
+        .destaque { background-color: #e3f2fd; padding: 15px; border-radius: 4px; border-left: 4px solid #2196f3; margin: 15px 0; }
+        
+        a { color: #0056b3; text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manual de Recebimento de Pagamentos na Entrega</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Cobrança no ato da entrega - Tamandaré Tintas</p>
+
+        <div class="card collapsible-card" id="card-video">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-video"></i> 1. Vídeo Instrutivo</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    <div class="video-responsive">
+                        <iframe 
+                            src="https://www.youtube.com/embed/XXXlcnjh5Qk?rel=0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 10px; font-style: italic;">
+                        <i class="fa-solid fa-circle-info"></i> No celular, clique no ícone do player para ver em tela cheia.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card collapsible-card">
+            <div class="collapsible-header">
+                <h2><i class="fa-solid fa-file-lines"></i> 2. Manual de Procedimentos na Íntegra</h2>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="collapsible-content">
+                <div class="card-content" style="padding-top: 0;">
+                    
+                    <h3>1. Regras Gerais e Formas de Pagamento</h3>
+                    <p>Este manual orienta o passo a passo de como realizar cobranças no ato da entrega. O objetivo é garantir que você saiba operar a maquininha com segurança e agilidade, sem precisar tomar decisões comerciais.</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Regra</th>
+                                <th>Detalhamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>Tipo</b></td>
+                                <td>Apenas para Pedidos e Carteira.</td>
+                                <td>Nós só aceitamos pagamento no local para pedidos e NFs em carteira. Nunca receba boletos; caso o cliente solicite, entre em contato com a loja.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Formas Aceitas</b></td>
+                                <td>Crédito, Débito e Dinheiro.</td>
+                                <td>Para qualquer outra forma de pagamento, deve-se consultar o operador de caixa da loja.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Condições de Pagamento</b></td>
+                                <td class="critico-text">SIGA SEMPRE A CONDIÇÃO DESCRITA NO PEDIDO.</td>
+                                <td>Se o vendedor negociou R$ 2.000,00 no Débito e o cliente pedir Crédito, explique e ligue na loja para solicitar a mudança.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Parcelamento</b></td>
+                                <td>Requer autorização do vendedor.</td>
+                                <td>Se no pedido está em 2x e o cliente pedir 5x, você só pode mudar com a autorização do vendedor.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Dinheiro</b></td>
+                                <td>Verificar troco antes de sair.</td>
+                                <td>Confirme com o vendedor se há necessidade de levar troco. Caso necessário, solicite o valor ao caixa da loja.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>2. Pagamento via PIX (Atenção)</h3>
+                    
+                    <div class="warning-box">
+                        <p><strong><i class="fa-solid fa-triangle-exclamation"></i> NÃO ACEITAMOS PIX NA MAQUININHA</strong></p>
+                        <p>A maquininha tem a opção de PIX, mas <b>não utilizamos</b>. Como a loja não tem contrato com a Cielo para esse tipo de recebimento, pagamos uma taxa altíssima. <b>Jamais utilize essa opção.</b></p>
+                    </div>
+
+                    <h4>Se o cliente solicitar PIX no ato da entrega:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Passo</th>
+                                <th>Ação do Entregador</th>
+                                <th>Detalhes Cruciais</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Informar de forma amigável</td>
+                                <td>Explique que o PIX é gerado direto pelo sistema da loja.</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Solicitar WhatsApp do cliente</td>
+                                <td>Peça o número para que a loja envie o código PIX.</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Contatar a loja</td>
+                                <td>Entre em contato para que o caixa gere o código PIX único atrelado àquela venda e envie ao cliente.</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td class="critico-text">Aguardar confirmação</td>
+                                <td>Aguarde a loja confirmar que o PIX caiu na conta e a nota fiscal foi emitida. <b>Somente após essa confirmação entregue a mercadoria.</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>3. Passo a Passo: Como usar a maquininha</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Passo</th>
+                                <th>Ação</th>
+                                <th>Detalhes Cruciais</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Digitar o valor</td>
+                                <td>A vírgula é colocada automaticamente. Para cobrar R$ 150,00, digite <b>15000</b>.</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Conferir o valor na tela</td>
+                                <td class="critico-text">AVISO: Antes de apertar a tecla verde, confira se o valor está exatamente igual ao do pedido.</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Apertar a tecla Verde/Enter</td>
+                                <td>A tecla muda de acordo com o modelo, mas é facilmente identificável. A máquina apresentará as opções Crédito e Débito.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Se for Débito:</h4>
+                    <ul>
+                        <li>Caso apareça a tela com a palavra <b>"Troco"</b>, ela deve ser <b>ignorada</b>.</li>
+                        <li>Basta clicar novamente na tecla Verde/Enter e a máquina solicitará a inserção ou aproximação do cartão.</li>
+                    </ul>
+
+                    <h4>Se for Crédito:</h4>
+                    <p>Aparecem 4 opções, mas utilizamos apenas duas delas: <b>À VISTA</b> e <b>PARCELADO LOJA</b>. <span class="critico-text">Nunca selecione as outras opções.</span></p>
+                    <ul>
+                        <li><b>À VISTA:</b> Ao selecionar, a máquina segue solicitando a aproximação ou inserção do cartão.</li>
+                        <li><b>PARCELADO LOJA:</b> A máquina vai para a tela onde você deve selecionar as parcelas. <b>Atenção:</b> digite exatamente a quantidade de parcelas negociada pelo vendedor. Ao confirmar, a máquina solicitará a aproximação ou inserção do cartão.</li>
+                    </ul>
+
+                    <h3>4. Confirmação e Impressão (Regra de Ouro)</h3>
+
+                    <div class="destaque">
+                        <p><strong><i class="fa-solid fa-lock"></i> Regra de Ouro:</strong> O pagamento só está concluído e aprovado quando a <b>via da loja é impressa</b>. Não entregue o material baseando-se apenas no aviso sonoro ou na tela.</p>
+                    </div>
+
+                    <ul>
+                        <li>Depois de destacar a via da loja impressa, clique na tecla Verde/Enter para imprimir a via do cliente.</li>
+                    </ul>
+
+                    <h3>5. Reimpressão de Comprovante</h3>
+                    <p>Se por algum motivo você precisar reimprimir o comprovante:</p>
+                    <ol>
+                        <li>Na tela inicial da maquininha, role o menu para baixo e encontre a opção <b>"Reimpressão"</b>.</li>
+                        <li>Selecione <b>"Venda"</b> e depois <b>"Última Transação"</b>.</li>
+                        <li>Selecione qual via você quer imprimir: a do estabelecimento, a do cliente ou ambas.</li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lógica para abrir/fechar os cards
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+
+            // RESULTADO: Força o card de vídeo a iniciar ABERTO
+            const videoCard = document.getElementById('card-video');
+            if (videoCard) {
+                videoCard.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
